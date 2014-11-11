@@ -1,0 +1,503 @@
+%!Mode:: "TeX:UTF-8"
+%!TEX program = lualatex
+\usepackage[dvipsnames, table]{xcolor}     % to have colors 
+\usepackage{eso-pic}                % put things into background 
+\usepackage{lipsum}                 % for sample text
+\usepackage[explicit]{titlesec}     % for customizing sections
+\usepackage[leqno]{amsmath}         % for mathematical content
+\usepackage[amsmath]{ntheorem}      % for theorem-like environments
+\usepackage{esint}                  % for circulation integrals
+\usepackage[framemethod=TikZ]{mdframed}
+
+%Mes packages
+
+\usepackage{imakeidx}
+%\usepackage{index}
+\makeindex
+% \makeindex[name=persons,title=Index des \textsc{Noms}]
+\usepackage[totoc]{idxlayout}
+\usepackage[utf8]{luainputenc}
+%\usepackage[pdftex]{graphicx}
+\usepackage[french]{babel}%Pour les écritures en français
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+% \usepackage[thmmarks]{ntheorem} % Pour les \qed
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % Certains caractères de maths en plus, comme le T d'une tribu en proba
+%\usepackage{amsthm}
+
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{} % FancyHDR has to be loaded before the geometry package
+\usepackage[bottom=2.5cm, top=3cm, left=4cm, right=2cm]{geometry}
+\usepackage{titlesec}
+%\usepackage[usenames,dvipsnames]{color}%Package des couleurs avant celui de tikz
+\usepackage{calc} %Pour les calculs d'entêtes de définitions
+\usepackage{tikz}
+\usepackage{tikz-3dplot} %Pour les dessins en 3D
+% \usepackage{pst-solides3d} % Pour des meilleurs dessins en 3D
+\usetikzlibrary{arrows,shapes,trees,calc,through,patterns,positioning} % loads some tikz extensions
+\tikzset{every picture/.style={execute at begin picture={ % Inutile avec LuaTeX
+   \shorthandoff{:;!?};}
+}}
+
+\catcode`\@=11 
+\tikzset{rgb color/.code={\pgfutil@definecolor{.}{RGB}{#1}\tikzset{color=.}}} 
+\tikzset{rgb fill/.code={\pgfutil@definecolor{.}{RGB}{#1}\tikzset{fill=.}}} 
+
+\usepackage[european resistor, european voltage, european current]{circuitikz} % De http://www.physagreg.fr/schemas-figures-physique-svg-tikz.php
+\usetikzlibrary{decorations.markings,decorations.pathmorphing,
+decorations.pathreplacing}
+\usetikzlibrary{shapes.geometric}
+
+\usepackage{mathtools}    % Pour pouvoir rendre les "underbrace" moins encombrants en \mathclap
+\usepackage{subfig}       % Pour les sous figures
+\usepackage{needspace}    % Pour réserver de l'espace
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} %
+                          % Pour que footcite utilise plutot des etoiles
+\usepackage{caption}      % Pratique pour avoir des légendes sans "figure"
+\usepackage{pifont}       % Pour cocher des cases
+\usepackage{multirow}     % Tableaux avec cellules fusionnées
+\usepackage{tabu}         % Pour varier les lignes dans les tableaux - http://tex.stackexchange.com/questions/41758/how-can-i-reproduce-this-table-with-thick-lines
+\usepackage[babel=true]{csquotes}
+\usepackage{enumitem}     % Pour personnaliser les listes
+\frenchbsetup{StandardLists=true}
+                          % Pour éviter tout conflit avec [enumitem]
+\usepackage{multicol}     % Environnements multi-collonnes dans le document
+
+%\usepackage[sfdefault]{ClearSans}    % Pour le texte
+                          % Pour utiliser les guillemets Français
+%\usepackage[europeancurrents,europeanresistors]{circuitikz}
+                          % Pour dessiner des circuits électriques
+\usepackage{wrapfig}      % Pour "wrap" des figures avec du texte
+%\usepackage{enumerate}    % Pour numeroter en (i), (ii), (iii) etc...
+\usepackage{esvect}       % Pour des vecteurs plus beaux
+\usepackage{ulem}         % Pour pouvoir couper des phrases soulignées avec \ul
+\usepackage[version=3]{mhchem}
+                          % Pour les formules de chimie
+\usepackage{siunitx}      % Pour les unités SI 
+\sisetup{inter-unit-product = \ensuremath { { } \cdot { } } }
+%\usepackage{sistyle}      
+%\usepackage{acronym}     % Pour les acronymes
+\usepackage{cancel}       % Pour barrer des parties de formules
+\usepackage{colortbl}     % Pour définir le style des colonnes dans les tableaux
+\usepackage{diagbox}      % Pour des cellules de tableau divisées par la diagonale
+\usepackage{tabulary}     % Pour des tableaux de taille exacte, mais beaux
+%\usepackage{showframe}   % Pour afficher les marges
+\usepackage{pdflscape}    % Pour avoir quelques pages en mode paysage (utiliser \begin{landscape})
+\usepackage[unicode=true,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=section,colorlinks=false]
+ {hyperref}
+\usepackage[acronym,toc,shortcuts]{glossaries}
+\usepackage{glossary-longragged}
+%\makeglossaries
+\makenoidxglossaries
+    \newacronym{TRC}{TRC}{Théorème de la Résultante Cinétique}
+    \newacronym{TMC}{TMC}{Théorème du Moment Cinétique}
+    \newacronym{PFD}{PFD}{Principe Fondamental de la Dynamique}
+    \newacronym[longplural={Ondes Planes Progressives}]{OPP}{OPP}{Onde Plane Progressive}
+    \newacronym[longplural={Ondes Planes Progressives Monochromatiques}]{OPPM}{OPPM}{Onde Plane Progressive Monochromatique}
+    \newacronym[longplural={Séries à Termes Positifs}]{SATP}{SATP}{Série À Termes Positifs}
+    \newacronym[longplural={Amplificateurs Opérationnels}]{AO}{AO}{Amplificateur Opérationnel}
+    \newacronym{ARQS}{ARQS}{Approximation des Régimes Quasi-Stationnaires}
+    \newacronym[longplural={Ondes Électromagnétiques}]{OEM}{OEM}{Onde Électromagnétique}
+    \newacronym{FEM}{FEM}{Force Électromotrice}
+%    \newacronym{cad}{CÀD}{C'est-à-dire}
+    \newacronym[plural={DLs}, longplural={Développements Limités}]{DL}{DL}{Développement Limité}
+    \newacronym[longplural={Lois de Compositions Internes}]{LCI}{LCI}{Loi de Composition Interne}
+    \newacronym[longplural={Développements en Série Entière}]{DSE}{DSE}{Développement en Série Entière}
+
+
+            \makeatletter
+
+            \newif\ifpgf@circuit@germanvoltage
+            \ctikzset{voltage/german/.code = {\pgf@circuit@germanvoltagetrue } }
+
+            %% Output routine for generic bipoles
+
+            \def\pgf@circ@drawvoltagegeneric{
+                \pgfextra{
+                    \ifnum \ctikzvalof{mirror value}=-1
+                                    \ifpgf@circuit@bipole@voltage@below\pgf@circuit@bipole@voltage@belowfalse\else\pgf@circuit@bipole@voltage@belowtrue\fi
+                    \fi
+
+                    \ifpgf@circuit@bipole@voltage@below
+                        \def\pgf@circ@voltage@angle{90}
+                    \else
+                        \def\pgf@circ@voltage@angle{-90} 
+                    \fi 
+
+                    \edef\pgf@temp{/tikz/circuitikz/bipoles/\pgfkeysvalueof{/tikz/circuitikz/bipole/kind}/voltage/distance from node}
+                    \pgfkeysifdefined{\pgf@temp}
+                        { \edef\distacefromnode{\ctikzvalof{bipoles/\pgfkeysvalueof{/tikz/circuitikz/bipole/kind}/voltage/distance from node}} }
+                        { \edef\distacefromnode{\ctikzvalof{voltage/distance from node}} }
+                    \edef\pgf@temp{/tikz/circuitikz/bipoles/\pgfkeysvalueof{/tikz/circuitikz/bipole/kind}/voltage/bump b}
+                    \pgfkeysifdefined{\pgf@temp}
+                        { \edef\bumpb{\ctikzvalof{bipoles/\pgfkeysvalueof{/tikz/circuitikz/bipole/kind}/voltage/bump b}} }
+                        { \edef\bumpb{\ctikzvalof{voltage/bump b}} }
+                }
+
+                coordinate (pgfcirc@mid) at ($(\tikztostart) ! \distacefromnode ! (\ctikzvalof{bipole/name}.left)$)
+                coordinate (pgfcirc@Vfrom) at ($(pgfcirc@mid) ! -\ctikzvalof{voltage/distance from line}\pgf@circ@Rlen ! \pgf@circ@voltage@angle:(\ctikzvalof{bipole/name}.left)$) 
+
+                coordinate (pgfcirc@mid) at ($(\tikztotarget) ! \distacefromnode ! (\ctikzvalof{bipole/name}.right)$)
+                coordinate (pgfcirc@Vto) at ($(pgfcirc@mid) ! \ctikzvalof{voltage/distance from line}\pgf@circ@Rlen ! \pgf@circ@voltage@angle : (\ctikzvalof{bipole/name}.right)$)
+
+                \ifpgf@circuit@bipole@voltage@below
+                    coordinate (pgfcirc@Vcont1) at ($(\ctikzvalof{bipole/name}.center) ! \bumpb ! (\ctikzvalof{bipole/name}.-110)$)
+                    coordinate (pgfcirc@Vcont2) at ($(\ctikzvalof{bipole/name}.center) ! \bumpb ! (\ctikzvalof{bipole/name}.-70)$)
+                \else
+                    coordinate (pgfcirc@Vcont1) at ($(\ctikzvalof{bipole/name}.center) ! \bumpb ! (\ctikzvalof{bipole/name}.110)$)
+                    coordinate (pgfcirc@Vcont2) at ($(\ctikzvalof{bipole/name}.center) ! \bumpb ! (\ctikzvalof{bipole/name}.70)$)
+                \fi
+
+                \ifpgf@circuit@germanvoltage
+                  \ifpgf@circuit@bipole@voltage@below
+                    coordinate (pgfcirc@Vcont1) at ($(\ctikzvalof{bipole/name}.center) ! \ctikzvalof{voltage/bump a} ! (\ctikzvalof{bipole/name}.-120)$)
+                    coordinate (pgfcirc@Vcont2) at ($(\ctikzvalof{bipole/name}.center) ! \ctikzvalof{voltage/bump a} ! (\ctikzvalof{bipole/name}.-60)$)
+                \else
+                    coordinate (pgfcirc@Vcont1) at ($ (\ctikzvalof{bipole/name}.center) ! \ctikzvalof{voltage/bump a} ! (\ctikzvalof{bipole/name}.120)$)
+                    coordinate (pgfcirc@Vcont2) at ($ (\ctikzvalof{bipole/name}.center) ! \ctikzvalof{voltage/bump a} ! (\ctikzvalof{bipole/name}.60)$)
+                  \fi
+                \fi
+
+                \ifpgf@circuit@europeanvoltage
+                    \ifpgf@circuit@germanvoltage
+                      \ifpgf@circuit@bipole@voltage@backward
+                        (pgfcirc@Vcont2)  -- node[currarrow, sloped,  allow upside down, pos=1] {} (pgfcirc@Vcont1)
+                      \else
+                        (pgfcirc@Vcont1)  -- node[currarrow, sloped,  allow upside down, pos=1] {} (pgfcirc@Vcont2)
+                      \fi
+                    \else
+                      \ifpgf@circuit@bipole@voltage@backward
+                        (pgfcirc@Vto) .. controls (pgfcirc@Vcont2)  and (pgfcirc@Vcont1) .. 
+                            node[currarrow, sloped,  allow upside down, pos=1] {} 
+                        (pgfcirc@Vfrom) 
+                      \else
+                        (pgfcirc@Vfrom) .. controls (pgfcirc@Vcont1)  and (pgfcirc@Vcont2) ..
+                            node[currarrow, sloped,  allow upside down, pos=1] {}
+                        (pgfcirc@Vto)   
+                      \fi  
+                    \fi      
+                \else
+                    \ifpgf@circuit@bipole@voltage@backward
+                        (pgfcirc@Vfrom) node[inner sep=0, anchor=\pgf@circ@bipole@voltage@label@anchor]{\scriptsize$+$}   
+                        (pgfcirc@Vto) node[inner sep=0, anchor=\pgf@circ@bipole@voltage@label@anchor]{$-$}
+                    \else
+                        (pgfcirc@Vfrom) node[inner sep=0, anchor=\pgf@circ@bipole@voltage@label@anchor]{\scriptsize$-$}   
+                        (pgfcirc@Vto) node[inner sep=0, anchor=\pgf@circ@bipole@voltage@label@anchor]{$+$}
+                    \fi 
+                \fi
+            }
+            \makeatother
+
+\author{\bsc{Alexandre Jouandin}}
+\title{Mathématiques en MP*}
+
+\hypersetup{pdftitle={Cours de Mathématiques},
+ pdfauthor={Alexandre Jouandin},
+ pdfsubject={MP*}}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\E}{\ensuremath{\vv{E}}}
+\newcommand{\B}{\ensuremath{\vv{B}}}
+\renewcommand{\emph}[1]{\textbf{\textcolor{Cerulean}{#1}}}
+\renewcommand{\d}{\mathrm{d}}
+
+\newcommand{\titre}[1]{\hfill \\[1.5\baselineskip] \begin{Large} %%% Les titres dans les méthodes
+\textbf{\textcolor{couleurFonce}{#1}}
+\end{Large}\\[\baselineskip]}
+
+%%%% Définition des théorèmes et définitions
+%\newmdtheoremenv[<mdframed−options>]{<envname>}[<numberedlike>]{<caption>}[<within>]
+
+% customize the tag form of the equations
+\makeatletter
+   \let\mytagform@=\tagform@
+   \def\tagform@#1{\maketag@@@{\hbox{\llap{(\ignorespaces\textbf{\textcolor{RoyalBlue}{#1}}\unskip\@@italiccorr)\hspace{0.5\oddsidemargin}}}}\kern1sp} 
+   \renewcommand{\eqref}[1]{{\mytagform@{\textcolor{BlueViolet}{\ref{#1}}}}}
+
+\newcommand{\Attention}{\hfill \\
+\hbox{\llap{(\ignorespaces \textbf{\textsc{Attention}}\unskip\@@italiccorr)\hspace{0.5\oddsidemargin}}}} %Le label Attention ! 
+
+\makeatother
+
+\usepackage{empheq}				   % for math boxes
+
+% Definition des couleurs
+
+% Couleurs du document
+\definecolor{couleurClaire}{RGB}{210,230,255}  %Claire
+\definecolor{couleurNoirClair}{RGB}{66,66,66}     %Noir clair
+\definecolor{couleurGrisClair}{RGB}{233,233,233}  %Gris clair
+\definecolor{couleurGrisFonce}{RGB}{188,188,188}  %Gris foncé
+\definecolor{couleurFonce}{RGB}{25,71,86}    %Foncé
+
+% 5 couleurs de dessins
+\definecolor{couleur1}{RGB}{0,160,176} % Invisible UFO - Bleu
+\definecolor{couleur3}{RGB}{106,74,60} % Carribic Brown - Marron
+\definecolor{couleur4}{RGB}{204,51,63} % Caribic Red - Rouge
+\definecolor{couleur2}{RGB}{235,104,65} % Carribic Sun - Orange
+\definecolor{couleur5}{RGB}{255,204,0} % Bee - Jaune
+
+\definecolor{couleurImp}{rgb}{1,0,0}
+%%%%% Palette actuelle : %%%%%%%%%%%%%
+% http://www.colourlovers.com/palette/148712/Gamebookers [Modifié]
+%%%%% Autres : %%%%%%%%%%%%%%%%%%%%%%%
+% http://www.colourlovers.com/palette/1673019/Docu-Fantasia
+% http://www.colourlovers.com/palette/38562/Hands_On
+
+% Les fonctions associées : 
+\newcommand{\ibox}[1]{\fcolorbox{couleurNoirClair}{couleurClaire!20}{#1}}
+\newcommand{\emphl}[1]{\textcolor{couleurGrisFonce}{#1}} % Light
+\newcommand{\emphi}[1]{\textcolor{couleurGrisClair!90!Black}{#1}} % Index
+\newcommand{\emphh}[1]{\textbf{\textcolor{couleurNoirClair}{#1}}} % Bold
+\newcommand{\emphhs}[1]{\emphh{\uline{#1}}} % Bold Souligné
+
+%\renewcommand{\CancelColor}{couleurFonce} % Du package cancel
+
+\newcolumntype{x}{>{\columncolor{Gray}}c}
+\newcolumntype{y}{>{\columncolor{white}}c}
+\newcolumntype{b}{>{\bfseries{}}r}
+
+  \numberwithin{equation}{chapter}
+% \numberwithin{equation}{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DEFINITION %%%%%%%%
+\newcounter{dfn}[part] 
+\newenvironment{dfn}[1][]{%
+\refstepcounter{dfn}% 
+\ifstrempty{#1}% 
+{\mdfsetup{%
+frametitle={%
+	\tikz[baseline=(current bounding box.east),outer sep=0pt]
+	\node[anchor=east,rectangle,fill=white]
+{\strut Définition~\thedfn};}} }%
+{\mdfsetup{% 
+	frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt] \node[anchor=east,rectangle,fill=white]
+{\strut Définition~\thedfn : ~#1};}}%
+}% 
+\mdfsetup{skipbelow=10pt,leftmargin=-10mm, innerleftmargin=1mm, linecolor=black!80, outerlinewidth=1pt, topline=true, rightline=false, bottomline=false, frametitleaboveskip=-10pt} 
+\begin{mdframed}[]\relax%
+}{\end{mdframed}} 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% THEOREME %%%%%%%%
+\newcounter{theo}[part] 
+\numberwithin{theo}{dfn}
+\newenvironment{theorem}[1][]{%
+\refstepcounter{theo}% 
+\ifstrempty{#1}% 
+{\mdfsetup{%
+frametitle={%
+	\tikz[baseline=(current bounding box.east),outer sep=0pt]
+	\node[anchor=east,rectangle,fill=white]
+{\strut Théorème~\thetheo};}} }%
+{\mdfsetup{% 
+	frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt] \node[anchor=east,rectangle,fill=white]
+{\strut Théorème~\thetheo:~#1};}}%
+}% 
+
+\mdfsetup{ frametitleaboveskip=-10pt, leftmargin=0cm, innerleftmargin=2mm,leftline=true, linecolor=black!40,%
+linewidth=1pt,topline=true,rightline=true}%
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% THEOREME IMPORTANT %%%%
+\newenvironment{itheorem}[1][]{%
+\refstepcounter{theo}% 
+\ifstrempty{#1}% 
+{\mdfsetup{%
+frametitle={%
+	\tikz[baseline=(current bounding box.east),outer sep=0pt]
+	\node[anchor=east,rectangle,color=couleurGrisFonce,fill=couleurFonce]
+{\strut \textcolor{couleurClaire}{Théorème~\thetheo}};}} }%
+{\mdfsetup{% 
+	frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt] \node[anchor=east,rectangle,color=couleurGrisFonce,fill=couleurFonce]
+{\strut \textcolor{couleurClaire}{Théorème~\thetheo:}\textcolor{White}{~#1}};}}%
+}% 
+\mdfsetup{ frametitleaboveskip=-10pt, leftmargin=0cm, innerleftmargin=2mm,leftline=true,outerlinewidth=0.5pt, linecolor=couleurGrisFonce, linewidth=1pt, topline=true, backgroundcolor=couleurGrisClair!40, rightline=true}%
+\begin{mdframed}[]\color{couleurNoirClair}\relax%
+%
+}{\end{mdframed}}
+
+\newmdtheoremenv[
+  topline=false,
+  rightline=false,
+  bottomline=true,
+  leftmargin=1cm,
+  skipabove=0pt,
+  skipbelow=1.5\medskipamount,
+  footnoteinside=false
+]{proof}{Preuve}[theo]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Lemme %%%%%%%%
+\newenvironment{lemme}[1][]{% 
+\ifstrempty{#1}% 
+{\mdfsetup{%
+frametitle={%
+	\tikz[baseline=(current bounding box.east),outer sep=0pt]
+	\node[anchor=east,rectangle,fill=white]
+{\strut Lemme};}} }%
+{\mdfsetup{% 
+	frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt] \node[anchor=east,rectangle,fill=white]
+{\strut Lemme~#1};}}%
+}% 
+\mdfsetup{skipbelow=10pt,skipabove=10pt,leftmargin=0.5cm,
+innertopmargin=10pt,linecolor=Black!40,%
+linewidth=1pt,topline=true,rightline=true,
+frametitleaboveskip=-10pt} 
+\begin{mdframed}[]\relax%
+}{\end{mdframed}} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% METHODE %%%%%%%%
+\newcounter{methode}[part]
+\newenvironment{methode}[1][]{%
+\refstepcounter{methode}% 
+\ifstrempty{#1}% 
+{\mdfsetup{%
+frametitle={%
+	\tikz[baseline=(current bounding box.east),outer sep=0pt]
+	\node[anchor=east,rectangle,color=couleurFonce,fill=couleurNoirClair]
+{\strut \textcolor{White}{Méthode}};}} }%
+{\mdfsetup{% 
+	frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt] \node[draw, anchor=east,rectangle,thick, color=couleurFonce,fill=couleurNoirClair]
+{\strut Méthode:~#1};}}%
+}% 
+\mdfsetup{skipabove=10pt, leftmargin=-0.5cm, backgroundcolor=couleurClaire!15, linecolor=couleurFonce,
+linewidth=2pt, topline=true, rightline=true, frametitleaboveskip=-10pt} 
+\begin{mdframed}[]\relax%
+}{\end{mdframed}} 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exemple %%%%%%%%
+\newcounter{exemple}[dfn]
+\newenvironment{exemple}[1][]{%
+\refstepcounter{dfn}% 
+\ifstrempty{#1}% 
+{\mdfsetup{%
+frametitle={%
+  \tikz[baseline=(current bounding box.east),outer sep=0pt]
+  \node[anchor=east,rectangle,color=couleurFonce,fill=couleurGrisClair]
+{\strut \textcolor{White}{Exemple}};}} }%
+{\mdfsetup{% 
+  frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt] \node[draw, anchor=east,rectangle,thick, color=couleurFonce,fill=couleurGrisClair]
+{\strut Exemple:~#1};}}%
+}% 
+\mdfsetup{skipabove=10pt, leftmargin=0.5cm, linecolor=couleurFonce,
+linewidth=1pt, topline=true, rightline=true, frametitleaboveskip=-10pt} 
+\begin{mdframed}[]\relax%
+}{\end{mdframed}} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Propriétés %%%%%%%%
+\newenvironment{prop}[1][]{%
+\ifstrempty{#1}% 
+{\mdfsetup{%
+frametitle={%
+	\tikz[baseline=(current bounding box.east),outer sep=0pt]
+	\node[anchor=east,rectangle]
+{\strut Propriétés};}} }%
+{\mdfsetup{% 
+	frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt] \node[anchor=east,rectangle]
+{\strut Propriétés~#1};}}%
+}% 
+\mdfsetup{skipbelow=10pt,skipabove=10pt,leftmargin=0cm,
+innerleftmargin=0.5mm,
+innertopmargin=10pt,
+linecolor=black!40,%
+outerlinewidth=0.2mm,
+topline=false,rightline=false, bottomline=false,
+frametitleaboveskip=0} 
+\begin{mdframed}[]\relax%
+}{\end{mdframed}} 
+
+\everymath{\displaystyle}
+
+%Mes macros
+
+\usepackage{xifthen} % Utile pour les newcommand et autres
+% cf. : http://tex.stackexchange.com/a/58629
+
+\newenvironment{changemargin}[2]{% Change Margin pour les équations de Maxwell
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+%%%% Commandes pour écriture facile —————————————————————————————————————
+\newcommand{\Epsilon}{\ensuremath{\mathcal{E}}}
+
+%%%% Commandes pour Maths ———————————————————————————————————————————————
+\newcommand{\Reel}{\ensuremath{\mathbb{R}}}
+\newcommand{\Cmplx}{\ensuremath{\mathbb{C}}}
+\newcommand{\CM}{\ensuremath{\mathcal{CM}}}
+\newcommand{\reference}[1]{\textit{cf.} équation \eqref{#1} page \pageref{#1}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\qed}{\hfill \ensuremath{\Box}} % Petit workaround de \qed...
+\renewcommand{\epsilon}{\varepsilon} % Je me trompe tout le temps... 
+%%%% Commandes pour mise en forme type HTML —————————————————————————————
+
+
+%%%% Commandes pour Physique ————————————————————————————————————————————
+    % Opérateurs 
+\newcommand{\diverg}[1][]{\mathrm{div}\ifstrempty{#1}{\,}{\left( #1 \right)} }
+\newcommand{\rot}[1][]{\vv{\mathrm{rot}}\ifstrempty{#1}{\,}{\left( #1 \right)} }
+\newcommand{\grad}[1][]{\vv{\mathrm{grad}}\ifstrempty{#1}{\,}{\left( #1 \right)} }
+\newcommand{\laplacien}[1][]{\Delta\ifstrempty{#1}{\,}{\left( #1 \right)} }
+
+    % Optique Ondulatoire
+\newcommand{\vibration}[1][]{\ensuremath{s_{#1}(M,t)}}
+\newcommand{\amplitude}[2][]{\ensuremath{\textcolor{Periwinkle}{A_{#1}\left( #2 \right) }}}
+\newcommand{\pulsation}[1][]{\ensuremath{\omega_{#1}{}}}
+\newcommand{\phase}[2][]{\ensuremath{\textcolor{ProcessBlue}{\varphi_{#1}\left( #2 \right) }}}
+\newcommand{\Phase}[2][]{\ensuremath{\textcolor{ProcessBlue}{\Phi_{#1}\left( #2 \right) }}}
+
+\newcommand{\vibrationC}[1][]{\ensuremath{\underline{s_{#1}(M,t)}}}
+\newcommand{\amplitudeC}[2][]{\ensuremath{\textcolor{Periwinkle}{\underline{a_{#1}\left( #2 \right) }}}}
+
+% Autres macros de PhysiqueANCIEN
+\newcommand{\der}[2]{\ensuremath{\dfrac{\d #1}{\d #2}}}
+%\newcommand{\torseur}[4]{\ensuremath{\overrightarrow{\mathcal{#1}_\textbf{#3}}=\overrightarrow{#3_\textbf{#2}}+\overrightarrow{\textbf{#2#3}} \wedge \textbf{#4}}}%Torseur défini comme :
+%Torseur{fonction}{point1}{point2}{Résultante}
+
+%autres trouvées sur Internet
+%\tikzset{every picture/.style=remember picture}%Sert à utiliser les noms globaux
+%\newcommand{\mathnode}[2]{\mathord{\tikz[baseline=(#1.base), inner sep = 0pt]{\node (#1) {$#2$};}}}
+% Define "struts" as suggested by Claudio Beccari in
+% a piece in TeX and TUG News, Vol. 2, 1993.
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}       % "top" strut
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}} % "bottom" strut
+\newcommand{\TBstrut}{\Tstrut\Bstrut} % top&bottom struts
+
+% \makeatletter % To use with empheq -> display eq ref
+% \MHInternalSyntaxOn
+% \renewenvironment{empheq}[2][]{%
+%   \let\savedmaketag\maketag@@@
+%   \renewcommand\eqref[1]{\textup{%
+%       \let\maketag@@@\savedmaketag%
+%       \tagform@{\ref{##1}}}%
+%   }
+%   \setkeys{EmphEqEnv}{#2}\setkeys{\EQ_options_name:}{#1}%
+%   \EmphEqMainEnv}{\endEmphEqMainEnv}
+% \MHInternalSyntaxOff
+% \makeatother
+

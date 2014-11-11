@@ -1,0 +1,2530 @@
+% !TEX encoding = UTF-8 Unicode
+
+%\RequirePackage[leqno]{amsmath}
+\documentclass[11pt,a4paper,fleqn,pdftex]{report}
+\include{Preambule}
+\begin{document}
+
+
+\newcounter{density}
+\setcounter{density}{20}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Page de Garde
+\begin{titlepage}
+\newgeometry{left=3cm,bottom=5cm,right=3cm,top=5cm}	
+	\begin{center}
+		
+		\textsc{}\\[3.5cm]
+		
+		\textsc{\Large Cours de Prépa}\\[0.5cm]
+		
+		% Title
+		\HRule \\[0.4cm]
+		{ \huge \bfseries Mathématiques \\[0.4cm] }
+		
+		\HRule \\[1.5cm]
+		
+		% Author
+		\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+		\emphh{Écrit par}\\
+		Alexandre \textsc{Jouandin}
+		\end{flushleft}
+		\end{minipage}
+		\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+		\emphh{Année} \\
+		2013---2015
+		\end{flushright}
+		\end{minipage}
+		\begin{tikzpicture}[scale=0.7]
+    \def\couleur{MidnightBlue}
+    \path[coordinate] (0,0)  coordinate(A)
+                ++( 60:12cm) coordinate(B)
+                ++(-60:12cm) coordinate(C);
+    \draw[fill=\couleur!\thedensity] (A) -- (B) -- (C) -- cycle;
+    \foreach \x in {1,...,17}{%
+        \pgfmathsetcounter{density}{\thedensity+10}
+        \setcounter{density}{\thedensity}
+        \path[coordinate] coordinate(X) at (A){};
+        \path[coordinate] (A) -- (B) coordinate[pos=.15](A)
+                            -- (C) coordinate[pos=.15](B)
+                            -- (X) coordinate[pos=.15](C);
+        \draw[fill=\couleur!\thedensity] (A)--(B)--(C)--cycle;
+    }
+\end{tikzpicture}
+		\vfill
+		
+	\end{center}
+		% Bottom of the page
+		{\large \today}
+	
+\end{titlepage}
+\addtocounter{page}{1}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Début du livre
+\part{Première année}
+\chapter{Calculs algébriques} % (fold)
+\label{cha:calculs_algebriques}
+\section{Somme des termes d'une suite arithmétique} % (fold)
+\label{sec:sommes_arithmetiques}
+\begin{dfn}
+     Soit $I$ un ensemble fini, et $(x_i)_{i\in I}$ une famille de nombres complexes. \\[\baselineskip]
+     La somme des $x_i$ est notée $\sum_{i\in I} x_i$\\
+     Le produit des $x_i$ est noté $\prod_{i\in I} x_i$
+\end{dfn}
+\begin{theorem}[Somme des entiers de $1$ à $n$]
+     Pour tout $n$ de $1$ à $n$ : 
+     \begin{equation}
+     \sum_{k=1}^n k = \dfrac{n(n-1)}{2}
+     \end{equation}
+\end{theorem}
+\begin{proof}
+\begin{equation}
+     \begin{array}{r c *{4}{c@{\; + \;}} c}
+          S & = & 1 & 2 & \cdots & n-1 & n \\
+          +\quad S & = & n & n-1 & \cdots & 2 & 1 \\
+          \hline
+          2S & = & n+1 & n+1 & \cdots & n+1 & n+1
+     \end{array}
+\end{equation}
+d'où $2S = n \times (n+1)$, et $S=\dfrac{n(n+1)}{2}$
+\end{proof}
+\begin{theorem}[Somme des premières puissances]
+    Pour tout $n$ entier naturel non nul, on a : 
+    \begin{subequations}
+         \begin{align}
+              \sum_{k=1}^n k^2 &= \dfrac{n(n+1)(2n+1)}{6} \\
+              \sum_{k=1}^n k^3 &= \dfrac{n^2(n+1)^2}{4} \\
+               &= \left( \sum_{k=1}^n k \right)^2 \notag
+         \end{align}
+    \end{subequations}
+    Les démonstrations de ces formules se font par récurrence (en connaissant le résultat), ou en primitivant.
+\end{theorem}
+% section sommes_arithmetiques (end)
+\section{Coefficients binomiaux} % (fold)
+\label{sec:coefficients_binomiaux}
+\begin{dfn}
+     Pour $E$ un ensemble fini de $n$ éléments, on note $\binom{n}{p}$ le nombre de sous-parties de $E$ à $p$ éléments.
+     \begin{equation}
+     \binom{n}{p} = \dfrac{n!}{p!(n-p)!}
+     \end{equation}
+\end{dfn}
+% section coefficients_binomiaux (end)
+% chapter calculs_algebriques (end)
+
+\chapter{Suites}
+\begin{dfn}[Borne supérieure]
+     On appelle \emph{borne supérieure} d'une partie $F$ d'un ensemble ordonné fini $E$ \emphh{le plus petit des majorants} de $F$.\newline
+     En d'autres termes,
+     \begin{equation}
+      a = \sup F \Leftrightarrow \forall y \in F, \left[ \vphantom{\sum{}} a \le y \Leftrightarrow \left( \forall x \in F, x \le y \right) \right]
+     \end{equation} 
+\end{dfn}
+\begin{itheorem}[Théorème de la suite monotone]
+    \begin{tabbing}
+     Soit $\left( u_n\right)_{n\in \mathbb{N}}$ une suite croissante de $\Reel{}^\mathbb{N}$. \\
+     So\= \kill
+     \> Si $(u_n)$ est majorée, alors elle converge \emphhs{vers sa borne supérieure}.\\
+     \> Sinon, si $(u_n)$ n'est pas majorée, alors elle admet $+\infty$ pour limite.
+     \end{tabbing}
+\end{itheorem}
+\section{Comparaison de suites}
+\begin{dfn}[Suites équivalentes]\label{equivalence}
+Deux suites $u_n$ et $v_n$ sont dites \emph{équivalentes}\index{equivalence@Équivalence} en l'infini s'il existe une suite $w_n$ tendant vers 1 en l'infini telle que $u_n = w_n \times v_n$.\\
+Autrement dit : 
+\begin{empheq}[box = \ibox]{equation}
+	u_n \sim v_n \Leftrightarrow \exists w_n \xrightarrow[+\infty]{} 1 \text{ tq } u_n = w_n v_n
+\end{empheq}
+\end{dfn}
+\begin{dfn}[$O(\cdots)$ et $o(\cdots)$]
+Si $x_n$ est une suite de $(E,N)^\mathbb{N}$ et $(\alpha_n)$ une suite de $\Reel^\mathbb{N}$ : 
+    \begin{equation}
+    \begin{array}{r@{\text{, si }}l@{\quad n \ge n_0 \implies}l}
+       x_n = O(\alpha_n) & \forall M \in R^+, \exists n_0, \forall n \in \mathbb{N},& N(x_n) \le M|\alpha_n| \\
+       x_n = o(\alpha_n) & \forall \varepsilon > 0, \exists n_0, \forall n \in \mathbb{N}, & N(x_n) \le \varepsilon | \alpha_n|
+      \end{array}  
+    \end{equation}
+\end{dfn}
+\begin{dfn}[$O(\cdots)$ et $o(\cdots)$ dans \Reel{}]
+    Si $(\alpha_n)_n$ est une suite à valeurs dans $\Reel^{\textcolor{couleurImp}{*}}$, 
+    \begin{equation}
+    \begin{array}{r@{\text{, si et seulement si }}c}
+       x_n \underset{n\to +\infty}{=} O(\alpha_n) & \dfrac{x_n}{\alpha_n} \text{ est bornée} \\[15pt]
+       x_n \underset{n\to +\infty}{=} o(\alpha_n) & \dfrac{x_n}{\alpha_n} \xrightarrow[n\to +\infty]{} 0
+      \end{array} 
+    \end{equation}
+\end{dfn}
+\Attention{Une suite ne peut pas, à notre niveau, être $\sim 0$, en $o(0)$ ou $O(0)$, car la définition dirait que la suite est nulle à partir d'un certain rang.}
+\section{Suites de Cauchy} % (fold)
+\label{sec:suites_de_cauchy}
+\begin{dfn}[Suite de \textsc{Cauchy}]
+    Une suite $(x_n)_n$ dans $(E,N)$ est dite de Cauchy si 
+    \begin{equation}
+    \forall \varepsilon > 0, \exists n_0, \forall (n,p) \in \mathbb{N}^2, n\ge n_0 \implies \boxed{N\big( x_{n+p} - x_n \big)< \varepsilon}
+    \end{equation}
+\end{dfn}
+% section suites_de_cauchy (end)
+%
+\chapter{Nombres complexes} % (fold)
+\label{cha:nombres_complexes}
+\section{Plan complexe} % (fold)
+\label{sec:plan_complexe}
+\begin{dfn}[Corps complexe $(\Cmplx{},+,\times{})$]
+     Un \emph{nombre complexe}\index{Complexe} est un élément $(a,b) \in \Reel{}^2$. L'ensemble des nombres complexes est noté \Cmplx{}, c'est un corps muni des lois suivantes : 
+     \begin{description}
+         \item[Addition] $(a,b) + (c,d) = (a+c,b+d)$\hfill \\de neutre $(0,0)$
+         \item[Multiplication] $(a,b) \times (c,d) = (ac - bd, ad + bc)$\hfill \\de neutre $(1,0)$
+     \end{description}
+\end{dfn}
+\begin{theorem}
+     $(\Cmplx{},+,\times{})$ est un corps \emphl{(\textit{cf.} tableau \ref{tab:Groupe-Anneau-Corps} page \pageref{tab:Groupe-Anneau-Corps} pour la définition d'un corps)}
+\end{theorem}
+\begin{dfn}[Module]
+     Soit $z=x+iy$ un nombre complexe. On appelle \emph{module}\index{Module} la valeur $|z| = \sqrt{x^2 + y^2}$
+\end{dfn}
+% section plan_complexe (end)
+\section{Nombres complexes de module 1} % (fold)
+\label{sec:nombres_complexes_de_module_1}
+\begin{dfn}
+     On note $\mathcal{U}$ l'ensemble des nombres complexes de module 1.\\
+     Le disque unité est l'ensemble de ses points.
+\end{dfn}
+\needspace{4cm}
+\begin{prop}
+    \begin{itemize}
+        \item $\mathcal{U}$ est stable par le produit $\times$
+        \item $z \in \mathcal{U} \Longleftrightarrow \overline{z} = \frac{1}{z}$
+    \end{itemize}
+\end{prop}
+% section nombres_complexes_de_module_1 (end)
+% chapter nombres_complexes (end)
+\part{Structures algébriques usuelles} % (fold)
+\label{prt:structures_algebriques_usuelles}
+% Tableau des définitions
+\begin{table}[ht]
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabu}{c r |[1.3pt] *{3}{c|} c |[1.3pt]}
+ & & Groupe & Groupe Abélien & Anneau & Corps \\
+\tabucline[1pt]{-}
+\multirow{4}{*}{\rotatebox[origin=c]{90}{Loi ($+$/$*$)}}
+     & Neutre $e$ (ou $0$) & \cellcolor{couleurClaire}\cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark \\
+     \cline{2-6} 
+     & Assossiative & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark \\
+     \cline{2-6} 
+     & Symétrique (admet $a^{-1}$) & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark \\
+     \cline{2-6} 
+     & Commutative &   & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark \\
+\tabucline[1pt]{-}
+\multirow{5}{*}{\rotatebox[origin=c]{90}{Loi $\times$}}
+     & Neutre $1$ & & & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark \\
+     \cline{2-6} 
+     & Associative & & & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark \\
+     \cline{2-6} 
+     & Distributive de la loi + & & & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark \\
+     \cline{2-6} 
+     & Commutative & & & & \cellcolor{couleurClaire}\checkmark \\
+     \cline{2-6} 
+     & Inversible & & & & \cellcolor{couleurClaire}\checkmark \\
+\tabucline[1pt]{-}
+\end{tabu}
+\end{center}
+\caption{Tableau récapitulatif des définitions}\label{tab:Groupe-Anneau-Corps}
+\end{table}
+%
+\chapter{Groupes et sous-groupes}
+\section{Définition d'un groupe} % (fold)
+\label{sec:definition_d_un_groupe}
+\begin{dfn}[Groupe]
+     On appelle \emph{groupe}\index{Groupe} le couple $(G,*)$ où $G$ est un ensemble muni d'$*$, une \gls{LCI} associative, symétrique, et admettant un neutre.
+\end{dfn}
+% section definition_d_un_groupe (end)
+\section{Produit fini de groupes} % (fold)
+\label{sec:produit_fini_de_groupes}
+\begin{dfn}[Groupe Produit]
+     Soient $(G,*)$ et $(G',\circ)$ deux groupes. \newline
+     Le groupe $\left( G\times G', \square \right)$ tel que
+     \[
+         (x,x')\square (y,y') = (x*y,x'\circ y')
+     \]
+     est un groupe appelé \emph{groupe produit}\index{Groupe!produit} de $G$ et $G'$
+\end{dfn}
+\begin{exemple}[Groupe de \textsc{Klein}]\label{ex:groupe_de_klein}
+     Le groupe $(\mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z})$ est appelé \emphh{groupe de \textsc{Klein}}\index{Groupe!Klein@\emphi{de }\textsc{Klein}}. C'est un groupe produit, il n'est pas isomorphe à $\mathbb{Z}/4\mathbb{Z}$, et \emphhs{il a la spécificité de ne pas être cyclique}. 
+\end{exemple}
+% section produit_fini_de_groupes (end)
+\section{Sous-groupe} % (fold)
+\label{sec:sous_groupe}
+\begin{dfn}[Sous-groupe]
+     Soit $(G,*)$ un groupe, et soit $H$ une partie de $G$\\
+     On dit que $H$ est un \emph{sous-groupe}\index{Sous-groupe} de $G$ si, muni de la \gls{LCI} $*$, $H$ est un groupe stable par $*$.
+\end{dfn}
+\begin{itheorem}[Caractérisation d'un sous-groupe]
+     Avec les notations précédentes, $H$ est un sous-groupe de $G$ si : 
+     \begin{itemize}
+         \item $H$ n'est pas vide
+         \item $\forall (x,y) \in H^2,\, x*y^{-1} \in H$.
+     \end{itemize}
+     En général, pour vérifier que $H$ est non vide, on vérifie que le neutre $e$ de $G$ est aussi dans $G$.
+\end{itheorem}
+\begin{theorem}[Intersection de sous-groupes]
+     Soit $\left( H_i \right)_{i\in \mathbb{N}}$ une famille de sous-groupes.\\
+     Alors $H=\bigcap_{i\in \mathbb{N}} H_i$ est un sous-groupe.
+\end{theorem}
+\begin{proof}
+     Avec les notations précédentes, montrons que $H$ est un sous-groupe : 
+     \[
+     \begin{array}{r c r}
+         \forall i\in \mathbb{N},\, e\in H_i &\implies & e\in H \\
+         \forall (x,y)\in H^2,\, \forall i\in \mathbb{N},\, (x,y)\in H_i^2,\text{ donc }x*y^{-1}\in H_i & \implies & x*y^{-1}\in H
+     \end{array}
+     \]
+     Ainsi, $H$ respecte les propriétés de caractérisation d'un sous-groupe, donc $H$ est un sous-groupe.\qed
+\end{proof}
+\begin{dfn}[Sous-groupe engendré]
+     Soit $G$ un groupe, et soit $A$ une partie de $G$. \\
+     L'intersection des sous-groupes de $G$ contenant $A$ est le plus petit sous-groupe contenant $A$. On le note $\langle A \rangle$, et on dit que c'est le \emph{sous-groupe engendré}\index{Sous-groupe!engendre@engendré} par $A$.\\
+     Quand $A=\lbrace a \rbrace$ est une partie à un seul élément, on dit que $\langle a \rangle$ est un \emph{groupe monogène}\index{Monogene@Monogène}\index{Groupe!monogene@monogène}
+\end{dfn}
+\begin{itheorem}[Sous-groupes de $\left( \mathbb{Z},+ \right) $]\label{thm:sous_groupe_de_Z}
+     Pour tout sous-groupe $H$ de $\left( \mathbb{Z},+ \right),\,\exists n\in \mathbb{N}$ tel que $H=n\mathbb{Z}$
+\end{itheorem}
+\begin{proof}
+     Soit $H$ un sous-groupe. Si $H=\lbrace 0 \rbrace$, alors $H=0\mathbb{Z}$.\\
+     Supposons maintenant que $H$ contient au moins un entier. \newline
+     Soit \uline{$n$ le plus petit entier} de $H$. Il convient de dire que $n\mathbb{Z}\in H$. \newline
+     Soit $m$ un entier quelconque de $H$. Effectuons sa division euclidienne par $n$ : 
+     \begin{gather*}
+         m = nq+r \quad\quad\quad 0\le r < n \\
+         nq\in H,\, m\in H \implies \boxed{r\in H}
+     \end{gather*}
+     Or $n$ étant le plus petit entier dans $H$, $r$ dans $H$ étant inférieur à $n$, $r=0$, donc $m=nq$\qed
+\end{proof}
+% section sous_groupe (end)
+\section{Morphismes de groupes} % (fold)
+\label{sec:morphismes_de_groupes}
+\subsection{Définition} % (fold)
+\label{sub:morphismes_de_groupe_definition}
+\begin{dfn}[Morphisme de groupe]
+     On appelle \emph{morphisme}\index{Morphisme!groupe@\emphi{de }groupe} d'un groupe $(G,*)$ à un groupe $(H,\times )$ l'application $f$ telle que
+     \begin{equation}
+     \forall (x,y) \in G^2,\, f \left( x*y \right) = f(x)\times  f(y)
+     \end{equation}
+\end{dfn}
+% subsection morphismes_de_groupe_definition (end)
+\subsection{Propriétés d'un morphisme de groupe} % (fold)
+\label{sub:proprietes_d_un_morphisme}
+\begin{theorem}[Image et image réciproque d'un sous-groupe]
+     L'image d'un sous-groupe par un morphisme est un sous groupe. \newline
+     L'image réciproque d'une sous-groupe par un morphisme est un sous-groupe\\
+     \begin{center}
+     \begin{tikzpicture}
+     \begin{scope}[rotate around={-40:(-4,0)}] % rotate around={degree:coordinate}
+          \draw[color=couleurNoirClair, fill=couleurGrisFonce, line width=1pt] (-4,0) ellipse (2 and 1);
+          \draw[dashed, color=couleurNoirClair, fill=couleurGrisClair, rotate around={15:(-3.8,0)}, line width=1pt] (-3.8,0) ellipse(1 and 0.7) (-3.6,0) node{$H$}; 
+          \draw (-5.3,0) node{$G$} (-4,0) node{$\bullet$} (-4,0) node[above]{$e$};
+     \end{scope}
+          \begin{scope}[rotate around={15:(4,0)}] % rotate around={degree:coordinate}
+          \draw[color=couleurNoirClair, fill=couleurGrisFonce, line width=1pt] (4,0) ellipse (2 and 1);
+          \draw[dashed, color=couleurNoirClair, fill=couleurGrisClair, rotate around={15:(3.3,0)}, line width=1pt] (3.3,0) ellipse(1 and 0.7) (2.6,0) node{$H'$}; 
+          \draw (5.3,0) node{$G'$} (4,0) node{$\bullet$} (4,0) node[above left]{$e'$};
+     \end{scope}
+          \draw[<->, >=latex, line width=2pt, color=couleurFonce] (-3,1) to [bend left=40] node[midway, below]{$f$} (2.1,0.8);
+     \end{tikzpicture}
+     \captionof{figure}{Image et image réciproque d'un sous-groupe par un morphisme $f$}
+     \end{center}
+\end{theorem}
+\begin{theorem}[Condition d'injectivité d'un morphisme]
+     Soit $f$ un morphisme de groupes de $\left( G,* \right) $ dans $\left( H, \times \right) $. Alors : 
+     \begin{tabbing}
+          $f$ est \= \emphh{surjective} \= $\Leftrightarrow \mathrm{Im} f = H$ \kill
+          $f$ est \> \emphh{injective} \> $\Leftrightarrow \mathrm{Ker} f = \lbrace e \rbrace$ \\
+          $f$ est \> \emphh{surjective} \> $\Leftrightarrow \mathrm{Im} f = H$
+     \end{tabbing}
+\end{theorem}
+% subsection proprietes_d_un_morphisme (end)
+\subsection{Isomorphismes} % (fold)
+\label{sub:isomorphismes}
+\begin{dfn}[Isomorphisme]
+     Un morphisme de groupe \emphh{bijectif} est appelé \emph{isomorphisme}\index{Isomorphisme}
+\end{dfn}
+\begin{theorem}[Réciproque d'un isomorphisme]
+     La bijection réciproque d'un isomorphisme est un isomorphisme.
+\end{theorem}
+% subsection isomorphismes (end)
+% section morphismes_de_groupes (end)
+\section{Groupes monogènes et cycliques} % (fold)
+\label{sec:groupes_monogenes_et_cycliques}
+
+% section groupes_monogenes_et_cycliques (end)
+\section{Ordre d'un élément dans un groupe} % (fold)
+\label{sec:ordre_d_un_element_dans_un_groupe}
+\begin{dfn}[Éléments nilpotents]
+Un élément est \emph{nilpotent}\index{Nilpotent} si, composé par lui même, il peut être nul : 
+\begin{equation}
+\left\lbrace \begin{array}{l} a\text{ nilpotent}\\ a\neq 0 \end{array}\right. \Leftrightarrow \exists p \in \mathbb{N}^{\alpha} \text{ tel que } a^p =0 
+\end{equation}
+\end{dfn}
+% section ordre_d_un_element_dans_un_groupe (end)
+\section{Classe d'équivalence}
+\begin{dfn}[Relation d'équivalence]
+Une relation d'équivalence $\mathcal{R}$ est une relation binaire caractérisée de la manière suivante : 
+\begin{equation}
+\left|
+\begin{array}{r l c}
+\forall x \in E,& \boldsymbol{x\mathcal{R}x} & \text{\textbf{(Réfléxivité)}}\\
+\forall (x,y) \in E^2, & x\mathcal{R}y\implies \boldsymbol{y\mathcal{R}x} &\text{\textcolor{couleurImp}{\textbf{(Symétrie)}}}\\
+\forall (x,y,z) \in E^3, & \big( x\mathcal{R}y \text{ et } y\mathcal{R}z \big) \implies \boldsymbol{x\mathcal{R}z} & \text{\textbf{(Transitivité)}}
+\end{array}
+\right.
+\end{equation}
+\end{dfn}
+
+\begin{dfn}[Relation d'ordre]
+Une relation d'ordre $\mathcal{R}$ est également une relation binaire. Elle se caractérise de la manière suivante : 
+\begin{equation}
+\left|
+\begin{array}{r l c}
+\forall x \in E,& \boldsymbol{x\mathcal{R}x} & \text{\textbf{(Réfléxivité)}}\\
+\forall (x,y) \in E^2, & \big( x\mathcal{R}y \text{ et } y\mathcal{R}x \big) \implies \boldsymbol{x=y} & \text{\textcolor{couleurImp}{\textbf{(Anti-symétrie)}}}\\
+\forall (x,y,z) \in E^3, & \big( x\mathcal{R}y \text{ et } y\mathcal{R}z \big) \implies \boldsymbol{x\mathcal{R}z} & \text{\textbf{(Transitivité)}}
+\end{array}
+\right.
+\end{equation}
+\end{dfn}
+
+\Attention{Bien savoir ce que signifient Symétrie et Anti-symétrie}
+
+\section{Idéaux de $\mathbb{Z}$}
+\begin{dfn}
+Un élément de $\mathbb{Z}/ n\mathbb{Z}$ est la classe des éléments ayant tous le même reste par la division euclidienne par n.\newline
+E.g.\textit{: Dans $\mathbb{Z}/3\mathbb{Z}$, l'élément $\bar{1}$ est la classe des éléments de $\mathbb{Z}$ ayants tous le même reste $\bar{1}$ dans leur division par $3$.}
+\end{dfn}
+
+
+\begin{theorem}[Indicatrice d'\textsc{Euler}\index{Euler@\textsc{Euler}}]
+C'est la fonction $\varphi$ telle que 
+\[
+    \varphi (n) = \mathrm{Card}\big( \left\lbrace \left( \mathbb{Z} / n \mathbb{Z} \right) ^{*} \right\rbrace \big)
+\]
+\end{theorem}
+
+%TODO Théorème Chinois
+% part structures_algebriques_usuelles (end)
+\part{Algèbre}
+\chapter{Réduction des Endomorphismes}
+\section{Genéralités}
+%
+\begin{dfn}[Polynôme minimal]
+Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé le polynôme minimal tel que pour tout morphisme $\varphi{}$, $\Pi_{\varphi}(\varphi{}) = 0$ \textcolor{couleurFonce!70}{CÀD} $\left( \Pi_\varphi \right)
+ = \mathrm{Ker}(\varphi{})$
+\end{dfn}
+%
+\begin{itheorem}[Théorème de décomposition des noyaux]
+     Soient deux polynomes $P$ et $Q$ de $\mathbb{K} [X]$. Pour $P$ et $Q$ \emphh{premiers entre eux} : 
+     \begin{equation}
+     \mathrm{Ker}\left[ (PQ)(u)\right] = \mathrm{Ker}\left[ P(u) \right] \oplus \mathrm{Ker}\left[ Q(u) \right]
+     \end{equation}
+\end{itheorem}
+\begin{theorem}[Formule de \textsc{Grassman}]
+     \index{Grassman@\textsc{Grassman}}Si $V$ et $W$ sont deux espaces vectoriels de \emphh{dimension finie} de $E$ alors :
+     \begin{equation}
+     \dim (V+W) = \dim V + \dim W - \dim (V\cap W)
+     \end{equation}
+\end{theorem}
+\section{Polynôme Caractéristique}
+\begin{dfn}[Polynôme caractéristique]
+On appelle \emph{Polynôme caractéristique}\index{Polynome@Polynôme!caracteristique@caractéristique}, et l'on note $\chi_M$ le déterminant de la matrice $\left( M - X \, I_n \right)$\\
+\ibox{$\chi_M = \det\left( M - X I_n \right)$}
+\end{dfn}
+
+\begin{itheorem}
+Pour une matrice $M$ de rang $n$, on peut obtenir quelques coefficients du polynôme caractéristique : 
+\[ 
+\chi_M = \left( -X \right)^n + \tr\left( M \right)\times \left( -X \right)^{n-1} + \cdots + \det\left( M \right)
+\]
+Pour une matrice de rang 2, le polynôme caractéristique est donc donné par \\
+\ibox{$ \chi_M = X^2 - \tr (M)\, X + \det (M)$}
+\end{itheorem}
+
+\begin{itheorem}[\textsc{Cayley-Hamilton}%
+\index{Cayley-Hamilton@\textsc{Cayley-Hamilton}}]
+Si $u$ est un endomorphisme d'un espace vectoriel \uline{fini}, alors le polynôme caractéristique $\chi_u$ est un polynôme annulateur de $u$
+\end{itheorem}
+\section{Diagonalisation} % (fold)
+\label{sec:diagonalisation}
+\begin{dfn}[Endomorphisme diagonalisable\index{Diagonalisable}]
+    On dit que $u$ est \emph{diagonalisable} si et seulement si $E$ est la \emphh{\uline{somme directe}} des espaces propres de $u$.
+\end{dfn}
+\begin{dfn}[Quelques définitions]
+Quelques définitions portant sur le polynôme : 
+    \begin{description}
+    \item[Racine simple] Une racine $\alpha$ du polynôme $P$ est dite simple si elle n'est pas multiple. On dit que son \uline{ordre de multiplicité est égal à $1$}.
+    \item[Polynôme scindé] $P$ est scindé s'il peut s'écrire comme \uline{le produit de polynômes du premier degré}.
+    \end{description}
+\end{dfn}
+\begin{itheorem}[Caractérisation de la diagonalisation]
+    On donne des équivalences à ``$u$ diagonalisable'' : 
+    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
+    \begin{enumerate}
+        \item $E$ admet une base formée des vecteurs propres de $u$
+        \item $E$ est somme directe d'espaces sur lesquels $u$ induit des homothéties
+        \item $\chi_u$ est scindé, et $\omega (\lambda ) = \dim (E_\lambda)$
+        \item $n = \sum \dim E_\lambda $
+        \item $u$ admet pour matrice une matrice diagonalisable
+    \end{enumerate}
+\end{itheorem}
+% section diagonalisation (end)
+\chapter{Topologie d'un espace vectoriel normé}
+\section{Norme}
+\begin{dfn}[Définition de la norme]
+Soit $\mathbb{E}$ un espace vectoriel de
+$\mathbb{K}$. On définit une \emph{norme}\index{Norme} sur $\mathbb{E}$
+comme une application vérifiant : 
+
+\[
+\left| 
+\begin{array}{c l l}
+(i)&\forall x \in \mathbb{E}, N(x)=0 \implies x=0 &\textbf{Séparation}\\
+(ii)&\forall x \in \mathbb{E}, \forall \lambda \in \mathbb{K}, N(\lambda x)=|\lambda|N(x) &\textbf{Homogénéité}\\
+(iii)&\forall (x,y) \in \mathbb{E}^2, N(x+y)\le N(x)+N(y)&\textbf{Inégalité triangulaire}\\
+\end{array}
+\right.
+\]\index{inegalite@Inégalité!triangulaire}
+
+Et le couple $(\mathbb{E},N)$ est l'\index{Espace!norme@Normé}espace
+vectoriel normé associé.
+\end{dfn}
+\begin{theorem}[Norme $N_2$\index{Norme!Euclidienne}]
+$N_2 : f \mapsto \left( \int \limits_{[a,b]} |f|^2 \right)^{\frac{1}{2}}$ est une norme sur $\mathcal{C}\left( [a,b], \mathbb{K} \right)$
+\end{theorem}
+\begin{dfn}[Boule]
+Dans une espace vectoriel normé $(E,N)$, on définit les boules centrées en $a$ et de rayon $r$
+    \begin{tabular}{>{\begin{bf}}r<{\end{bf}}@{ de rayon $r$ centrée en $a$ : $\quad$ } l}
+    Boule ouverte & ${x \in E | N(x-a)< r } $ \\
+    Boule fermée & ${x \in E | N(x-a)\le r } $ \\
+    Sphère & ${x \in E | N(x-a)= r } $ \\
+    \end{tabular}
+\end{dfn}
+\begin{dfn}[Convergence d'une suite]
+    On dit que la suite des $(x_n)_n $ converge si l'une des conditions suivantes est vérifiée : 
+    \begin{equation}
+    \begin{array}{c l }
+    (i) & \exists l \in E \text{ tel que } \big(N(x_n - l) \big) \xrightarrow[n\to +\infty]{} 0 \\
+    (ii) & \forall \varepsilon > 0, \exists n_0 \text{ tel que } \big( n \geq n_0 \implies N(x_n - l) < \varepsilon \big) \\
+    (iii) & \forall \varepsilon > 0, \exists n_0 \text{ tel que } \big( n \geq n_0 \implies x_n \in B(l,\varepsilon) \big)
+    \end{array}
+    \end{equation}
+\end{dfn}
+\section{Complets} % (fold)
+\label{sec:complets}
+\begin{dfn}[Complet]\index{Complet}
+$A$ est un \emph{complet} si toute suite de Cauchy $(c_n)_n \in A$ admet une limite $l\in A$\\
+CÀD si \uline{toute suite de Cauchy est convergente}
+\end{dfn}
+\textbf{Remarque :} Intuitivement, un espace est complet s'il n'a pas de \enquote{trou}. $\mathbb{Q}$ n'est pas complet, car $\sqrt{2}$ n'est pas dans $\mathbb{Q}$.
+
+\begin{dfn}[Espace de \textsc{Banach}]
+Un \emph{espace de \textsc{Banach}}\index{banach@\textsc{Banach}!Espace} est un espace-vectoriel \uline{normé et complet}.
+\end{dfn}
+% section complets (end)
+\section{Compacts} % (fold)
+\label{sec:compacts}
+\begin{dfn}[Compact]\index{Compact}
+$A$ \emph{compact} si toute suite d'éléments $(x_n)_n \in A$ a au moins une valeur d'adhérence\\
+CÀD \uline{on peut extraire de $(x_n)_n$ une suite $\left( x_{\varphi(n)} \right)
+_n$ qui converge dans $A$}
+\end{dfn}
+\begin{itheorem}[Théorème de \textsc{Heine}\index{Heine@\textsc{Heine}}]
+    Si $(E,N)$ et $(F,N)$ sont des espaces vectoriels normés, $A$ une partie \emphh{compacte} de $E$, \linebreak si $f\in \mathcal{C}(A,F)$, alors $f$ est \emphh{uniformément continue}.
+\end{itheorem}
+\begin{theorem}
+     Toute partie fermée d'un compact est compact
+\end{theorem}
+% section compacts (end)
+\section{Connexité par arcs} % (fold)
+\label{sec:connexe_par_arcs}
+\begin{dfn}[Convexe]
+    \begin{minipage}{0.6\textwidth}
+        Un ensemble $E$ est \emphh{convexe}\index{Convexe} si : 
+    \begin{equation}
+    \forall (x,y) \in E^2, \forall t \in [0,1], \boxed{tx + (1-t)y \in E}
+    \end{equation}
+    Intuitivement, un ensemble est convexe si on peut relier deux points avec une ligne contenue dans cet ensemble.
+    \end{minipage}\hspace{5mm}
+    \begin{minipage}{0.3\textwidth}
+    \begin{tikzpicture}
+        \draw[thick, color=couleurImp] (0.2,0.2) -- (2.7, 0.5);
+        \filldraw[fill = couleurClaire, decorate, rounded corners=5mm]%
+        (0,0) -- (-0.3,2) -- (3, 2.5) -- (3,0) -- (1.5,1) -- (0.2,-0.5) -- (0,0);
+        \begin{scope}
+        \clip[decorate, rounded corners=5mm] (0,0) -- (-0.3,2) -- (3, 2.5) -- (3,0) -- (1.5,1) -- (0.2,-0.5) -- (0,0);
+        \draw[thick] (0.2,0.2) node{$\bullet$} -- (2.7, 0.5) node{$\bullet$};
+        \end{scope}
+    \end{tikzpicture}
+    \captionof{figure}{Un ensemble non convexe}
+    \end{minipage}
+\end{dfn}
+\begin{dfn}[Fonction convexe]
+   \begin{minipage}{0.75\textwidth}
+    Une fonction $f : I \mapsto \Reel{}$ est dite convexe si :
+   \begin{equation}
+   \forall (a,b) \in I^2, \forall t \in ]0,1[, \boxed{f(ta + (1-t)b) \le tf(a) + (1-t)f(b)}
+   \end{equation}
+    \end{minipage}\hspace{2mm}
+    \begin{minipage}{0.2\textwidth}
+    \begin{tikzpicture}
+        \draw [->, >=stealth] (0,0) -- (3.2,0);
+        \draw [->, >=stealth] (0,0) -- (0,3.2);
+        \draw [thick] (0,0).. controls (0.8,0.2) and (2,1) .. (3,3);
+        \draw [color=couleurNoirClair, densely dashed] (0,0) -- (3,3);
+    \end{tikzpicture}
+    \captionof{figure}{Une fonction convexe}
+    \end{minipage}
+\end{dfn}
+\begin{theorem}[Convexe dans \Reel]
+    $I$ de $\Reel{}$ est convexe \emphh{si et seulement si} $I$ est un intervalle de $\Reel{}$
+\end{theorem}
+\begin{dfn}[Connexe par arcs]
+    Une partie $A$ d'un espace vectoriel normé $(E,N)$  est \emph{connexe par arcs}\index{Connexe par arcs} \linebreak si, pour tous points $a$ et $b$ de $E$, il existe une fonction $f:[0,1] \to E$ \emphh{\uline{continue}} telle que 
+    \begin{equation}
+    \left\lbrace
+    \begin{gathered}
+    f(0)=a \\
+    f(1)=b \\
+    f\big( [0,1] \big) \subset A
+    \end{gathered}
+    \right.
+    \end{equation}
+\end{dfn}
+\begin{theorem}[Connexe dans \Reel{}]
+    $A$ non vide de $\Reel{}$ est connexe \emphh{si et seulement si} $A$ est un intervalle de $\Reel{}$
+\end{theorem}
+% section connexe_par_arcs (end)
+\section{Topologie} % (fold)
+\label{sec:topologie}
+Voici plusieurs définitions utiles à l'étude d'espaces vectoriels normés :
+\begin{dfn}[Ouvert]
+Une partie $E$ est un \emph{ouvert}\index{Ouvert} si, pour tout élément $x$ de $E$, il existe une boule centrée en $x$ inclue dans $E$ (\textit{cf. }\textsc{Figure}~\ref{fig:OuvertFerme})
+\end{dfn}
+\begin{dfn}[Fermé]
+Un espace vectoriel $F$ est dit \emph{fermé}\index{ferme@Fermé} si son complémentaire $\overline{F}$ est un ouvert
+\end{dfn}
+%
+\begin{minipage}{0.5\textwidth}
+Pour différencier un ouvert d'un fermé, prenons le schéma ci-contre : \\
+La partie en \textbf{\textcolor{Red}{rouge}} est un ouvert noté $O$, celle en \textbf{\textcolor{Blue}{bleue}} est un fermé noté $F$.\\
+En effet : il n'existe aucun disque centré en $y \in O+F$ inclus dans la partie $O+F$, donc $O+F$ n'est pas un ouvert. Par contre, pour tout point $x \in O$, on peut trouver une boule inclue dans $O$.
+\end{minipage}\hspace{6pt}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[scale=1]
+    \draw [Black!30, thin, fill = Black!2] (-3.5,-2.3) -- (-3.5,2.3) -- (3.5,2.3) -- (3.5,-2.3) -- (-3.5,-2.3);
+    \draw [Black, densely dashed, pattern=north west lines, pattern color=Blue!60] (30:2) circle(0.7);
+    \fill [Red] (0,0) circle(2);
+    \draw [Red!30] (120:1.7) node{$O$};
+    \draw [line width=3pt, Blue] (0,0) circle(2);
+    \draw [Blue] (-120:2.3) node{$F$};
+    \fill [White, opacity = 0.3] (30:2) circle(0.7);
+    \begin{scope}
+        \clip (0,0) circle(2.05);
+        \draw [White, densely dashed] (30:2) circle(0.7);
+    \end{scope}
+    \draw (30:2) node{$+$} (30:2) node[below left]{$y$};
+    \fill [White, opacity = 0.3] (-120:0.4) circle(0.7);
+    \draw [White!70, densely dashed] (-120:0.4) circle(0.7);
+    \draw (-120:0.4) node{$+$} (-120:0.4) node[above left]{$x$};
+\end{tikzpicture}
+\captionof{figure}{Ouvert / Fermé}
+\label{fig:OuvertFerme}
+\end{minipage}
+%
+\begin{itheorem}[Caractérisation d'un fermé]
+$F\subset E$ est un \emph{fermé}\index{ferme@Fermé} \uline{\emph{ssi}} toute suite convergente de F a sa limite dans F
+\end{itheorem}
+
+\begin{dfn}[Intérieur, Adhérence]
+L'\emph{intérieur}\index{interieur@Intérieur} de $B$, noté $\overset{\circ}{B}$, est la \uline{réunion} des parties ouvertes \uline{contenues} dans $B$. \newline
+L'\emph{adhérence}\index{Adherence@Adhérence} de $A$, notée $\overline{A}$ est \uline{l'intersection} des parties fermées \uline{contenants} $A$.
+\end{dfn}
+
+\begin{prop}
+\begin{itemize}
+\item $A$ fermé $\Leftrightarrow A=\overline{A}$
+\item $\underbrace{\mathrm{Fr}(A)}_{\mathclap{\text{frontière}}}$ est un fermé
+\item $\underset{\text{finie}}{\cup} \text{ fermés} = \text{fermé}$
+\item $\cap \text{ fermés} = \text{fermé}$
+\end{itemize}
+\end{prop}
+
+\begin{itheorem}
+    Un \emphh{complet} $A$ d'un espace vectoriel normé $E$ est \emphh{\uline{fermé}}.\\*
+    La réciproque (\textit{Les parties complètes sont les parties fermées}) est vraie si $E$ est un espace de \textsc{Banach}.
+\end{itheorem}
+% section topologie (end)
+\part{Analyse}
+\chapter{Séries} % (fold)
+\label{cha:series}
+\begin{methode}
+     \titre{Étude d'une série}
+Prenons le cas d'étude d'une série : $ \sum u_n$
+\begin{enumerate}
+    \item Vérifier que $\sum u_n$ est positive. \\ Si elle ne l'est pas, on peut prendre $N(\sum u_n)$. Dans \Reel{}, on prendra $\left| \sum u_n \right|$.
+    \item Utiliser un théorème de comparaison pour ramener à des séries facilement étudiables. On peut : 
+    \begin{itemize}
+        \item Trouver un équivalent (en utilisant des \glspl{DL})
+        \item Trouver une domination en $o(\cdots)$ ou en $O(\cdots)$
+        \item Majorer/Minorer explicitement, mais c'est rare
+    \end{itemize}
+\end{enumerate}
+\end{methode}
+\section{Définitions}
+\begin{dfn}
+La série $S$ de terme général $\color{couleurFonce!90} u_n$ est la suite $\left( S_n \right)_{n\in\mathbb{N}}$ où on définit $S_n$ de manière suivante.
+    \[
+    \underbrace{S_n = \color{couleurNoirClair} \underbrace{\sum_{k=0}^{n} \color{couleurFonce!90}\underbrace{u_n}_{\text{Terme général de la série}}}_{\text{Somme partielle}}}_{\text{Suite des sommes partielles}}
+    \]
+\end{dfn}
+
+\begin{dfn}[Convergence\index{Convergence!serie@série} d'une série]
+    On dit que la série des $u_n$ converge s'il existe $l$ tel que $l = \lim_{n\to \infty} S_n$ existe.\\
+    S'il la suite $(u_n)_n$ ne converge pas vers $0$, on dit que sa série $S_n$ \emph{diverge grossièrement}\index{Diverge!grossierement@grossièrement}
+\end{dfn}
+\begin{itheorem}[Théorème suite-série]
+    La série $S_n = \sum_{k=0}^n (a_{n+1}-a_n)$ converge \emph{\uline{si et seulement si}} la suite $(a_n)$ \uline{converge}.
+\end{itheorem}
+\section{Séries à termes positifs} % (fold)
+\label{sec:SATP}
+\begin{dfn}[\acrlong{SATP}\index{SATP}]
+    On appelle \emph{\acrfull{SATP}} toute série de terme général $u_n$ réel tel que, \uline{à partir d'un certain rang}, $u_n \ge 0$.
+\end{dfn}
+\begin{itheorem}[Convergence des \gls{SATP}]
+    Si $\sum u_n$ est une \gls{SATP}, alors :
+    \begin{equation}
+        \sum u_n \text{ converge} \Leftrightarrow \sum_{k=0}^n u_n \text{ est majorée}
+    \end{equation}
+\end{itheorem}
+\subsection{Comparaison des \gls{SATP}} % (fold)
+\label{sub:comparaison_des_satp}
+\begin{itheorem}[Théorème de comparaison des \glspl{SATP}]
+    Si on a deux suites $u_n$ et $v_n$ de $\Reel{}^\mathbb{N}$ telles qu'on ait une des conditions suivantes : $
+    \left\lbrace
+    \begin{aligned}
+        u_n &\le v_n    \\
+        u_n &= o(v_n)   \\
+        u_n &= O(v_n)
+    \end{aligned}
+    \right. $, alors $\sum v_n$ converge $\implies \sum u_n$ converge. \par
+
+    On a également la contraposée : 
+    $\sum u_n$ diverge $\implies \sum v_n$ diverge
+\end{itheorem}
+%\textbf{Remarque : }Si $u_n \sim v_n$, alors $u_n$ et $v_n$ sont de même nature.
+\begin{itheorem}[2\ieme{} théorème de comparaison des \glspl{SATP}]
+     Soient $(a_n)_{n\in \mathbb{N}}$ et $(b_n)_{n\in \mathbb{N}}$ \emphhs{deux suites positives}. \newline
+     Si $u_n \sim v_n$, alors $u_n$ et $v_n$ sont de même nature.
+\end{itheorem}
+\begin{theorem}[\textsc{Césaro}\index{Cesaro@\textsc{Césaro}}]
+    Si $\sum \alpha_n$ est une \gls{SATP} \uline{divergente}, et que $(\beta_k)$ est une suite \uline{complexe convergente} vers $\beta$, alors la suite $(S_n)$ de terme général : 
+    \[
+        S_n = \dfrac{\displaystyle \sum_{k=0}^n \alpha_k \beta_k}{\displaystyle \sum_{k=0}^n \beta_k}
+    \]
+    (définie à partir d'un certain rang) converge vers $\beta$.
+\end{theorem}
+% subsection comparaison_des_satp (end)
+\subsection{Règle de d'\textsc{Alembert}} % (fold)
+\label{sub:regle_de_d_alembert}
+\begin{lemme}
+    Pour toute suite $(u_n)$ \uline{strictement positive}, s'il existe une suite $(\alpha_n)$ \uline{strictement positive} telle que $\dfrac{u_{n+1}}{u_n}\le \dfrac{\alpha_{n+1}}{\alpha_n}$, alors 
+    \begin{equation}
+    u_n \underset{+\infty}{=} O(\alpha_n)
+    \end{equation}
+\end{lemme}
+\begin{itheorem}[Règle de d'\textsc{Alembert}]\label{th:Regle_de_dAlembert}
+    Si, à partir d'un certain rang, $\left\lbrace
+    \begin{aligned}
+        u_n &> 0    \\
+        \dfrac{u_{n+1}}{u_n} &\to l
+    \end{aligned}
+    \right. $ alors :
+    \begin{equation}
+    \left\lbrace
+    \begin{aligned}
+        \text{Si } l >1, & \sum u_n \text{ converge}   \\
+        \text{Si } l <1, & \sum u_n \text{ diverge grossièrement} 
+    \end{aligned}
+    \right.
+    \end{equation}
+\end{itheorem}
+
+
+Ce théorème est peu utile car il est \og{}trop vrai\fg{}.
+% subsection regle_de_d'alembert (end)
+% section SATP (end)
+\section{Séries alternées} % (fold)
+\label{sec:series_alternees}
+\begin{dfn}[Série alternée]
+    La série $\sum u_n$ est une \emph{série alternée}\index{Serie@Série!alternee@alternée} s'il existe $(\alpha_n)$ une suite positive et $\varepsilon \in \lbrace -1 ; 1 \rbrace$ tels que $u_n = \varepsilon (-1)^n\alpha_n$
+\end{dfn}
+\begin{itheorem}[Théorème spécial des séries alternées\index{TSSA} (TSSA)]
+    Si $\left\lbrace \begin{aligned} \sum u_n &\text{ est une série alternée}\\ (|u_n|) &\text{ est décroissante} \\ (|u_n|) &\xrightarrow[+\infty]{} 0 \end{aligned}\right.$, alors $\sum u_n$ \uline{converge} et $\forall n \ge 0, \textcolor{couleurImp}{\left| \vphantom{\sum_{k=n}^{+\infty}} \right. } \sum_{k=n}^{+\infty}u_k \textcolor{couleurImp}{\left. \vphantom{\sum_{k=n}^{+\infty}} \right| } \le \textcolor{couleurImp}{|} u_n\textcolor{couleurImp}{|}$
+\end{itheorem}
+\Attention{Ne pas oublier les valeurs absolues pour l'étude des séries alternées.}
+% section series_alternees (end)
+\section{Hors programme} % (fold)
+\label{sec:hors_programme}
+Tous les théorèmes vus ici sont à démontrer.
+\begin{itheorem}[Transformation d'\textsc{Abel}]
+    Soient deux suites $(a_n)$ et $(b_n)$ de $\mathbb{K}^\mathbb{N}$. On note $B_n = \sum_{k=0}^n b_k$. Alors :
+    \begin{equation}
+    \sum_{k=0}^n a_k b_k = a_n B_n + \sum_{i=0}^{n\textcolor{couleurImp}{-1}} (a_i - a_{i+1}) B_i
+    \end{equation}
+    On peut en déduire, si on a les conditions $\left\lbrace \begin{array}{l}
+        \sum (a_i - a_{i+1}) \text{ CVA vers }0 \\
+        B_n = \sum_{k=0}^n b_k \text{ est bornée}
+    \end{array}\right.$, que $\sum a_k b_k$ converge.
+\end{itheorem}
+\begin{proof}
+    On remarque que $b_i = B_{i} - B_{i-1}$, avec $b_0 = B_0$. Il vient : 
+    \begin{align*}
+        \sum_{k=0}^n a_k b_k    &= a_0 b_0 + \sum_{k=1}^n a_k \left( B_k - B_{k-1} \right) \\
+                                &= a_0 b_0 + \sum_{k=1}^n a_k B_k - \sum_{k=1}^n a_k B_{k-1} \\
+                                \intertext{On change d'indice sur la deuxième somme, et comme $b_0 = B_0$ : }
+                                &=  a_0 B_0 + \sum_{k=1}^n a_k B_k - \sum_{k=0}^{n-1} a_{k+1} B_k \\
+                                &= \sum_{k=0}^{n-1} a_k B_k + a_n B_n - \sum_{k=0}^{n-1} a_{k+1} B_k \\
+                                &= a_n B_n + \sum_{k=0}^{n-1} (a_{k} - a_{k+1}) B_k
+    \end{align*}
+\end{proof}
+% section hors_programme (end)
+% chapter series (end)
+\chapter{Familles sommables de nombres complexes} % (fold)
+\label{cha:familles_sommables_de_nombres_complexes}
+\section{Dénombrement} % (fold)
+\label{sec:denombrement}
+\begin{dfn}[Ensemble fini]
+     On dit que $E$ est un \emph{ensemble fini}\index{Ensemble!fini} de cardinal $n$ si $E$ est en bijection avec $[\![ 0 , n [\![$
+\end{dfn}
+\begin{dfn}[Equipotence]
+     Deux ensembles $E$ et $F$ sont dits \emph{équipotents}\index{Ensemble!equipotent@équipotent} (ou en bijection) s'il existe une application $\varphi : E \to F$ telle que $\varphi$ soit bijective.
+\end{dfn}
+\begin{dfn}[Ensemble dénombrable]
+     On dit que $E$ est un \emph{ensemble dénombrable}\index{Ensemble!denombrable@dénombrable} s'il est équipotent à $\mathbb{N}$
+\end{dfn}
+\begin{theorem}
+     Toute partie \emphh{infinie} de $\mathbb{N}$ est dénombrable.
+\end{theorem}
+\begin{theorem}
+     Un ensemble est fini ou dénombrable \emphh{si et seulement si} il est équipotent à une partie de $\mathbb{N}$
+\end{theorem}
+\begin{itheorem}
+     L'ensemble $\mathbb{N}^2$ est dénombrable.
+\end{itheorem}
+\begin{proof}
+     On utilise la \emphh{fonction de couplage de \textsc{Cantor}}\index{Cantor@\textsc{Cantor}} : 
+     \begin{equation}
+     f(p,q) = q + \sum_{i=0}^{p+q} i
+     \end{equation}
+     On montre que cette fonction est bijective.
+     %TODO Fonction de Cantor
+\end{proof}
+\begin{theorem}
+     Une réunion finie ou dénombrable d'ensembles dénombrables est dénombrable.\\[5mm]
+     Ainsi, $\mathbb{Q}$ est dénombrable : \[\mathbb{Q} = \bigcup_{q\in\mathbb{N}^*}\left\lbrace \vphantom{\mathbb{N}} \frac{p}{q}, p \in \mathbb{Z} \right\rbrace\]
+\end{theorem}
+\begin{theorem}
+     L'ensemble \Reel{} n'est pas dénombrable.
+\end{theorem}
+% section denombrement (end)
+\section{Familles sommables} % (fold)
+\label{sec:familles_sommables}
+\subsection{Pour les réels positifs} % (fold)
+\label{sub:pour_les_reels_positifs}
+\begin{dfn}[Famille sommable de réels positifs]
+     Soit une famille $(u_i)_{i\in I}$ de nombres réels positifs. Une famille est \emph{sommable}\index{Famille!sommable} s'il existe un réel $M$ tel que, pour toute partie finie $J \subset I $, on ait :
+     \begin{subequations}
+     \begin{equation}
+     \sum_{i \in J} u_i \le M
+     \end{equation}
+     On définit la somme de cette famille par
+     \begin{equation}
+     \sum_{i\in I} u_i = \sup_J \sum_{n\in J} u_n
+     \end{equation}
+     \end{subequations}
+\end{dfn}
+\begin{theorem}[Sommation par paquets]
+     Soit une famille $(u_i)_{i\in I}$ de nombres réels positifs.\newline
+     Soit $(I_n)_{n\in\mathbb{N}}$ une partition \emphhs{dénombrable} de $I$.\par
+     La famille $(u_i)_{i\in I}$ est sommable \emphh{si et seulement si} :
+     \begin{itemize}
+         \item la sous-famille $(u_i)_{i\in I_n}$ est sommable pour tout $n$
+         \item la série $\sum_n \left( \sum_{i\in I_n} u_i \right)$ est convergente
+     \end{itemize}
+     Dans ce cas : 
+     \begin{equation}
+     \sum_{n=0}^{+\infty} \left( \sum_{i\in I_n} u_i \right) = \sum_{n\in I} u_n
+     \end{equation}
+\end{theorem}
+\begin{theorem}[Sommation triangulaire]
+     Soit $(u_{p,q})_{(p,q)\in \mathbb{N}^2}$ une famille de réels positifs.\newline
+     \begin{equation}
+          \begin{array}{r c l}
+               (u_{p,q})_{(p,q)\in \mathbb{N}^2} \text{ est sommable} & \Leftrightarrow & \displaystyle\sum_n \left( \displaystyle\sum_{p+q = n} u_{p,q} \right)\text{ converge} \\
+               \displaystyle\sum_{(p,q)\in \mathbb{N}^2} u_{p,q} & = & \displaystyle\sum_n \left( \displaystyle\sum_{p+q = n} u_{p,q} \right) \\
+          \end{array}
+     \end{equation}
+\end{theorem}
+% subsection pour_les_reels_positifs (end)
+\subsection{Pour les réels et les complexes} % (fold)
+\label{sub:famille_sommable_complexe_reel}
+\begin{dfn}[Famille sommable]
+     Une famille $(u_i)_{i\in I}$ de $\mathbb{K}^\mathbb{N}$ est \emph{sommable}\index{Famille!sommable} si la famille de réels positifs $(|u_i|)_{i\in I}$ est sommable.
+\end{dfn}
+\begin{theorem}
+     $(u_i)_{i\in I}$ est \emphh{sommable} $\Leftrightarrow \sum_{i\in I} u_i$ \emphh{ absolument covergente}
+\end{theorem}
+\begin{itheorem}[Sommation par paquets]
+     Soit une famille $(u_i)_{i\in I}$ de nombres réels positifs.\newline
+     Soit $(I_n)_{n\in\mathbb{N}}$ une partition \emphhs{dénombrable} de $I$.\par
+     La famille $(u_i)_{i\in I}$ est sommable \emphh{si et seulement si} :
+     \begin{itemize}
+         \item la sous-famille $(u_i)_{i\in I_n}$ est sommable pour tout $n$
+         \item la série $\sum_n \left( \sum_{i\in I_n} \textcolor{couleurImp}{|}u_i \textcolor{couleurImp}{|} \right)$ est convergente
+     \end{itemize}
+     Dans ce cas : 
+     \begin{equation}
+     \sum_{n=0}^{+\infty} \left( \sum_{i\in I_n} u_i \right) = \sum_{n\in I} u_n
+     \end{equation}
+\end{itheorem}
+\begin{theorem}
+     Soient $(a_p)_{p\in \mathbb{N}}$ et $(b_q)_{q\in \mathbb{N}}$ deux familles sommables. Alors la famille $\big( a_p b_q\big)_{(p,q)\in \mathbb{N}^2}$ sommable et 
+     \begin{equation}
+     \sum_{(p,q)\in \mathbb{N}^2} a_p b_q= \left( \sum_{p\in \mathbb{N}} a_p \right) \left( \sum_{q\in \mathbb{N}} b_q \right)
+     \end{equation}
+\end{theorem}
+\begin{proof}
+     Ce théorème est issu du théorème de \textsc{Fubini} (\textit{cf.} théorème \ref{th:fubini} page \pageref{th:fubini}) : les deux suites $(a_p)_{p\in \mathbb{N}}$ et $(b_q)_{q\in \mathbb{N}}$ sont sommables, donc leurs séries convergent absolument, et les hypothèse du théorème de \textsc{Fubini} sont alors vérifiées.
+\end{proof}
+\begin{itheorem}[Sommation triangulaire]
+     Soit $(u_{p,q})_{(p,q)\in \mathbb{N}^2}$ une famille de réels positifs.\newline
+     \begin{equation}
+          \begin{array}{r c l}
+               (u_{p,q})_{(p,q)\in \mathbb{N}^2} \text{ est sommable} & \Leftrightarrow & \displaystyle\sum_n \left( \displaystyle\sum_{p+q = n} |u_{p,q}| \right)\text{ converge} \\
+               \displaystyle\sum_{(p,q)\in \mathbb{N}^2} u_{p,q} & = & \displaystyle\sum_n \left( \displaystyle\sum_{p+q = n} u_{p,q} \right) \\
+          \end{array}
+     \end{equation}
+\end{itheorem}
+\Attention{Faire attention à bien mettre des modules partout}
+% subsection famille_sommable_complexe_reel (end)
+% section familles_sommables (end)
+% chapter familles_sommables_de_nombres_complexes (end)
+\chapter{Probabilités sur un univers au plus dénombrable} % (fold)
+\label{cha:probabilites_sur_un_univers_au_plus_denombrable}
+\section{Espace probabilisé} % (fold)
+\label{sec:espace_probabilise}
+\begin{dfn}[Univers]
+     Un \emph{univers}\index{univers} $\Omega$ est l'ensemble des issues d'une expérience aléatoire.\\
+     L'ensemble des parties de l'univers $\Omega$ est noté $\mathcal{P}(\Omega{})$
+\end{dfn}
+\begin{dfn}[Tribu]
+     Une \emph{tribu}\index{Tribu} sur un univers $\Omega$ est un sous-ensemble $\mathscr{T}$ de $\mathcal{P}(\Omega{})$ vérifiant les propriétés :
+     \begin{itemize}
+         \item $\Omega \in \mathscr{T}$
+         \item $\forall A \in \mathscr{T},\: \overline{A} \in \mathscr{T}$
+         \item $\forall \left( A_n \right)_{n\in \mathbb{N}} \in \mathscr{T}^\mathbb{N},\: \bigcup_{n\in \mathbb{N}} A_n \in \mathscr{T}$
+     \end{itemize}
+     Le couple $(\Omega, \mathscr{T})$ est appelé \emph{espace probabilisable}\index{Espace probabilisable}.
+\end{dfn}
+\begin{prop}
+     Si $(\Omega, \mathscr{T})$ est un espace probabilisable, et $A_i$ un élément de $\mathscr{T}$ :
+     \begin{itemize}
+         \item $\varnothing \in \mathscr{T}$
+         \item $\bigcup_\text{finie} A_i \in \mathscr{T}$
+         \item $\bigcap_\text{finie} A_i \in \mathscr{T}$
+         \item $\forall (A_n)_{n\in \mathbb{N}},\, \bigcap_{n\in \mathbb{N}} A_i \in \mathscr{T}$
+         \item $\forall (A,B) \in \mathscr{T}^2,\, A\cap \overline{B} = A \backslash B$
+     \end{itemize}
+\end{prop}
+\begin{dfn}[Incompatibilité, implication]
+     Deux évènements $A$ et $B$ sont incompatibles si $A \cap B = \varnothing$\\
+     On dit que $A \underset{\text{implique}}{\implies} B$ quand $A \subset B$
+\end{dfn}
+\Attention{Ne pas confondre ($A \cap B = \varnothing$) et ($P(A\cap B) = 0$)}
+\begin{dfn}[Système complet d'évènements]
+     Soit $(\Omega, \mathscr{T})$ un espace probabilisable.\\
+     Soit $I$ fini ou égal à $\mathbb{N}$\newline
+     Un \emph{système complet d'évènements}\index{Systeme complet@Système complet\emphi{ (probabilités)}} est \emphhs{une suite d'évènements} $(A_i)_{i\in I}$ telle que :
+     \begin{itemize}
+         \item $\bigcup_{i\in I} A_i = \Omega$
+         \item $\forall (p,q) \in I^2,\, p\neq q,\, A_p \cap A_q = \varnothing$
+     \end{itemize}
+\end{dfn}
+\begin{dfn}[Probabilité]
+     Soit $(\Omega, \mathscr{T})$ un espace probabilisable. La \emph{probabilité}\index{Probabilite@Probabilité} est l'application $\mathbb{P} : \mathscr{T} \to [0,1]$ telle que :
+     \begin{itemize}
+         \item $\mathbb{P}(\Omega) = 1$
+         \item Pour toute suite $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ d'éléments \emphhs{deux à deux incompatibles} : 
+         \begin{itemize}
+             \item $\sum \mathbb{P}(A_n)$ converge
+             \item $\mathbb{P}\left( \bigcup_{n=0}^{+\infty} A_n \right) = \sum_{n=0}^{+\infty} \mathbb{P}(A_n)$\\
+             ($\sigma$-additivité)
+         \end{itemize}
+     \end{itemize}
+     Le triplet $(\Omega, \mathscr{T},\mathbb{P})$ est appelé \emph{espace probabilisé}\index{Espace probabilise@Espace probabilisé}
+\end{dfn}
+\Attention{Espace propabilisable $(\Omega, \mathscr{T}) \neq$ Espace probablilisé $(\Omega, \mathscr{T},\mathbb{P})$}
+
+La propriété de $\sigma$-additivité existe sous forme d'inégalité quand les évènements ne sont pas incompatibles :
+\begin{itheorem}[Inégalité de \textsc{Boole}]
+Soit $(\Omega, \mathscr{T},\mathbb{P})$ un espace probablilisé. \\
+Soit $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ telle que $\sum \mathbb{P}(A_n)$ converge. Alors :
+     \begin{equation}
+     \mathbb{P}\left( \bigcup_{n=0}^{+\infty} A_n \right) \le \sum_{n=0}^{+\infty} \mathbb{P}(A_n)
+     \end{equation}
+\end{itheorem}
+\begin{proof}
+     On se ramène à une suite d'évènements deux à deux disjoints en introduisant la suite $(C_n)$ telle que :
+     \begin{equation*}
+          C_0 = A_0 \\ C_n = A_n \backslash \bigcup_{k=0}^{n-1}A_k
+     \end{equation*}
+     Puisque $C_n \subset A_n$, on a : 
+     \begin{equation*}
+          \mathbb{P} \left( \bigcup_{n=0}^{+\infty} A_n \right) = \sum_{n=0}^{+\infty} \mathbb{P}(C_n) \le \sum_{n=0}^{+\infty} \mathbb{P}(A_n)
+     \end{equation*}
+\end{proof}
+% section espace_probabilise (end)
+\section{Conditionnement} % (fold)
+\label{sec:conditionnement}
+
+% section conditionnement (end)
+\section{Indépendance} % (fold)
+\label{sec:independance}
+\begin{dfn}[Évènements indépendants]
+     Deux évènements $A$ et $B$ sont indépendants lorsque 
+     \begin{equation}
+     \mathbb{P}(A\cap B) = \mathbb{P}(A)\times \mathbb{P}(B)
+     \end{equation}
+\end{dfn}
+% section independance (end)
+% chapter probabilites_sur_un_univers_au_plus_denombrable (end)
+\chapter{Variables aléatoires discrètes} % (fold)
+\label{cha:variables_aleatoires_discretes}
+\section{Espérance} % (fold)
+\label{sec:esperance}
+\subsection{Définitions} % (fold)
+\label{sub:esperance_definitions}
+\begin{dfn}[Espérance d'une famille finie]
+     Soit $X$ une variable aléatoire prenant un nombre fini de valeurs $x_1, x_2, \cdots , x_n$. L'\emph{espérance}\index{Esperance@Espérance} de $X$ est donnée par la somme finie :
+     \begin{equation}
+     E(X) = \sum_{i=1}^n x_i \mathbb{P}_X(x_i)
+     \end{equation}
+\end{dfn}
+On peut étendre la définition précédente au cas où les valeurs de $X$ forment une famille sommable :
+\begin{dfn}[Espérance d'une variable aléatoire discrète]
+     Soit $X$ une variable aléatoire \emphh{réelle discrète}. On dit que $X$ est d'\emph{espérance} finie si la famille $\left( x\mathbb{P}_X(x)\right)_{x\in X(\Omega)}$ est sommable.
+\end{dfn}
+% subsection esperance_definitions (end)
+\subsection{Propriétés} % (fold)
+\label{sub:esperance_proprietes}
+\begin{prop}
+     \begin{itemize}
+         \item L'ensemble $\mathscr{E}$ des variables aléatoire de $\Omega$ dans $\mathbb{R}$ et dont l'espérance est finie est un espace vectoriel
+         \item L'espérance est une forme linéaire sur $\mathscr{E}$
+         \item $\forall X \in \mathscr{E},\, X(\Omega) \subset \mathbb{R}^+ \implies E(X) \ge 0$ (l'espérance est positive)
+         \item Soit $Y$ une variable aléatoire d'espérance finie, si $X$ est une variable aléatoire telle que $|X| \le Y$, alors $X$ est d'espérance finie.
+         \item Si $X$ et $Y$ sont deux lois \emphh{indépendantes} \emphh{et admettant chacune une espérance finie}, alors $XY$ est d'espérance finie et 
+         \begin{equation*}
+         E(XY) = E(X)\: E(Y)
+         \end{equation*}
+     \end{itemize}
+\end{prop}
+% subsection esperance_proprietes (end)
+% section esperance (end)
+\section{Variance} % (fold)
+\label{sec:variance}
+\subsection{Moment} % (fold)
+\label{sub:variance_moment}
+\begin{dfn}[Moment d'ordre $n$]
+     Soit $X$ une variale aléatoire discrète. On dit que $X$ admet un \emph{moment}\index{Moment@Moment\emphi{ (Probabilités)}} d'ordre $m$ si $X^m$ admet \emphh{une espérance finie}.
+\end{dfn}
+\begin{theorem}
+     Si $X$ est une variable aléatoire admettant un moment d'ordre $2$, alors $X$ admet une espérance finie.
+\end{theorem}
+\begin{theorem}[Inégalité de \textsc{Cauchy-Schwarz}\index{inegalite@Inégalité!cauchy@de \textsc{Cauchy-Schwarz}}]
+     Si $X$ et $Y$ sont deux variables aléatoires discrètes de moment d'ordre $2$, alors $XY$ a une espérance finie et
+     \begin{equation}
+     \bigg( E(XY)\bigg)^2 \le E(X^2)\,E(Y^2)
+     \end{equation}
+\end{theorem}
+% subsection variance_moment (end)
+\subsection{Variance et écart-type} % (fold)
+\label{sub:variance_et_ecart_type}
+\begin{dfn}[Variance et Écart-type]
+     Soit $X$ une variable aléatoire discrète \emphh{admettant un moment d'ordre 2}.\par
+     On définit la \emph{variance}\index{Variance} par :
+     \begin{subequations}
+     \begin{equation}
+          V(X) = E\bigg( \big( X - E(X) \big)^2 \bigg)
+     \end{equation}
+     et l'\emph{écart-type}\index{ecart-type@Écart-type} par :
+     \begin{equation}
+     \sigma (X) = \sqrt{ V(X) }
+     \end{equation}
+     \end{subequations}
+\end{dfn}
+\begin{theorem}[Formule de \textsc{König-Huygens}]
+     Soit $X$ une variable aléatoire discrète admettant un moment d'ordre 2. Alors :
+     \begin{equation}
+     V(X) = E(X^2) - E(X)^2
+     \end{equation}
+\end{theorem}
+% subsection variance_et_ecart_type (end)
+\subsection{Covariance} % (fold)
+\label{sub:covariance}
+\begin{dfn}[Covariance]
+     Soient $X$ et $Y$ deux variables aléatoires discrètes \emphh{admettant un espérance finie}.\par
+     Si elle existe, on définit la \emph{covariance}\index{Covariance} de $X$ et de $Y$ par :
+     \begin{equation}
+     \mathrm{cov}(X,Y) = E\bigg( \big( X - E(X)\big) \: \big( Y - E(Y)\big) \bigg)
+     \end{equation}
+\end{dfn}
+\begin{itheorem}[Existence de la covariance]
+     Soient $X$ et $Y$ deux variables aléatoires \emphh{admettant un moment d'ordre 2}. Alors la covariance de $X$ et de $Y$ existe et on a :
+     \begin{equation}
+     \mathrm{cov}(X,Y)=E(XY) - E(X)E(Y)
+     \end{equation}
+\end{itheorem}
+\begin{proof}
+     %TODO Existence
+     On a : 
+     \begin{align*}
+         \mathrm{cov}(X,Y) &= E\bigg( \big( X - E(X)\big) \: \big( Y - E(Y)\big) \bigg)
+         \intertext{On développe :}
+                           &= E\bigg( XY - E(X)Y - E(Y)X + E(X)E(Y) \bigg)
+                           \intertext{Par linéarité de l'espérance : }
+                           &= E\big( XY \big) - E\big( E(X)Y \big) - E\big( E(Y)X \big) + E\big( E(X)E(Y) \big) \\
+     %TODO Finir la demo
+                           &= \; ??? \\
+         \mathrm{cov}(X,Y) &= E(XY) - E(X)E(Y)
+     \end{align*}
+\end{proof}
+% subsection covariance (end)
+% section variance (end)
+\section{Lois usuelles} % (fold)
+\label{sec:lois_usuelles}
+\begin{dfn}[Loi de \textsc{Bernoulli}]
+     La \emph{loi de \textsc{Bernoulli}}\index{Bernoulli@\textsc{Bernoulli}} est une distribution discrète qui prend la valeur $1$ avec une probabilité $p$ et la valeur $0$ avec la probabilité $(1-p)$. \\
+     Une variable alétoire qui suit cette loi est appelée variable de \textsc{Bernoulli}
+\end{dfn}
+\subsection{Loi binomiale} % (fold)
+\label{sub:loi_binomiale}
+\begin{dfn}
+     La loi binomiale, de paramètres $n$ et $p$, est la loi de probabilité d'une variable aléatoire $X$ égale au nombre de succès rencontrés au cours d'une répétition de $n$ épreuves de Bernoulli, $p$ étant la probabilité de succès d'une épreuve de Bernoulli.\par
+     Autrement, c'est une variable aléatoire $X$ telle que 
+     \[
+         X = Y_1 + Y_1 + \cdots + Y_n
+     \]
+     où les $Y_i$ sont des variables aléatoires \emphhs{indépendantes} de loi de \textsc{Bernoulli}.\par
+     La variable aléatoire suit une loi de probabilité : 
+     \begin{equation}
+     \mathbb{P}(X = k) = \begin{pmatrix} n \\ k \end{pmatrix} p^k(1-p)^{n-k}
+     \end{equation}
+\end{dfn}
+\begin{theorem}[Espérance et variance]
+     Soit $X$ une variable aléatoire qui suit une loi binômiale. Alors :
+     \begin{equation}
+     E(X) = np \\ V(X) = np(1-p)
+     \end{equation}
+\end{theorem}
+% subsection loi_binomiale (end)
+% section lois_usuelles (end)
+% chapter variables_aleatoires_discretes (end)
+\chapter{Suites de fonctions}
+\begin{methode}
+    En général, pour la \uline{convergence simple}, on \emph{fixe $x$}. Pour la \uline{convergence uniforme}, puisqu'on cherche la norme $N_\infty$, on \emph{dérive $f_n(x)$} pour étudier ses variations.
+\end{methode}
+\section{Convergence de suites de fonctions}
+\begin{dfn}
+Définitions simplifiées des différents types de convergence
+\begin{equation}\label{CV fonctions}
+\begin{array}{r c l}
+\text{La suite des }\left(f_n\right) \text{ converge \emph{simplement} vers } f&\Leftrightarrow &\forall x, \left(f_n(x)\right)_n \to f(x)\\
+\text{La suite des }\left(f_n\right) \text{ converge \emph{uniformément} vers } f&\Leftrightarrow &N^A_\infty\left(\underbrace{f_n-f}_{\in B(A,F)}\right)\xrightarrow[\textcolor{RoyalBlue}{n}\to +\infty]{}0\\
+\left(f_n(x)\right)_n\text{{\footnotesize  vérifie le \emph{critère de Cauchy de CU}}}&\Leftrightarrow&\exists \varepsilon>0 | n\ge n_0(\varepsilon) \Rightarrow N^A_\infty\left((f_n-f)\right)< \varepsilon\\
+\end{array}
+\end{equation}
+Le critère de Cauchy de convergence uniforme est équivalent à la convergence uniforme. $\boxed{\text{Critère de Cauchy}\Leftrightarrow\text{Convergence Uniforme}}$
+\end{dfn}
+Pour illustrer, on peut faire les shémas suivants : 
+\begin{figure}[h t]
+
+\subfloat[Convergence Simple]{
+	\begin{tikzpicture}
+		
+\draw [thin,gray,->] (-1,0) -- (3,0) node[right]{$x$}; 
+\draw [thin,gray,->] (0,-1) -- (0,3) node[above]{$y$};
+\draw [thick] (-1,-0.5) .. controls (1,-0.3) and (2,0) .. (3,3) node[near end, left]{$f(x)$};
+\draw [thin,red!20] (-1,-0.8) .. controls (1,-0.7) and (2,-0.5) .. (3,1.7);
+\draw [thin,red!40] (-1,-0.7) .. controls (1,-0.5) and (2,-0.2) .. (3,2);
+\draw [thin,red!90] (-1,-0.6) .. controls (1,-0.4) and (2,-0.1) .. (3,2.5) node[near end, right]{$f_n(x)$};
+\draw [thick,color=RoyalBlue, ->,>=stealth] (3.1,1.5) .. controls (3.3,2) and (3.3,2.6) .. (3.1,2.9) node[midway, right]{$n$ croissant};
+	\end{tikzpicture}
+}
+\subfloat[Convergence Uniforme]{
+	\begin{tikzpicture}
+		
+\draw [thin,gray,->] (-1,0) -- (3,0) node[right]{$x$}; 
+\draw [thin,gray,->] (0,-1) -- (0,3) node[above]{$y$};
+\draw [thick] (-1,-0.5) .. controls (1,-0.3) and (2,0) .. (3,3) node[near end, left]{$f(x)$};
+\draw [thin,red!20] (-1,-0.8) .. controls (1,-0.7) and (2,-0.5) .. (3,1.7);
+\draw [thin,red!40] (-1,-0.7) .. controls (1,-0.5) and (2,-0.2) .. (3,2);
+\draw [thin,red!90] (-1,-0.6) .. controls (1,-0.4) and (2,-0.1) .. (3,2.5) node[near end, right]{$f_n(x)$};
+\draw [thick,color=RoyalBlue, ->,>=stealth] (3.1,1.5) .. controls (3.3,2) and (3.3,2.6) .. (3.1,2.9) node[midway, right]{$n$ croissant};
+\draw [very thick,<->] (1,-0.6) -- (1,0) node[midway, right]{$N_\infty$};
+	\end{tikzpicture}
+}
+\caption{Les différents types de convergence de fonction}
+\end{figure}
+\\
+\begin{prop}[de la simple convergence]
+\begin{list}{-}{ }
+\item $\left\lbrace
+\begin{array}{l c l}
+f:A\subset\mathbb{R}\to\mathbb{R}& & \\
+\left(f_n(x)\right)_n\text{ est croissante}&\Leftrightarrow&f\text{ est croissante}\\
+\left(f_n(x)\right)_n\ \xrightarrow[x\in{}A]{CVS}f& & \\
+\end{array}\right.$
+\item (autres propriétés analogues de $f_n$ appliquées à $f$ par CVS)
+\end{list}
+\end{prop}
+%
+\begin{theorem}[Convergence par changement de base]
+Si $\left(f_n(x)\right)_n$ converge simplement ou uniformément \uline{\textbf{ssi}} $\left(f_{n,i}(x)\right)_n$ converge de la même manière dans la base $\mathcal{B}=(e_i)$
+\end{theorem}
+\begin{theorem}[Conditions nécessaire de CU\footnote{\textbf{CU} pour \textbf{C}onvergence \textbf{U}niforme}]
+\[
+\begin{array}{r c}
+
+\left.
+\begin{array}{r}
+\left(f_n(x)\right)_{n\in\mathbb{N}}\xrightarrow{\emph{CU}}f\\
+\left(f_n(x)\right)_n\ \text{ est \emph{bornée}}\\
+\end{array}\right\rbrace & \implies
+\end{array}
+f \text{ est \textbf{uniformément convergente} \textbf{bornée}}
+\]
+\end{theorem}
+\begin{theorem}[Conditions nécessaire de \uline{Non}-CU]
+Il suffit que : 
+$\exists (x_n)\text{ tel que }f(x_n)\underset{x\to{}\infty}{\nrightarrow}0$
+\end{theorem}
+On notera les fonctions $f$ dont la dérivée est continue de $A\to B$ comme appartenant à l'ensemble $\mathcal{C}(A,B)$
+
+\begin{theorem}[Continuité par convergence]
+
+\begin{align*}
+\left.
+\begin{array}{r}
+\left(f_n(x)\right)_{n}\text{ \emph{continue} en a}\\
+\left(f_n(x)\right)_n\text{ \emph{converge uniformément} vers }f\\
+\end{array}\right\rbrace &\implies f\text{ est continue en }a\\
+\left.
+\begin{array}{r r}
+&\left(f_n(x)\right)_{n}\in\mathcal{C}(A,F)\\
+\left(f_n(x)\right)_n&\text{ \emph{converge uniformément} vers}\\
+&f \text{ sur tout compact} \subset A\\
+\end{array}\right\rbrace &\implies f\in \mathcal{C}(A,F)\\
+\end{align*}
+\end{theorem}
+\begin{itheorem}[Théorème de la double limite]\label{Double Limite Fonctions} 
+Si $f_n(x)$ \boxed{\text{\emph{converge uniformément}}}
+\[\boxed{
+\lim_{\textcolor{Red}{n\to\infty}}\left(\lim_{\textcolor{RoyalBlue}{x\to a}} f_n(x)\right)=\lim_{\textcolor{RoyalBlue}{x\to a}}\left(\lim_{\textcolor{Red}{n\to\infty}} f_n(x)\right)
+}\]
+\end{itheorem}
+\begin{theorem}[Théorème d'approximation de \textsc{Weierstrass}\index{Weierstrass@\textsc{Weierstrass}!approximation}]
+Toute fonction $f\in \mathcal{C}([a,b],\mathbb{C})$ est \emph{limite uniforme} d'une suite $\left(\mathcal{P}_n(X)\right)_n$ de fonctions polynômes.
+\end{theorem}
+Le même théorème existe pour les fonctions (T-périodiques à valeurs complexes) limites d'une suite de polynômes trigonométriques.
+\section{Convergence des Séries}
+\begin{dfn}
+Définitions simplifiées des convergences de Séries de fonctions :\\
+\begin{equation}\label{CV Serie}
+\begin{array}{l c l}
+\sum{f_n}\text{ converge \emph{simplement}}&\text{si}&\forall{}x\in{}A\text{, la série } \sum{f_n(x)} \text{ converge}\\[0.3cm]
+\sum{f_n}\text{ converge \emph{uniformément}}&\text{si}&
+\left\lbrace 
+\begin{array}{l}
+\begin{split}
+x\in{}A\text{, la série } &(S_n)=\displaystyle\sum_0^n{f_n(x)}\\[-2mm] &\text{{\small  converge uniformément}}\end{split}\\[1cm]  
+\begin{split}
+x\in{}A\text{, la série } &(R_n)=\displaystyle\sum_n^\infty{f_n(x)}\\[-2mm] &\text{\small converge uniformément}\end{split}\\
+\end{array}
+\right. \\[2cm]
+\sum{f_n}\text{ converge \emph{normalement}}&\text{si}&\sum{N_\infty (f_n)}\text{ converge}
+\end{array}
+\end{equation}
+Pour les définitions de convergence de fonctions, se référer aux définitions \ref{CV fonctions}.
+\end{dfn}
+On retrouve certaines propriétés des fonctions :
+\begin{theorem}
+
+\[
+\left.
+\begin{array}{r}
+\left(u_n(x)\right)_{n}\in\mathcal{C}(A,F)\\
+\left(u_n(x)\right)_n \text{ \emph{converge uniformément} sur }A\\
+\end{array}\right\rbrace \implies \sum u_n \text{ est continue sur }A\\
+\]
+\end{theorem}
+\begin{itheorem}[Théorème de la double limite]
+Si $\sum f_n$ \emph{converge uniformément}, et qu'il existe $(v_n)$ telle que $v_n=\displaystyle\lim_{x\to a}f_n(x)$, alors $\sum v_n$ converge et on a :
+\[\boxed{\sum^\infty_{n=0}\underbrace{\left(\lim_{x\to a} f_n(x)\right)}_{\mathclap{=v_n}}=\lim_{x\to a}\sum_{n=0}^\infty\left(f_n(x)\right)} \]
+\end{itheorem}
+\begin{proof}
+C'est le théorème \ref{Double Limite Fonctions} de la double limite de suites de fonctions appliqué aux séries
+\end{proof}
+\section{Propriétés de la somme}
+\begin{itheorem}[Intégration sous le signe somme]
+\begin{equation}
+\begin{array}{r c l}
+\left\lbrace
+\begin{array}{l}
+u_k \in \mathcal{CM}(I,\mathbb{C})\text{ et intégrable sur }I\\
+S \in \mathcal{CM}(I,\mathbb{C})\\
+\sum u_n \to S\\
+\boxed{\sum |u_n| \text{ converge}} 
+\end{array}
+\right.&\Rightarrow &
+\begin{array}{l}
+S\text{ est intégrable, et}\\
+\int_I S = \sum_{n=0}^{+\infty} \left( \int_I u_n \right)
+\end{array}
+\end{array}
+\end{equation}
+\end{itheorem}
+\section{Séries doubles} % (fold)
+\label{sec:series_doubles}
+\begin{itheorem}[Interversion des sommations de \textsc{Fubini}\index{Fubini@\string\textsc{Fubini}}]\label{th:fubini}
+    Si 
+    $\left\lbrace \begin{array}{l}
+        \big( u_{p,q} \big)_{p,q} \text{ est une suite double complexe} \\
+        \forall q \in \Cmplx{}, \left( \sum \left| u_{p,q}\right| \right)_{p,q} \text{ converge} \\
+        \forall q \in \Cmplx{}, \sum \left( \sum_{p=0}^{+\infty} \left| u_{p,q}\right| \right) \text{ converge}
+    \end{array}\right| $, alors : 
+    \begin{equation}
+        \sum_{q=0}^{+\infty} \left( \sum_{p=0}^{+\infty} u_{p,q} \right) = \sum_{p=0}^{+\infty} \left( \sum_{q=0}^{+\infty}  u_{p,q} \right) 
+    \end{equation}
+    Avec les deux séries $\left( \sum \left( \sum_{p=0}^{+\infty} u_{p,q} \right)\right)_q$ et $\left( \sum \left( \sum_{q=0}^{+\infty}  u_{p,q} \right) \right)_p$  qui convergent
+\end{itheorem}
+% section series_doubles (end)
+\chapter{Calcul Différentiel et Intégral}
+\section{Dérivation}
+\begin{dfn}[Dérivabilité\index{Derivabilite@Dérivabilité}]
+$f : I \to \Reel$ est dérivable en $a \in I$ si $\lim_{x\to a} \dfrac{f(x) - f(a)}{x - a}$ existe.
+\end{dfn}
+On notera $\mathcal{D}(I,\Reel )$ l'ensemble des applications dérivables de $I$ dans \Reel{}.
+
+\begin{theorem}
+$f$ dérivable $\Leftrightarrow \exists l$ tel que $f(x) \underset{x\to a}{=} f(a) + (x-a)l + (x-a)\varepsilon (x)$\\
+Alors, $l$ est la dérivée en $a$ de $f$
+\end{theorem}
+
+\begin{prop}
+\begin{description}
+    \item[Continuité] $f$ dérivable $\implies f$ continue
+    \item[Linéarité] $\left( f + \alpha g \right)' = f' + \alpha g'$
+    \item[Dérivées usuelles] \hfill \\[-0.5cm]
+        \begin{description}
+            \item[Application linéaire] $u$ linéaire, $f$ dérivable; $\left( u \circ f \right)'(x) = u\circ f'(x)$
+            \item[Application multi-linéaire] $\varphi$ une application $n$-linéaire;\\ 
+            $\bigg( \varphi (f_1, \cdots, f_n) \bigg)'(x) = \sum_{i=0}^n \varphi \bigg( f_1(x), \cdots, f_{i-1}(x), \textcolor{Red}{f_i'(x)},f_{i+1}(x), \cdots , f_n(x) \bigg)$
+            \item[Quotient] $u$ et $v$ dérivables; $\left( \dfrac{u}{v} \right)' = \dfrac{u'v - uv'}{v^2}$
+            \item[Composition] $f$ et $g$ dérivables; $\left( f \circ g \right)' = f'\; g'(f)$
+        \end{description}
+\end{description}
+\end{prop}
+
+\begin{dfn}[Application $\mathcal{C}^1$]
+$f \in \mathcal{C}^1\big( E,F \big)$ si l'application $f' : a \mapsto f'(a)$ existe et est continue.
+\end{dfn}
+
+
+\begin{dfn}[Dérivée $k$-ième]
+On définit récursivement la dérivée $k$-ième $f^{(k)}$ : 
+\begin{equation}
+    f^{(k)}=\big( f^{(k-1)} \big) '
+\end{equation}
+\end{dfn}
+\begin{dfn}[Application de classe $\mathcal{C}^k$]
+$f$ est $\mathcal{C}^k$ si $f$ est $k$ fois dérivable et si $f^{(k)}$ est continue.
+\end{dfn}
+
+\begin{theorem}[\textsc{Leibniz}]
+Soit $\varphi$ une application bilinéaire, alors :
+\begin{equation}\tag{Leibniz}\label{Leibniz}
+\varphi^{(n)}\big( f,g \big) = \sum_{k=0}^n \begin{pmatrix} n \\ k \end{pmatrix} \varphi \big( f^{(k)},g^{(n-k)} \big)
+\end{equation}
+\end{theorem}
+\section{Intégration}
+\subsubsection{Inégalité de la moyenne} % (fold)
+\label{ssub:inegalite_de_la_moyenne}
+\begin{itheorem}[Cas réel]
+    Si $f$ est \emphh{continue} sur un intervalle $[a,b]$ et qu'il existe $m$ et $M$ tels que : 
+    \[
+        m \le f(x) \le M
+    \]
+    Alors 
+    \begin{equation}\label{eq:inegalite_de_la_moyenne}
+    m(b-a) \le \int_a^b f(x) \mathrm{d}x \le M(b-a)
+    \end{equation}
+\end{itheorem}
+    
+% subsubsection inegalite_de_la_moyenne (end)
+\section{Primitive}
+\begin{dfn}[Primitive]
+$F$ est une \emph{primitive}\index{Primitive} de $f$ si $\forall x, F'(x)=f(x)$. 
+\end{dfn}
+\begin{theorem}
+%TODO Compléter le théorème
+Si $F$ est la primitive de $f$,
+\begin{equation}
+    \int \limits_a^x f(t) dt = F(x) - F(a)
+\end{equation}
+\end{theorem}
+
+\section{Accroissements finis}
+\subsection{Cas réel} % (fold)
+\begin{theorem}[Accroissements finis\index{Accroissements finis}]
+\begin{minipage}{0.6\textwidth}
+$f \in \mathcal{D}\big( ]a,b[,\Reel{} \big)$, alors 
+\begin{equation}
+\exists \: c \in ]a,b[ \text{ tel que }\boxed{f(b) - f(a) = (b-a) f'(c)}
+\end{equation}
+\end{minipage}\hspace{1cm}
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+    \draw [dashed, thick, gray] (0,0.875) -- (3,1.875) node[midway, above]{$f'(c)$};
+    \draw [thick] (0,0) .. controls (0.3,0) and (0.7,1.1) .. (1,1.2) .. controls (1.4,1.3) and (2.5,0.8) .. (3,1);
+    \draw (0,0) node{$\bullet$} -- (3,1) node{$\bullet$};
+    \draw (0,-0.2) node[below]{$a$} -- (3,-0.2) node[below]{$b$} node[midway, below]{$[a,b]$};
+\end{tikzpicture}
+\end{minipage}
+\end{theorem}
+\subsection{Cas vectoriel}
+\begin{itheorem}[Accroissements finis\index{Accroissements finis}]
+\begin{minipage}{0.6\textwidth}
+$f \in \mathcal{C}\big( ]a,b[,\Reel{} \big)$\\ 
+Si $\exists \: \lambda$ tel que $ \forall t\in ]a,b[, \textcolor{couleurImp}{N}(f'(t))\leq \lambda$, alors
+    \begin{equation}
+        \boxed{\textcolor{couleurImp}{N\big( } f(b) - f(a)\textcolor{couleurImp}{\big) } \leq \textcolor{couleurImp}{\lambda} \big( (b-a)\big)}
+    \end{equation}
+\end{minipage}\hspace{1cm}
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+    \draw [color=couleurImp!70!Black] (0,0.575) -- (3,2.5) node[midway, above]{$\lambda$};
+    \draw [dashed, thick, gray] (0,0.875) -- (3,1.875);
+    \draw [thick] (0,0) .. controls (0.3,0) and (0.7,1.1) .. (1,1.2) .. controls (1.4,1.3) and (2.5,0.8) .. (3,1);
+    \draw (0,0) node{$\bullet$} -- (3,1) node{$\bullet$};
+    \draw (0,-0.2) node[below]{$a$} -- (3,-0.2) node[below]{$b$} node[midway, below]{$[a,b]$};
+\end{tikzpicture}
+\end{minipage}
+\end{itheorem}
+
+\section{Formules de Taylor}
+\begin{itheorem}[Formules de Taylor\index{Taylor!Formules@\string\textit{(Formules)}}]
+$f\in\mathcal{C}^{k+1}(I,E)$, avec $(a,b)\in I^2$
+\[
+\begin{array}{l c r c l}
+\text{\textbf{Taylor-Young}\index{Taylor!Young}}&f(x)\underset{x\to a}{=}&\displaystyle \sum_{k=0}^{n} \dfrac{(x-a)^k}{k!}f^{(k)}(a)&+&o\left( (x-a)^n \right)   \\[0.7cm]
+\text{\textbf{Taylor-Laplace}\index{Taylor!Laplace}}&f(x)=&\overbrace{\sum_{p=0}^k \dfrac{(x-a)^p}{p!}f^{(p)}(a)}^{\mathclap{T_k(x)}} & + & \underset{=}{\overbrace{\int_a^x \dfrac{(x-t)^{k}}{k!}f^{(k+1)}(t)dt}^{\mathclap{\text{Reste intégral }R_k(x)}}}\\
+&&&&\resizebox{.35\hsize}{!}{$(x-a)^{k+1}\int_0^1\dfrac{(1-u)^k}{k!}f^{(k+1)}\left( (1-u)a+ux \right) du$}\\
+\end{array}\\
+\]
+
+\[
+\text{\textbf{Taylor-Lagrange} \index{Taylor!Lagrange}} f(x)= \resizebox{.7\hsize}{!}{$N\left( f(b) - f(a) - \displaystyle\sum_{p=1}^k\dfrac{(b-a)^p}{p!}f^{(p)}(a) \right)\le \dfrac{|b-a|^{k+1}}{(k+1)!}N_\infty^{[a,b]}\left( f^{(k+1)} \right)$}
+\]
+
+\end{itheorem}
+%\begin{theorem}[Théorème d'interversion des sommations de \textsc{Fubini}]
+%
+%\end{theorem}
+
+\chapter{Séries Entières}
+Certains objets mathématiques ont des développements de Taylor exacts. C'est le cas notamment des polynômes, qui sont déjà des développements de Taylor. Les séries géométriques par exemple ont également un développement de Taylor exact : pour la série de terme général $q^k$, on a $\sum_0^\infty q^k = \dfrac{1}{1-q}$. Sinon, la plupart du temps, le développement de Taylor est précis jusqu'à un dernier terme qu'on ne peut calculer, mais qu'on peut quand même approximer en $o(\cdots)$ ou en $O(\cdots)$
+\\
+\section{Rayon de Convergence}
+\begin{dfn}
+Soit $\sum a_{n}z^{k}$ une série entière. Le \emph{rayon de convergence}\index{Rayon de convergence}
+est la borne supérieure de $I=\{z\in\mathbb{R}_{+},\sum|a_{n}|z^{k}\text{ converge}\}$.
+C'est en fait la valeur maximale de $z$ pour laquelle la série converge.\end{dfn}
+\begin{minipage}{0.6\linewidth}
+Pour calculer le rayon de convergence, il importera peu de l'étudier pour les valeurs absolues, les nombres imaginaires, etc... car c'est seulement un rayon. Dans les réels, on appèlera l'intervalle $\textcolor{Red}{\left] -R,R\right[}$ l'intervalle ouvert de convergence.
+\end{minipage}\hspace{0.1\linewidth}
+\begin{minipage}{0.3\linewidth}
+\begin{tikzpicture}
+	\draw [thick, pattern=north west lines, pattern color=gray!40] (0,0) circle(1) (-120:0.9) node[below left]{$R$};	
+	\draw [->,gray] (-1.2,0) -- (1.5,0) node[right]{Réels};
+	\draw [->,gray] (0,-1.5) -- (0,1.2) node[above]{Imaginaires};
+	\draw (0,0) -- (-60:1.3) node{$+$} node[below right]{\resizebox{.45\hsize}{!}{$\sum a_n z^n$ DV grossièrement}};
+	\draw (0,0) -- (+30:0.8) node{$+$} node[above right]{\resizebox{.30\hsize}{!}{$\sum a_n z^n$ CVA}};
+	\draw [very thick,Red] (-1,0) node{$]$} -- (1,0) node{$[$};
+	
+\end{tikzpicture}
+\end{minipage}\\
+\begin{lemme}[d'\textsc{Abel}]
+S'il existe $\rho$ tel que la suite $\left( a_n \rho^n \right)$ soit bornée, alors \[\forall z<\rho,\boxed{\left| a_n z^n \right| \le M\left( \dfrac{|z|}{\rho} \right)^n}\]
+\end{lemme}
+\begin{theorem}
+Sur le disque ouvert $D_R$ de convergence $]-R,R[$, la série entière $\sum a_n z^n$ converge \emphh{absolument}.
+\end{theorem}
+\begin{theorem}
+Sur le disque ouvert $D_R$ de convergence $]-R,R[$, la série entière $\sum a_n z^n$ converge \emphh{uniformément} et sa somme est une fonction \emphh{continue}.
+\end{theorem}
+Pour déterminer le rayon, il existe plusieurs méthodes, mais on se servira principalement du théorème suivant étant une conséquence de la règle de d'\textsc{Alembert} :\\
+
+\begin{itheorem}[Règle de d'\textsc{Alembert}]
+Pour la série entière $\sum a_n z^{k}$ \uline{non nulle à partir d'un certain rang}, et qu'il existe $l$ tel que 
+\[
+\boxed{\left|\dfrac{a_{n+1}}{a_n}\right|\xrightarrow[n\to +\infty]{}l} \text{ alors } l = \frac{1}{R}
+\]
+La réciproque est fausse : si on connait $R$, on a pas $\left|\dfrac{a_{n+1}}{a_n}\right|$\\
+Sinon, on a aussi $\sqrt[n]{|a_n|}\xrightarrow[n\to +\infty]{}l$
+\end{itheorem}
+
+\begin{proof}
+Il suffit d'appliquer d'Alembert (\textit{cf.} théorème \ref{th:Regle_de_dAlembert} page \pageref{th:Regle_de_dAlembert}) à la série de terme général $|a_n z^k|$ (qui est une \gls{SATP}) qu'on prend à partir d'un certain rang tel que $a_n \neq 0$. Donc il existe une limite $l$ telle que \[\dfrac{|a_{n+1}z^{n+1}|}{|a_nz^z|}\xrightarrow[n\to +\infty]{} l|z|\]
+Donc $|a_nz^n|$ converge si $l|z| < 1$, et diverge si $l|z| > 1$.
+\par
+Puisque toute série entière de rayon de convergence $R>0$ est absolument convergente dans son disque ouvert de convergence.
+\end{proof}
+
+\section{Propriétés de la somme}
+\subsubsection*{Continuité}
+\begin{theorem}
+La somme d'une série entière est continue sur son disque ouvert de convergence $R$
+\end{theorem}
+\subsubsection*{Dérivabilité}
+\begin{theorem}[Dérivées successives]
+Les dérivées successives d'une série entière de rayon de convergence $R>0$ ont toutes le même rayon de convergence $R$
+\end{theorem}
+\begin{theorem}
+Pour des séries entières avec $R = \min (R_a,R_b)$, alors : 
+\[
+\forall x \in ]-R,R[, \sum a_n x^n = \sum b_n x^n \implies \forall n \in \mathbb{N}, a_n = b_n
+\]
+\end{theorem}
+\section{Développement en Séries Entières}
+\begin{dfn}[Fonction développable en série entière]
+$f:\mathbb{K}\to\mathbb{K}$ admet un DSE\index{Developpement en serie entiere@Développement en Série Entière} en $0$ s'il existe une série entière $\sum a_n z^n$ telle que \[
+\forall z \in \textcolor{gray}{\overset{\mathclap{\text{\begin{tiny}
+boule ouverte de centre 0
+\end{tiny}}}}{V}}, f(z) = \sum a_n z^{n}
+\]
+\end{dfn}
+\begin{theorem}
+[CNS d'un DSE]
+
+\[
+f:\mathbb{R}\rightarrow K\text{ est un DSE en 0}\Leftrightarrow \boxed{\displaystyle \int_0^x \dfrac{(x-t)^n}{n!}f^{n+1}(t) dt \underset{n\to\infty}{\to}0}
+\]
+
+\end{theorem}
+\needspace{19cm}
+\chapter{Intégrales sur un intervalle}
+%
+\begin{methode}
+\titre{Définitions rapides}
+\begin{description}\itemsep2pt
+\item[Intégrabilité]$f(x)$ intégrable si $\int \textcolor{Red}{|}f(x)\textcolor{Red}{|} < +\infty$
+\item[Norme de la convergence en moyenne] \hfill \\ $N_1 : \int_I |f|$
+\item[Norme de la convergence en moyenne quadratique] \hfill \\ $N_2 : f \to (f|f)^{\frac{1}{2}}$ (\textit{cf} théorème \ref{NormeAssocieProdScal} de la page \pageref{NormeAssocieProdScal})
+\end{description}
+
+\titre{Pour prouver l'intégrabilité}
+\begin{enumerate}\itemsep3pt
+	\item Vérifier la continuité sur l'intervalle étudié
+	\item Remplacer la fonction par sa \uline{valeur absolue}
+	\item Étudier les problèmes aux bornes
+	\begin{itemize}\itemsep2pt
+		\item Trouver un équivalent
+		\item Trouver un $o(\cdots)$
+		\item Avoir une primitive finie
+		
+	\end{itemize}
+	\item Comparer la fonction \hfill \\ On pourra utiliser :
+	\begin{itemize}\itemsep2pt
+		\item La fonction \emph{exponentielle}
+		\item L'intégrale de \emph{Riemann} : $\frac{1}{t^\alpha}$\\
+        En particulier : $f$ est intégrable si $\exists \alpha < 1$ tel que $f(x)\, x^\alpha \xrightarrow[x \to 0]{} 0$
+		\item L'intégrale de \emph{Bertrand} : $\dfrac{1}{|\ln (t)|^\beta t^\alpha}$
+	\end{itemize}
+\end{enumerate}
+\titre{Pour intégrer}
+\\[5pt]
+On utilisera
+\begin{enumerate}
+	\item Les intégrations par partie
+	\item Un changement de variable
+	\item Cauchy-Schwarz
+	\item L'intégrale d'un polynôme est un polynôme
+\end{enumerate}
+Souvent, on ne peut intégrer sur tout un intervalle comme $[0;+\infty ]$. Pour y remédier, on peut poser $a>0$ tel que notre fonction soit intégrable sur $[a;+ \infty [$. Alors, la fonction est intégrable sur $\cup [a;+\infty [ = \Reel{}^+$
+\end{methode}
+\section{Intégrabilité}
+À l'origine, on donne plusieurs définitions de l'intégrabilité : d'abord pour les fonctions positives, puis pour les autres en disant que c'est si $|f|$ est intégrable. On donne ici une définition plus générale : 
+\begin{dfn}[Fonction intégrable]
+$f(x)\in \mathcal{CM}$ est intégrable sur $I$ si \\
+$\forall x \in \underbrace{J}_{\mathclap{\text{segment}}} \subset I, \exists M \in \mathbb{R}^+$ \textbf{tel que} $\int_J |f| \le M$
+\end{dfn}
+\begin{itheorem}[Comparaison à une série]
+    Si $f$ est une fonction continue par morceaux, \emphh{positive} et \emphh{décroissante}  sur $\Reel^+$, alors la série de terme général $\left( \int_{n-1}^n f \right) - f(n) $ est une \gls{SATP} convergente.\\
+    \begin{equation}
+        f \in \mathcal{L}^1 \Leftrightarrow \sum f(n) \text{ converge}
+    \end{equation}
+    En cas de divergence, $\int f \underset{n \to +\infty}{\sim}\sum f(n)$\\[\baselineskip]
+
+    Si $f$ est une fonction continue par morceaux, \emphh{positive}, \emphh{croissante} et \textcolor{couleurImp}{\uline{majorée}} sur $\Reel^+$, alors la série de terme général $\left( \int_n^{n+1} f \right) - f(n)$ est une \gls{SATP} convergente.
+\end{itheorem}
+\begin{itheorem}[CNS de l'intégration]
+$f(x)$ est intégrable sur $I$ si \\
+$\forall x \in I, \boxed{\int_I |f| \le \varphi}$ où $\varphi \in \mathcal{L}^1$
+\end{itheorem}
+\begin{theorem}
+Si $f$ est une fonction intégrable sur $I$,
+    \begin{equation}\label{eq:SommeIntegrale}
+        \left| \int_I f \right| \le \int_I \left| f \right| 
+    \end{equation}
+\end{theorem}
+\section{Intégrales classiques}
+\begin{theorem}
+Si $-\infty < a < b < +\infty$, alors $f:t\mapsto \dfrac{1}{(b-a)^\alpha}$ est intégrable sur $[a,b]$ si et seulement si $\boxed{\alpha < 1}$
+\end{theorem}
+\begin{theorem}[Intégrale de Riemann]
+$f : t \mapsto \dfrac{1}{t^\alpha}$ est l'intégrale de Riemann,
+$
+\left\lbrace
+\begin{array}{l c c l}
+\int_0^1f(x)dx&\text{existe}&\Leftrightarrow&\alpha < 1\\[0.7cm]
+\int_1^{+\infty}f(x)dx&\text{existe}&\Leftrightarrow&\alpha > 1
+\end{array}
+\right.
+$
+\end{theorem}
+\section{Espaces vectoriels normés de fonction intégrables}
+\begin{itheorem}[Convergence dominée\index{Convergence!dominee@dominée} ]
+    Si $\big( f_n \big)_n$ est une suite de fonction de $\mathcal{CM}(I,K) $ convergeant simplement vers une fonction $f \in \mathcal{CM}(I,K)$, et s'il existe $\varphi \in \mathcal{L}^1 $ telle que \ibox{$\forall n, | f_n | \le \varphi$},\newline
+    alors $f \in \mathcal{L}$ et $\int_I f = \lim_{n \to +\infty}, \int_I f_n$
+\end{itheorem}
+\begin{itheorem}[Intégration terme à terme]
+    \begin{equation}
+        \displaystyle
+        \left.
+        \begin{array}{c c l}
+        \displaystyle\sum_{n=0}^{+\infty} & \underbrace{f_n} & \xrightarrow{\text{CVS}} f \\
+                     & f_n \in \mathcal{L}^1 & \\
+        \displaystyle\sum  \int_I \vphantom{\overbrace{f_n}} & \textcolor{couleurImp}{|}\overbrace{f_n}\textcolor{couleurImp}{|} & \text{converge}
+        \end{array}
+        \right\rbrace 
+        \implies 
+        \begin{array}{l}
+        f \in \mathcal{L}^1 \\
+        \sum f_n \text{ converge} \\
+        \int_I f = \sum_{n=0}^{+\infty} \int_I f_n
+        \end{array}
+    \end{equation}
+\end{itheorem}
+\section{Intégrales dépendant d'un paramètre}
+\begin{theorem}[Continuité]
+La fonction $g : x \mapsto \int_I f(x,t)$ est \uline{\emph{définie et continue}} sur $A$ si 
+\begin{equation}\left\lbrace
+\begin{array}{l l c}
+\forall x\in A,& t \mapsto f(x,t) \in \mathcal{CM}&\boldsymbol{( \mathcal{CPM} }\text{\textbf{ pour }}\boldsymbol{t)}\\
+\forall t\in I,& x \mapsto f(x,t) \in \mathcal{C}&\text{\textbf{(Continue pour }}\boldsymbol{x)}\\
+\begin{array}{r}
+	\forall (x,t) \in (A\times I)\\
+	\exists \varphi \in \mathcal{L}^{1}\text{ tel que } \\
+\end{array}& |f(x,t)|\le \varphi&\text{\textbf{(Domination)}}\\
+\end{array}
+\right.
+\end{equation}
+On a aussi la version avec $\mathcal{C}^{k}$ mais ce n'est pas au programme
+\end{theorem}
+\begin{itheorem}[Dérivabilité]
+La fonction $g : x \mapsto \int_I f(x,t)$ est \uline{\emph{dérivable et continue $\left( \mathcal{C}^1 \right)$}} sur $A$ si 
+
+\[
+\left\lbrace
+\begin{array}{l}
+\forall x\in A, t \mapsto f(x,t) \in \mathcal{CM}\quad \boldsymbol{(f} \text{\textbf{ intégrable pour }}\boldsymbol{t)}\\
+f \text{ admet une dérivée partielle qui vérifie} \\
+\left\lbrace
+\arraycolsep=0.5pt\def\arraystretch{1.8}
+\begin{array}{r l l}
+\forall x \in A,& t\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \CM &\boldsymbol{( \mathcal{CPM} }\text{\textbf{ pour }}\boldsymbol{t)}\\
+\forall t\in I,& x\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \mathcal{C} &\text{\textbf{(Continue pour }}\boldsymbol{x)}\\
+\forall (x,t) \in A \times \underbrace{[a,b]}_{\mathclap{\in I}},& \textcolor{Red}{\left|\textcolor{Black}{\dfrac{\partial f}{\partial x}(x,t)}\right|} \le \varphi(t) \in \mathcal{L}^1 & \text{\textbf{(Domination)}}
+\end{array}
+\right.
+\end{array}
+\right.
+\]
+
+Alors, la dérivée de $g$ est $g'(x) = \int_I \dfrac{\partial f}{\partial x}(x,t) \d t$
+\end{itheorem}
+
+\section{Fonction Gamma}
+\begin{dfn}[Fonction Gamma]
+On définit $\Gamma$\index{Gamma} de $]0,+\infty[$ par
+$\Gamma : x \mapsto  \int_0^{+\infty}t^{x-1}e^{-t}dt$
+\end{dfn}
+Cette fonction est convexe (comme produit de deux applications $x \mapsto t^{x-1}$ et $x \mapsto e^{-t}$ convexes), donc continue.
+\begin{itheorem}[Étude de $\Gamma$]
+Pour tout $n\in\mathbb{N}$ on a :\\
+ $\bullet \quad \Gamma{}(n+1)=n!$\\
+ $\bullet \quad \Gamma \left( \dfrac{1}{2} \right) =\int_{0}^{+\infty}e^{-t}\dfrac{dt}{\sqrt{t}}=\cdots=\sqrt{\pi}$
+\end{itheorem}
+\begin{proof}
+Vérifions que $\Gamma$ est une fonction continue. On utilise le théorème de continuité de fonctions paramétrés, $t \mapsto t^{x-1}e^{-t} $ est continue par morceaux, $x \mapsto t^{x-1}e^{-t} $ est continue. \\*
+Pour dominer $t^{x-1}e^{-t}$, avec $x \in [a,b]$, on prend $\varphi (t)= e^{-t}(t^{a-1}+t^{b-1}) $
+\par
+Maintenant qu'on a étudié la continuité, on peut faire une intégration par partie de $\Gamma (n+1) = \int_0 ^\infty t^{n} e^{-t} dt$ en posant : 
+\[
+\begin{array}{l}
+  \left\lbrace
+		\begin{array}{r c l}
+		u(t) = t^n &\implies & u'(t) = nt^{n-1}\\
+		v(t) = -e^{-t} &\implies & v'(t) = e^{-t}
+		\end{array}
+  \right. \\
+\implies \Gamma(n+1)=\underbrace{\left[ -t^n e^{-t} \right]_0^\infty}_{\mathclap{= -0 + 0}} - \underbrace{\int_0^\infty -t^{n-1}e^{-t}}_{\Gamma(n)}\\
+\implies \Gamma(n+1)=n\Gamma(n)=n(n-1)\Gamma(n-1)=n!\underbrace{\Gamma(1)}_{=1}
+\end{array}
+\]
+d'où $\Gamma(n+1)=n!$	CQFD.
+\end{proof}
+\section{Intégrales doubles}
+
+\begin{dfn}[Intégrale double]
+$f$ une fonction continue de $[\alpha{},\beta{}]\times [a,b]$ dans $\mathbb{C}$. \\
+Alors $\displaystyle\int_{\alpha}^{\beta}\left(\displaystyle\int_{a}^{b}f(x,t)dt\right)dx=\displaystyle\int_{a}^{b}\left(\displaystyle\int_{\alpha}^{\beta}f(x,t)dx\right)dt$
+\end{dfn}
+\chapter{Espaces Préhilbertiens réels}
+Dans cette section, on se placera dans \Reel{}.
+\begin{methode}
+\titre{Définitions rapides}
+\begin{description}
+\item[Produit Scalaire] \textit{cf.} définition \ref{DefProduitScal} page \pageref{DefProduitScal}
+\item[Éléments orthogonaux] $x$ et $y$ sont orthogonaux si $( x | y ) = 0 $
+\item[Famille orthogonale] $(e_i|e_j) = \delta{i,j}$
+\item[Distance de $x$ à une partie $F$] $d(x,F) = \| x - p_f(x) \|$
+\end{description}
+\end{methode}
+\section{Produit scalaire}
+\begin{dfn}[Produit scalaire]\label{DefProduitScal}
+Le produit scalaire \index{Produit scalaire} est défini comme suit : 
+\[
+\begin{array}{c r l l}
+(i)&\forall x \in E\backslash \{ 0 \} , &\uline{\varphi(x,x)>0}&\text{\textbf{(définie positive)}}\\
+(ii)&\forall (x,y) \in E^2, &\uline{\varphi (x,y) = \varphi (y,x)} &\text{\textbf{(symétrie)}}\\
+(iii)&\forall x \in E, &\uline{y \mapsto \varphi(x,y) \text{ est linéaire}}&\text{\textbf{(linéaire à droite)}}
+\end{array}
+\]
+On peut associer un produit scalaire $(\cdot | \cdot )$ à un espace vectoriel $E$. L'espace $(E, (\cdot | \cdot ))$ est appelé \emph{espace préhilbertien}\index{Espace!prehilbertien@Préhilbertien}.
+\end{dfn}
+\textbf{Remarque :} La symétrie et la linéarité impliquent la linéarité à gauche, donc la bilinéarité du produit scalaire.
+\begin{theorem}[Norme associée]\label{NormeAssocieProdScal} 
+$x\mapsto \sqrt{(x|x)}$ définit une norme sur $E$. On la note $||x||$, et $||x||^2 = (x|x)$.
+\end{theorem}
+\begin{theorem}[Inégalité \textsc{Cauchy-Schwarz}\index{inegalite@Inégalité!cauchy@de \textsc{Cauchy-Schwarz}}]
+\begin{subequations}
+\begin{align}
+\textcolor{Red}{|}(x|y)\textcolor{Red}{|} &\le (x|x)^{\frac{1}{2}} \times (y|y)^{\frac{1}{2}}
+\intertext{qu'on peut aussi écrire :}
+\textcolor{Red}{|}(x|y)\textcolor{Red}{|}&\le \| x\| \times \| y\|
+\end{align}
+\end{subequations}
+avec égalité si et seulement si $(x,y)$ est une famille liée.
+\end{theorem}
+\begin{theorem}[Pythagore]
+Si $x_1, \cdots , x_n$ sont des éléments de $E$ deux à deux \uline{orthogonaux}, alors 
+\begin{equation}
+\left| \left| \sum_{i=0}^{n} x_i \right| \right| ^2 = \sum_{i=0}^n  \| x_i\| ^2
+\end{equation}
+\Attention{Ce sont bien des normes car $x_i$ au carré n'existe pas (qu'est-ce que le produit de deux vecteurs ?), du coup on utilise $\| \cdot \| ^2 = (\cdot | \cdot )$}
+\end{theorem}
+\section{Orthogonalité}
+\begin{dfn}[Éléments orthogonaux]
+Deux éléments $x$ et $y$ sont orthogonaux si $(x|y)=0$
+\end{dfn}
+\begin{itheorem}[Procédé d'orthonormalisation de \textsc{Schmidt}]\index{Procede@Procédé! Orthonormalisation@d'Orthonormalisation de \textsc{Schmidt}}
+Pour toute base de $(e_i)$, il existe une base $(\varepsilon_i)$ telle que :
+\begin{equation}
+\left\lbrace
+\begin{array}{l}
+(\varepsilon_i)\text{ est une base \uline{orthonormée}}\\
+\mathrm{Vect}(e_1,\cdots ,e_n) = \mathrm{Vect}(\varepsilon_1, \cdots ,\varepsilon_n)\\
+(e_i|\varepsilon_i) > 0
+\end{array}
+\right.
+\end{equation}
+
+On aura souvent recours à compléter une base $(e_i)_k$ avec $n-k$ vecteurs orthonormaux aux $(\varepsilon_i)_k$ par le théorème de la base incomplète.
+\end{itheorem}
+\begin{theorem}[Inégalité de \textsc{Bessel} \index{inegalite@Inégalité!Bessel@de \textsc{Bessel}}]
+Si $(e_i)$ est une base orthonormée : 
+$\boxed{\sum_i (e_i|x)^2 \le \| x \|^2}$
+\end{theorem}
+
+\section{Automorphismes ortogonaux}
+$u$ est un endomorphisme, donc il est \uline{linéaire}.
+\begin{dfn}
+    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
+    \begin{enumerate}
+        \item $u$ un endomorphisme, il existe \emphh{un \uline{unique}} endomorphisme $u^*$ tel que
+        \begin{equation*}
+            \forall (x,y) \in E, (u(x)|y) = (x | u^*(y))
+        \end{equation*}
+        $u^*$ est l'\emph{adjoint}\index{Adjoint} de $u$.
+        \item $u$ est \emph{autoadjoint}\index{autoadjoint@Autoadjoint} (symétrique) si $u^* = u$ 
+        \item $u$ est un \emph{automorphisme orthogonal}\index{Automorphisme orthogonal} si $u^* = u^{-1}$. On note $u \in \mathcal{O}(E)$
+    \end{enumerate}
+\end{dfn}
+
+\begin{prop}
+    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
+    \begin{enumerate}
+        \item Si $M_\mathcal{B}(u) = A$, alors $M_\mathcal{B}(u^*) = {}^tA$
+        \item $\mathrm{Ker}(u^*) = \left[ \mathrm{Im}(u) \right]^\perp$
+        \item $\mathrm{Im}(u^*) = \left[ \mathrm{Ker}(u) \right]^\perp$
+        \item $\chi_u = \chi_{u^*}$
+        \item $(u\circ v)^* = v^* \circ u^*$
+    \end{enumerate}
+\end{prop}
+
+\begin{theorem}[Caractérisation d'un automorphisme orthogonal]
+    $u$ est un automorphisme orthogonal si les assertions suivantes (équivalentes) sont vérifiées :
+    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
+    \begin{enumerate}
+        \item $u$ conserve la norme
+        \item $u$ conserve le produit scalaire
+        \item $u\left(\mathcal{B}_\text{orthonormée}\right) = \mathcal{B}'_\text{orthonormée}$
+        \item $\forall \mathcal{B'}_\text{orthonormée}, \exists \mathcal{B}_\text{orthonormée}$ telle que $u\left(\mathcal{B}_\text{orthonormée}\right) = \mathcal{B}'_\text{orthonormée}$
+        \item $\exists \mathcal{B}_\text{orthonormée} $ telle que $\left| \begin{gathered}
+            U{}^tU = I_n\\
+            \text{ ou }\\
+            {}^tUU = I_n
+        \end{gathered}\right|$ où $U = M_\mathcal{B}(u)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{itheorem}[Théorème spectral]
+    Tout \emphh{endomorphisme auto-adjoint} est diagonalisable, et il existe une base orthonormale de vecteurs propres de $u$.\par
+
+    Toute \emphh{matrice symétrique \uline{réelle}} est diagonalisable. On peut aussi dire : 
+    \begin{equation}
+    \forall A \in S_n, \exists  \left| \begin{gathered} P \in \mathcal{O}(n) \\ D \in \mathcal{D}_n(\Reel) \end{gathered} \right. \text{ tel que } A = PDP^{-1} = PD{}^tP
+    \end{equation}
+\end{itheorem}
+\chapter{Espaces Préhilbertiens complexes}
+\section{Structure Préhilbertienne complexe}
+On se place dans $\Cmplx$ et on établit de nouveau le \uline{produit scalaire} comme à la définition \ref{DefProduitScal} page \pageref{DefProduitScal} du chapitre précédent. À une différence prêt, la symétrie est appelée \textbf{symétrie hermitienne}
+\begin{dfn}[Produit scalaire]\label{DefProduitScalCmplx}
+Le produit scalaire \index{Produit scalaire} est défini comme suit : 
+\[
+\begin{array}{c r l l}
+(i)&\forall x \in E\backslash \{ 0 \} , &{\varphi(x,x)>0}&\text{\textbf{(définie positive)}}\\
+(ii)&\forall (x,y) \in E^2, &{\varphi (x,y) = \overline {\varphi (y,x)}} &\text{\textbf{(symétrie hermitienne)}}\\
+(iii)&\forall x \in E, &{y \mapsto \varphi(x,y) \text{ est linéaire}}&\text{\textbf{(linéaire à droite)}}
+\end{array}
+\]
+On peut associer un produit scalaire $(\cdot | \cdot )$ à un espace vectoriel $E$. L'espace $\left( E, (\cdot | \cdot ) \right)
+$ est appelé \emph{espace préhilbertien}\index{Espace!prehilbertien@Préhilbertien}.
+\end{dfn}
+\section{Orthogonalité}
+\begin{theorem}[Inégalité de \textsc{Bessel} \index{inegalite@Inégalité!Bessel@de \textsc{Bessel}}]
+Si $(e_i)$ est une base orthonormée : 
+$\boxed{\sum_i \textcolor{Red}{|}(e_i|x)\textcolor{Red}{|}^2 \le \textcolor{Red}{N_2}^2 (x)}$
+\end{theorem}
+\section{Séries de \textsc{Fourier}}
+\begin{methode}
+\titre{Coefficients}
+\begin{description}
+\item[Exponentiels] $c_n(f) = \dfrac{1}{2\pi} \int_{-\pi}^{\pi}e^{-int} f(t)\, \d t$
+\item[Trigonométriques] \hfill \\[-10pt]
+	\begin{itemize}\itemsep2pt
+		\item $a_n(f) = \dfrac{1}{\pi} \int_{-\pi}^{\pi} \cos (nt) f(t)\, \d t$
+		\item $b_n(f) = \dfrac{1}{\pi} \int_{-\pi}^{\pi} \sin (nt) f(t)\, \d t$
+	\end{itemize}
+\end{description}
+\end{methode}
+On note $\boldsymbol{ \mathcal{C}_{2\pi}}$ l'espace vectoriel des applications $f : \Reel \to \Cmplx$ \textbf{{$\boldsymbol{ 2\pi}$-périodiques}} et \textbf{continues} sur $[0,2\pi]$.\\
+On note $\boldsymbol{ \mathcal{CM}_{2\pi}}$ l'espace vectoriel des applications $f : \Reel \to \Cmplx$ \textbf{{$\boldsymbol{ 2\pi}$-périodiques}} et \textbf{continues par morceaux} sur $[0,2\pi]$.\\[3pt]
+\Attention{Sur $\mathcal{CM}_{2\pi}$, $N_1, N_2$ et $N_\infty$ ne sont plus des normes, mais elles fonctionnent toujours de la même manière}
+
+Cette sous-section se base sur le théorème suivant : 
+\begin{theorem}
+Pour toute fonction dans $\mathcal{CM}_{2\pi}$, il existe une suite $\left( f_n \right)_n$ d'éléments de $\mathcal{C}_{2\pi}$ telle que $\boxed{N_2(f-f_n)\xrightarrow[n\to\infty]{} 0}$
+\end{theorem}
+
+L'objectif des séries de \textsc{Fourier} est de \og transposer \fg une fonction dans une base de $\mathcal{C}_{2\pi}$. \\
+
+On prendra pour bases $(e^{it},e^{2it},\cdots e^{int})$ ou $\left( cos(t),cos(2t),\cdots ,cos(nt)\right)$ par exemple, et grâce à un produit scalaire, on obtient la décomposition de notre fonction dans la base.\\
+C'est ainsi qu'on définit les coefficients : 
+
+
+\begin{dfn}[Coefficients exponentiels]
+Pour une fonction $f$ dans $\mathcal{CM}_{2\pi}$ :\\
+\begin{center}
+ \ibox{
+$
+c_n(f) = \color{Black!50}{\underbrace{\color{Black}{\dfrac{1}{2\pi}}}_{\mathclap{\text{on est sur }\mathcal{CM}_{2\pi}}}} \color{Black}{\int \limits_0^{2\pi}e^{-i\cdot n\cdot t} f(t)\, dt}
+$}
+ \end{center}
+
+En effet : $c_n(f) = (e_n | f)$ avec $e_n = e^{int}$. Or le produit scalaire pour des fonctions est $(g|f)=\int_0^{2\pi} \overline{g(t)}\; f(t) \: dt$, d'où $(e_n|f)=\int_0^{2\pi} \overline{e^{int}}\; f(t) \: dt=\int_0^{2\pi} e^{\emph{-}int}\; f(t) \: dt$
+\end{dfn}
+
+On aurait très bien pu intégrer sur $[-\pi,\pi]$ au lieu de $[0,2\pi]$. C'est ce qu'on fera plus tard avec les coefficients trigonométriques.
+\begin{prop}
+\begin{itemize}
+\item $g : t \mapsto f(-t),\: c_n(g) = c_{-n}(f)$
+\item $f_a : t \mapsto f(t + a),\: c_n(f_a) = e^{ina}c_n(f)$
+\end{itemize}
+\end{prop}
+\begin{theorem}[Dérivée de $f$]
+$c_n(f') = in\, c_n(f)$ \\
+d'où, par récurrence : $\boxed{c_n\left( f^{(k)}\right) = (in)^k c_n(f)}$
+\end{theorem}
+\begin{dfn}[Coefficients trigonométriques]
+Pour une fonction $f$ dans $\mathcal{CM}_{2\pi}$ :\\
+\begin{center}
+ \fcolorbox{couleurNoirClair}{couleurClaire!20}{
+$
+a_n(f) = \dfrac{1}{\pi} \int \limits_{-\pi}^{\pi} \cos(nt) f(t)\, dt
+$} et  \fcolorbox{couleurNoirClair}{couleurClaire!20}{
+$
+b_n(f) = \dfrac{1}{\pi} \int \limits_{-\pi}^{\pi} \sin(nt) f(t)\, dt
+$}
+ \end{center}
+Ici, c'est $\dfrac{1}{\pi}$ en facteur, car $N_2^2 \left( \cos(n \bullet)\right) = \frac{1}{2}$
+
+\end{dfn}
+\begin{prop}
+\begin{itemize}
+\item $a_n(f) = c_n(f) + c_{-n}(f)$ et $b_n(f) = i(c_n(f) + c_{-n}(f))$
+\item Si $f$ est paire, alors $b_n = 0 \: \forall n$
+\item Si $f$ est impaire, alors $a_n = 0 \: \forall n$
+\end{itemize}
+\end{prop}
+En général, on utilisera ces coefficients si $f$ présente une parité.
+\begin{dfn}[Série de \textsc{Fourier}]
+On appelle \emph{série de \textsc{Fourier}}\index{fourier@\emphi{Série de }\textsc{Fourier}} de $f$ la série $\sum u_n$ où $\left|
+\begin{array}{l l l l}
+u_0 &=& c_0(f) \; e_0&\\
+u_n &=& c_n(f) \; e_n + c_{-n}(f) \; e_{-n}
+\end{array}
+\right.$\\
+$S_n(f)$ est appelée \emph{somme partielle de rang $\boldsymbol n$ de la série de \textsc{Fourier}}
+\end{dfn}
+\begin{theorem}[Inégalité de Bessel\index{inegalite@Inégalité!Bessel@de \textsc{Bessel}}]
+Si $f \in \mathcal{CM}_{2\pi}$, alors : \[\sum_{k=\textcolor{Red}{-n}}^{n} \left| c_n(f) \right| ^{\textcolor{Red}{2}}\le N_2^{\textcolor{Red}{2}}(f)\]
+\end{theorem}
+\begin{theorem}[Théorème de convergence \textsc{Parseval}]
+Si $f$\index{Parseval@\textsc{Parseval}!convergence@\emphi{théorème de }convergence} est une fonction de \uline{$\mathcal{CM}_{2\pi}$}, alors $\boxed{N_2\left(\vphantom{{3^3}^3} f-S_n(f) \right)_n}$ converge vers 0
+\end{theorem}
+Avec ce nouveau théorème, on trouve le cas d'égalité de l'inégalité de Bessel :
+\begin{itheorem}[Égalité de Parseval\index{Parseval@\string\textsc{Parseval}!egalite@égalité}]
+Si $f$ est une fonction de \uline{$\mathcal{CM}_{2\pi}$} : 
+\begin{center}
+\fcolorbox{couleurNoirClair}{couleurGrisFonce!15}{
+$\sum_{n\textcolor{Red}{\in \mathbb{Z}}} \left| c_n(f) \right| ^{\textcolor{Red}{2}}=N_2^{\textcolor{Red}{2}}(f)$ 
+}
+\end{center}
+En réel, cette égalité devient : 
+\[
+N_2^2(f) = \left( \dfrac{a_0(f)}{2} \right) ^2 + \frac{1}{2}\sum_{n=1}^{+\infty} \left[ a_n^2(f) + b_n(f)^2 \right]
+\]
+\end{itheorem}
+\begin{theorem}[Calcul des Coefficients]
+    Si on a la suite $s_n$ telle que $\left| \begin{gathered} s_n = \sum_{k=-n}^n \alpha_k e_k \\ N_2(s_k - f) \xrightarrow[n\to +\infty ]{} 0 \end{gathered}\right. $, alors $\forall k\in \mathbb{Z}, c_n(f) = \alpha_n$
+\end{theorem}
+    \begin{proof}\hfill \\
+        D'après l'inégalité de \textsc{Cauchy}-\textsc{Schwarz}, $|c_k(s_n - f)|\le N_2(s_n - f)$. Donc $|c_k(f) - \alpha_k|\le N_2(s_n - f) \xrightarrow[n\to +\infty]{} 0$, d'où, quand $n\to +\infty$, $c_n(f) = \alpha_n$.
+    \end{proof}
+\begin{itheorem}[Théorème de convergence normale]
+Si $f$ est \underline{$\mathcal{C}_{2\pi}$ et de classe $\mathcal{C}^1$ par morceaux\footnote{$\mathcal{C}^1$ par morceaux c'est à dire que la dérivée est continue par morceaux, à ne pas confondre avec $f \in \mathcal{CM}$}}
+\begin{tabbing}
+alors \= sa série de \textsc{Fourier} \emph{converge normalement} et sa somme vaut $f$ \\
+ \> sa somme partielle de sa série de \textsc{Fourier} $S_n$ \emph{converge uniformément}
+\end{tabbing}
+\end{itheorem}
+\begin{dfn}[Noyau de \textsc{Dirichlet}]
+On appelle \emph{noyau de \textsc{Dirichlet}}\index{dirichlet@\textsc{Dirichlet}!Noyau}, et on note $D_p(t)$ la somme : $D_p(t)=\sum_{k=-p}^p e^{ikt}$
+\end{dfn}
+\begin{itheorem}[Noyau de \textsc{Dirichlet}]
+Si $f \in \mathcal{CM}_{2\pi}$ et $C^1$ par morceaux, alors sa série de \textsc{Fourier} \emph{converge simplement} sur \Reel{}. \\
+\emph{Sa somme} au point $x$, notée $\overset{\sim}{f}(x)$ est égale à $\frac{1}{2}\lim_{h\to 0^+}[f(x+h) + f(x-h)]$. Si $f$ est \emph{continue}, alors $\overset{\sim}{f}(x) = f(x)$.
+\end{itheorem}
+\part{Équations Différentielles}
+\chapter{Équations Différentielles Linéaire}
+\begin{methode}
+\titre{Résoudre une équation différentielle}
+\begin{description}
+    \item[Scalaire du 1\ier{} ordre]
+                Méthode algorithmique, \textit{cf.} preuve \ref{ResolEquDiffScal1} page \pageref{ResolEquDiffScal1}
+    \item[Vectorielles du 1\ier{} ordre] \hfill
+    \begin{itemize}\itemsep2pt %TODO Terminer la méthode
+                    \item Avec les coefficients constants
+                    \item Avec une matrice Diagonalisable
+                    \item Avec une matrice Trigonalisable
+    \end{itemize}
+
+    \item[Scalaire du second ordre]
+\end{description}
+
+\end{methode}
+
+\begin{dfn}\index{equation differentielle@Équation Différentielle}
+$I$ un $\mathbb{K}$-Algèbre\\
+On appelle Équation différentielle l'équation $(\mathcal{L})$ :
+\begin{equation}\tag{\ensuremath{\mathcal{L}}}
+a_0(t)y^{(n)}+a_1(t) y^{(n-1)}+\cdots + a_{n-1}(t) y' + a_n(t) y = b(t)
+\end{equation}
+$\left( \vphantom{3^3} a_0,\cdots ,a_n \right)$ est dans $\left( \mathcal{C}(I,\Reel{})\right)^{n+1} $. L'ensemble des solutions de $\mathcal{L}$ dans $I$ est noté $S_I(\mathcal{L})$
+\end{dfn}
+
+\section{Équations Différentielles \emph{Scalaires} d'ordre 1}
+\begin{theorem}[Solution de l'équation différentielle scalaire]\index{equation differentielle@Équation Différentielle!scalaire}
+Si $y'=a(t) y + b(t)$, alors $S_I(\mathcal{L})$ est un sous-espace affine
+\end{theorem}
+\begin{proof}[Algorithmique]\label{ResolEquDiffScal1}
+Par hypothèse, $a \in \mathcal{C}(I,\Reel{})$, donc $a(t)$ admet une primitive $P(t)=\int \limits_{t_0}^t a(s) \; ds$.
+\[\arraycolsep=1.4pt\def\arraystretch{1}
+\begin{array}{r c c l l c c}
+\dfrac{\d}{\d t}\left( e^{-P(t)}\, y(t) \right) &=& -P'(t) & e^{-P(t)}y(t) &+& e^{-P(t)}& y'(t)\\
+&=& \overbrace{-a(t)}&y(t)\, e^{-P(t)}&+& e^{-P(t)} &\left( \overbrace{\vphantom{{3^3}^3} a(t)\, y(t) +b(t)} \right)\\
+&=& e^{-P(t)}b(t)\\
+\end{array}\]
+Si c'est intégrable, $\exists \; C$ tel que :
+\[
+\begin{array}{r c l}
+e^{-P(t)}\, y(t) &=& \int \limits_{t_0}^t \left( \vphantom{{3^3}^3} e^{-P(u)}\, b(u) \: du + C \right)\\
+y(t) &=& \int\limits_{t_0}^t \left( \vphantom{{3^3}^3} e^{-P(u)}\, b(u) \: du + C \right) e^{P(t)}
+\end{array}
+\] est solution de l'équation.
+\end{proof}
+
+\section{Équations Différentielles \emph{Vectorielles} d'ordre 1}
+
+\begin{dfn}[Équation Différentielle Vectorielle]\index{equation differentielle@Équation Différentielle!vectorielle}
+    C'est une équation sous la forme 
+\begin{equation}\label{equaDiffVect}\tag{$\mathcal{L}$}
+    x'(t) = a(t) x(t) + b(t)
+\end{equation}
+où $a \in \mathcal{C}\left( I,\mathcal{L}(F)\right), \: b\in \mathcal{C}(I,F)$. Le \emph{Problème de \textsc{Cauchy}} \index{Probleme de cauchy@Problème de \textsc{Cauchy}} revient à trouver, pour tout $(t_0,x_0)$ dans $I \times F$, une solution $\varphi$ de \eqref{equaDiffVect}
+\end{dfn}
+\Attention{
+$a$ est une application de $I$ dans \uline{$\mathcal{L}(F)$}. Donc $a(t)$ est une application linéaire, pas un scalaire}
+
+\begin{itheorem}[Théorème de \textsc{Cauchy-Lipshitz}\index{Cauchy-Lipshitz@\textsc{Cauchy-Lipshitz}} linéaire]\label{th:CauchyLipschitz}
+Soit l'équation différentielle 
+\begin{equation}\tag{$E$}
+ x'(t) = a(t) x(t) + b(t)
+\end{equation}
+où $a \in \mathcal{C}\left( I,\mathcal{L}(F)\right)$, $b\in \mathcal{C}(I,F)$, alors
+\[
+    \forall (t_0,x_0) \in (I,F), \exists ! \: \varphi \text{ telle que }
+    \left|
+    \begin{array}{l}
+        \varphi \text{ soit solution de l'équation }(E)\\
+        \varphi(t_0)=x_0
+    \end{array}
+    \right.
+\]
+\end{itheorem}
+
+\subsubsection{Système fondamental}
+
+\begin{dfn}[Système Fondamental]
+
+Un système fondamental de solutions\index{systeme@Système!fondamental de solution@fondamental de solutions} est une base dans l'espace $S_I(\textcolor{Red}{\mathcal{H}})$ des solutions.
+\end{dfn}
+
+\begin{prop}
+    \begin{itemize}
+        \item Si $(\varphi_1, \varphi_2, \cdots , \varphi_n)$ est une base de $S_I(\mathcal{L})$, alors, $\forall t \in I$, $\left( \varphi_1(t), \varphi_2(t), \cdots , \varphi_n(t) \right)
+$ est une base dans $ F$
+    \end{itemize}
+\end{prop}
+
+
+
+\begin{dfn}[Wronskien]
+Le Wronskien\index{Wronskien} est le déterminant d'un système fondamental de solution. 
+\begin{equation}\label{Wronskien}\tag{Wronskien}
+  W(t) = \det_\mathcal{B}\left( \vphantom{{3^3}^3} \varphi_1(t),\cdots , \varphi_n(t) \right)
+\end{equation}
+\end{dfn}
+
+\Attention{Le Wronskien est une fonction de $t$}
+
+\begin{prop}
+\begin{itemize}
+    \item $W'(t)=\tr (a)\; W(t)$
+    \item $ W(t) = W(t_0) \; e^{\int_{t_0}^t \tr (s) \; ds}$
+\end{itemize}
+\end{prop}
+
+\begin{theorem}[Variation des constantes]
+    \index{constante@\emphi{Variation des} Constantes}
+    Soit $\left( \vphantom{{3^3}^3} \varphi_1(t),\cdots , \varphi_n(t) \right)$ une base de $S_I(\textcolor{Red}{\mathcal{H}})$. \\
+    Alors, $\forall \varphi \in \mathcal{C}^{\textcolor{Red}{1}} (I,F), 
+    \left\lbrace 
+    \begin{array}{l}
+        \text{Il existe une \uline{unique} famille } \overbrace{\left( \lambda_1, \cdots , \lambda_n \right)}^{\text{dans }\mathcal{C}^{\textcolor{Red}{1}} (I,F)} \text{ telle que } \varphi = \sum_{i=1}^n \lambda_i \, \varphi_i \\
+        \varphi \in S_I(\mathcal{H}) \Leftrightarrow \boxed{\forall t \in I, \sum_{i=1}^n \lambda_i'(t) \, \varphi_i(t) = b(t)}
+    \end{array}
+    \right.
+    $
+\end{theorem}
+Pour une équation à coefficients $a$ et $b$ constants $x' = ax + b(t)$, la solution générale est 
+\begin{empheq}[box=\ibox]{equation}
+y(t) = e^{(t-t_0)a}x_0 + \int \limits_{t_0}^t e^{(t-s)a}b(s) \: ds
+\end{empheq}
+
+\section{Équations Différentielles linéaires du second ordre}
+\begin{dfn}[Équation Différentielle Vectorielle]\index{equation differentielle@Équation Différentielle!du second ordre@du 2\ieme{} ordre}
+    C'est une équation sous la forme 
+\begin{equation}\label{eq:equaDiff2ndOrdre}\tag{$\mathcal{L}$}
+    y''(t) + a(t) y'(t) + a(t)y(t)= \gamma (t)
+\end{equation}
+\hfill \\[0.5\baselineskip]
+    L'équation homogène est
+\begin{equation}\label{eq:equaDiff2ndOrdreHomogene}\tag{$\mathcal{H}$}
+    y''(t) + a(t) y'(t) + b(t)y(t)= 0
+\end{equation}
+On note $f(r) = r^2 + a\times r + b$ %TODO: Créer un lien entre les constantes via TIKZ 
+son polynôme caractéristique\index{polynome@Polynôme!caracteristique equa diff@caractéristique\emphi{ (Équation différentielle)}}
+\end{dfn}
+\subsection{Coefficients constants}
+\begin{itheorem}[Résolution de l'équation]
+Dans le cas de l'équation homogène \eqref{eq:equaDiff2ndOrdreHomogene}, on calcule le discriminant $\Delta$ du polynôme caractéristique. Suivant les cas, on a la solution $y(t)$ pour \uline{l'équation homogène} : 
+\[
+\begin{array}{r | l}
+\Delta \neq 0 & y(t) = A e^{r_1t}+B e^{r_2t}\\
+\hline
+\Delta = 0 & y(t) = (A+Bt)e^{rt}
+\end{array}
+\]
+Ou encore : 
+\[
+\begin{array}{r | l l}
+\Delta > 0 & r_{\pm}=\alpha \pm \beta &y(t) = e^{\alpha t}\left( A\cdot \cosh(\beta t) + B\cdot \sinh (\beta t) \right)
+\\
+\hline
+\Delta < 0 & r_{\pm}=\alpha \pm i\beta &y(t) = e^{\alpha t}\left( A\cdot \cos(\beta t) + B\cdot \sin (\beta t) \right)
+\\
+\hline
+\Delta = 0 & r \text{ double}& y(t) = (A+Bt)e^{rt}
+\end{array}
+\]
+\end{itheorem}
+\begin{theorem}
+    Si dans \eqref{eq:equaDiff2ndOrdre}, $\gamma (t)= P(t)e^{\lambda t}$, $P\in \Cmplx [X]$, alors on peut donner une solution :
+    \begin{equation}
+    t \mapsto t^{\omega(\lambda)}\, Q(t)e^{\lambda t}
+    \end{equation}
+    où $\omega(\lambda )$ est la multiplicité de $\lambda$ en tant que racine du polynome caractéristique de $f$ et $Q \in \Cmplx[X]$ est de même degré que $P$.
+\end{theorem}
+\subsection{Cas général}
+\begin{itheorem}[Théorème de \textsc{Cauchy-Lipshitz}\index{Cauchy-Lipshitz@\textsc{Cauchy-Lipshitz}} linéaire]
+Soit l'équation différentielle 
+\begin{equation}\tag{$\mathcal{L}$}
+    y''(t) + a(t) y'(t) + a(t)y(t)= \gamma (t)
+\end{equation}
+où $a \in \mathcal{C}\left( I,\mathcal{L}(F)\right)$, $b\in \mathcal{C}(I,F)$, alors
+\[
+    \forall \big( t_0,(x_0,x_0') \big) \in (I,\mathbb{K}^2), \exists ! \: \varphi \text{ telle que }
+    \left|
+    \begin{array}{l}
+        \varphi \text{ soit solution de l'équation }(E)\\
+        \varphi(t_0)=x_0 \\
+        \varphi'(t_0) = x'_0
+    \end{array}
+    \right.
+\]
+\end{itheorem}
+\begin{proof} \hfill \\
+    Le théorème est une conséquence du théorème~\ref{th:CauchyLipschitz} si on résout plutôt $\begin{pmatrix} x \\ x' \end{pmatrix}' = \begin{pmatrix} a \\ a' \end{pmatrix}(t)\begin{pmatrix} x \\ x' \end{pmatrix} + \begin{pmatrix} b \\ b' \end{pmatrix}$ 
+\end{proof}
+\begin{dfn}[Wronskien]
+    Si $u$ et $v$ sont des $I$-solutions, le \emph{Wronskien}\index{Wronskien} est l'application définie par
+    \begin{equation}
+    W = uv' - u'v \tag{Wronskien}
+    \end{equation}
+\end{dfn}
+\begin{prop}
+Dans l'équation $(\mathcal{H}) : x'' + a(t)x' + b(t) x =0$,
+\begin{itemize}
+    \item $W + a W = 0$
+    \item $(u,v)\text{ libre }\Leftrightarrow \exists t_0 \text{ tel que } W(t_0) \neq 0 \Leftrightarrow \forall t, W(t) \neq 0$
+\end{itemize}
+\end{prop}
+\begin{itheorem}[Méthode de variation des constantes]
+    En connaissant $(u,v)$ un système fondamental de solutions, on cherche une solution de la forme $y(t) = c_1(t) u(t) + c_2(t) u(t)$. On détermine $c_1$ et $c_2$ avec :
+    \begin{equation}
+    c_1'\begin{pmatrix} u \\ u' \end{pmatrix} + c_2'\begin{pmatrix} v \\ v' \end{pmatrix} = \begin{pmatrix} 0 \\ \gamma \end{pmatrix}
+    \end{equation}
+\end{itheorem}
+\chapter{Équations Différentielles non linéaires}
+\section{Équations autonomes}
+\begin{dfn}[Champ de Vecteur]
+On appelle \emph{champ de vecteurs}\index{vecteur@\emphi{Champ de} Vecteur} l'application qui à un point $M \left( \begin{matrix} x\\ y \end{matrix} \right)$ associe $\overrightarrow{V(M)} \left( \begin{matrix} f(x,y) \\ g(x,y) \end{matrix} \right)$ : 
+\[
+\begin{array}{r c l}
+U\in \Reel{}^2 &\xrightarrow{\mathcal{C}^1} &\Reel{}^2\\
+M\begin{pmatrix} x \\ y \end{pmatrix} & \mapsto &\overrightarrow{V(M)} \left( \begin{matrix} f(x,y) \\ g(x,y) \end{matrix} \right)
+\end{array}
+\]
+\end{dfn}
+
+\begin{dfn}[Système Autonome]
+On appelle \emph{système autonome}\index{systeme@Système!autonome} associé au champ de vecteur $\overrightarrow{V(M)}$ le système différentiel 
+\begin{empheq}[box=\ibox]{equation}
+    \dfrac{dM}{dt}=\overrightarrow{V(M)}
+\end{empheq}
+\end{dfn}
+Le mot \textit{autonome} témoigne de la non-dépendance en $t$ du champ de vecteur $\overrightarrow{V(M)}$
+%
+\begin{theorem}[\textsc{Cauchy-Lipshitz}\index{Cauchy-Lipshitz@\textsc{Cauchy-Lipshitz}} (\textit{admis})]
+Avec les données précédentes, pour tout couple $\big( t_0, (x_0,y_0)\big) \in \left( I\times U \right)$, il existe une unique $I$-solution \uline{maximale} $\varphi : t \mapsto M(t) = \begin{pmatrix} x(t) \\ y(t) \end{pmatrix}$, telle que $\left| \begin{array}{l c r} x(t_0) &=& x_0 \\ y(t_0) &=& y_0 \end{array} \right. $
+\end{theorem}
+
+Une \emph{solution maximale}\index{Solution!maximale} est une solution qui n'est la restriction d'aucune autre. Son intervalle de définition est l'intervalle maximal.
+
+\section{Équations non autonomes}
+Dans cette section on appelle \emph{équation différentielle} : 
+\begin{equation}\label{equaDiffNA}
+x' = f(t,x)\tag{$\mathcal{E}$}
+\end{equation}
+où $f$ est une fonction de $\mathcal{C}^1(U,\Reel)$
+\begin{theorem}[\textsc{Cauchy-Lipshitz}\index{Cauchy-Lipshitz@\textsc{Cauchy-Lipshitz}} (\textit{admis})]
+$U$ un intervalle ouvert de $\Reel{}^2$, et en reprenant l'équation \eqref{equaDiffNA} : 
+\[
+    \forall (t_0,x_0) \in U, \exists ! \: \varphi \text{ telle que }
+    \left|
+    \begin{array}{l}
+        \varphi \text{ soit \emph{solution maximale} de l'équation \eqref{equaDiffNA}}\\
+        \varphi(t_0)=x_0
+    \end{array}
+    \right.
+\]
+\end{theorem}
+%
+%
+\chapter{Fonctions de plusieurs variables}
+\begin{methode}
+\titre{Étude d'une fonction à deux variables} \newline
+Passer en polaire
+\end{methode}
+
+
+Dans ce chapitre, on se place dans $\left( E, N \right)$ et $\left( F,P \right)$, des espaces vectoriels normés de dimension finie. $U$ est un ouvert de $E$
+\[
+    \begin{array}{r c r c l}
+    f&:& U &\to & F \\
+     & & a &\mapsto & f(a)
+    \end{array}
+\]
+
+\section{Différentielle, dérivée}
+\subsection{Différentielle}
+\begin{dfn}[Différentielle]
+Il existe \uline{au plus} un élément $\varphi$ de $\mathcal{L}(E,F)$ tel que
+\[
+    f(a+h) \underset{h\to 0}{=} f(a) + \varphi(h) + o(h)
+\]
+$\varphi$ est appelée la \emph{différentielle}\index{differentielle@Différentielle} de $f$. On la note $df(a)$
+\end{dfn}
+
+\textbf{Remarque :} $a$ et $h$ sont des \uline{vecteurs}. Donc sous la forme 
+$a = \begin{pmatrix}
+a_1 \\
+a_2 \\
+\vdots \\
+a_n
+\end{pmatrix}
+$. De plus, $\varphi (h)$ est une application linéaire : $\varphi(h) \in \mathcal{L}\big( E,F\big)$
+
+\subsection{Dérivée selon un vecteur}
+\begin{dfn}[Dérivée en un point]
+On note $\varphi_h : t \mapsto f(a+th)$. \\
+$f$ admet une dérivée en $a$ selon $h$ si \uline{$\varphi_h$ est dérivable en $0$}. \\
+Alors, on note cette dérivée $D_hf(a)=\varphi_h'$. Si elle existe : 
+\begin{empheq}[box=\ibox]{equation}
+D_hf(a)=\lim_{\substack{t\rightarrow 0\\ t\neq 0}}\dfrac{f(a+\textcolor{Red}{t}h) - f(a)}{t}
+\end{empheq}
+\end{dfn}
+On a alors la dérivée pour tout $a$ définie par la fonction $D_hf : a \mapsto D_hf(a)$
+
+\begin{dfn}[Application  de classe $\mathcal{C}^1$]
+$f$ est de classe $\mathcal{C}^1$ sur $U$ si $\forall j \in [1,n], D_jf$ existe et est continue sur $U$
+\end{dfn}
+
+
+\begin{dfn}[$\mathcal{C}^k$-difféomorphisme]
+$f$ (bijective) est un \emph{$\mathcal{C}^k$-difféomorphisme}\index{ck diffeomorphisme@$\mathcal{C}^k$-difféomorphisme} si elle et son inverse sont $\mathcal{C}^k$. C'est-à-dire : 
+\[
+\left\lbrace
+\begin{array}{l}
+f \in \mathcal{C}^1\left( U,V \right) \\
+f^{-1} \in \mathcal{C}^1\left( V,U \right)
+\end{array}
+\right.
+\]
+\end{dfn}
+
+\begin{dfn}[Jacobienne, Jacobien]
+On définit la \emph{Jacobienne}\index{Jacobien@Jacobien(ne)} $\mathcal{J}_a(f)$ comme la matrice de terme général $j_{i,j}=\dfrac{\partial f_i}{\partial x_j}=D_jf_i(a)$. \newline
+Le \emph{Jacobien} est le déterminant de cette matrice.
+\end{dfn}
+
+\textbf{Exemple :} La Jacobienne de la fonction polaire (qui à $(r,\theta )$ associe $(r\cdot \cos{\theta} , r\cdot \sin{\theta} )$) est $\begin{pmatrix}
+\cos{\theta} & -r\sin{\theta} \\
+\sin{\theta} & r\cos{\theta}
+\end{pmatrix}$. Son Jacobien est donc $r\left( \sin^2{\theta} + \cos^2{\theta} \right)=r$
+
+\section{Inversion locale}
+\begin{itheorem}[Théorème d'inversion locale \textit{(admis)}]
+\[
+\begin{array}{c}
+f \in \mathcal{C}(U,F)\text{ injective est }\mathcal{C}^k\text{-difféomorphisme } \\ 
+    \Leftrightarrow \\
+ \forall a \in U, df(a) \text{ isomorphisme de }E\text{ dans }F
+\end{array}
+\]
+\end{itheorem}
+
+\section{Complément sur les courbes planes} % (fold)
+\label{sec:complement_sur_les_courbes_planes}
+\begin{theorem}[Formule de \textsc{Green}-\textsc{Riemann}]
+	 Un compact $D$ délimitée par un une courbe plane $\Gamma$ positivemment orientée et $\CM^1$. Soient $P$ et $Q$ deux fonctions de classe $\mathcal{C}^1$ sur un ouvert dans lequel $\Gamma$ est tracé. On admet la formule de \textsc{Green}-\textsc{Riemann}\index{Green-Riemann@\textsc{Green}-\textsc{Riemann}} : 
+	 \begin{equation}
+	 \iint \limits_D \left[ \dfrac{\partial Q}{\partial x} \textcolor{couleurImp}{-} \dfrac{\partial P}{\partial y}\right](x,y) \, \d x\, \d y = \int \limits_\Gamma P\d x + Q \d y
+	 \end{equation}
+\end{theorem}
+% section complement_sur_les_courbes_planes (end)
+
+\part{Géométrie} 
+\section{Arcs Paramétrés}
+\begin{dfn}[Arc Paramétré]
+On appelle \emph{arc paramétré} \index{arc parametre@Arc paramétré} de classe $\mathcal{C}^k$ un couple $\left( I,f \right)$ avec 
+$
+\left\lbrace
+\begin{array}{c l}
+I&\text{un intervalle de \Reel}\\
+f&\text{une application de }\mathcal{C}^k\left( I,E \right)
+\end{array}
+\right.
+$
+\end{dfn}
+
+\begin{dfn}
+Quelques autres définitions : \\[0.3cm]
+% Tableau de Définitions
+\begin{tabular}{ >{\begin{bf}} l <{\end{bf}} >{\begin{math}} c <{\end{math}} @{ — } l}
+Valeur Régulière\index{Valeur!reguliere@régulière} & t_0 &$f'(t_0) \neq 0$\\
+Valeur Birégulière \index{Valeur!bireguliere@birégulière}&t_0&$\left( f'(t_0),f''(t_0) \right)$ est libre\\
+Abscisse Curviligne \index{Abscisse curviligne}&s&$s'=N_2\left( f'(t) \right)$ sur un intervalle\\
+Paramétrage normal &\big( J,g \big)&%TODO: Finir le paramétrage normal
+\end{tabular}
+\end{dfn}
+
+Exemple d'abscisse curviligne : $s : t \mapsto \sinh (t)$ car $N_2\left( s(t) \right) = \sqrt{\int |\sinh (t)|^2} = 
+ \sinh{}'(t) = \cosh (t)$. L'avantage d'une abscisse curvligne est de pouvoir simplifier l'étude d'une courbe. \\
+%TODO: Exemple de paramétrage régulier
+%Exemple de paramétrage régulier : $\bigg( ,ch(x) \bigg)$
+
+\section{Courbes Planes}
+\subsection{En polaire}
+\begin{dfn}[Fonction $\arg$]
+\ibox{$\theta \mapsto e^{i\theta}$ est une bijection de $]-\pi , \pi [$ sur $\mathbb{U}\backslash \lbrace -1 \rbrace$} où $\mathbb{U}=\lbrace z \in \Cmplx | |z| = 1 \rbrace $\\
+Sa réciproque est l'application $u \mapsto \arg(u)$\\
+Si on prend $u \in \mathbb{U}$, en notant $u=x+iy$, alors $\arg(u)=2\arctan \left( \dfrac{y}{x+1} \right)
+$
+\end{dfn}
+
+\begin{itheorem}[Théorème du Relèvement]
+Soit $f \in \mathcal{C}^n\left( I,\mathbb{U} \right)$ (avec $n \neq 0$). \\
+$\exists \: \theta \in \mathcal{C}^n\left( I,\Reel \right)$ tel que $f(t) = e^{i\theta{}(t)}$. $\theta$ est appelé \emph{relèvement}\index{relevement@Relèvement} de $f$.
+\end{itheorem}
+%TODO: Finir la preuve (Prouver l'existence)
+\begin{proof}
+Si elle existe, $\theta$ n'est pas unique ($t \mapsto \theta(t) + 2\pi$ convient aussi).\\
+Donc $f'(t) = i\theta{}' f(t) \Leftrightarrow \theta{}'(t)=-i\dfrac{f'(t)}{f(t)}$. \\
+On peut alors intégrer : $\theta (t) = C - i \int \limits_{t_0}^t \dfrac{f'(u)}{f(u)}\; du$, et il ne reste plus qu'à prouver l'existence en ayant cette expression de $\theta{}(t)$
+\end{proof}
+
+\begin{dfn}[Tangente\index{Tangente}]
+Si $\theta$ est une valeur régulière, on note $V$ l'angle $\left( \overrightarrow{u_{\theta}},\dfrac{\overrightarrow{\d M_\theta}}{\d\theta}  \right)$, et on définit \ibox{$\tan(V) = \dfrac{\rho (\theta)}{\rho '(\theta)}$}
+\end{dfn}
+\subsection{Étude d'une courbe paramétrée} % (fold)
+\label{sub:etude_courbe_parametree}
+\begin{methode}
+\titre{Étude de courbes paramétrées}
+Quelques conseils :
+\begin{itemize}
+	\item On essaye, si possible, de \emphh{passer en polaire}
+	\item Ne pas oublier de vérifier les \emphh{ensembles de définition}
+	\item Lors de l'étude \emph{au voisinage d'un point}, il suffit d'étudier les dérivées successives grâce à un \uline{développement limité}
+\end{itemize}
+\end{methode}
+On a l'expression de $x$ et $y$ en fonction de $t$ : $x = f(t)$ et $y = g(t)$. Pour étudier la courbe : 
+\begin{enumerate}
+    \item Ensemble de \emph{définition} $\mathcal{D} = \mathcal{D}_f \bigcup \mathcal{D}_g$
+    \item Étude des \emph{variations} : on étudie $x'$, $y'$ et $\dfrac{y'}{x'}$
+    \item \emph{Branches infinies} 
+    	\begin{itemize}
+    		\item $x = \lim f$ ou $y = \lim g$ sont des asymptotes (avec $\lim f$ et $\lim g$ des limites finies)
+    		\item Si, pour $t_0 \in \Reel{}$ les deux fonctions tendent \uline{simultanément} vers l'infini, on \emphh{étudie $\lim_{t \to t_0} \frac{y}{x}$}
+    		\hfill \\
+    		\begin{center}
+    		\begin{tikzpicture}
+    			 \draw[->, >=latex, color=couleurNoirClair] (-4,0) -- (4,0) node[below right]{$x$}; 
+    			 \draw[->, >=latex, color=couleurNoirClair] (0,-2) -- (0,2) node[left]{$y$};
+    			 \begin{scope}
+    			 \clip (-4,-2) -- (-4,2) -- (4,2) -- (4,-2) ;
+    			 \draw[thick] (0,1) -- ++(4,0) -- ++(-8,0) node[near end, below]{$\frac{y}{x} \xrightarrow[t \to t_0]{} 0$};
+    			 \draw[thick] (3,0) -- ++(0,4) -- ++(0,-8) node[near end, above left]{$\frac{y}{x} \xrightarrow[t \to t_0]{} \infty$} ;
+    			 \draw[color=couleurFonce!80!White, thick] (0,0.5) -- ++(20:8) -- ++(20:-16) (-2,-1.5) node{$\frac{y}{x} \xrightarrow[t \to t_0]{} a \in \Reel{}$};
+    			 \end{scope}
+    		\end{tikzpicture}
+    		\captionof{figure}{Différents types d'asymptotes en fonction de $\frac{y}{x}$}
+			\end{center}
+    		\hfill \\
+    		Dans le cas où $\frac{y}{x} \xrightarrow[t \to t_0]{} a \in \Reel{}$, on peut déterminer $b$ de l'équation $y = ax + b$ en examinant $y - ax$
+    	\end{itemize}
+%TODO Terminer étude des courbes polaires
+\end{enumerate}
+% subsection etude_courbe_parametree (end)
+%\chapter{Les Quadriques}
+%\chapter{Géométrie affine}
+\part{Annexe}
+\hfill \\
+\rule{\columnwidth}{0.5pt}
+\section{Équivalences}
+Pour une définition de l'équivalence, \textit{cf.} définition \ref{equivalence} page \pageref{equivalence}
+\begin{description}
+\item[Formule de \textsc{Stirling}]\index{Stirling@\textsc{Stirling}} $\boxed{n!=\left(\dfrac{n}{e}\right)^{n}\sqrt{2\pi n}}$
+\item[Équivalence de $\boldsymbol{\ln}$] $\dfrac{\ln(u)}{t^{\alpha}}\sim t^{\frac{\alpha+1}{2}}$
+\item[Équivalents usuels en 0] \[
+\arraycolsep=3pt\def\arraystretch{2.4}
+\begin{array}{|r c l|r c r|r c l|}
+\hline
+\sin(u)& \underset{0}{\sim}& u & \cos(u)\textcolor{couleurFonce}{-1} &\underset{0}{\sim} & \textcolor{Red}{-} \dfrac{u^2}{2} & \ln(\emph{1+}u) &\underset{0}{\sim}& u \\
+\hline
+\sinh(u) &\underset{0}{\sim} &u & \cosh(u)\textcolor{couleurFonce}{-1} &\underset{0}{\sim} &\dfrac{u^2}{2} & e^u \textcolor{couleurFonce}{-1} &\underset{0}{\sim} & u \\
+\hline
+\end{array}
+\]
+\end{description}
+
+
+\rule{\columnwidth}{0.5pt}
+\section{Trigonométrie}
+\subsection{Définition}
+\begin{minipage}{0.45\textwidth}
+\begin{equation}\label{def:cos}
+\left\lbrace
+\begin{array}{r c l}
+\cos{x}&=&\dfrac{e^{ix}+e^{-ix}}{2}\\
+\sin{x}&=&\dfrac{e^{ix}-e^{-ix}}{2i}\\
+\end{array}
+\right.
+\end{equation}
+\end{minipage}\hspace{0.1\textwidth}
+\begin{minipage}{0.45\textwidth}
+\begin{equation}\label{def:cosh}
+\left\lbrace
+\begin{array}{r c l}
+\cosh{x}&=&\dfrac{e^{x}+e^{-x}}{2}\\
+\sinh{x}&=&\dfrac{e^{x}-e^{-x}}{2}\\
+\end{array}
+\right.
+\end{equation}
+\end{minipage}
+%
+\subsection{Addition / Produit}
+\begin{equation}\label{trigo}
+\begin{array}{r@{\, = \,}l @{\qquad}|@{\qquad} r@{\, = \,}l}
+\cos (a+b) & \cos a \cos b - \sin a \sin b 
+    & \cos (a+b) + \cos (a-b) & 2 \cos a \cos b \\
+\cos (a-b) & \cos a \cos b + \sin a \sin b 
+    & \cos (a+b) - \cos (a-b) & 2 \sin a \sin b \\
+\sin (a+b) & \sin a \cos b + \cos a \sin b 
+    & \sin (a+b) + \sin (a-b) & 2 \sin a \cos b \\
+\sin (a-b) & \sin a \cos b - \cos a \sin b 
+    & \sin (a+b) - \sin (a-b) & 2 \cos a \sin b
+\end{array}
+\end{equation}
+\subsection{Dérivation} % (fold)
+\label{sub:derivation_trigo}
+Dérivées des fonctions trigonométriques : 
+\begin{align*}
+	 \tan' x 	&= \dfrac{1}{1 + \cos^2 x} = 1 + \tan^2 x \\
+	 \arcsin' x &= \dfrac{1}{\sqrt{1 - x^2}} \\
+	 \arccos' x &= -\dfrac{1}{\sqrt{1-x^2}} \\
+	 \arctan' x &= \dfrac{1}{1+x^2}
+\end{align*}
+% subsection derivation_trigo (end)
+\subsection{Formule de \textsc{Moivre}} % (fold)
+\label{sub:Moivre}
+\begin{equation}
+(\cos x + i \sin x)^n = \cos (nx) + i\sin (nx)
+\end{equation}
+% subsection Moivre (end)
+\rule{\columnwidth}{0.5pt}
+\section*{Généralités}
+\begin{description}
+\item[Conjugué] $z = -\overline{z} \Leftrightarrow z \in \Reel$
+\item[Convexité] La fonction \textbf{exponentielle} est \textbf{convexe}, la fonction \textbf{logarithme} est \textbf{concave}
+\end{description}
+\needspace{5cm}
+\rule{\columnwidth}{0.5pt}
+\section*{Inégalités}
+\begin{tabular}{ >{ \begin{bf} } r <{\end{bf}} c c}
+    Modules & $\left|\left|\sum_i x_i \right| \right| \le \sum_i \| x_i \|$& \\[5mm]
+    Module d'intégrales & $\left| \int_I f \right| \le \int_I \left| f \right| $ & \eqref{eq:SommeIntegrale} \\[3mm]
+    Inégalité de la Moyenne & $m(b-a)\le \int_a^b f(x) \mathrm{d}x \le M(b-a)$ & \eqref{eq:inegalite_de_la_moyenne}
+\end{tabular} \\[3mm]
+\rule{\columnwidth}{0.5pt}
+\section{Formules usuelles} % (fold)
+\label{sec:formules_usuelles}
+\begin{tabular}{c@{$\; = \;$}l@{$\qquad$} | @{$\qquad$}l@{$\; = \;$}l}
+    $a^k - b^k$&$(a-b) \left( \sum_{p=0}^{k\textcolor{couleurImp}{-1}} a^p b^{k-1-p} \right) $ &
+    $\sum_{k=1}^n k$    & $\dfrac{n(n+1)}{2}$ \\[6mm]
+    $\sum_{k=1}^n k^2$  & $\dfrac{n(n+1)(2n+1)}{6}$ &
+    $\sum_{k=1}^n k^3$  & $\dfrac{n^2(n+1)^2}{4}$ \\[3mm]
+\end{tabular} \\[6mm]
+% section formules_usuelles (end)
+\rule{\columnwidth}{0.5pt}
+\section{Astuces}
+\begin{description}
+\item[Primitives de $1$] Dans une IPP, on peut primitiver $1$ par $1+x$ pour enlever un terme au dénominateur. \textit{Exemple : $\left( \ln(1+x)\right) ^n$}
+\item[Fontion $\boldsymbol{k}$-lipschitzienne\index{Lipschitzienne@$k$-lipschitzienne}] Il suffit de montrer que $\exists k\in \Reel$ tq \ibox{$|f'(t)| \le k$}
+\item[Inverse d'une Matrice $\boldsymbol{2\times 2}$] Si $M = \begin{pmatrix}
+a & b \\ 
+c & d
+\end{pmatrix}$, alors $M^{-1} =  \dfrac{1}{da - bc}\begin{pmatrix}
+d & -b \\ 
+-c & a
+\end{pmatrix}$
+\item[Dérivée de $\boldsymbol{a^x}$] On a $a^x = e^{x \ln (a)} $, donc sa dérivée est \ibox{$\ln(a) \times a^x$}
+%TODO: cf. Feuille 12
+\end{description}
+\rule{\columnwidth }{0.5pt}
+
+\printnoidxglossary[type=\acronymtype,style=longragged,title={Liste des acronymes}]
+\printindex
+\end{document}
