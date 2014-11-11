@@ -1973,28 +1973,7 @@ On se place dans une zone où il n'y a ni charge, ni courant. C'est à dire que 
 \rot \vv{E}&=-\dfrac{\partial\vv{B}}{\partial t}\\
 \textcolor{couleurImp}{\rot \vv{B}}&=\frac{1}{c^2} \dfrac{\partial\vv{E}}{\partial t}
 \end{align*}
-Avec ces nouvelles équations, on établit l'équation vérifiée par le champ électrique \E{} : 
-\begin{itheorem}[Équation de d'\textsc{Alembert}\index{Alembert@D'\textsc{Alembert}}]
-Dans le vide, en l'absence de charges ($\rho = 0$ et $\vv{j}=\vv{0}$), les champs électrique et magnétique vérifient l'\emphh{équation de d'\textsc{Alembert}}
-\begin{equation}
-   \laplacien \E = \dfrac{1}{c^2} \dfrac{\partial^2 \E}{\partial t^2}\\
-   \laplacien \B = \dfrac{1}{c^2} \dfrac{\partial^2 \B}{\partial t^2}
-\end{equation}
-\end{itheorem}
-\begin{proof}
-   Démontrons le cas pour \B{}, la démonstration pour \E{} est analogue. \\
-   On part de l'équation \eqref{eq:MaxwellAmpere} : 
-   \begin{align*}
-      \rot \B &= \dfrac{1}{c^2} \dfrac{\partial \E}{\partial t}
-      \intertext{Comme dans beaucoup de démonstration, on applique un deuxième $\rot{}$}
-      \rot[\rot \B] &= \dfrac{1}{c^2}\rot[\dfrac{\partial \E}{\partial t}]
-      \intertext{On peut intervertir les opérateurs $\partial{}$ et $\rot{}$ : }
-      \rot \B &= \dfrac{1}{c^2} \dfrac{\partial \overbrace{\rot \E}^{-\dfrac{\partial \B}{\partial t}}}{\partial t} 
-      \intertext{Sachant que $\rot \B = \grad[\diverg \B] - \diverg[\grad \B]$}
-      \grad[\underbrace{\diverg \B}_{0}] - \underbrace{\diverg[\grad \B]}_{\laplacien \B} &= -\dfrac{1}{c^2}\dfrac{\partial^2 \B}{\partial t^2}\\
-      \Aboxed{\laplacien \B &= \dfrac{1}{c^2} \dfrac{\partial^2 \B}{\partial t^2}}
-   \end{align*}
-\end{proof}
+
 Les champs \E{} et \B{} sont \emph{transversaux}\index{Transverse} car ils sont perpendiculaires à leur direction de propagation. L'onde est appelée \emphh{transversale}\index{Onde!transversale}
 \subsubsection{\acrlong{OPP}} % (fold)
 \label{ssub:onde_plane}
