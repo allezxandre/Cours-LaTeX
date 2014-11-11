@@ -1950,7 +1950,7 @@ Cette force\index{Force!Laplace@\emphi{de }\textsc{Laplace}} est bien \uline{vol
 \end{theorem}
 % subsection force_electomotrice_induite (end)
 % section induction (end)
-\section{Propagation d'une onde}
+\section{Propagation et rayonnement}
 \begin{methode}
   \titre{Relations de structure}
   \[
@@ -1966,28 +1966,30 @@ Cette force\index{Force!Laplace@\emphi{de }\textsc{Laplace}} est bien \uline{vol
   \end{align*}
 \end{methode}
 \subsection{Dans le vide}
-On se place dans une zone où il n'y a ni charge, ni courant. C'est à dire que $\rho = 0$ et alors $\vv{j} = 0$. Lorsqu'on reprend les équations de \textsc{Maxwell}, les équations \eqref{eq:MaxwellGauss} et \eqref{eq:MaxwellAmpere} sont modifiées : 
+On se place dans une zone où il n'y a \emphhs{ni charge, ni courant}. C'est à dire que $\rho = 0$ et alors $\vv{j} = 0$. Lorsqu'on reprend les équations de \textsc{Maxwell}, les équations \eqref{eq:MaxwellGauss} et \eqref{eq:MaxwellAmpere} sont modifiées : 
 \begin{align*}
 \textcolor{couleurImp}{\diverg \vv{E}}&=0\\
 \diverg \vv{B}&=0\\
 \rot \vv{E}&=-\dfrac{\partial\vv{B}}{\partial t}\\
 \textcolor{couleurImp}{\rot \vv{B}}&=\frac{1}{c^2} \dfrac{\partial\vv{E}}{\partial t}
 \end{align*}
-
-Les champs \E{} et \B{} sont \emph{transversaux}\index{Transverse} car ils sont perpendiculaires à leur direction de propagation. L'onde est appelée \emphh{transversale}\index{Onde!transversale}
 \subsubsection{\acrlong{OPP}} % (fold)
 \label{ssub:onde_plane}
-Une \emph{onde plane}\index{Onde!plane} est une solution \emphh{non constante} de l'équation de d'\textsc{Alembert} qui prend des valeurs uniformes sur les plans perpendiculaires à une direction $\vv{k}$\\*
+\begin{dfn}[Onde plane]
+   Une \emph{onde plane}\index{Onde!plane} est une solution \emphh{non constante} de l'équation de d'\textsc{Alembert} qui prend des valeurs uniformes sur les plans perpendiculaires à une direction $\vv{k}$.\newline
 Une onde plane de pulsation $\omega$ se décrit de la manière suivante : 
 \begin{equation}\tag{OP}
 U(M,t) = f \left( \vv{k}\cdot\vv{OM} - vt \right) + g \left( \vv{k}\cdot\vv{OM} + vt \right)
 \end{equation}
-Une \emph{onde progressive}\index{Onde!progressive} est une solution de l'équation de d'\textsc{Alembert} qui s'écrit sous la forme $U(z,t) = f(z - vt)$. Elle se propage dans le sens positif de l'axe $Oz$ \\*
+\end{dfn}
+\begin{dfn}[Onde plane progressive]
+   Une \emph{onde progressive}\index{Onde!progressive} est une solution de l'équation de d'\textsc{Alembert} qui s'écrit sous la forme $U(z,t) = f(z - vt)$. Elle se propage dans le sens positif de l'axe $Oz$ \\*
 La forme générale d'une \emph{\gls{OPP}} de pulsation $\omega$ se propageant uniquement selon une direction $\vv{k}$ est :
 \begin{equation}\tag{OPP}
 U(M,t) = f \left( \vv{k}\cdot\vv{OM} - vt \right)
 \end{equation}
-Obtenir la solution des équations de d'\textsc{Alembert} du théorème \ref{th:EquationAlembert} permet de trouver la forme générale d'une onde. C'est ainsi qu'on peut définit une \gls{OPP} : 
+\end{dfn}
+Obtenir la solution des équations de d'\textsc{Alembert} du théorème \ref{th:EquationAlembert} permet de trouver la forme générale d'une onde. C'est ainsi qu'on peut déterminer la forme d'une \gls{OPP} électromagnétique : 
 \begin{itheorem}[Onde électromagnétique]
    La forme générale d'une \acrfull{OPP} se propageant dans le vide dans la direction de $\vv*{u}{z}$ est :
    \begin{equation}
@@ -1999,6 +2001,7 @@ Obtenir la solution des équations de d'\textsc{Alembert} du théorème \ref{th:
      -\frac{1}{c}f_x(z-ct) \\ \frac{1}{c}f_y(z-ct) \\0
    \end{pmatrix}
    \end{equation}
+  On remarque que la composante en $\vv*{u}{z}$ des champs \E{} et \B{} sont nulles. Les champs \E{} et \B{}, qui sont donc perpendiculaires à la propagation de l'onde, sont dis \emph{transversaux}\index{Transverse}. L'onde est appelée \emphh{transversale}\index{Onde!transversale}
 \end{itheorem}
 \begin{proof}
    Une \gls{OPP} doit vérifier l'équation de \textsc{d'Alembert} comme on l'a vu au théorème~\ref{th:EquationAlembert} page~\pageref{th:EquationAlembert}. Donc pour une onde se propageant selon $\vv*{u}{z}$, \E{} et \B{} sont de la forme :
@@ -2012,10 +2015,21 @@ Obtenir la solution des équations de d'\textsc{Alembert} du théorème \ref{th:
    \end{pmatrix}
    \end{equation*}
    L'équation de \textsc{Maxwell-Gauss}~\eqref{eq:MaxwellGauss} (la version où $\rho = 0$ car dans le vide il n'y a pas de charge) donne :
-   \begin{equation*}
-    k
-   \end{equation*}
-   
+   \begin{align*}
+    \diverg \E &= 0 \\
+    \dfrac{\partial f_x(t-\frac{z}{c})}{\partial x} + \dfrac{\partial f_y(t-\frac{z}{c})}{\partial y} + \dfrac{\partial f_z(t-\frac{z}{c})}{\partial z} &= 0 \\
+    0 + 0 + \left( -\frac{1}{c} \dfrac{\partial f_z}{\partial z} \right) &= 0
+   \end{align*}
+   Et nécessairement, $\dfrac{\partial f_z(t- \frac{z}{c})}{\partial z} = 0$ implique que $f_z$ est constante. Donc $f_z$ est nulle. De même, l'équation de \textsc{Maxwell}-Flux nous donne que $h_z$ est nulle. \\
+
+   Avec l'équation de \textsc{Maxwell}-\textsc{Faraday}~\eqref{eq:MaxwellFaraday}, on trouve finalement que 
+   \[
+     \begin{array}{r c l}
+     \frac{1}{c} f'_y &=& -h'_x \\
+     \frac{1}{c} f'_x &=& h'_y
+     \end{array}
+   \]
+   Et on obtient les équations de propagation d'une onde électromagnétique. \qed
 \end{proof}
 \begin{theorem}[Relations de structure]
 On structure les \glspl{OPP} de la manière suivante : \\
