@@ -2135,18 +2135,41 @@ On appelle \emph{onde polarisée rectilignement}\index{Onde!polarisee rectiligne
 \caption{Polarisation rectiligne}
 \end{figure}
 % subsubsection polarisation (end)
-\subsection{Dans un plasma}
+\subsection{Propagation dans un plasma}
 \begin{dfn}[Plasma]
-Un \emph{plasma}\index{Plasma} est un conducteur constitué d'ions et d'électrons, et tel que les conditions suivantes soient vérifiées
+Un \emph{plasma}\index{Plasma} est un conducteur constitué d'ions et d'électrons pour une charge globale neutre. \newline
+Les conditions suivantes soient vérifiées
 \begin{itemize}[label=$\bullet$]
     \item Les \emphh{ions sont immobiles}
-    \item Il est \emphh{peu dense}, c'est à dire qu'il n'y a pas (ou peu) d'interactions électromagnétique
+    \item Il est \emphh{peu dense}, c'est à dire qu'on néglige les interactions électromagnétiques
 \end{itemize}
 \end{dfn}
-Avec un rapide bilan des forces, on trouve une condition sur la densité volmique de courant : 
-\begin{equation*}
-\underline{\vv{j}} = -n_0 \underline{\vv{v}} = i \dfrac{n_0 e^2}{m\omega}\underline{\E}
-\end{equation*}
+\begin{theorem}[Densité volumique de courant]
+   Il existe dans le plasma une densité volumique de courant : 
+\begin{equation}
+\underline{\vv{j}} = -i \dfrac{n_0 e^2}{m\omega}\underline{\E}(M,t)
+\end{equation}
+\end{theorem}
+\begin{proof}
+   Si on note $\vv*{f}{\text{e}}$ et $\vv*{f}{\text{m}}$ respecivement les forces de \textsc{Lorentz} électrostatique et magnétostatique, alors on remarque que :
+   \begin{align*}
+      \dfrac{f_\text{m}}{f_\text{e}} &= \dfrac{\| -e\, \vv{v} \wedge \B \|}{\| -e\, \E\|} \\
+                       &\sim \dfrac{v}{c}
+   \end{align*}
+   Or $v$ est la vitesse de l'electron dans le milieu, et $v \ll c$ car l'électron est dit \og{}non relativiste\fg{}. Donc $\boxed{f_\text{m} \ll f_\text{e}}$, et on peut négliger $\vv*{f}{\text{e}}$ dans un \gls{PFD} : 
+   \[
+     m_\text{e} \dfrac{\d \vv{v}}{\d t}\approx -e \E (M,t)
+   \]
+   On passe en notation complexe, et le mouvement d'oscillation de l'électron est $\underline{\vv{v}} = \underline{\vv*{v}{0}} \mathrm{exp}(i\omega t)$. D'où la nouvelle expression du \gls{PFD} : 
+   \[
+     m_\text{e} (i\omega) \underline{\vv{v}} \approx -e \E (M,t) \\
+   \]
+   soit
+   \[
+     \underline{\vv{v}} = i\dfrac{e}{m_\text{e}\omega} \E (M,t)
+   \]
+   Et on obtient $\vv{j}$ avec $\vv{j} = -n_0 e \vv{v}$ \qed
+\end{proof}
 On peut donc définir une pulsation plasma $\omega_p$
 \begin{dfn}[Pulsation plasma]
    On définit la \emph{pulsation plasma}\index{Pulsation!plasma} par 
@@ -2161,6 +2184,10 @@ On peut donc définir une pulsation plasma $\omega_p$
    k^2 = \frac{1}{c^2} \left( \omega^2 - \omega_p^2 \right)
    \end{equation}
 \end{itheorem}
+\begin{proof}
+   On utilise les equations \eqref{eq:MaxwellFaraday} et \eqref{eq:MaxwellAmpere}, ainsi que la formule du double produit vectoriel \eqref{eq:double_produit_vectoriel} page \pageref{eq:double_produit_vectoriel}.
+   %TODO: completer preuve
+\end{proof}
 % subsection Plasma (end)
 % section propagation_onde (end)
 \chapter{Diffusion Thermique}
@@ -2474,11 +2501,18 @@ $$
 \begin{array}{r c l c l}
 \vv{u}\wedge\vv{v}&=&-\vv{v}\wedge\vv{u}\\
 \lambda (\vv{u}\wedge\vv{v})&=&\lambda\vv{u}\wedge\vv{v}&=&\vv{u}\wedge\lambda\vv{v}\\
-&&\text{Le produit vectoriel n'est pas associatif :}\\
- u\wedge(v\wedge w)&=&(u\cdot w)v-(u\cdot v)w\qquad\text{et}\\
-(u\wedge v)\wedge w&=&(u\cdot w)v-(v\cdot w)u
+&&\text{Le produit vectoriel n'est pas associatif }
 \end{array}
 $$
+\begin{subequations}
+Formules du double produit vectoriel : 
+   \begin{align}
+      \vv{a}\wedge(\vv{b}\wedge \vv{c})&=(\vv{a}\cdot \vv{c})\vv{b}-(\vv{a}\cdot \vv{b})\vv{c}\label{eq:double_produit_vectoriel}\\
+(\vv{a}\wedge \vv{b})\wedge \vv{c}&=(\vv{a}\cdot \vv{c})\vv{b}-(\vv{b}\cdot \vv{c})\vv{a}
+   \end{align}
+\end{subequations}
+
+
 \end{prop}
 \section{Complément mathématique}
 \subsection{Dérivée d'un vecteur}
