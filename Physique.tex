@@ -2174,20 +2174,56 @@ On peut donc définir une pulsation plasma $\omega_p$
 \begin{dfn}[Pulsation plasma]
    On définit la \emph{pulsation plasma}\index{Pulsation!plasma} par 
    \begin{equation}
-   \omega_p = \sqrt{\dfrac{ne^2}{m\varepsilon_0}}
+   \omega_P = \sqrt{\dfrac{ne^2}{m\varepsilon_0}}
    \end{equation}
    Et alors : $\underline{\vv{j}} = i \varepsilon_0 \dfrac{\omega_p^2}{\omega}\underline{\E}$
 \end{dfn}
 \begin{itheorem}[Relation de dispersion]
    Dans un plasma, on établit une relation de dispersion :
    \begin{equation}
-   k^2 = \frac{1}{c^2} \left( \omega^2 - \omega_p^2 \right)
+   k^2 = \frac{1}{c^2} \left( \omega^2 - \omega_P^2 \right)
    \end{equation}
 \end{itheorem}
 \begin{proof}
    On utilise les equations \eqref{eq:MaxwellFaraday} et \eqref{eq:MaxwellAmpere}, ainsi que la formule du double produit vectoriel \eqref{eq:double_produit_vectoriel} page \pageref{eq:double_produit_vectoriel}.
    %TODO: completer preuve
 \end{proof}
+\subsubsection{Vitesse de phase et dispersion} % (fold)
+\label{ssub:vitesse_de_phase_et_dispersion}
+\begin{dfn}[Vitesse de phase]
+   La \emph{vitesse de phase}\index{Vitesse!phase@\emphi{de }phase} $v_\varphi$ est la vitesse de propagation d'une \gls{OPPM}.
+\end{dfn}
+\begin{theorem}[Vitesse de phase dans un plasma]
+   Dans un plasma, avec les hypothèses précédentes, la vitesse de phase est égale à :
+   \begin{equation}
+   v_\varphi = \dfrac{\omega}{k}
+   \end{equation}
+   
+\end{theorem}
+\begin{dfn}[Phénomène de dispersion]
+   On dit qu'il y a \emph{dispersion}\index{Dispersion} quand la \emphh{vitesse de phase} dépend de la pulsation $\omega$ de l'\gls{OPPM}
+\end{dfn}
+% subsubsection vitesse_de_phase_et_dispersion (end)
+\subsubsection{Fréquence et pulsation de coupure} % (fold)
+\label{ssub:frequence_pulsation_de_coupure}
+\begin{dfn}[Fréquence de coupure]
+   On appelle \emph{fréquence de coupure}\index{Frequence@Fréquence!coupure@\emphi{de } coupure} la fréquence $f_c$ pour laquelle une onde ne se propage plus. La pulsation associée $\omega_c$ est appelée \emph{pulsation de coupure}\index{Pulsation!coupure@\emphi{de } coupure}
+\end{dfn}
+\begin{theorem}[Pulsation de coupure du plasma]
+   La \emphh{pulsation plasma} $\omega_P$ est une pulsation de coupure : 
+   \begin{equation}
+   \omega_c = \omega_P = \sqrt{\dfrac{n_0 e^2}{m_e \varepsilon_0}}
+   \end{equation}
+\end{theorem}
+\begin{proof}
+  Deux cas :
+  \begin{itemize}
+    \item Si $\omega > \omega_P$, alors $k^2 > 0 \implies k=\frac{1}{c} \sqrt{\omega^2 - \omega_P^2}$.
+    \item Sinon, si $\omega < \omega_P$, alors $k^2$ est négatif et il n'y a pas de propagation (une solution imaginaire n'est pas possible pour une onde).
+  \end{itemize}
+  \qed
+\end{proof}
+% subsubsection frequence_pulsation_de_coupure (end)
 % subsection Plasma (end)
 % section propagation_onde (end)
 \chapter{Diffusion Thermique}
@@ -2199,31 +2235,31 @@ C'est le phénomène à petite échelle qui se produit \uline{sans mouvement} de
 \end{equation}
 On prendra $\varphi$ tel que $\Phi = \varphi \, S$
 \end{dfn}
-\begin{dfn}Le transfert thermique passant à travers une surface fermée $\vv{S}$ sera caractérisé par le vecteur $\vv{j_{th}}$. On le définit : 
+\begin{dfn}Le transfert thermique passant à travers une surface fermée $\vv{S}$ sera caractérisé par le vecteur $\vv{j_{\text{th}}}$. On le définit : 
 \begin{subequations}
 \begin{align}
-\delta ^2 Q &= \vv{j_{th}} \d\vv{S} \; \d t 
-\intertext{En notant $\mathrm{d}\vv*{S}{M} = \mathrm{d}S \, \vv{n_M}$ :}
+\delta ^2 Q &= \vv{j_{\text{th}}} \d\vv{S} \; \d t 
+\intertext{En notant $\mathrm{d}\vv*{S}{M} = \d S \, \vv{n_M}$ :}
 \varphi_{\vv{n_M}} (M,t) &= \vv{j}\cdot \vv{n_M}
 \end{align}
 \end{subequations}
 \end{dfn}
 \begin{itheorem}[Loi de \textsc{Fourier}]
 C'est une loi\index{Loi!Fourier@\emphi{ de }\textsc{Fourier}} empirique qui donne la densité volumique de courant thermique $\vv{j_{th}}$ en fonction de $T$ un champ de températures : 
-\begin{equation}\label{FourierDiffusion}\tag{Fourier} \boxed{\vv{j_{th}} = - \underbrace{\lambda}_{\mathclap{\text{Conductivité Thermique}}} \grad (T)} 
+\begin{equation}\label{FourierDiffusion}\tag{Fourier} \boxed{\vv{j_\text{th}} = - \underbrace{\lambda}_{\mathclap{\text{Conductivité Thermique}}} \grad (T)} 
 \end{equation}
 \end{itheorem}
 \begin{theorem}[Premier principe de Thermodynamique]
    Le premier principe de thermodynamique (équation~\eqref{PremierPrincipe} page~\pageref{PremierPrincipe}) s'énonce, en diffusion, avec : 
    \begin{equation}
-   dU = \delta Q + \mathcal{P}_\text{prod}\d t
+   \d U = \delta Q + \mathcal{P}_\text{prod}\d t
    \end{equation}
    Souvent, $\mathcal{P}_\text{prod} = \iiint \mathcal{P}_V \d V$
 \end{theorem}
 \begin{itheorem}[Bilan local d'énergie]
 Pour un système $\Sigma$ de matière dans un volume $\mathcal{V}$ quelconque, 
   \begin{equation}
-  \mu c_v \dfrac{\partial T (M,t)}{\partial t} + \diverg \vv*{j}{th} (M,t) = \mathcal{P}_V (M,t)
+  \mu c_v \dfrac{\partial T (M,t)}{\partial t} + \diverg \vv*{j}{\text{th}} (M,t) = \mathcal{P}_V (M,t)
   \end{equation}
 \end{itheorem}
 \begin{proof}
