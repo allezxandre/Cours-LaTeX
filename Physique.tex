@@ -1566,6 +1566,7 @@ L'objectif est de trouver un volume tel que $\E{}$ ne dépende d'aucune variable
 Le dipôle electrostatique va donc chercher à s'aligner avec le champ \E{}.
 % subsection dipole_electrostatique (end)
 \section{Magnétostatique}
+\subsection{Champ magnétique}
 \begin{dfn}[Densité Volumique de Courant]\label{def:DensVolCour}
 \begin{subequations}
 La \emph{densité volumique de courant}\index{j@$\vv{j}$ (Densité Volumique de Courant)} décrit le mouvement d'ensemble des particules de charges $q$ passant à travers une surface élémentaire orientée $\d S_M$.\par
@@ -2073,14 +2074,14 @@ U(M,t) = U_0 \cos \left( \omega t - \vv{k}\cdot \vv{OM} - \varphi_0 \right)
 %
 \begin{tabular}{| r@{$\quad \Leftrightarrow \quad$}l | c r@{$\; = \: $}l |}
 \multicolumn{2}{| c |}{Opérateurs} & \multicolumn{3}{ c |}{Maxwell} \\[3pt]
-$\dfrac{\partial}{\partial t} \textcolor{couleurNoirClair}{\bullet}$ & $-i\omega \times\textcolor{couleurNoirClair}{\bullet} $ 
-    &\eqref{eq:MaxwellGauss} & $i\vv{k}\cdot \underline{\E}$ & $ \dfrac{\rho}{\varepsilon_0} = 0 $ \\[9pt]
-$\textcolor{couleurImp}{\grad} \textcolor{couleurNoirClair}{\uline{U}}$ & $i \vv{k}\textcolor{couleurImp}{\times}\textcolor{couleurNoirClair}{\uline{U}}$
-    &\eqref{eq:MaxwellFlux} & $ i\vv{k}\cdot \underline{\B}$ & $0$ \\[3pt]
-$\textcolor{couleurImp}{\diverg}  \textcolor{couleurNoirClair}{\vv{\uline{U}}}$ & $i\vv{k}\textcolor{couleurImp}{\cdot} \textcolor{couleurNoirClair}{\vv{\uline{U}}}$ 
-    &\eqref{eq:MaxwellFaraday} & $ i\vv{k}\wedge \underline{\E} $ & $ i\omega \underline{\B}{}$ \\[5pt]
-$\textcolor{couleurImp}{\rot} \textcolor{couleurNoirClair}{\vv{\uline{U}}}$ & $i\vv{k}\textcolor{couleurImp}{\wedge} \textcolor{couleurNoirClair}{\vv{\uline{U}}}$ 
-    &\eqref{eq:MaxwellAmpere} & $i\vv{k} \wedge \underline{\B}$ & $ \frac{1}{c^2}(-i\omega )\underline{\E} $ \\[7pt]
+$\dfrac{\partial}{\partial t} \textcolor{couleurNoirClair}{\bullet}$ & $i\omega \times\textcolor{couleurNoirClair}{\bullet} $ 
+    &\eqref{eq:MaxwellGauss} & $-i\vv{k}\cdot \underline{\E}$ & $ \dfrac{\underline{\rho}}{\varepsilon_0} = 0 $ \\[9pt]
+$\textcolor{couleurImp}{\grad} \textcolor{couleurNoirClair}{\uline{U}}$ & $-i \vv{k}\textcolor{couleurImp}{\times}\textcolor{couleurNoirClair}{\uline{U}}$
+    &\eqref{eq:MaxwellFlux} & $ -i\vv{k}\cdot \underline{\B}$ & $0$ \\[3pt]
+$\textcolor{couleurImp}{\diverg}  \textcolor{couleurNoirClair}{\vv{\uline{U}}}$ & $-i\vv{k}\textcolor{couleurImp}{\cdot} \textcolor{couleurNoirClair}{\vv{\uline{U}}}$ 
+    &\eqref{eq:MaxwellFaraday} & $ -i\vv{k}\wedge \underline{\E} $ & $ -i\omega \underline{\B}{}$ \\[5pt]
+$\textcolor{couleurImp}{\rot} \textcolor{couleurNoirClair}{\vv{\uline{U}}}$ & $-i\vv{k}\textcolor{couleurImp}{\wedge} \textcolor{couleurNoirClair}{\vv{\uline{U}}}$ 
+    &\eqref{eq:MaxwellAmpere} & $-i\vv{k} \wedge \underline{\B}$ & $ \mu_0 \vv{\underline{j}}+i\omega \frac{1}{c^2}\underline{\E} $ \\[7pt]
 \end{tabular}
 \begin{theorem}[Relations de structure d'une \gls{OPPM}]
    De même que les relations de structure \eqref{eq:RelationStructureOPP} d'une \gls{OPP}, on obtient rapidement, avec la forme complexe des équations de \textsc{Maxwell} :
@@ -2755,8 +2756,8 @@ Dans un repère en \emph{coordonnées cylindriques}\index{Coordonnees@Coordonné
    \begin{center}
    \begin{tabular}{r r@{$\:\: = \:\:$}r@{$ + $}r@{$ + $}r}
       \textbf{Coordonnées} & \multicolumn{4}{c}{\textbf{Expressions}} \\
-      Cartésiennes        & $\diverg[\vv{A}(M)] $ &  $\frac{\partial A_x}{\partial x}$ & $\frac{\partial A_y}{\partial y}$ & $\frac{\partial A_z}{\partial z}$ %  TODO: FINIR        \\
-      %  TODO: FINIR        Cylindriques        & $\diverg[\vv{A}(M)] $ &  $\frac{\partial f}{\partial r}\vv*{e}{r}$ & $\frac{1}{r}\frac{\partial f}{\partial \theta}\vv*{e}{\theta}$ & $\frac{\partial f}{\partial z}\vv*{e}{z}$ \\
+      Cartésiennes        & $\diverg[\vv{A}(M)] $ &  $\frac{\partial A_x}{\partial x}$ & $\frac{\partial A_y}{\partial y}$ & $\frac{\partial A_z}{\partial z}$\\
+      Cylindriques        & $\diverg[\vv{A}(M)] $ &  $\textcolor{couleurImp}{\frac{1}{r}} \dfrac{\partial ( \textcolor{couleurImp}{r}\cdot A_r)}{\partial r}$ & $\frac{1}{r}\frac{\partial A_\theta}{\partial \theta}$ & $\frac{\partial A_z}{\partial z}$ \\
       %  TODO: FINIR        Sphériques          & $\diverg[\vv{A}(M)] $ &  $\frac{\partial f}{\partial r}\vv*{e}{r}$ & $\frac{1}{r}\frac{\partial f}{\partial \theta}\vv*{e}{\theta}$ & $\frac{1}{r\sin \theta}\frac{\partial f}{\partial \varphi}\vv*{e}{\varphi}$
    \end{tabular}
    \end{center}
