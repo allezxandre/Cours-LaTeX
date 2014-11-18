@@ -438,6 +438,7 @@ Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé l
 \begin{theorem}[Droite stable]
      Une \emph{droite} est \emph{stable}\index{Droite!stable} par un endomorphisme $u$ \emphhs{ssi} elle est engendrée par un vecteur propre de $u$.
 \end{theorem}
+\subsection{Éléments propres}
 \begin{dfn}[Valeur propre, vecteur propre]
      Soit $u$ un endomorphisme de $E$ un $\mathbb{K}$-espace vectoriel.\\ 
      Un scalaire $\lambda$ est appelé \emph{valeur propre}\index{Valeur!propre} de $u$ s'il existe un vecteur $x$ \emphhs{non nul} de $E$ tel que 
@@ -446,13 +447,29 @@ Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé l
      \end{equation}
      Si un tel vecteur $x$ existe, on l'appelera \emph{vecteur propre}\index{Vecteur!propre}.
 \end{dfn}
-\begin{dfn}[Espace propre]
-     Avec les notations précédentes, on appelera \emph{espace propre}\index{Espace!propre} associé à une valeur propre $\lambda$ l'espace $E_\lambda$ : 
+\begin{dfn}[Sous-espace propre]
+     Avec les notations précédentes, on appelera \emph{\acrfull{sep}}\index{Sous-espace!propre} associé à une valeur propre $\lambda$ le sous-espace vectoriel $E_\lambda$ : 
      \begin{equation}
      E_\lambda = \mathrm{Ker} \left( u - \lambda \mathrm{Id} \right) 
      \end{equation}
-     
 \end{dfn}
+\subsubsection{Éléments propres en dimension finie} % (fold)
+\label{ssub:elements_propres_dim_finie}
+\Attention{On se place dans un espace $E$ de \emphhs{dimension finie}. Les théorèmes et définitions qui suivent ne sont valables (au propgramme) que dans ces conditions. }
+\begin{dfn}[Spectre]
+     Le spectre d'un endomorphisme $u$ de $E$, noté $\mathrm{sp}(u)$, est l'ensemble de ses valeurs propres. 
+\end{dfn}
+\begin{theorem}[Famille finie de \gls{sep}]
+     La somme d'une famille \emphhs{finie} de \gls{sep} $E_{\lambda_i}$ de valeurs propres $\lambda_i$ deux à deux distinctes est directe : 
+     \begin{equation}
+     \sum_i E_{\lambda_i} = \bigoplus_i E_{\lambda_i}
+     \end{equation}
+\end{theorem}
+Le programme officiel précise le corrolaire qui va avec : 
+\begin{theorem}[Famille de vecteurs propres]
+     Toute famille de vecteurs propres dont les valeurs propres associées sont deux à deux distinctes est libre. 
+\end{theorem}
+% subsubsection elements_propres_dim_finie (end)
 % section elements_propres_d_un_endomorphisme (end)
 \section{Polynôme Caractéristique}
 \begin{dfn}[Polynôme caractéristique]
