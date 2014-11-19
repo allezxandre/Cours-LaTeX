@@ -466,6 +466,25 @@ Le programme officiel précise le corrolaire qui va avec :
 \begin{theorem}
   Pour $u$ un endomorphisme de $E$ de dimension finie $n$, le spectre de $u$ est fini, et de cardinal \emphhs{au plus} $n$.
 \end{theorem}
+\begin{itheorem}[Endomorphismes commutant]
+    Soient $u$ et $v$ sont deux endomorphismes d'un espace $E$ de dimension finie. \\
+      Si $u$ et $v$ commutent, alors tout sous-espace propre de $u$ est stable par $v$. 
+    \end{itheorem}
+    \begin{proof}
+      %TODO: finir la preuve
+        Soit $\lambda$ une valeur propre de $u$, et $E_\lambda$ l'espace propre associé. On a 
+	  \[
+	      E_\lambda = \mathrm{Ker} (u - \lambda I
+	        \]
+	      \end{proof}
+	      \begin{dfn}[Éléments propres d'une matrice]
+		  Soit $A$ est une matrice de $E$ un espace de dimension finie. \\
+		    On appelle \emph{valeur propre}\index{Valeur!propre} de $A$ un scalaire $\lambda$ pour lequel il existe $X$ tel que :
+		      \begin{equation}
+			  AX = \lambda X
+			    \end{equation}
+			      
+			  \end{dfn}
 % subsubsection elements_propres_dim_finie (end)
 % section elements_propres_d_un_endomorphisme (end)
 \section{Polynôme Caractéristique}
