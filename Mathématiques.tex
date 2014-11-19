@@ -503,6 +503,29 @@ Pour une matrice de rang 2, le polynôme caractéristique est donc donné par \\
 \ibox{$ \chi_M = X^2 - \tr (M)\, X + \det (M)$}
 \end{itheorem}
 \section{Endomorphismes et matrices carrées diagonalisables}
+\label{sec:diagonalisation}
+\begin{dfn}[Endomorphisme diagonalisable\index{Diagonalisable}]
+    On dit que $u$ est \emph{diagonalisable} si et seulement si $E$ est la \emphh{\uline{somme directe}} des espaces propres de $u$.
+\end{dfn}
+\begin{dfn}[Quelques définitions]
+Quelques définitions portant sur le polynôme : 
+    \begin{description}
+    \item[Racine simple] Une racine $\alpha$ du polynôme $P$ est dite simple si elle n'est pas multiple. On dit que son \uline{ordre de multiplicité est égal à $1$}.
+    \item[Polynôme scindé] $P$ est scindé s'il peut s'écrire comme \uline{le produit de polynômes du premier degré}.
+    \end{description}
+\end{dfn}
+\begin{itheorem}[Caractérisation de la diagonalisation]
+    On donne des équivalences à ``$u$ diagonalisable'' : 
+    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
+    \begin{enumerate}
+        \item $E$ admet une base formée des vecteurs propres de $u$
+        \item $E$ est somme directe d'espaces sur lesquels $u$ induit des homothéties
+        \item $\chi_u$ est scindé, et $\omega (\lambda ) = \dim (E_\lambda)$
+        \item $n = \sum \dim E_\lambda $
+        \item $u$ admet pour matrice une matrice diagonalisable
+    \end{enumerate}
+\end{itheorem}
+% section diagonalisation (end)
 \section{Endomorphismes et matrices carrées trigonalisables}
 \section{Endomorphismes nilpotents}
 \section{Polynômes d'un endomorphisme} % (fold)
@@ -554,30 +577,6 @@ Maintenant, on va voir le théorème dans une forme plus générale, qu'on dédu
 \end{itheorem}
 \end{subequations}
 % section lemme_de_decomposition_des_noyaux (end)
-\section{Diagonalisation} % (fold)
-\label{sec:diagonalisation}
-\begin{dfn}[Endomorphisme diagonalisable\index{Diagonalisable}]
-    On dit que $u$ est \emph{diagonalisable} si et seulement si $E$ est la \emphh{\uline{somme directe}} des espaces propres de $u$.
-\end{dfn}
-\begin{dfn}[Quelques définitions]
-Quelques définitions portant sur le polynôme : 
-    \begin{description}
-    \item[Racine simple] Une racine $\alpha$ du polynôme $P$ est dite simple si elle n'est pas multiple. On dit que son \uline{ordre de multiplicité est égal à $1$}.
-    \item[Polynôme scindé] $P$ est scindé s'il peut s'écrire comme \uline{le produit de polynômes du premier degré}.
-    \end{description}
-\end{dfn}
-\begin{itheorem}[Caractérisation de la diagonalisation]
-    On donne des équivalences à ``$u$ diagonalisable'' : 
-    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
-    \begin{enumerate}
-        \item $E$ admet une base formée des vecteurs propres de $u$
-        \item $E$ est somme directe d'espaces sur lesquels $u$ induit des homothéties
-        \item $\chi_u$ est scindé, et $\omega (\lambda ) = \dim (E_\lambda)$
-        \item $n = \sum \dim E_\lambda $
-        \item $u$ admet pour matrice une matrice diagonalisable
-    \end{enumerate}
-\end{itheorem}
-% section diagonalisation (end)
 \chapter{Topologie d'un espace vectoriel normé}
 \section{Norme}
 \begin{dfn}[Définition de la norme]
