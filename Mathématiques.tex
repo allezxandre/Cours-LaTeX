@@ -501,11 +501,6 @@ Pour une matrice $M$ de rang $n$, on peut obtenir quelques coefficients du polyn
 Pour une matrice de rang 2, le polynôme caractéristique est donc donné par \\
 \ibox{$ \chi_M = X^2 - \tr (M)\, X + \det (M)$}
 \end{itheorem}
-
-\begin{itheorem}[\textsc{Cayley-Hamilton}%
-\index{Cayley-Hamilton@\textsc{Cayley-Hamilton}}]
-Si $u$ est un endomorphisme d'un espace vectoriel \uline{fini}, alors le polynôme caractéristique $\chi_u$ est un polynôme annulateur de $u$
-\end{itheorem}
 \section{Endomorphismes et matrices carrées diagonalisables}
 \section{Endomorphismes et matrices carrées trigonalisables}
 \section{Endomorphismes nilpotents}
@@ -519,6 +514,14 @@ Si $u$ est un endomorphisme d'un espace vectoriel \uline{fini}, alors le polynô
      \end{equation}
      $P(u)$ est appelé \emph{polynôme de l'endomorphisme}\index{Polynome@Polynôme!endomorphisme@\emphi{d'un }endomorphisme} $u$.
 \end{dfn}
+\subsubsection{\textsc{Cayley}-\textsc{Hamilton}} % (fold)
+\label{ssub:Cayley-Hamilton}
+\begin{itheorem}[\textsc{Cayley-Hamilton}%
+\index{Cayley-Hamilton@\textsc{Cayley-Hamilton}}]
+Si $u$ est un endomorphisme d'un espace vectoriel \uline{fini}, alors le polynôme caractéristique $\chi_u$ est un polynôme annulateur de $u$. \\
+Le polynôme caractéristique est donc un multiple du polynôme minimal. 
+\end{itheorem}
+% subsubsection Cayley-Hamilton (end)
 % section polyn_mes_d_un_endomorphisme (end)
 \section{Lemme de décomposition des noyaux} % (fold)
 \begin{methode}
@@ -530,6 +533,7 @@ Si $u$ est un endomorphisme d'un espace vectoriel \uline{fini}, alors le polynô
 
 \end{methode}
 \label{sec:lemme_de_decomposition_des_noyaux}
+%TODO: voir démo
 \begin{subequations}
 \begin{theorem}[Théorème de décomposition des noyaux]
      Soient deux polynomes $P$ et $Q$ de $\mathbb{K} [X]$. Pour $P$ et $Q$ \emphh{premiers entre eux} : 
