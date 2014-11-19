@@ -521,13 +521,33 @@ Si $u$ est un endomorphisme d'un espace vectoriel \uline{fini}, alors le polynô
 \end{dfn}
 % section polyn_mes_d_un_endomorphisme (end)
 \section{Lemme de décomposition des noyaux} % (fold)
+\begin{methode}
+     En général, dès qu'on voit une somme directe, on utilise le théorème de décomposition des noyaux. \\
+     Si on a $P$, un polynôme annulateur de $u$ tel que $P(u) = 0$, alors on a $\mathrm{Ker}P(u) = E$, et si $P(u)$ est le produit de plusieurs polynômes, par exemple $A$ et $B$, on peut écrire 
+     \[
+         E = \mathrm{Ker} A(u) \oplus \mathrm{Ker} B(u)
+     \]
+
+\end{methode}
 \label{sec:lemme_de_decomposition_des_noyaux}
-\begin{itheorem}[Théorème de décomposition des noyaux]
+\begin{subequations}
+\begin{theorem}[Théorème de décomposition des noyaux]
      Soient deux polynomes $P$ et $Q$ de $\mathbb{K} [X]$. Pour $P$ et $Q$ \emphh{premiers entre eux} : 
      \begin{equation}
      \mathrm{Ker}\left[ (PQ)(u)\right] = \mathrm{Ker}\left[ P(u) \right] \oplus \mathrm{Ker}\left[ Q(u) \right]
      \end{equation}
+\end{theorem}
+Maintenant, on va voir le théorème dans une forme plus générale, qu'on déduit par récurrence sur le théorème précédent.
+\begin{itheorem}[Théorème de décomposition des noyaux]
+     Soit $E$ un $\mathbb{K}$-espace vectoriel, et $u$ un endomorphisme de $E$.\newline
+     Si $A_1,\cdots,A_p$ sont des polynômes de $\mathbb{K}[X]$ \emphhs{premiers deux à deux}, alors :
+     \begin{equation}
+     \mathrm{Ker}\bigg( (A_1\times A_2 \times \cdot \times A_p)(u) \bigg) 
+            = \bigoplus_{i=1}^p \mathrm{Ker}\big( A_i (u) \big)
+     \end{equation}
+     
 \end{itheorem}
+\end{subequations}
 % section lemme_de_decomposition_des_noyaux (end)
 \section{Diagonalisation} % (fold)
 \label{sec:diagonalisation}
