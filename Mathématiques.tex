@@ -455,11 +455,28 @@ C'est ce dernier théorème qui permet de confirmer l'unicité de la trace et du
      \begin{equation}
      \forall x \in F, \, u(x) \in F
      \end{equation}
-     On écrit que $u(F) \subset F$.\\[\baselineskip]
+     On écrit que $u(F) \subset F$.\\[0.6\baselineskip]
 
      La restriction de $u$ à $F$ au départ et à l'arrivée est l'\emph{endomorphisme induit}\index{Endomorphisme!induit}.
-     \Attention{La simple restriction de $u$ à $F$ ($u_{|F}$) est une application de $F$ dans $E$ et ce n'est pas un endomorphisme, alors que l'endomorphisme induit va de $F$ à $F$.}
 \end{dfn}
+\Attention{La simple restriction de $u$ à $F$ ($u_{|F}$) est une application de $F$ dans $E$ et ce n'est pas un endomorphisme, alors que l'endomorphisme induit va de $F$ à $F$.}\\[\baselineskip]
+On va maintenant voir, conformément au programme, la traduction en termes de matrices. On se place donc dans $E$ qui est cette fois de \emph{dimension finie} $n$.\\
+Si on reprend le sous-espace $F$, on peut trouver une base $(e_1, \cdots , e_p)$. Cette base peut être complétée en une base de $n$ vecteurs de $E$ : $\mathcal{B}=(e_1, \cdots , e_p, \cdots, e_n)$. La matrice de $u$ dans $\mathcal{B}$ s'écrit : 
+\[
+  \begin{blockarray}{ccccc|cccc}
+    & e_1 & \BAmulticolumn{2}{c}{\hdots} & e_p & \BAmulticolumn{3}{c}{\hdots} & e_n \\
+    \begin{block}{c(cccc|cccc@{\hspace*{5pt}})}
+    e_1 & \BAmulticolumn{4}{c|}{\multirow{4}{*}{\scalebox{2.5}{$B$}}}&\BAmulticolumn{4}{c}{\multirow{4}{*}{\scalebox{2.5}{$C$}}}\\
+    \multirow{2}{*}{\vdots} & &&&&&&&\\
+    & &&&&&&&\\
+    e_p & &&&&&&&\\[2mm]
+    \cline{1-9}% don't use \hline
+    \vdots & \BAmulticolumn{4}{c|}{\multirow{2}{*}{\scalebox{1.5}{$0$}}}&\BAmulticolumn{4}{c}{\multirow{2}{*}{\scalebox{1.5}{$D$}}}\\
+    e_n & &&&&&&&\\
+    \end{block}
+  \end{blockarray}
+  \qquad\text{où $B$ est la matrice de l'endomorphisme induit.}
+\]
 % subsection sous_espace_stable_par_un_endomorphisme (end)
 \begin{dfn}[Polynôme minimal]
 Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé le polynôme minimal tel que pour tout morphisme $\varphi{}$, $\Pi_{\varphi}(\varphi{}) = 0$ \textcolor{couleurFonce!70}{CÀD} $\left( \Pi_\varphi \right)
