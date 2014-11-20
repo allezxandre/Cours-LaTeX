@@ -426,7 +426,14 @@ C'est la fonction $\varphi$ telle que
          \]
          \item Si on a un polynôme annulateur $P$, on peut le factoriser pour obtenir les racines. Puisque le polynôme minimal $\Pi_u$ divise $P$, il reste à essayer de combiner ces racines pour obtenir le polynôme de plus petit degré qui annule $u$. 
      \end{itemize}
+     \titre{Théorème de décomposition des noyaux}
+     En général, dès qu'on voit une somme directe, on utilise le théorème de décomposition des noyaux. \\
+     Si on a $P$, un polynôme annulateur de $u$ tel que $P(u) = 0$, alors on a $\mathrm{Ker}P(u) = E$, et si $P(u)$ est le produit de plusieurs polynômes, par exemple $A$ et $B$, on peut écrire 
+     \[
+         E = \mathrm{Ker} A(u) \oplus \mathrm{Ker} B(u)
+     \]
      \titre{Diagonalisation}
+
 \end{methode}
 \section{Genéralités}
 %
@@ -503,8 +510,8 @@ Si on reprend le sous-espace $F$, on peut trouver une base $(e_1, \cdots , e_p)$
 
      C'est donc le sous-espace de $E$ contenant $0$ et tous les vecteurs propres de $u$.
 \end{dfn}
-\subsubsection{Éléments propres en dimension finie} % (fold)
-\label{ssub:elements_propres_dim_finie}
+\subsection{Éléments propres en dimension finie} % (fold)
+\label{sub:elements_propres_dim_finie}
 \Attention{On se place dans un espace $E$ de \emphhs{dimension finie}. Les théorèmes et définitions qui suivent ne sont valables (au propgramme) que dans ces conditions. }
 \begin{dfn}[Spectre]
      Le spectre d'un endomorphisme $u$ de $E$, noté $\mathrm{sp}(u)$, est l'ensemble de ses valeurs propres. 
@@ -552,7 +559,7 @@ Le programme officiel précise le corrolaire qui va avec :
         Si ce vecteur $X$ existe, on l'appelle \emph{vecteur propre}\index{Vecteur!propre} de la matrice $A$ pour la valeur propre $\lambda$.\\[\baselineskip]
         Par extension, on définit le \gls{sep} d'une matrice de manière similaire à la définition~\ref{dfn:sous-espace_propre} page~\pageref{dfn:sous-espace_propre}. L'ensemble des valeurs propres d'une matrice forme son spectre $\mathrm{sp}(A)$.
 \end{dfn}
-% subsubsection elements_propres_dim_finie (end)
+% subsection elements_propres_dim_finie (end)
 % section elements_propres_d_un_endomorphisme (end)
 \section{Polynôme Caractéristique}
 \begin{dfn}[Polynôme caractéristique]
@@ -614,14 +621,6 @@ Le polynôme caractéristique est donc un multiple du polynôme minimal.
 % subsubsection Cayley-Hamilton (end)
 % section polyn_mes_d_un_endomorphisme (end)
 \section{Lemme de décomposition des noyaux} % (fold)
-\begin{methode}
-     En général, dès qu'on voit une somme directe, on utilise le théorème de décomposition des noyaux. \\
-     Si on a $P$, un polynôme annulateur de $u$ tel que $P(u) = 0$, alors on a $\mathrm{Ker}P(u) = E$, et si $P(u)$ est le produit de plusieurs polynômes, par exemple $A$ et $B$, on peut écrire 
-     \[
-         E = \mathrm{Ker} A(u) \oplus \mathrm{Ker} B(u)
-     \]
-
-\end{methode}
 \label{sec:lemme_de_decomposition_des_noyaux}
 %TODO: voir démo
 \begin{subequations}
