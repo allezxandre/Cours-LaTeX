@@ -446,6 +446,20 @@ C'est la fonction $\varphi$ telle que
 \end{theorem}
 %TODO: Propriétés de la trace et du determinant
 % subsection matrices_carrees_semblables (end)
+\subsection{Sous-espace stable par un endomorphisme} % (fold)
+\label{sub:sous_espace_stable_par_un_endomorphisme}
+\begin{dfn}[Sous-espace stable]
+     Soit $E$ un $\mathbb{K}$-espace vectoriel, $F$ un sous-espace vectoriel de $E$, et $u$ un endomorphisme de $E$.\newline
+     On dit que $F$ est stable par $u$ si :
+     \begin{equation}
+     \forall x \in F, \, u(x) \in F
+     \end{equation}
+     On écrit que $u(F) \subset F$.\\[\baselineskip]
+
+     La restriction de $u$ à $F$ au départ et à l'arrivée est l'\emph{endomorphisme induit}\index{Endomorphisme!induit}.
+     \Attention{La simple restriction de $u$ à $F$ ($u_{|F}$) est une application de $F$ dans $E$ et ce n'est pas un endomorphisme, alors que l'endomorphisme induit va de $F$ à $F$.}
+\end{dfn}
+% subsection sous_espace_stable_par_un_endomorphisme (end)
 \begin{dfn}[Polynôme minimal]
 Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé le polynôme minimal tel que pour tout morphisme $\varphi{}$, $\Pi_{\varphi}(\varphi{}) = 0$ \textcolor{couleurFonce!70}{CÀD} $\left( \Pi_\varphi \right)
  = \mathrm{Ker}(\varphi{})$
