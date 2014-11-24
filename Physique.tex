@@ -2137,12 +2137,12 @@ On appelle \emph{onde polarisée rectilignement}\index{Onde!polarisee rectiligne
 \end{figure}
 % subsubsection polarisation (end)
 \subsection{Propagation dans un plasma}
-\begin{dfn}[Plasma]
+\begin{dfn}[Plasma]\label{dfn:Plasma}
 Un \emph{plasma}\index{Plasma} est un conducteur constitué d'ions et d'électrons pour une charge globale neutre. \newline
 Les conditions suivantes soient vérifiées
 \begin{itemize}[label=$\bullet$]
-    \item Les \emphh{ions sont immobiles}
-    \item Il est \emphh{peu dense}, c'est à dire qu'on néglige les interactions électromagnétiques
+    \item Les \emphh{ions positifs sont immobiles}
+    \item Il est \emphh{peu dense}, c'est à dire qu'on néglige les interactions électromagnétiques.
 \end{itemize}
 \end{dfn}
 \begin{theorem}[Densité volumique de courant]
@@ -2241,6 +2241,14 @@ On se place, dans un premier temps, dans un milieu dispersif quelconque.
 % subsection Plasma (end)
 \subsection{Propagation dans un conducteur ohmique} % (fold)
 \label{sub:propagation_dans_un_conducteur_ohmique}
+\begin{dfn}[Conducteur ohmique]
+   Le \emph{conducteur ohmique}\index{Conducteur ohmique} est un métal pour lequel les conditions suivantes sont vérifiées :
+\begin{itemize}[label=$\bullet$]
+    \item Les \emphh{ions positifs sont immobiles}
+    \item Il est \textcolor{couleurImp}{\emphh{dense}}, et les électrons, de densité particulaire $n_0$, sont libres de se déplacer.
+\end{itemize}
+On remarque qu'un conducteur ohmique est comme un plasma (\textit{cf}. définition \ref{dfn:Plasma} page~\pageref{dfn:Plasma}). Sa seule différence est d'être dense. On prend alors en compte les interactions entre électrons et ions sous la forme d'une force de frottement.
+\end{dfn}
 \begin{itheorem}[Relation de dispersion]
    Dans un conducteur ohmique, on établit, comme pour le plasma, une relation de dispersion :
    \begin{equation}
