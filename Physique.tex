@@ -2225,7 +2225,36 @@ On peut donc définir une pulsation plasma $\omega_p$
   \qed
 \end{proof}
 % subsubsection frequence_pulsation_de_coupure (end)
+\subsubsection{Propagation d'un paquet d'onde} % (fold)
+\label{ssub:propagation_paquet_onde}
+On se place, dans un premier temps, dans un milieu dispersif quelconque.
+%
+\needspace{7cm}
+\begin{dfn}[Paquet d'onde]
+   Un \emph{paquet d'onde}\index{Paquet donde@Paquet d'onde} est la superposition de plusieurs \gls{OPPM} de \emphhs{pulsations proches} et de pulsation moyenne $\omega_0$ : 
+   \begin{equation}
+   \int \limits_0^{+\infty} \underline{A}(M) e^{i(\omega t - k z)}\d \omega
+   \end{equation}
+   Cette intégrale est valable de $0$ à $+\infty$, car on considère des ondes dont la pulsation $\omega$ est comprise dans un intervalle $\left[ \omega_0 - \dfrac{\delta \omega}{2}, \omega_0 + \dfrac{\delta \omega}{2}\right]$, où $\delta \omega \ll \omega_0$
+\end{dfn}
+% subsubsection propagation_paquet_onde (end)
 % subsection Plasma (end)
+\subsection{Propagation dans un conducteur ohmique} % (fold)
+\label{sub:propagation_dans_un_conducteur_ohmique}
+\begin{itheorem}[Relation de dispersion]
+   Dans un conducteur ohmique, on établit, comme pour le plasma, une relation de dispersion :
+   \begin{equation}
+   k^2 = \dfrac{\omega^2}{c^2} - i\mu_0\gamma \omega
+   \end{equation}
+\end{itheorem}
+\begin{itheorem}[Effet de peau]
+   Dans un conducteur ohmique, la distance caractéristiques de d'atténuation d'une \gls{OPPM} de pulsation $\omega \ll \frac{\gamma}{\epsilon_0}$ est: 
+   \begin{equation}
+   \delta = \sqrt{\dfrac{2}{\mu_0 \gamma \omega}}
+   \end{equation}
+   
+\end{itheorem}
+% subsection propagation_dans_un_conducteur_ohmique (end)
 % section propagation_onde (end)
 \chapter{Diffusion Thermique}
 \section{Conduction}
