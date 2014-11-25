@@ -423,6 +423,12 @@ C'est la fonction $\varphi$ telle que
          \item Montrer que $\lambda$ est une racine du polynôme caractéristique $\chi_u$ de $u$
      \end{itemize}
      \titre{Polynôme caractéristique}
+     Si on cherche le polynôme caractéristique d'un endomorphisme $u$, ces étapes peuvent permettre d'avancer sa détermination :
+     \begin{itemize}
+         \item Prendre le polynôme dont les racines sont les valeurs propres de $u$. C'est à dire le polynôme $\prod (X - \lambda_i)$
+         \item Reconnaitre les coefficients de degré $n-1$ et $0$ (\textit{cf}. théorème~\ref{thm:coeff_polynome_caracteristique} page~\pageref{thm:coeff_polynome_caracteristique}).
+         \item Si la matrice est triangulaire, faire le produit des éléments diagonaux.
+     \end{itemize}
      \titre{Polynôme minimal}
      Si on cherche le polynôme minimal d'un endomorphisme $u$ dans l'espace $E$ de \emphhs{dimension finie}, on peut avoir recours aux affirmations suivantes :
      \begin{itemize}
@@ -583,20 +589,57 @@ Ce polynôme est de degré $n$. Le polynôme caractéristique doit être \emphhs
 \chi_u = \chi_M
 \end{equation}
 \end{dfn}
-
-\begin{itheorem}
+\begin{theorem}
+     Deux matrices semblables ont même polynôme caractéristique.
+\end{theorem}
+\begin{proof}% Je garde ou j'enlève cette démo trop simple ?
+     \textbf{(Facile)} \\
+     Soient $A$ et $A'$ nos deux matrices semblables. Elles représentent le même endomorphisme $u$ dans des bases différentes. Donc 
+     \[
+        \left\lbrace
+        \begin{array}{r c l}
+          \chi_u &=& \chi_A \\
+          \chi_u &=& \chi_{A'}
+        \end{array}
+        \right.
+     \]
+     D'où $\chi_A = \chi_{A'}$.\qed
+\end{proof}
+\begin{itheorem}[Valeurs des coefficients de degrés $0$ et $n-1$]\label{thm:coeff_polynome_caracteristique}
 Pour une matrice $M$ de rang $n$, on peut obtenir quelques coefficients du polynôme caractéristique : 
 \[ 
-\chi_M = \left( -X \right)^n + \tr\left( M \right)\times \left( -X \right)^{n-1} + \cdots + \det\left( M \right)
+\chi_M = (-1)^n X^n + \textcolor{couleur1}{(-1)^{n-1}\,\tr\left( M \right)}\times X^{n-1} + \cdots + \textcolor{couleur2}{\det\left( M \right)}
 \]
-Pour une matrice de rang 2, le polynôme caractéristique est donc donné par \\
-\ibox{$ \chi_M = X^2 - \tr (M)\, X + \det (M)$}
+Pour une matrice de rang 2, le polynôme caractéristique est donc donné par
+\begin{empheq}[box=\ibox]{equation}
+ \chi_M = X^2 - \tr (M)\, X + \det (M)
+\end{empheq}
+
 \end{itheorem}
+\begin{proof}
+     Il suffit de développer le polynôme caractéristique, en sachant que les valeurs propres sont les racines, puis d'identifier.
+\end{proof}
+%TODO: multiplicité valeur propres
+\begin{theorem}[Polynôme caractéristique d'une matrice triangulaire]
+% Merci Wikipedia pour la matrice
+     Soit $A=\begin{pmatrix}
+a_{1,1} & a_{1,2} & \ldots & \ldots & a_{1,n} \\
+0       & a_{2,2} & \ldots & \ldots & a_{2,n} \\
+\vdots  & \ddots  & \ddots &        & \vdots  \\
+\vdots  &         & \ddots & \ddots & \vdots  \\
+0       & \ldots  & \ldots & 0       & a_{n,n}
+\end{pmatrix}$ une matrice triangulaire supérieure.\\[0.6\baselineskip]
+Le polynôme caractéristique de cette matrice est 
+\begin{equation}
+\chi_A = \det (A - X\, I_n) = \prod (a_{i,i} - X)
+\end{equation}
+\end{theorem}
 \section{Endomorphismes et matrices carrées diagonalisables}
 \label{sec:diagonalisation}
 \begin{dfn}[Endomorphisme diagonalisable]
      On dit que $u$ de $E$ est \emph{diagonalisable}\index{Diagonalisable} s'il existe une base $\mathcal{B}$ de $E$ dans laquelle la matrice de $u$ est diagonalisable.
 \end{dfn}
+%
 \begin{dfn}[Quelques définitions]
 Quelques définitions portant sur le polynôme : 
     \begin{description}
