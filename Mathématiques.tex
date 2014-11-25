@@ -415,6 +415,13 @@ C'est la fonction $\varphi$ telle que
 \part{Algèbre}
 \chapter{Réduction des Endomorphismes}
 \begin{methode}
+     \titre{Valeurs propres}
+     Pour montrer que $\lambda$ est une valeur propre d'un endomorphisme $u$ d'un espace vectoriel $E$, on peut : 
+     \begin{itemize}
+         \item Revenir à la définition, et trouver un vecteur propre $x$ tel que $u(x) = \lambda x$
+         \item Montrer que l'application $f - \lambda \mathrm{Id}_E$ est non-injective, \uline{c'est-à-dire} que \[\det (f - \lambda \mathrm{Id}_E) = 0\]
+         \item Montrer que $\lambda$ est une racine du polynôme caractéristique $\chi_u$ de $u$
+     \end{itemize}
      \titre{Polynôme caractéristique}
      \titre{Polynôme minimal}
      Si on cherche le polynôme minimal d'un endomorphisme $u$ dans l'espace $E$ de \emphhs{dimension finie}, on peut avoir recours aux affirmations suivantes :
@@ -562,9 +569,20 @@ Le programme officiel précise le corrolaire qui va avec :
 % subsection elements_propres_dim_finie (end)
 % section elements_propres_d_un_endomorphisme (end)
 \section{Polynôme Caractéristique}
+Pour une matrice carrée $M$, on cherche un polynôme dont les valeurs propres sont les racines. C'est alors qu'est né le polynôme caractéristique. 
 \begin{dfn}[Polynôme caractéristique]
-On appelle \emph{Polynôme caractéristique}\index{Polynome@Polynôme!caracteristique@caractéristique}, et l'on note $\chi_M$ le déterminant de la matrice $\left( M - X \, I_n \right)$\\
-\ibox{$\chi_M = \det\left( M - X I_n \right)$}
+Soit $u$ un endomorphisme de $E$, un $\mathbb{K}$-espace vectoriel de \emphh{dimension finie} $n$. Soit $M$ sa matrice dans une base associée $\mathcal{B}$. \\
+Le \emph{polynôme caractéristique} de $u$, noté $\chi_u$, est le déterminant de l'application $\left( u - X \. \mathrm{Id}_E \right)$\newline
+De même, le \emph{polynôme caractéristique}\index{Polynome@Polynôme!caracteristique@caractéristique} de la matrice $M$, noté $\chi_M$, est le déterminant de la matrice $\left( M - X \, I_n \right)$
+\begin{equation}
+    \chi_u = \det\left( u - X \. \mathrm{Id}_E \right) \\ 
+    \chi_M = \det\left( M - X \. I_n \right)
+\end{equation}
+Ce polynôme est de degré $n$. Le polynôme caractéristique doit être \emphhs{unitaire}. Bien sûr, on a :
+\begin{equation}
+\chi_u = \chi_M
+\end{equation}
+
 \end{dfn}
 
 \begin{itheorem}
@@ -577,8 +595,8 @@ Pour une matrice de rang 2, le polynôme caractéristique est donc donné par \\
 \end{itheorem}
 \section{Endomorphismes et matrices carrées diagonalisables}
 \label{sec:diagonalisation}
-\begin{dfn}[Endomorphisme diagonalisable\index{Diagonalisable}]
-    On dit que $u$ est \emph{diagonalisable} si et seulement si $E$ est la \emphh{\uline{somme directe}} des espaces propres de $u$.
+\begin{dfn}[Endomorphisme diagonalisable]
+     On dit que $u$ de $E$ est \emph{diagonalisable}\index{Diagonalisable} s'il existe une base $\mathcal{B}$ de $E$ dans laquelle la matrice de $u$ est diagonalisable.
 \end{dfn}
 \begin{dfn}[Quelques définitions]
 Quelques définitions portant sur le polynôme : 
@@ -600,6 +618,7 @@ Quelques définitions portant sur le polynôme :
 \end{itheorem}
 % section diagonalisation (end)
 \section{Endomorphismes et matrices carrées trigonalisables}
+
 \section{Endomorphismes nilpotents}
 \section{Polynômes d'un endomorphisme} % (fold)
 \label{sec:polyn_mes_d_un_endomorphisme}
