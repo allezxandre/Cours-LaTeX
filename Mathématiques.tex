@@ -639,9 +639,12 @@ Le polynôme caractéristique de cette matrice est
 \begin{dfn}[Endomorphisme diagonalisable]
      On dit que $u$ de $E$ est \emph{diagonalisable}\index{Diagonalisable} s'il existe une base $\mathcal{B}$ de $E$ dans laquelle la matrice de $u$ est diagonalisable.
 \end{dfn}
+\begin{dfn}[Matrice diagonalisable]
+     Une matrice carrée est dite \emph{diagonalisable} si l'endomorphisme de $\mathbb{K}^n$ qui lui est canoniquement associé est diagonalisable. 
+\end{dfn}
 %
 \begin{dfn}[Quelques définitions]
-Quelques définitions portant sur le polynôme : 
+Quelques définitions portant sur les polynômes : 
     \begin{description}
     \item[Racine simple] Une racine $\alpha$ du polynôme $P$ est dite simple si elle n'est pas multiple. On dit que son \uline{ordre de multiplicité est égal à $1$}.
     \item[Polynôme scindé] $P$ est scindé s'il peut s'écrire comme \uline{le produit de polynômes du premier degré}.
@@ -672,6 +675,9 @@ Quelques définitions portant sur le polynôme :
      \end{equation}
      $P(u)$ est appelé \emph{polynôme de l'endomorphisme}\index{Polynome@Polynôme!endomorphisme@\emphi{d'un }endomorphisme} $u$.
 \end{dfn}
+\begin{theorem}
+     Pour $u$ dans $\mathcal{L}(E)$, l'application $P \mapsto P(u)$ est un \emphhs{morphisme d'algèbre} de $\mathbb{K}[X]$ dans $\mathcal{L}(E)$
+\end{theorem}
 \subsubsection{\textsc{Cayley}-\textsc{Hamilton}} % (fold)
 \label{ssub:Cayley-Hamilton}
 \begin{itheorem}[\textsc{Cayley-Hamilton}%
