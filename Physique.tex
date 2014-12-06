@@ -128,6 +128,43 @@ H &= U + PV \\
 \end{subequations}
 \end{dfn}
 %
+\section{Deuxième Principe}
+\begin{itheorem}[Deuxième principe\index{Deuxieme principe@Deuxième principe}]
+Il existe une \textbf{fonction d'état} $S$ \emph{entropie}\index{Entropie}, \textbf{additive}, \textbf{extensive}, telle que : 
+\begin{equation}\label{SecondPrincipe}
+\d S = \delta S_\text{créée} + \delta S_\text{échangée}\\
+\text{\textcolor{couleurFonce!50}{avec }}\boxed{\delta S_\text{échangée} = \dfrac{\delta Q}{T}}
+\end{equation}
+Au final, \ibox{$\delta S_\text{créée} \ge 0$}. \\
+Lorsqu'une transformation est \emph{réversible}, on a \ibox{$S_\text{créée} = 0$} et alors \ibox{$\d S = \dfrac{\delta Q}{T}$}
+\end{itheorem}
+%
+\section{Cas particulier du gaz parfait} % (fold)
+\label{sec:gaz_parfait}
+\begin{dfn}[Gaz Parfait]
+Un gaz parfait est un gaz vérifiant 
+\begin{equation}
+PV=nRT
+\end{equation}
+\end{dfn}
+%
+\begin{theorem}[Énergie interne d'un gaz parfait]
+   L'énèrgie cinétique interne d'un gaz parfait ne varie pas. On démontre expérimentalement que l'énergie interne d'un gaz parfait est :
+   \begin{equation}
+   U_\text{Gaz Parfait} = U_0 + C_VT
+   \end{equation}
+   \par
+   La capacité thermique à volume constant $C_V$ d'un gaz parfait est 
+   \begin{equation}
+   C_V = 
+   \left\lbrace
+   \begin{array}{l r}
+      \dfrac{3}{2}n R & \text{ pour un gaz parfait monoatomique}\\[3mm]
+      \dfrac{5}{2}n R & \text{ pour un gaz parfait polyatomique}
+   \end{array}
+   \right.
+   \end{equation}
+\end{theorem}
 \begin{theorem}[Capacité calorifique]
 On peut utiliser deux capacités calorifiques\index{Capacite calorifique@Capacité calorifique} : 
 \begin{subequations}
@@ -138,6 +175,10 @@ On peut utiliser deux capacités calorifiques\index{Capacite calorifique@Capacit
     C_P &= \frac{5}{2}\textcolor{couleurImp}{n}R
 \end{align}
 \end{subequations}
+Ce qui donne la \emph{relation de \textsc{Mayer}}\index{Mayer@\textsc{Mayer}} : 
+\begin{equation}
+C_P - C_V = nR
+\end{equation}
 %TODO Lier thermochimie
 \end{theorem}
 \begin{proof}
@@ -161,47 +202,6 @@ Maintenant, si on est à \uline{pression constante}, on va prendre l'enthalpie $
 \end{array}
 \]
 \end{proof}
-%
-\section{Deuxième Principe}
-\begin{itheorem}[Deuxième principe\index{Deuxieme principe@Deuxième principe}]
-Il existe une \textbf{fonction d'état} $S$ \emph{entropie}\index{Entropie}, \textbf{additive}, \textbf{extensive}, telle que : 
-\begin{equation}\label{SecondPrincipe}
-\d S = \delta S_\text{créée} + \delta S_\text{échangée}\\
-\text{\textcolor{couleurFonce!50}{avec }}\boxed{\delta S_\text{échangée} = \dfrac{\delta Q}{T}}
-\end{equation}
-Au final, \ibox{$\delta S_\text{créée} \ge 0$}. \\
-Lorsqu'une transformation est \emph{réversible}, on a \ibox{$S_\text{créée} = 0$} et alors \ibox{$\d S = \dfrac{\delta Q}{T}$}
-\end{itheorem}
-%
-\section{Cas particulier du gaz parfait} % (fold)
-\label{sec:gaz_parfait}
-\begin{dfn}[Gaz Parfait]
-Un gaz parfait est un gaz vérifiant 
-\begin{equation}
-PV=nRT
-\end{equation}
-Par définition, l'$E_c^*$ d'un gaz parfait ne varie pas. On démontre expérimentalement que :
-\ibox{$U_\text{Gaz Parfait} = U_0 + C_VT$}
-\end{dfn}
-%
-\begin{theorem}[Énergie interne d'un gaz parfait]
-   L'énèrgie cinétique interne d'un gaz parfait ne varie pas. On démontre expérimentalement que l'énergie interne d'un gaz parfait est :
-   \begin{equation}
-   U_\text{Gaz Parfait} = U_0 + C_VT
-   \end{equation}
-   \par
-   La capacité thermique à volume constant $C_V$ d'un gaz parfait est 
-   \begin{equation}
-   C_V = 
-   \left\lbrace
-   \begin{array}{l r}
-      \dfrac{3}{2}n R & \text{ pour un gaz parfait monoatomique}\\[3mm]
-      \dfrac{5}{2}n R & \text{ pour un gaz parfait polyatomique}
-   \end{array}
-   \right.
-   \end{equation}
-   
-\end{theorem}
 \begin{itheorem}[Relations de \textsc{Laplace}]
    Au cours d'une transformation \emphh{adiabatique réversible} (donc isentropique), un gaz parfait vérifie : 
    \begin{subequations}
@@ -230,9 +230,9 @@ Par définition, l'$E_c^*$ d'un gaz parfait ne varie pas. On démontre expérime
    \end{equation}
    De même, le second principe s'écrit cette fois : 
    \begin{equation}
-   S_\text{échangée} \sum \dfrac{Q_i}{T_i} \le 0
+   S_\text{échangée} = \sum \dfrac{Q_i}{T_i} \le 0
    \end{equation}
-   On appelle ce second principe l'inégalité de Clausius.
+   On appelle ce second principe l'\emph{inégalité de \textsc{Clausius}}\index{Clausius@\textsc{Clausius}!inegalite@inégalité}.
 \end{theorem}
 \begin{theorem}[Rendement]
    Le rendement $r$ est défini par :
@@ -241,11 +241,34 @@ Par définition, l'$E_c^*$ d'un gaz parfait ne varie pas. On démontre expérime
    r &= \dfrac{\text{Transfert énergétique utile}}{\text{Énergie fournie à la machine}} \notag \\
    r_\text{moteur}  &= -\dfrac{W}{Q_c} \\
    r_\text{réfrigérateur}  &= -\dfrac{Q_f}{W} \\
-   r_\text{Pompe à chaleur}  &= -\dfrac{Q_c}{W}
+   r_\text{pompe à chaleur}  &= -\dfrac{Q_c}{W}
    \end{align}
    \end{subequations}
 \end{theorem}
 % section machines_thermiques (end)
+\section{Systèmes ouverts en régime stationnaire} % (fold)
+\label{sec:systemes_ouverts}
+\subsection{Système ouvert} % (fold)
+\label{sub:systeme_ouvert}
+\begin{dfn}[Système ouvert]
+   Un \emph{système ouvert}\index{Systeme@Système!ouvert} est un système dont l'espace est traversé par de la matière. \\
+   Pour être conforme au programme, on n'étudie que l'écoulement dans le cas unidimensionnel.
+\end{dfn}
+\begin{dfn}[Régime stationnaire]
+   Un système ouvert en \emph{régime stationnaire}\index{Regime@Régime!stationnaire@stationnaire \emphi{(Thermodynamique)}} est un sytème pour lequel toutes les caractéristiques du fluide contenu à l'intérieur du système ne changent pas.
+\end{dfn}
+\begin{dfn}[Débits massiques]
+   On se place dans le cas de systèmes ouverts en \emphh{régime stationnaire}. La masse étant une caractéristique du fluide, elle ne varie pas non plus. \\
+   C'est-à-dire que le débit de fluide massique entrant $\d m_e$ est égal au débit massique de fluide sortant $\d m_s$, et on peut définir le \emph{débit massique} $D_m$ à travers le système comme étant $D_m =\d m_e = \d m_s$.\\
+   Si $\d m$ est la masse de fluide entrée/sortie pendant un court instant $\d t$ : 
+   \begin{equation}
+   D_m = \dfrac{\d m}{\d t}
+   \end{equation}
+   
+\end{dfn}
+% subsection systeme_ouvert (end)
+% section systemes_ouverts (end)
+% chapter thermodynamique (end)
 \chapter{Statique des fluides} % (fold)
 \label{cha:statique_des_fluides}
 \section{Champ de pression d'un fluide} % (fold)
@@ -1957,9 +1980,9 @@ Cette force\index{Force!Laplace@\emphi{de }\textsc{Laplace}} est bien \uline{vol
 \subsection{Force electomotrice induite} % (fold)
 \label{sub:force_electomotrice_induite}
 \begin{dfn}[Champ électromoteur]
-   Lorsqu'on déplace un conducteur à une vitesse $\vv{v}$ dans un champ magnétique $\B_0$ stationnaire, il crée un \emph{champ électrique électromoteur}\index{Champ!électromoteur} $\vv*{E}{m}$
+   Lorsqu'on déplace un conducteur à une vitesse $\vv{v}$ dans un champ magnétique $\B{}_0$ stationnaire, il crée un \emph{champ électrique électromoteur}\index{Champ!électromoteur} $\vv*{E}{m}$
    \begin{equation}
-   \vv*{E}{m}(M,t) = \vv{v}(M,t) \wedge \B_0(M)
+   \vv*{E}{m}(M,t) = \vv{v}(M,t) \wedge \B{}_0(M)
    \end{equation}
 \end{dfn}
 \begin{theorem}[Force électromotrice induite]
@@ -3223,15 +3246,8 @@ On va prendre pour exemple le fer : $Fe^{3+}/Fe(OH)_3 (s)/Fe^{2+}/Fe(OH)_2 (s)/F
 \end{figure}
 \end{enumerate}
 % section methode (end)
-%\chapter{Annexe}
-%\section{Tableau Périodique des Éléments} 
-%Moyen mnémotechnique\\
-%
-%\label{TableauPeriodique}
-
 % part chimie (end)
 \printnoidxglossary[type=\acronymtype,style=longragged,title={Liste des acronymes}]
 \printindex{}
-%
 \end{document}
 %
