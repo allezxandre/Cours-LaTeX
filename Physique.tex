@@ -97,30 +97,6 @@ U = U_0 + E_c^*+\underbrace{E_p^*}_{\mathclap{\text{Énergie potentielle d'inter
 \end{equation}
 \end{dfn}
 %
-\section{Gaz Parfait} % (fold)
-\label{sec:gaz_parfait}
-\begin{dfn}[Gaz Parfait]
-Un gaz parfait est un gaz vérifiant 
-\begin{equation}
-PV=nRT
-\end{equation}
-Par définition, l'$E_c^*$ d'un gaz parfait ne varie pas. On démontre expérimentalement que :
-\ibox{$U_\text{Gaz Parfait} = U_0 + C_vT$}
-\end{dfn}
-%
-\begin{itheorem}[Relations de \textsc{Laplace}]
-   Au cours d'une transformation \emphh{adiabatique réversible} (donc isentropique), un gaz parfait vérifie : 
-   \begin{subequations}
-      \begin{align}
-         PV^\gamma &= \text{constante}\\
-         TV^{\gamma - 1} &= \text{constante}\\
-         P^{1-\gamma}T^\gamma &= \text{constante}\\
-            &= P_\text{éq}V_\text{éq}\notag
-      \end{align}
-   \end{subequations}
-   Où $\gamma = \dfrac{C_p}{C_v}$
-\end{itheorem}
-% section gaz_parfait (end)
 \section{Premier Principe}
 \begin{dfn}[Transfert thermique]
 Le \emph{transfert thermique}\index{Transfert thermique} est un \uline{apport de chaleur} lors d'un transfert de température : 
@@ -196,6 +172,48 @@ Au final, \ibox{$\delta S_\text{créée} \ge 0$}. \\
 Lorsqu'une transformation est \emph{réversible}, on a \ibox{$S_\text{créée} = 0$} et alors \ibox{$\d S = \dfrac{\delta Q}{T}$}
 \end{itheorem}
 %
+\section{Cas particulier du gaz parfait} % (fold)
+\label{sec:gaz_parfait}
+\begin{dfn}[Gaz Parfait]
+Un gaz parfait est un gaz vérifiant 
+\begin{equation}
+PV=nRT
+\end{equation}
+Par définition, l'$E_c^*$ d'un gaz parfait ne varie pas. On démontre expérimentalement que :
+\ibox{$U_\text{Gaz Parfait} = U_0 + C_VT$}
+\end{dfn}
+%
+\begin{theorem}[Énergie interne d'un gaz parfait]
+   L'énèrgie cinétique interne d'un gaz parfait ne varie pas. On démontre expérimentalement que l'énergie interne d'un gaz parfait est :
+   \begin{equation}
+   U_\text{Gaz Parfait} = U_0 + C_VT
+   \end{equation}
+   \par
+   La capacité thermique à volume constant $C_V$ d'un gaz parfait est 
+   \begin{equation}
+   C_V = 
+   \left\lbrace
+   \begin{array}{l r}
+      \dfrac{3}{2}n R & \text{ pour un gaz parfait monoatomique}\\[3mm]
+      \dfrac{5}{2}n R & \text{ pour un gaz parfait polyatomique}
+   \end{array}
+   \right.
+   \end{equation}
+   
+\end{theorem}
+\begin{itheorem}[Relations de \textsc{Laplace}]
+   Au cours d'une transformation \emphh{adiabatique réversible} (donc isentropique), un gaz parfait vérifie : 
+   \begin{subequations}
+      \begin{align}
+         PV^\gamma &= \text{constante}\\
+         TV^{\gamma - 1} &= \text{constante}\\
+         P^{1-\gamma}T^\gamma &= \text{constante}\\
+            &= P_\text{éq}V_\text{éq}\notag
+      \end{align}
+   \end{subequations}
+   Où $\gamma = \dfrac{C_P}{C_V}$
+\end{itheorem}
+% section gaz_parfait (end)
 \section{Troisième Principe} % (fold)
 \label{sec:troisieme_principe}
 \begin{dfn}[Troisième principe\index{Troisieme principe@Troisième principe}]
