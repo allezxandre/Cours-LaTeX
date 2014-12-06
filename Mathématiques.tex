@@ -434,6 +434,7 @@ C'est la fonction $\varphi$ telle que
          \item Revenir à la définition, et trouver un vecteur propre $x$ tel que $u(x) = \lambda x$
          \item Montrer que l'application $f - \lambda \mathrm{Id}_E$ est non-injective, \uline{c'est-à-dire} que \[\det (f - \lambda \mathrm{Id}_E) = 0\]
          \item Montrer que $\lambda$ est une racine du polynôme caractéristique $\chi_u$ de $u$
+         \item On sait que la somme des valeurs propres est égale à la trace
      \end{itemize}
      \titre{Polynôme caractéristique}
      Si on cherche le polynôme caractéristique d'un endomorphisme $u$, ces étapes peuvent permettre d'avancer sa détermination :
@@ -646,6 +647,9 @@ Le polynôme caractéristique de cette matrice est
 \begin{equation}
 \chi_A = \det (A - X\, I_n) = \prod (a_{i,i} - X)
 \end{equation}
+\end{theorem}
+\begin{theorem}[Polynôme caractéristiqur d'un endomorphisme induit]
+     Soit $u$ un endomorphisme de $E$. Le polynôme caractéristique d'un endomorphisme induit de $u$ divise $\chi_u$.
 \end{theorem}
 \section{Endomorphismes et matrices carrées diagonalisables}
 \label{sec:diagonalisation}
