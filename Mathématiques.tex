@@ -750,10 +750,10 @@ Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé l
 
 % section endomorphismes_polynome_minimal_scinde (end)
 % chapter Reduction (end)
-\part{Topologie des espaces vectoriels normés}
-\chapter{Normes et espaces vectoriels normés}
-\section{Rappels} % (fold)
-\label{sec:rappels}
+\chapter{Topologie des espaces vectoriels normés}
+\section{Normes et espaces vectoriels normés}
+\subsection{Rappels} % (fold)
+\label{sub:rappels}
 \begin{dfn}[Espace vectoriel]
      Soit $\mathbb{K}$ un corps ($\mathbb{R}$ ou $\mathbb{C}$).\newline
      $E$ est un $\mathbb{K}$-\emph{espace vectoriel}\index{Espace!vectoriel} s'il respecte les conditions suivantes : 
@@ -770,8 +770,8 @@ Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé l
      \end{equation}
      
 \end{dfn}
-% section rappels (end)
-\section{Norme}
+% subsection rappels (end)
+\subsection{Norme}
 \begin{dfn}[Définition de la norme]
 Soit $E$ un espace vectoriel de
 $\mathbb{K}$. Une \emph{norme}\index{Norme} 
@@ -794,8 +794,8 @@ vectoriel normé} associé.
 \begin{theorem}[Norme $N_2$\index{Norme!Euclidienne}]
 $N_2 : f \mapsto \left( \int \limits_{[a,b]} |f|^2 \right)^{\frac{1}{2}}$ est une norme sur $\mathcal{C}\left( [a,b], \mathbb{K} \right)$
 \end{theorem}
-\section{Distance} % (fold)
-\label{sec:distance}
+\subsection{Distance} % (fold)
+\label{sub:distance}
 Il y a plusieurs manières de définir la distance. Si on se place dans un espace vectoriel normé, on peut utiliser la norme pour définir la distance, comme dans la définition~\ref{dfn:Distance_Norme}. Sinon, si l'espace est quelconque, la distance peut avoir la définition générale suivante : 
 \begin{dfn}[Distance dans un espace quelconque]
 Soit $E$ un ensemble. On appelle \emph{distance} dans $E$ toute application $d : E\times E \to \mathbb{R}^+$ telle que :
@@ -819,7 +819,9 @@ Soit $E$ un ensemble. On appelle \emph{distance} dans $E$ toute application $d :
         \end{array}
      \end{equation}
 \end{dfn}
-% section distance (end)
+% subsection distance (end)
+\subsection{Boules} % (fold)
+\label{sub:boules}
 \begin{dfn}[Boule]
 Dans une espace vectoriel normé $(E,N)$, on définit les boules centrées en $a$ et de rayon $r$
     \begin{tabular}{>{\begin{bf}}r<{\end{bf}}@{ de rayon $r$ centrée en $a$ : $\quad$ } l}
@@ -838,6 +840,7 @@ Dans une espace vectoriel normé $(E,N)$, on définit les boules centrées en $a
     \end{array}
     \end{equation}
 \end{dfn}
+% subsection boules (end)
 \section{Complets} % (fold)
 \label{sec:complets}
 \begin{dfn}[Complet]\index{Complet}
@@ -850,7 +853,7 @@ CÀD si \uline{toute suite de Cauchy est convergente}
 Un \emph{espace de \textsc{Banach}}\index{banach@\textsc{Banach}!Espace} est un espace-vectoriel \uline{normé et complet}.
 \end{dfn}
 % section complets (end)
-\section{Compacts} % (fold)
+\section{Parties compactes d'un espace normé} % (fold)
 \label{sec:compacts}
 \begin{dfn}[Compact]\index{Compact}
 $A$ \emph{compact} si toute suite d'éléments $(x_n)_n \in A$ a au moins une valeur d'adhérence\\
