@@ -763,7 +763,7 @@ Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé l
        (i)  &(E,+) \text{ est un }&\text{\textcolor{couleur4}{\bf\underline{groupe abélien}}}&\textbf{Groupe pour la loi }+\\
        (ii) &\forall x\in E,& \textcolor{couleur4}{{1\cdot x = x}}&\textbf{Neutre multiplicatif}\\
        (iii) &\forall (\alpha, \beta) \in \mathbb{K}^2, \forall x\in E,& \textcolor{couleur4}{{(\alpha + \beta) x = \alpha x + \beta x}} &\textbf{Distributivité pour }\boldsymbol{\mathbb{K}} \\
-       (iv) &\forall \alpha \in \mathbb{K}, \forall (x,y) \in E^2,& \textcolor{couleur4}{{\alpha (x+y) = \alpha x + \alpha y}} &\textbf{Distributivité pour }\boldsymbol{\mathbb{E}}\\
+       (iv) &\forall \alpha \in \mathbb{K}, \forall (x,y) \in E^2,& \textcolor{couleur4}{{\alpha (x+y) = \alpha x + \alpha y}} &\textbf{Distributivité pour }\boldsymbol{E}\\
        (v) &\forall \alpha \in \mathbb{K}, \forall (x,y) \in E^2,& \textcolor{couleur4}{{\alpha \cdot (\beta \cdot y) = (\alpha \cdot \beta ) \cdot x}} &\textbf{Associativité}
       \end{array}
         \right.
@@ -773,22 +773,22 @@ Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé l
 % section rappels (end)
 \section{Norme}
 \begin{dfn}[Définition de la norme]
-Soit $\mathbb{E}$ un espace vectoriel de
+Soit $E$ un espace vectoriel de
 $\mathbb{K}$. Une \emph{norme}\index{Norme} 
 est une application $N : E \to \mathbb{R}^+$ vérifiant : 
 
 \begin{equation}
 \left| 
 \begin{array}{c l l}
-(i)&\forall x \in \mathbb{E}, N(x)=0 \implies x=0 &\textbf{Séparation}\\
-(ii)&\forall x \in \mathbb{E}, \forall \lambda \in \mathbb{K}, N(\lambda x)=|\lambda|N(x) &\textbf{Homogénéité}\\
-(iii)&\forall (x,y) \in \mathbb{E}^2, N(x+y)\le N(x)+N(y)&\textbf{Inégalité triangulaire}\\
+(i)&\forall x \in E, N(x)=0 \implies x=0 &\textbf{Séparation}\\
+(ii)&\forall x \in E, \forall \lambda \in \mathbb{K}, N(\lambda x)=|\lambda|N(x) &\textbf{Homogénéité}\\
+(iii)&\forall (x,y) \in E^2, N(x+y)\le N(x)+N(y)&\textbf{Inégalité triangulaire}\\
 \end{array}
 \right.
 \end{equation}
 \index{inegalite@Inégalité!triangulaire}
 
-Et le couple $(\mathbb{E},N)$ est l'\index{Espace!norme@normé}\emph{espace
+Et le couple $(E,N)$ est l'\index{Espace!norme@normé}\emph{espace
 vectoriel normé} associé.
 \end{dfn}
 \begin{theorem}[Norme $N_2$\index{Norme!Euclidienne}]
