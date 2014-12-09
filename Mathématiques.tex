@@ -794,6 +794,32 @@ vectoriel normé} associé.
 \begin{theorem}[Norme $N_2$\index{Norme!Euclidienne}]
 $N_2 : f \mapsto \left( \int \limits_{[a,b]} |f|^2 \right)^{\frac{1}{2}}$ est une norme sur $\mathcal{C}\left( [a,b], \mathbb{K} \right)$
 \end{theorem}
+\section{Distance} % (fold)
+\label{sec:distance}
+Il y a plusieurs manières de définir la distance. Si on se place dans un espace vectoriel normé, on peut utiliser la norme pour définir la distance, comme dans la définition~\ref{dfn:Distance_Norme}. Sinon, si l'espace est quelconque, la distance peut avoir la définition générale suivante : 
+\begin{dfn}[Distance dans un espace quelconque]
+Soit $E$ un ensemble. On appelle \emph{distance} dans $E$ toute application $d : E\times E \to \mathbb{R}^+$ telle que :
+     \begin{equation}
+        \left| 
+        \begin{array}{c l l l}
+        (i)&\forall x \in E,& d(x,y)=0 \implies x=y &\textbf{Séparation}\\
+        (ii)&\forall (x,y) \in E^2,& d(x,y) = d(y,x) &\textbf{Symétrie}\\
+        (iii)&\forall (x,y,z) \in E^3,& d(x,z)\le d(x,y)+d(y,z)&\textbf{Inégalité triangulaire}\\
+        \end{array}
+        \right.
+        \end{equation}
+\end{dfn}
+\begin{dfn}[Distance associée à une norme]\label{dfn:Distance_Norme}
+     Soit $(E,\| \cdot \|)$ un espace vectoriel normé\newline
+     La \emph{distance}\index{Distance} $d$ associée à la norme $\| \cdot \|$ est l'application :
+     \begin{equation}
+     \begin{array}{r @{\,}c@{\,} c @{\,}c@{\,} @{\,} l}
+     d &: &E^2 &\to &\mathbb{R}^+ \\
+        & &(x,y) &\mapsto & \| x - y \| 
+        \end{array}
+     \end{equation}
+\end{dfn}
+% section distance (end)
 \begin{dfn}[Boule]
 Dans une espace vectoriel normé $(E,N)$, on définit les boules centrées en $a$ et de rayon $r$
     \begin{tabular}{>{\begin{bf}}r<{\end{bf}}@{ de rayon $r$ centrée en $a$ : $\quad$ } l}
