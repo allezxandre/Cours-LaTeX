@@ -750,14 +750,34 @@ Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé l
 
 % section endomorphismes_polynome_minimal_scinde (end)
 % chapter Reduction (end)
-\chapter{Topologie d'un espace vectoriel normé}
+\part{Topologie des espaces vectoriels normés}
+\chapter{Normes et espaces vectoriels normés}
+\section{Rappels} % (fold)
+\label{sec:rappels}
+\begin{dfn}[Espace vectoriel]
+     Soit $\mathbb{K}$ un corps ($\mathbb{R}$ ou $\mathbb{C}$).\newline
+     $E$ est un $\mathbb{K}$-\emph{espace vectoriel}\index{Espace!vectoriel} s'il respecte les conditions suivantes : 
+     \begin{equation}
+        \left| 
+      \begin{array}{c l l l}
+       (i)  &(E,+) \text{ est un }&\text{\textcolor{couleur4}{\bf\underline{groupe abélien}}}&\textbf{Groupe pour la loi }+\\
+       (ii) &\forall x\in E,& \textcolor{couleur4}{{1\cdot x = x}}&\textbf{Neutre multiplicatif}\\
+       (iii) &\forall (\alpha, \beta) \in \mathbb{K}^2, \forall x\in E,& \textcolor{couleur4}{{(\alpha + \beta) x = \alpha x + \beta x}} &\textbf{Distributivité pour }\boldsymbol{\mathbb{K}} \\
+       (iv) &\forall \alpha \in \mathbb{K}, \forall (x,y) \in E^2,& \textcolor{couleur4}{{\alpha (x+y) = \alpha x + \alpha y}} &\textbf{Distributivité pour }\boldsymbol{\mathbb{E}}\\
+       (v) &\forall \alpha \in \mathbb{K}, \forall (x,y) \in E^2,& \textcolor{couleur4}{{\alpha \cdot (\beta \cdot y) = (\alpha \cdot \beta ) \cdot x}} &\textbf{Associativité}
+      \end{array}
+        \right.
+     \end{equation}
+     
+\end{dfn}
+% section rappels (end)
 \section{Norme}
 \begin{dfn}[Définition de la norme]
 Soit $\mathbb{E}$ un espace vectoriel de
-$\mathbb{K}$. On définit une \emph{norme}\index{Norme} sur $\mathbb{E}$
-comme une application vérifiant : 
+$\mathbb{K}$. Une \emph{norme}\index{Norme} 
+est une application $N : E \to \mathbb{R}^+$ vérifiant : 
 
-\[
+\begin{equation}
 \left| 
 \begin{array}{c l l}
 (i)&\forall x \in \mathbb{E}, N(x)=0 \implies x=0 &\textbf{Séparation}\\
@@ -765,10 +785,11 @@ comme une application vérifiant :
 (iii)&\forall (x,y) \in \mathbb{E}^2, N(x+y)\le N(x)+N(y)&\textbf{Inégalité triangulaire}\\
 \end{array}
 \right.
-\]\index{inegalite@Inégalité!triangulaire}
+\end{equation}
+\index{inegalite@Inégalité!triangulaire}
 
-Et le couple $(\mathbb{E},N)$ est l'\index{Espace!norme@Normé}espace
-vectoriel normé associé.
+Et le couple $(\mathbb{E},N)$ est l'\index{Espace!norme@normé}\emph{espace
+vectoriel normé} associé.
 \end{dfn}
 \begin{theorem}[Norme $N_2$\index{Norme!Euclidienne}]
 $N_2 : f \mapsto \left( \int \limits_{[a,b]} |f|^2 \right)^{\frac{1}{2}}$ est une norme sur $\mathcal{C}\left( [a,b], \mathbb{K} \right)$
