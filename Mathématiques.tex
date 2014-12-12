@@ -722,8 +722,15 @@ Quelques définitions portant sur les polynômes :
 \end{dfn}
 \needspace{3cm}
 \begin{theorem}
-     Pour $u$ dans $\mathcal{L}(E)$, l'application $P \mapsto P(u)$ est un \emphhs{morphisme d'algèbre} de $\mathbb{K}[X]$ dans $\mathcal{L}(E)$
+     Pour $u$ dans $\mathcal{L}(E)$, l'application $P \mapsto P(u)$ est un \emphhs{morphisme d'algèbre} de $\mathbb{K} [X]$ dans $\mathcal{L}(E)$
 \end{theorem}
+\begin{theorem}%TODO: fix title [Base de $\mathbb{K} [u]$]
+     Si $d$ est le degré du polynôme minimal $P_u$ de $u$, alors la famille $(u^k)_{k \in \left[ 0 , d-1 \right] }$ est une base de $\mathbb{K} [u]$.
+\end{theorem}
+\begin{proof}
+     Soit $d$ le degré minimal du polynôme minimal $P_u$. La famille $(\mathrm{Id}, u, u^2, \ldots , u^{d-1} )$ est libre. 
+     %TODO: Finir cette demo (p. 84 dans le livre de Vuibert)
+\end{proof}
 \subsubsection{\textsc{Cayley}-\textsc{Hamilton}} % (fold)
 \label{ssub:Cayley-Hamilton}
 \begin{itheorem}[\textsc{Cayley-Hamilton}%
