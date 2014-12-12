@@ -686,6 +686,28 @@ Quelques définitions portant sur les polynômes :
 \begin{dfn}[Endomorphisme nilpotent]
      On dit qu'un endormorphisme $u$ est \emph{nilpotent}\index{Nilpotent} d'indice $p\ge 1$ si $u^p = 0$ avec $u^{p-1} \neq 0$.
 \end{dfn}
+\subsection{Propriétés en dimension finie} % (fold)
+\label{sub:proprietes_en_dimension_finie}
+\begin{theorem}[Endomorphisme nilpotent trigonalisable]
+     Un endomorphisme $u$ dans un espace $E$ de dimension finie est nilpotent \ssi $u$ est trigonalisable avec $0$ pour seule valeur propre.
+\end{theorem}
+%TODO: demo? (Très facile)
+\begin{theorem}[Majoration de l'indice de nilpotence]
+     Dans un espace de dimension $n$, l'indice de nilpotence d'un endomorphisme ne dépasse pas $n$. \\
+     Si $u$ est nilpotent d'indice $n$, il existe une base $\mathcal{B}$ dans laquelle la matrice de $u$ est de la forme :
+     \begin{equation}
+     J_n=
+     \begin{pmatrix}
+             0   &         1       &    0   & \cdots &    0   \\
+          \vdots &      \ddots     & \ddots &        & \vdots \\
+          \vdots &                 & \ddots & \ddots & \vdots \\
+          \vdots & \scalebox{2}{0} &        & \ddots &    1   \\
+             0   &      \cdots     & \cdots & \cdots &    0  
+          %   0   & \hdotsfor{3} & 0
+     \end{pmatrix}
+     \end{equation}
+\end{theorem}
+% subsection proprietes_en_dimension_finie (end)
 % section endomorphismes_nilpotents (end)
 \section{Polynômes d'un endomorphisme} % (fold)
 \label{sec:polyn_mes_d_un_endomorphisme}
