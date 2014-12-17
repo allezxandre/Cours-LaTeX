@@ -782,6 +782,22 @@ Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé l
 % section endomorphismes_polynome_minimal_scinde (end)
 % chapter Reduction (end)
 \chapter{Topologie des espaces vectoriels normés}
+\begin{methode}
+     \titre{Application continue}
+     Soient $E$ et $F$ deux espaces vectoriels normés. Soit une application continue $f : E \to F$.
+     \begin{itemize}
+         \item $f : A\in E\to F$ conserve : 
+         \begin{itemize}
+            \item les parties compactes
+            \item les parties connexes par arcs
+         \end{itemize}
+         \item $f^{-1} : F \to E$ conserve :
+         \begin{itemize}
+             \item les parties fermées
+             \item les parties ouvertes
+         \end{itemize}
+     \end{itemize}
+\end{methode}
 \section{Normes et espaces vectoriels normés}
 \subsection{Rappels} % (fold)
 \label{sub:rappels}
@@ -872,6 +888,23 @@ Dans une espace vectoriel normé $(E,N)$, on définit les boules centrées en $a
     \end{equation}
 \end{dfn}
 % subsection boules (end)
+\section{Suites d'éléments d'un espace vectoriel normé} % (fold)
+\label{sec:suites_evn}
+
+% section suites_evn (end)
+\section{Comparaison des normes} % (fold)
+\label{sec:comparaison_des_normes}
+\begin{dfn}[Normes équivalentes]
+     On dit que deux normes $N_1$ et $N_2$ sont équivalentes si
+     \begin{equation}
+     \exists (c,C)\in \mathbb{R}^{\textcolor{couleurImp}{+}},\, \forall x \in E,\, cN_1(x) \le N_2(x) \le CN_1(x)
+     \end{equation}
+     
+\end{dfn}
+\begin{itheorem}[Dimension finie]
+     Dans un espace vectoriel de dimension finie, toutes les normes sont équivalentes.
+\end{itheorem}
+% section comparaison_des_normes (end)
 \section{Complets} % (fold)
 \label{sec:complets}
 \begin{dfn}[Complet]\index{Complet}
@@ -886,20 +919,52 @@ Un \emph{espace de \textsc{Banach}}\index{banach@\textsc{Banach}!Espace} est un 
 % section complets (end)
 \section{Parties compactes d'un espace normé} % (fold)
 \label{sec:compacts}
+\begin{itheorem}[\textsc{Bolzano-Weierstrass}]
+     Toute suite réelle \emphhs{bornée} possède au moins une valeur d'adhérence.\par
+     Par extension : toute suite bornée dans un espace vectoriel normé de dimension finie possède au moins une valeur d'adhérence.
+     \index{Bolzano@\textsc{Bolzano}!Weierstrass@-\textsc{Weierstrass}}
+\end{itheorem}
+On va utiliser cette propriété pour définir un compact :
 \begin{dfn}[Compact]\index{Compact}
-$A$ \emph{compact} si toute suite d'éléments $(x_n)_n \in A$ a au moins une valeur d'adhérence\\
+$A$ est un \emph{compact} si toute suite d'éléments $(x_n)_n \in A$ a au moins une valeur d'adhérence\\
 CÀD \uline{on peut extraire de $(x_n)_n$ une suite $\left( x_{\varphi(n)} \right)
 _n$ qui converge dans $A$}
 \end{dfn}
-\begin{itheorem}[Théorème de \textsc{Heine}\index{Heine@\textsc{Heine}}]
-    Si $(E,N)$ et $(F,N)$ sont des espaces vectoriels normés, $A$ une partie \emphh{compacte} de $E$, \linebreak si $f\in \mathcal{C}(A,F)$, alors $f$ est \emphh{uniformément continue}.
+\begin{itheorem}
+     Soit $E$ un espace vectoriel. Les parties compactes de $E$ sont fermées et bornées.
 \end{itheorem}
+\begin{theorem}[Compacts en dimension finie]
+     Soit $E$ un espace vectoriel de dimension finie. \newline
+     Une partie de $E$ est compacte \ssi elle est fermée bornée.
+\end{theorem}
 \begin{theorem}
      Toute partie fermée d'un compact est compact
 \end{theorem}
+\begin{theorem}
+     Soit $E$ un espace vectoriel normé. Soit $A$ un compact de $E$.\\
+     Une suite d'éléments de $A$ converge \ssi elle possède une unique valeur d'adhérence : 
+     \begin{equation}
+     \forall (x_n)_n \in A,\, x_n \text{ converge } \Leftrightarrow \exists ! l,\, x_n\to l
+     \end{equation}
+\end{theorem}
 % section compacts (end)
+\section{Applications continues sur une partie compacte} % (fold)
+\label{sec:applications_continues_sur_une_partie_compacte}
+\begin{itheorem}[Image d'une partie compact]
+     Soit $A$ une partie d'un espace vectoriel normé $E$. Soit $F$ un espace vectoriel normé. Soit $f : A \in E \to F$.\\
+     Si $f$ est continue, l'image de tout compact de $A$ est un compact de $F$.
+\end{itheorem}
+\begin{theorem}
+     Soit $E$ un espace vectoriel normé. Soit une application $f : E \to \mathbb{R}$. \\
+     Si $f$ est continue, alors elle est bornée et \emphhs{atteint ses bornes}.
+\end{theorem}
+\begin{itheorem}[Théorème de \textsc{Heine}\index{Heine@\textsc{Heine}}]
+    Si $(E,N)$ et $(F,N)$ sont des espaces vectoriels normés, $A$ une partie \emphh{compacte} de $E$, \linebreak si $f\in \mathcal{C}(A,F)$, alors $f$ est \emphh{uniformément continue}.
+\end{itheorem}
+% section applications_continues_sur_une_partie_compacte (end)
 \section{Connexité par arcs} % (fold)
 \label{sec:connexe_par_arcs}
+\subsection{Convexité}
 \begin{dfn}[Convexe]
     \begin{minipage}{0.6\textwidth}
         Un ensemble $E$ est \emphh{convexe}\index{Convexe} si : 
@@ -941,6 +1006,7 @@ _n$ qui converge dans $A$}
 \begin{theorem}[Convexe dans \Reel]
     $I$ de $\Reel{}$ est convexe \emphh{si et seulement si} $I$ est un intervalle de $\Reel{}$
 \end{theorem}
+\subsection{Connexité}
 \begin{dfn}[Connexe par arcs]
     Une partie $A$ d'un espace vectoriel normé $(E,N)$  est \emph{connexe par arcs}\index{Connexe par arcs} \linebreak si, pour tous points $a$ et $b$ de $E$, il existe une fonction $f:[0,1] \to E$ \emphh{\uline{continue}} telle que 
     \begin{equation}
@@ -953,9 +1019,22 @@ _n$ qui converge dans $A$}
     \right.
     \end{equation}
 \end{dfn}
-\begin{theorem}[Connexe dans \Reel{}]
-    $A$ non vide de $\Reel{}$ est connexe \emphh{si et seulement si} $A$ est un intervalle de $\Reel{}$
+\begin{theorem}[Relation d'équivalence]
+     \og{} Il existe un chemin continu d'un point $x$ à un point $y$\fg{} %shameless copy from Vuibert. PS guys... I love you
+     est une relation d'équivalence sur une partie $A$ de $E$.\\
+     Les \emph{composantes connexes}\index{Composante connexe} sont les classes d'équivalences de $A$.
 \end{theorem}
+\begin{theorem}[Connexe dans \Reel{}]
+    $A$ non vide de $\Reel{}$ est connexe par arcs \emphh{si et seulement si} $A$ est un intervalle de $\Reel{}$
+\end{theorem}
+\begin{theorem}[Image continue d'une partie connexe]
+     Soient $E$ et $F$ deux espaces vectoriels. Soit l'application $f : A\in E \to F$.\\
+     Si $f$ est continue, alors l'image de toute partie connexe par arcs est connexe par arcs dans $F$.
+\end{theorem}
+\begin{itheorem}[Théorème des valeurs intermédiaires]
+     Soit $E$ un espace vectoriel normé. Soit $A$ une partie connexe par arcs de $E$. \\
+     Soit $f : A \to \mathbb{R}$ une application continue qui atteint $(c,d)\in \mathbb{R}$. Alors $f$ atteint toute valeur $f(x) \in [c,d]$.
+\end{itheorem}
 % section connexe_par_arcs (end)
 \section{Topologie} % (fold)
 \label{sec:topologie}
