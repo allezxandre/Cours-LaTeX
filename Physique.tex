@@ -2854,7 +2854,7 @@ Dans un repère en \emph{coordonnées cylindriques}\index{Coordonnees@Coordonné
       \textbf{Coordonnées} & \multicolumn{4}{c}{\textbf{Expressions}} \\
       Cartésiennes        & $\diverg[\vv{A}(M)] $ &  $\frac{\partial A_x}{\partial x}$ & $\frac{\partial A_y}{\partial y}$ & $\frac{\partial A_z}{\partial z}$\\
       Cylindriques        & $\diverg[\vv{A}(M)] $ &  $\textcolor{couleurImp}{\frac{1}{r}} \dfrac{\partial ( \textcolor{couleurImp}{r}\cdot A_r)}{\partial r}$ & $\frac{1}{r}\frac{\partial A_\theta}{\partial \theta}$ & $\frac{\partial A_z}{\partial z}$ \\
-      %  TODO: FINIR        Sphériques          & $\diverg[\vv{A}(M)] $ &  $\frac{\partial f}{\partial r}\vv*{e}{r}$ & $\frac{1}{r}\frac{\partial f}{\partial \theta}\vv*{e}{\theta}$ & $\frac{1}{r\sin \theta}\frac{\partial f}{\partial \varphi}\vv*{e}{\varphi}$
+      Sphériques          & $\diverg[\vv{A}(M)] $ &  $\textcolor{couleur2}{\frac{1}{r^2}}\frac{\partial ( \textcolor{couleur2}{r^2}\cdot A_r)}{\partial r}$ & $\frac{1}{r \,\textcolor{couleur2}{\sin \theta}}\frac{\partial (\textcolor{couleur2}{\sin \theta } \cdot A_\theta)}{\partial \theta}$ & $\frac{1}{r\sin \theta}\frac{\partial A_\varphi}{\partial \varphi}$
    \end{tabular}
    \end{center}
 \end{dfn}
