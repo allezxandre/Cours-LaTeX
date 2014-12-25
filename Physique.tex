@@ -1834,9 +1834,12 @@ Sur une particule chargée, la majorité des forces sont négligeables devant la
    On part de la force de \textsc{Lorentz} \eqref{ForceLorentz} page~\pageref{ForceLorentz} : 
    \begin{align*}
    \vv{F}_\text{\textsc{Lorentz}} &= q\E + q \vv{v}\wedge \B
-   \intertext{Et on peut exprimer $q$ sous la forme }
+   \intertext{En infinitésimal : }
+   \d\vv*{F}{\text{\textsc{Lorentz}}} &= \d q \E + \d q \vv{v} \wedge \B
+   \intertext{On injecte $\d q = \rho \d V$}
+   \d\vv*{F}{\text{\textsc{Lorentz}}} &= \left[ \rho \E + \rho \vv{v} \wedge \B \right] \d V
    \end{align*}
-   % TODO: force volumique... Preuve à finir
+   D'où la force volumique : $\vv*{f}{V} = \rho \E + \vv{j} \wedge \B$ \qed
 \end{proof}
 \begin{dfn}[Puissance volumique]
    La puissance \uline{volumique} cédée par le champ électrique à la matière est 
