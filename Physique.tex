@@ -2224,11 +2224,16 @@ Les conditions suivantes soient vérifiées
 \end{proof}
 On peut donc définir une pulsation plasma $\omega_p$
 \begin{dfn}[Pulsation plasma]
+  \begin{subequations} 
    On définit la \emph{pulsation plasma}\index{Pulsation!plasma} par 
    \begin{equation}
-   \omega_P = \sqrt{\dfrac{ne^2}{m\varepsilon_0}}
+   \omega_P = \sqrt{\dfrac{n_0e^2}{m\varepsilon_0}}
    \end{equation}
-   Et alors : $\underline{\vv{j}} = i \varepsilon_0 \dfrac{\omega_p^2}{\omega}\underline{\E}$
+   Et alors :
+   \begin{equation}\label{eq:j_plasma}
+   \underline{\vv{j}} = -i\dfrac{n_0e^2}{\omega m}\underline{\E} = -i \varepsilon_0 \dfrac{\omega_p^2}{\omega}\underline{\E}
+   \end{equation}
+   \end{subequations}
 \end{dfn}
 \begin{itheorem}[Relation de dispersion]
    Dans un plasma, on établit une relation de dispersion :
@@ -2237,8 +2242,20 @@ On peut donc définir une pulsation plasma $\omega_p$
    \end{equation}
 \end{itheorem}
 \begin{proof}
-   On utilise les equations \eqref{eq:MaxwellFaraday} et \eqref{eq:MaxwellAmpere}, ainsi que la formule du double produit vectoriel \eqref{eq:double_produit_vectoriel} page \pageref{eq:double_produit_vectoriel}.
-   %TODO: completer preuve
+   On utilise les equations \eqref{eq:MaxwellFaraday} et \eqref{eq:MaxwellAmpere}en complexes, ainsi que la formule du double produit vectoriel \eqref{eq:double_produit_vectoriel} page \pageref{eq:double_produit_vectoriel}.
+   On part de l'équation de \textsc{Maxwell} \eqref{eq:MaxwellFaraday}, à laquelle on effectue le produit vectoriel par $-i \vv{k}$ des deux cotés : 
+   \begin{align*}
+      \cancel{-i} \vv{k} \wedge \left( -i\vv{k} \wedge \E \right) &= \cancel{-i} \vv{k} \wedge \left( -i\omega \B \right) \\
+      -i(\underbrace{\vv{k} \cdot \vv{E}}_{\mathclap{= 0 \text{ car orthogonaux}}}) \vv{k} + i(\vv{k} \cdot \vv{k}) \E &= \omega \vv{k} \wedge \B
+      \intertext{D'où :}
+      ik^2\E &= \omega \vv{k} \wedge \B
+      \intertext{On injecte l'équation de \textsc{Maxwell}~\eqref{eq:MaxwellAmpere} : }
+      ik^2 \E &= \omega \left( \mu_0 \vv{j} + i \omega \varepsilon_0\mu_0 \E \right)
+      \intertext{D'après l'équation~\eqref{eq:j_plasma} de la définition précédente : $\underline{\vv{j}} = -i \varepsilon_0 \dfrac{\omega_p^2}{\omega}\underline{\E}$}
+      ik^2 \cancel{\E} &= \omega \left( -i \mu_0 \varepsilon_0 \dfrac{\omega_p^2}{\omega}\cancel{\E} + i \omega \varepsilon_0\mu_0 \cancel{\E} \right)\\
+      k^2 &= \varepsilon_0\mu_0 \left( \omega^2 - \omega_p^2 \right)
+   \end{align*}
+   D'où $k^2 = \frac{1}{c^2} \left( \omega^2 - \omega_P^2 \right)$ \qed
 \end{proof}
 \subsubsection{Vitesse de phase et dispersion} % (fold)
 \label{ssub:vitesse_de_phase_et_dispersion}
