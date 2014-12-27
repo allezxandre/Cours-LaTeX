@@ -85,6 +85,9 @@ Enthalpie            & $\d H = U + PV$                  &\\
                      & $\d H = T\d S + V\d P$              &\\
 %
 Deuxième principe    & $\d S \ge \dfrac{\delta Q}{T}$  & (\reference{SecondPrincipe})\\
+Gaz parfait          & $\d U = C_V \d T$ &\\
+                     & $\d H = C_P \d T$ &\\
+                     & $PV^\gamma = \text{constante}$
 \end{tabular}
 %
 \end{methode}
@@ -108,11 +111,11 @@ Où $C$ est la capacité calorifique en $J\cdot K^{-1}$
 \Attention{Souvent, on utilise $C_V$ ou $C_P$ au lieu de $C$. $C_V$ et $C_P$ sont des capacités calorifiques \emphhs{molaires}}
 %
 \begin{itheorem}[Premier principe\index{Premier principe}]
-C'est un bilan sur l'énergie interne : 
+La variation d'énergie $\Delta E = \Delta{}U + \Delta E_c + \Delta E_p$ est égal à la somme du travail reçu $W$ et du transfert thermique reçu $Q$ : 
 \begin{subequations}
 \begin{align}\label{PremierPrincipe}
-\Delta{}U + \Delta E_c &= Q + W 
-\intertext{Sa deuxième forme est en infinitésimal : $\d U = \delta Q + \delta W$. Ou plutôt : }
+\Delta{}U + \Delta E_c + \Delta E_p &= Q + W 
+\intertext{Sa deuxième forme est en infinitésimal : $\d U + \d E_c + \d E_p = \delta Q + \delta W$. Ou plutôt : }
 \d U &= T\d S - P\d V
 \end{align}
 \end{subequations}
@@ -235,10 +238,10 @@ Maintenant, si on est à \uline{pression constante}, on va prendre l'enthalpie $
    On appelle ce second principe l'\emph{inégalité de \textsc{Clausius}}\index{Clausius@\textsc{Clausius}!inegalite@inégalité}.
 \end{theorem}
 \begin{theorem}[Rendement]
-   Le rendement $r$ est défini par :
+   Le rendement $r$ est :
    \begin{subequations}
    \begin{align}
-   r &= \dfrac{\text{Transfert énergétique utile}}{\text{Énergie fournie à la machine}} \notag \\
+   r &= \dfrac{\text{Bénéfices}}{\text{Donné à la machine}} \notag \\
    r_\text{moteur}  &= -\dfrac{W}{Q_c} \\
    r_\text{réfrigérateur}  &= -\dfrac{Q_f}{W} \\
    r_\text{pompe à chaleur}  &= -\dfrac{Q_c}{W}
