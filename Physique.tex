@@ -267,7 +267,29 @@ On peut utiliser deux \emph{capacités thermiques}\index{Capacite thermique@Capa
 \begin{equation}
 C_P - C_V = nR \\ C_{Pm} - C_{Vm} = R
 \end{equation}
+On peut maintenant exprimer : 
+\begin{subequations}
+   \begin{align}
+      C_V &= \dfrac{n R}{\gamma - 1} \\
+      C_P &= \dfrac{\gamma\, nR}{\gamma - 1}
+   \end{align}
+\end{subequations}
 \end{theorem}
+\begin{proof}
+   La démonstration de la relation de \textsc{Mayer} ne semble pas être au programme.\\
+   Pour le reste, les démonstrations sont assez simples : 
+   \begin{align*}
+      C_P - C_V &= nR \\
+      \gamma C_V - C_V  &= nR \\
+      (\gamma - 1) C_V &= nR \\
+      C_V &= \dfrac{nR}{\gamma - 1}
+   \end{align*}
+   La deuxième devient alors bien plus simple à démontrer : 
+   \begin{align*}
+      C_P &= \gamma C_V \\
+      C_P &= \gamma \dfrac{nR}{\gamma - 1}
+   \end{align*}
+\end{proof}
 %
 \begin{itheorem}[Relations de \textsc{Laplace}]
    Au cours d'une transformation \emphh{adiabatique réversible} (donc isentropique), un gaz parfait vérifie : 
