@@ -79,10 +79,10 @@
 %
 Premier principe     & $\Delta U = Q + W$            & (\reference{PremierPrincipe})\\
                      & $\d U = \delta Q + \delta W$    &  (\reference{Enthalpie}) \\
-                     & $\d U = T\d S - P\d V$              &\\
+                     & $\d U = T\d S - P\d V$              &(pour une transformation réversible)\\
 %
 Enthalpie            & $\d H = U + PV$                  &\\
-                     & $\d H = T\d S + V\d P$              &\\
+                     & $\d H = T\d S + V\d P$              &(pour une transformation réversible)\\
 %
 Deuxième principe    & $\d S \ge \dfrac{\delta Q}{T}$  & (\reference{SecondPrincipe})\\
 Gaz parfait          & $\d U = C_V \d T$ &\\
@@ -92,7 +92,46 @@ Gaz parfait          & $\d U = C_V \d T$ &\\
 %
 \end{methode}
 %
-\section{Définitions generales}
+\section{Définitions générales}
+% Pour les définitions suivantes : 
+% http://mon.ftp.a.moi.chez-alice.fr/Ecole/LSM3/Thermo/Thermo1.pdf
+\begin{dfn}[Système]
+   On appelle \emph{système thermodynamique}\index{Systeme@Système!thermodynamique} le contenu d'une zone délimitée dans l'espace.
+\end{dfn}
+%
+Les différents systèmes : 
+\begin{center}
+   \begin{tabular}{| >\bfseries r | c | c | c |}
+    \hline
+    Type de système & \textbf{Ouvert} & \textbf{Fermé} & \textbf{Isolé} \\
+    \hline
+    Échange d'énergie avec l'extérieur & \cellcolor{couleurClaire}\checkmark & \cellcolor{couleurClaire}\checkmark & \\
+    \hline
+    Échange de matière avec l'extérieur & \cellcolor{couleurClaire}\checkmark & &\\
+    \hline
+   \end{tabular}
+\end{center}
+%
+\needspace{6cm} % Je mets souvent des \needspace, mais c'est un "hack" pour 
+%                 éviter les \mdframe de mal se couper entre les pages
+\begin{dfn}[Transfert thermique]
+Le \emph{transfert thermique}\index{Transfert thermique} est un \uline{apport de chaleur} lors d'un transfert de température : 
+\begin{equation}
+Q = C\, \Delta T \\ \d Q = C \d T
+\end{equation}
+Où $C$ est la capacité calorifique en \si{\joule\per\kelvin}\\
+Pour un corps pur, $C$ est défini, sinon, pour un gaz parfait, il faudra prendre $C = C_V$ ou $C = C_P$ suivant qu'on se trouve à volume ou à pression constante.
+\end{dfn}
+\Attention{Parfois, on utilise les valeurs molaires en \si{\joule\per\kelvin\per\mole} : $C_{Vm} = \dfrac{C_{V}}{n}$ par exemple.}
+%
+\begin{dfn}[Travail]
+   Le travail reçu par un système thermodynamique est noté $W$. \\
+   Il prend en compte le travail des forces de pression $-P_{\text{ext}}\d V$ et les autres forces $W_u$ : 
+   \begin{equation}
+   \delta W = -P_{\text{ext}}\d V + \delta W_u
+   \end{equation}
+\end{dfn}
+%
 \begin{dfn}[Énergie interne]
 L'énergie interne $U$ d'un système thermodynamique est définie microscopiquement par : 
 \begin{equation}
@@ -101,36 +140,74 @@ U = U_0 + E_c^*+\underbrace{E_p^*}_{\mathclap{\text{Énergie potentielle d'inter
 \end{dfn}
 %
 \section{Premier Principe}
-\begin{dfn}[Transfert thermique]
-Le \emph{transfert thermique}\index{Transfert thermique} est un \uline{apport de chaleur} lors d'un transfert de température : 
-\begin{equation}
-Q = C\, \Delta T
-\end{equation}
-Où $C$ est la capacité calorifique en $J\cdot K^{-1}$
-\end{dfn}
-\Attention{Souvent, on utilise $C_V$ ou $C_P$ au lieu de $C$. $C_V$ et $C_P$ sont des capacités calorifiques \emphhs{molaires}}
 %
 \begin{itheorem}[Premier principe\index{Premier principe}]
 La variation d'énergie $\Delta E = \Delta{}U + \Delta E_c + \Delta E_p$ est égal à la somme du travail reçu $W$ et du transfert thermique reçu $Q$ : 
 \begin{subequations}
 \begin{align}\label{PremierPrincipe}
 \Delta{}U + \Delta E_c + \Delta E_p &= Q + W 
-\intertext{Sa deuxième forme est en infinitésimal : $\d U + \d E_c + \d E_p = \delta Q + \delta W$. Ou plutôt : }
-\d U &= T\d S - P\d V
+\intertext{Entre deux instants $t$ et $t+\d t$ très proches : }
+\d U + \d E_c + \d E_p &= \delta Q + \delta W
 \end{align}
 \end{subequations}
-%
 \end{itheorem}
-\begin{dfn}[Fonction Enthalpie\index{Enthalpie}]
-La fonction enthalpie $H$ est homogène à une énergie.
-\begin{subequations}
-\begin{align}\label{Enthalpie}
-H &= U + PV \\
-\d H &= T\d S + V\d P
-\end{align}
-\end{subequations}
-\end{dfn}
 %
+\subsection{Transformation isochore} % (fold)
+\label{sub:transformation_isochore}
+Une transformation isochore est une transformation pendant laquelle le volume $V$ reste constant.
+\begin{theorem}
+  Pour une transformation \emph{isochore}\index{Isochore} (à volume constant), on peut simplifier la variation d'énergie interne : 
+   \begin{equation}
+   \d U_V = C_V \d T
+   \end{equation}
+   Cela permet de définir la \emph{capacité thermique à volume constant}\index{Capacite thermique@Capacité thermique!volume@à volume constant} : 
+   \begin{equation}
+   C_V = \left( \dfrac{\partial U}{\partial T} \right)_V
+   \end{equation}
+\end{theorem}
+\begin{proof}
+   On note $U_V$ et $Q_V$ respectivement l'energie interne et le transfert thermique à volume constant.\\
+   Si on néglige $\d E_c$ et $\d E_p$, le premier principe nous donne : 
+   \begin{align*}
+      \d U_V &= \delta W +\delta Q_V \\
+           &= -P\underbrace{\d V}_{\mathclap{\text{nul car }V=\text{cte}}} \quad + \underbrace{\delta W_u}_{\text{supposé nul}} + \delta Q_V \\
+           &= \delta Q_V \\
+      \d U_V &= C_V\d T
+   \end{align*}
+\end{proof}
+% subsection transformation_isochore (end)
+\subsection{Transformation isobare} % (fold)
+\label{sub:transformation_isobare}
+On peut effectuer un raisonnement analogue à la preuve précédente en étudiant cette fois une transformation \emph{isobare}\index{Isobare} (à pression constante)
+\begin{proof}\label{proof:therm_transformation_isobare}
+   On note $U_P$ et $Q_P$ respectivement l'energie interne et le transfert thermique à pression constante.\\
+   Si on néglige $\d E_c$ et $\d E_p$, le premier principe nous donne : 
+   \begin{align*}
+      \d U_P &= \delta W +\delta Q_P \\
+           &= -P\d V + \underbrace{\delta W_u}_{\text{supposé nul}} + \delta Q_P \\
+      \d U_P + P\d V &= \delta Q_P \\
+      \d \left( U + PV \right)_P &= \delta Q_P \\
+                                 &= C_P\d T
+   \end{align*}
+\end{proof}
+Cette quantité de chaleur est mise en jeu est l'enthalpie. On va maintenant la définir de manière générale : 
+\begin{dfn}[Fonction Enthalpie]
+On appelle \emph{enthalpie}\index{Enthalpie} la fonction d'état $H$ telle que : 
+\begin{equation}\label{eq:enthalpie}
+H = U + PV 
+\end{equation}
+\end{dfn}
+\begin{theorem}
+   Lors d'une transformation isobare, l'enthalpie s'exprime par : 
+   \begin{equation}
+   \d H_P = C_P\d T
+   \end{equation}
+   Cela permet de définir la \emph{capacité thermique à pression constante}\index{Capacite thermique@Capacité thermique!pression@à pression constante} : 
+   \begin{equation}
+   C_P = \left( \dfrac{\partial H}{\partial T} \right)_P
+   \end{equation}
+\end{theorem}
+% subsection transformation_isobare (end)
 \section{Deuxième Principe}
 \begin{itheorem}[Deuxième principe\index{Deuxieme principe@Deuxième principe}]
 Il existe une \textbf{fonction d'état} $S$ \emph{entropie}\index{Entropie}, \textbf{additive}, \textbf{extensive}, telle que : 
@@ -217,6 +294,9 @@ Maintenant, si on est à \uline{pression constante}, on va prendre l'enthalpie $
    \end{subequations}
    Où $\gamma = \dfrac{C_P}{C_V}$
 \end{itheorem}
+\begin{theorem}[Entropie d'un gaz parfait]
+   
+\end{theorem}
 % section gaz_parfait (end)
 \section{Troisième Principe} % (fold)
 \label{sec:troisieme_principe}
@@ -273,7 +353,6 @@ Maintenant, si on est à \uline{pression constante}, on va prendre l'enthalpie $
    \begin{equation}
    D_m \bigg( \Delta u + \Delta e_c +\Delta e_p \bigg) = D_m \big( q + w \big)
    \end{equation}
-   
 \end{itheorem}
 % subsection systeme_ouvert (end)
 % section systemes_ouverts (end)
