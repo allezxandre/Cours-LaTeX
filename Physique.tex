@@ -77,19 +77,21 @@
 \titre{Formules}
 \begin{tabular}{ >{\begin{bf}}r<{\end{bf}} l c }
 %
-Premier principe     & $\Delta U = Q + W$            & (\reference{PremierPrincipe})\\
-                     & $\d U = \delta Q + \delta W$    &  (\reference{Enthalpie}) \\
-                     & $\d U = T\d S - P\d V$              &(pour une transformation réversible)\\
+Premier principe     & $\Delta U = Q + W$            & (\reference{eq:PremierPrincipe})\\
+                     & $\d U = \delta Q + \delta W$    &  (\reference{eq:PremierPrincipeInfinitesimal}) \\
+                     & $\d U = T\d S - P\d V$              &(\reference{eq:premiere_identite_thermo})\\
 %
-Enthalpie            & $\d H = U + PV$                  &\\
-                     & $\d H = T\d S + V\d P$              &(pour une transformation réversible)\\
+Enthalpie            & $\d H = U + PV$                  & (\reference{eq:enthalpie})\\
+                     & $\d H = T\d S + V\d P$              &(\reference{eq:deuxieme_identite_thermo})\\
 %
-Deuxième principe    & $\d S \ge \dfrac{\delta Q}{T}$  & (\reference{SecondPrincipe})\\
+Deuxième principe    & $\d S \ge \dfrac{\delta Q}{T}$  & (\reference{SecondPrincipe})\\[2mm]
 Gaz parfait          & $\d U = C_V \d T$ &\\
                      & $\d H = C_P \d T$ &\\
-                     & $PV^\gamma = \text{constante}$
+                     & $PV^\gamma = \text{constante}$ 
 \end{tabular}
+\par
 %
+Les fonctions $U$, $H$ et $S$ sont des fonctions d'état. Ainsi, d'un point $A$ à un point $B$ d'une transformation, le calcul ne change pas qu'on passe par un chemin réversible ou non.
 \end{methode}
 %
 \section{Définitions générales}
@@ -144,10 +146,10 @@ U = U_0 + E_c^*+\underbrace{E_p^*}_{\mathclap{\text{Énergie potentielle d'inter
 \begin{itheorem}[Premier principe\index{Premier principe}]
 La variation d'énergie $\Delta E = \Delta{}U + \Delta E_c + \Delta E_p$ est égal à la somme du travail reçu $W$ et du transfert thermique reçu $Q$ : 
 \begin{subequations}
-\begin{align}\label{PremierPrincipe}
-\Delta{}U + \Delta E_c + \Delta E_p &= Q + W 
+\begin{align}
+\Delta{}U + \Delta E_c + \Delta E_p &= Q + W \label{eq:PremierPrincipe}
 \intertext{Entre deux instants $t$ et $t+\d t$ très proches : }
-\d U + \d E_c + \d E_p &= \delta Q + \delta W
+\d U + \d E_c + \d E_p &= \delta Q + \delta W \label{eq:PremierPrincipeInfinitesimal}
 \end{align}
 \end{subequations}
 \end{itheorem}
@@ -216,9 +218,37 @@ Il existe une \textbf{fonction d'état} $S$ \emph{entropie}\index{Entropie}, \te
 \text{\textcolor{couleurFonce!50}{avec }}\boxed{\delta S_\text{échangée} = \dfrac{\delta Q}{T}}
 \end{equation}
 Au final, \ibox{$\delta S_\text{créée} \ge 0$}. \\
-Lorsqu'une transformation est \emph{réversible}, on a \ibox{$S_\text{créée} = 0$} et alors \ibox{$\d S = \dfrac{\delta Q}{T}$}
+Lorsqu'une transformation est \emph{réversible}, on a \ibox{$S_\text{créée} = 0$} et alors \ibox{$\d S = \dfrac{\delta Q}{T_\text{ext}}$}
 \end{itheorem}
 %
+\begin{itheorem}[Première identité thermodynamique]
+   Lors d'une transformation sans changement de composition, la \emph{première identité thermodynamique} est vérifiée : 
+   \begin{equation}\label{eq:premiere_identite_thermo}
+   \d U = T\d S - P\d V
+   \end{equation}
+\end{itheorem}
+\begin{proof}
+   On étudie en premier lieu une transformation réversible. C'est-à-dire que $\d S = \dfrac{\delta Q_\text{réversible}}{T}$. \newline
+   Ainsi, $\left\lbrace\begin{array}{r c l}
+      \delta Q_\text{réversible} &=& T\d S \\
+      \delta W_\text{réversible} &=& -P\d V
+   \end{array}\right.$. On peut maintenant appliquer le premier principe de la thermodynamique : 
+   \[
+     \d U_\text{réversible} = T\d S - P\d V
+   \]
+   Mais $U$ est une \emphhs{fonction d'état}. Donc peu importe le chemin parcouru par la transformation, qu'il soit réversible ou pas, on peut écrire : 
+   \[
+     \d U = T\d S - P\d V
+   \]
+   \Attention{On ne peut pas intégrer cette équation sur un chemin irrversible. Mais on peut substituer l'intégrale à celle d'un chemin réversible.}
+   % http://forums.futura-sciences.com/physique/479677-premiere-identite-thermodynamique.html
+\end{proof}
+\begin{theorem}[Deuxième identité thermodynamique]
+   Lors d'une transformation sans changement de composition, la \emph{deuxième identité thermodynamique} est vérifiée : 
+   \begin{equation}\label{eq:deuxieme_identite_thermo}
+   \d H = T\d S + V\d P
+   \end{equation}
+\end{theorem}
 \section{Cas particulier du gaz parfait} % (fold)
 \label{sec:gaz_parfait}
 \begin{dfn}[Gaz Parfait]
@@ -2476,7 +2506,7 @@ C'est une loi\index{Loi!Fourier@\emphi{ de }\textsc{Fourier}} empirique qui donn
 \end{equation}
 \end{itheorem}
 \begin{theorem}[Premier principe de Thermodynamique]
-   Le premier principe de thermodynamique (équation~\eqref{PremierPrincipe} page~\pageref{PremierPrincipe}) s'énonce, en diffusion, avec : 
+   Le premier principe de thermodynamique (équation~\eqref{eq:PremierPrincipe} page~\pageref{eq:PremierPrincipe}) s'énonce, en diffusion, avec : 
    \begin{equation}
    \d U = \delta Q + \mathcal{P}_\text{prod}\d t
    \end{equation}
