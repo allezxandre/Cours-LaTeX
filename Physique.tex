@@ -222,8 +222,8 @@ Lorsqu'une transformation est \emph{réversible}, on a \ibox{$S_\text{créée} =
 \section{Cas particulier du gaz parfait} % (fold)
 \label{sec:gaz_parfait}
 \begin{dfn}[Gaz Parfait]
-Un gaz parfait est un gaz vérifiant 
-\begin{equation}
+Un gaz parfait est un gaz vérifiant l'équation d'état :
+\begin{equation}\label{eq:gaz_parfait}
 PV=nRT
 \end{equation}
 \end{dfn}
@@ -297,13 +297,35 @@ On peut maintenant exprimer :
       \begin{align}
          PV^\gamma &= \text{constante}\\
          TV^{\gamma - 1} &= \text{constante}\\
-         P^{1-\gamma}T^\gamma &= \text{constante}\\
+         P^{1-\gamma}T^\gamma &= \text{constante}\label{eq:Laplace3}\\
             &= P_\text{éq}V_\text{éq}\notag
       \end{align}
    \end{subequations}
 \end{itheorem}
+\begin{proof}
+   On part d'une des identités thermodynamiques. Peu importe laquelle, cela changera juste quelle relation de \textsc{Laplace} on obtient.\\
+   Nous allons partir de $\d H = T\d S + V\d P$.
+   \begin{align*}
+      \d H &= T\d S + V\d P \\
+      \d S &= \dfrac{\d H}{T} - \d P \dfrac{V}{T}
+      \intertext{D'après l'équation d'état d'un gaz parfait~\eqref{eq:gaz_parfait} :} 
+      \d S &= \dfrac{\d H}{T} - nR\dfrac{\d P}{P}\\
+      \d S &= C_P \dfrac{\d T}{T} - (C_P - C_V)\dfrac{\d P}{P}\\
+      \d S &= \gamma C_V \dfrac{\d T}{T} - C_V(\gamma - 1)\dfrac{\d P}{P} \\
+      \d S &= \gamma C_V \ln \dfrac{T_2}{T_1} - C_V(\gamma - 1)\ln\dfrac{P_2}{P_1}
+      \intertext{Or la transformation est isentropique, donc $\d S = 0$, d'où :}
+      \cancel{C_V}(\gamma - 1)\ln\dfrac{P_2}{P_1} &= \gamma \cancel{C_V} \ln \dfrac{T_2}{T_1} \\
+      (1-\gamma) \ln\dfrac{P_1}{P_2} &= \gamma \ln \dfrac{T_2}{T_1} \\
+      P_1^{1 - \gamma}T_1^\gamma &= P_2^{1 - \gamma}T_2^\gamma
+   \end{align*}
+   Et on a démontré l'équation~\eqref{eq:Laplace3}, et on peut passer facilement aux autres avec l'équation d'état des gaz parfait~\eqref{eq:gaz_parfait}. \qed
+\end{proof}
+De la preuve précédente, on tire une dernière formule pour les gaz parfaits : le calcul de l'entropie.
 \begin{theorem}[Entropie d'un gaz parfait]
-   
+   Pour une transformation réversible, l'entropie d'un gaz parfait peut être calculée par la formule : 
+   \begin{equation}
+   \d S = \gamma C_V \ln\dfrac{T_2}{T_1} - nR \ln\dfrac{P_2}{P_1}
+   \end{equation}
 \end{theorem}
 % section gaz_parfait (end)
 \section{Troisième Principe} % (fold)
@@ -1909,7 +1931,7 @@ Maintenant, en prenant l'équation 2 de Maxwell (\ref{eq:MaxwellFlux}), $\rot \v
 \label{sec:energie_electromagnetique}
 Sur une particule chargée, la majorité des forces sont négligeables devant la force de \textsc{Lorentz}. C'est ainsi qu'on peut appliquer le \gls{TRC} (équation~\eqref{eq:TRC} page~\pageref{eq:TRC})
 \begin{theorem}[Densité volumique de force]
-   La \emph{densité volumique de force électromagnétique}\index{Densite@Densité!volumique de force electromagnetique@volumique\emphi{ de }force electromagnétique} est :
+   La \emph{densité volumique de force électromagnétique}\index{Densite@Densité!volumique de force electromagnetique@volumique \emphi{de }force electromagnétique} est :
    \begin{subequations}
    \begin{equation}
    \vv*{f}{V}(M,t) = \rho (M,t) \E (M,t) + \vv{j} (M,t) \wedge \B{}(M,t)
