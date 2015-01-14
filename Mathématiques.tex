@@ -1171,6 +1171,17 @@ La série $S$ de terme général $\color{couleurFonce!90} u_n$ est la suite $\le
     \]
     C'est la moyenne des termes de la suite $\beta_k$, et on sait qu'elle converge si $\beta_k$ converge.
 \end{theorem}
+\begin{proof}
+     L'idée est de séparer la somme en deux. Prenons $\varepsilon > 0$. Soit $l$ la limite de la suite $\beta_k$.\newline 
+     Soit $N$ tel que $\forall n\ge N,\, | \beta_n - l | < \varepsilon$. Alors :
+     \begin{align*}
+          S_n - l &= \dfrac{\displaystyle \sum_{k=0}^N \alpha_k (\beta_k - l)}{\displaystyle \sum_{k=0}^n \alpha_k} + \dfrac{\displaystyle \sum_{k=N}^n \alpha_k (\beta_k - l)}{\displaystyle \sum_{k=0}^n \alpha_k}
+          \intertext{La somme allant jusqu'à $N$ ne dépendant plus de $n$ :}
+          S_n - l &\le \dfrac{\text{constante}}{\displaystyle \sum_{k=0}^n \alpha_k} + \dfrac{\displaystyle \sum_{k=N}^n \alpha_k}{\displaystyle \sum_{k=0}^n \alpha_k}\cdot \varepsilon \\
+          S_n - l &\le \dfrac{\text{constante}}{\pm\infty } + 1\cdot \varepsilon
+     \end{align*}
+     On a majoré par quelque chose d'aussi petit qu'on veut, et alors $S_n$ converge \qed
+\end{proof}
 % subsection comparaison_des_satp (end)
 \subsection{Règle de d'\textsc{Alembert}} % (fold)
 \label{sub:regle_de_d_alembert}
