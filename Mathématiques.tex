@@ -1158,12 +1158,18 @@ La série $S$ de terme général $\color{couleurFonce!90} u_n$ est la suite $\le
      Soient $(a_n)_{n\in \mathbb{N}}$ et $(b_n)_{n\in \mathbb{N}}$ \emphhs{deux suites positives}. \newline
      Si $u_n \sim v_n$, alors $u_n$ et $v_n$ sont de même nature.
 \end{itheorem}
+\needspace{7cm}
 \begin{theorem}[\textsc{Césaro}\index{Cesaro@\textsc{Césaro}}]
     Si $\sum \alpha_n$ est une \gls{SATP} \uline{divergente}, et que $(\beta_k)$ est une suite \uline{complexe convergente} vers $\beta$, alors la suite $(S_n)$ de terme général : 
     \[
-        S_n = \dfrac{\displaystyle \sum_{k=0}^n \alpha_k \beta_k}{\displaystyle \sum_{k=0}^n \beta_k}
+        S_n = \dfrac{\displaystyle \sum_{k=0}^n \alpha_k \beta_k}{\displaystyle \sum_{k=0}^n \alpha_k}
     \]
-    (définie à partir d'un certain rang) converge vers $\beta$.
+    (définie à partir d'un certain rang) converge vers $\beta$.\par
+    La moyenne de \textsc{Césaro} apparait en prenant la suite $\alpha_k = 1$ $\forall k$, car alors $\sum \alpha_k = n$ et : 
+    \[
+        S_n = \dfrac{\displaystyle \sum_{k=0}^n \beta_k}{n}
+    \]
+    C'est la moyenne des termes de la suite $\beta_k$, et on sait qu'elle converge si $\beta_k$ converge.
 \end{theorem}
 % subsection comparaison_des_satp (end)
 \subsection{Règle de d'\textsc{Alembert}} % (fold)
@@ -1184,8 +1190,8 @@ La série $S$ de terme général $\color{couleurFonce!90} u_n$ est la suite $\le
     \begin{equation}
     \left\lbrace
     \begin{aligned}
-        \text{Si } l >1, & \sum u_n \text{ converge}   \\
-        \text{Si } l <1, & \sum u_n \text{ diverge grossièrement} 
+        \text{Si } l >1, & \sum u_n \text{ diverge grossièrement}   \\
+        \text{Si } l <1, & \sum u_n \text{ converge} 
     \end{aligned}
     \right.
     \end{equation}
