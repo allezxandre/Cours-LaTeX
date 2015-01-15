@@ -1586,6 +1586,17 @@ On peut étendre la définition précédente au cas où les valeurs de $X$ forme
      E(X) = np \\ V(X) = np(1-p)
      \end{equation}
 \end{theorem}
+\section{Fonctions génératrices} % (fold)
+\label{sec:fonctions_generatrices}
+%TODO: rajouter le theoreme du transfert! 
+\begin{dfn}[Fonction génératrice] % Grosse copie depuis le livre de Vuibert p640
+     Soit $X$ une variable aléatoire à valeurs dans $\mathbb{N}$. On définit la \emph{fonction génératrice}\index{Fonction génératrice} $G_X$ de $X$ par : 
+     \begin{equation}
+     G_X (t) = E(t^X) = \sum_k \mathbb{P} (X=k) t^k
+     \end{equation}
+     pour les valeurs de $t$ telles que la variable aléatoire $t^X$ admette une espérance finie.
+\end{dfn}
+% section fonctions_generatrices (end)
 % subsection loi_binomiale (end)
 % section lois_usuelles (end)
 % chapter variables_aleatoires_discretes (end)
@@ -1772,7 +1783,7 @@ S\text{ est intégrable, et}\\
 \chapter{Séries Entières}
 Certains objets mathématiques ont des développements de Taylor exacts. C'est le cas notamment des polynômes, qui sont déjà des développements de Taylor. Les séries géométriques par exemple ont également un développement de Taylor exact : pour la série de terme général $q^k$, on a $\sum_0^\infty q^k = \dfrac{1}{1-q}$. Sinon, la plupart du temps, le développement de Taylor est précis jusqu'à un dernier terme qu'on ne peut calculer, mais qu'on peut quand même approximer en $o(\cdots)$ ou en $O(\cdots)$
 \\
-\section{Rayon de Convergence}
+\section{Généralités}
 \begin{dfn}
 Soit $(a_n)_n$ une suite de nombres complexes. On appelle \emph{série entière}\index{Serie@Série!entiere@entière} de la variable complexe $z$ la série de fonctions $\sum a_n z^n$. \par
 Le \emph{rayon de convergence}\index{Rayon de convergence}
@@ -1798,30 +1809,96 @@ S'il existe $\rho$ tel que la suite $\left( a_n \rho^n \right)$ soit bornée, al
     \forall z<\rho,\left| a_n z^n \right| \le M\left( \dfrac{|z|}{\rho} \right)^n\\ \text{et }\sum a_n z^n\text{ converge absolument}
 \end{equation}
 \end{lemme}
+\subsection{Rayon de Convergence}
+\begin{itheorem}[Relations de comparaisons]
+     Si $\sum a_n z^n$ et $\sum b_n z^n$ sont deux séries entières de rayons de convergence respectifs $R_a$ et $R_b$, alors : 
+     \renewcommand{\theenumi}{\roman{enumi}}
+     \begin{enumerate}
+         \item Si $|a_n| \le |b_n|$, alors $R_a \ge R_b$
+         \item Si $a_n = O(b_n)$, alors $R_a \ge R_b$
+         \item Si $a_n = o(b_n)$, alors $R_a \ge R_b$
+         \item Si $a_n \sim b_n$, alors $R_a = R_b$
+     \end{enumerate}
+\end{itheorem}
 \begin{theorem}
 Sur le disque ouvert $D_R$ de convergence $]-R,R[$, la série entière $\sum a_n z^n$ converge \emphh{absolument}.
 \end{theorem}
 \begin{theorem}
 Sur le disque ouvert $D_R$ de convergence $]-R,R[$, la série entière $\sum a_n z^n$ converge \emphh{uniformément} et sa somme est une fonction \emphh{continue}.
 \end{theorem}
+\begin{theorem}
+     Les séries entières $\sum a_n z^n$ et $\sum na_n z^n$ ont le même rayon de convergence.
+\end{theorem}
 Pour déterminer le rayon, il existe plusieurs méthodes, mais on se servira principalement du théorème suivant étant une conséquence de la règle de d'\textsc{Alembert} :\\
 
+\subsection{D'\textsc{Alembert}}
 \begin{itheorem}[Règle de d'\textsc{Alembert}]
 Pour la série entière $\sum a_n z^{k}$ \uline{non nulle à partir d'un certain rang}, et qu'il existe $l$ tel que 
 \[
 \boxed{\left|\dfrac{a_{n+1}}{a_n}\right|\xrightarrow[n\to +\infty]{}l} \text{ alors } l = \frac{1}{R}
 \]
-La réciproque est fausse : si on connait $R$, on a pas $\left|\dfrac{a_{n+1}}{a_n}\right|$\\
+La réciproque est fausse : si on connait $R$, on n'a pas $\left|\dfrac{a_{n+1}}{a_n}\right|$\\
 Sinon, on a aussi $\sqrt[n]{|a_n|}\xrightarrow[n\to +\infty]{}l$
 \end{itheorem}
 
 \begin{proof}
-Il suffit d'appliquer d'Alembert (\textit{cf.} théorème \ref{th:Regle_de_dAlembert} page \pageref{th:Regle_de_dAlembert}) à la série de terme général $|a_n z^k|$ (qui est une \gls{SATP}) qu'on prend à partir d'un certain rang tel que $a_n \neq 0$. Donc il existe une limite $l$ telle que \[\dfrac{|a_{n+1}z^{n+1}|}{|a_nz^z|}\xrightarrow[n\to +\infty]{} l|z|\]
+Il suffit d'appliquer d'Alembert (\textit{cf.} théorème~\ref{th:Regle_de_dAlembert} page~\pageref{th:Regle_de_dAlembert}) à la série de terme général $|a_n z^k|$ (qui est une \gls{SATP}) qu'on prend à partir d'un certain rang tel que $a_n \neq 0$. Donc il existe une limite $l$ telle que \[\dfrac{|a_{n+1}z^{n+1}|}{|a_nz^z|}\xrightarrow[n\to +\infty]{} l|z|\]
 Donc $|a_nz^n|$ converge si $l|z| < 1$, et diverge si $l|z| > 1$.
 \par
 Puisque toute série entière de rayon de convergence $R>0$ est absolument convergente dans son disque ouvert de convergence.
 \end{proof}
+% Remarque importante du livre de Vuibert (page 441) : 
+\Attention{En général, il vaut mieux utiliser le théorème original (théorème~\ref{th:Regle_de_dAlembert} page~\pageref{th:Regle_de_dAlembert}). En effet, ce théorème ne s'applique que pour des séries entières fonctions de $z^n$. Pour une série entière du type $\sum a_n z^{n^2}$, il n'est plus valable !}
+\section{Série entière d'une variable réelle} % (fold)
+\label{sec:serie_entiere_d_une_variable_reelle}
+\subsection{Primitivation} % (fold)
+\label{sub:primitivation_DSE}
+\begin{theorem}
+     Soit $\sum a_n z^n$ une série entière de rayon de convergence $R$. Sa primitive est :
+        \begin{equation}
+        \forall z\in ]-R;R[,\qquad \int \limits_0^x \left( \sum_{n=0}^{+\infty} a_n t^n \right)\d t = \sum_{n=0}^{+\infty} \dfrac{a_n x^{n+1}}{n+1} 
+        \end{equation}
+        Et la série entière $\sum \dfrac{a_n x^{n+1}}{n+1} $ a le même rayon de convergence $R$.
+        \end{theorem}
+% subsection primitivation_DSE (end)
+\subsection{Dérivation} % (fold)
+\label{sub:derivation_DSE}
+\begin{theorem}
+     La somme d'une série entière est $C^\infty$ sur l'intervalle ouvert de convergence.
+\end{theorem}
+\begin{itheorem}[Dérivation terme à terme]
+     %TODO: compléter dérivation SE
+     Soit $\sum a_n z^n$ une série entière de rayon de convergence $R$. Sa dérivée est :
+     \begin{equation}
+     \forall z\in ]-R;R[,\qquad \left( \sum_{n=0}^{+\infty} a_n z^n \right)' = \sum_{n=\textcolor{couleurImp}{1}}^{+\infty} n a_n x^{n-1} 
+     \end{equation}
+     Et la série entière $\sum_{n=\textcolor{couleurImp}{1}}^{+\infty} n a_n x^{n-1}$ a le même rayon de convergence.
+\end{itheorem}
+\Attention{Le théorème de dérivation n'est valable qu'à l'intérieur du disque de convergence !}
+% subsection derivation_DSE (end)
+% section serie_entiere_d_une_variable_reelle (end)
+\section{Fonctions développables en série entière} % (fold)
+\label{sec:fonctions_DSE}
+\begin{dfn}[Fonction développable en série entière]
+$f:\mathbb{K}\to\mathbb{K}$ admet un DSE\index{Developpement en serie entiere@Développement en Série Entière} en $0$ s'il existe une série entière $\sum a_n z^n$ telle que
+\begin{equation}
+\forall z \in \textcolor{gray}{\overset{\mathclap{\text{\begin{tiny}
+boule ouverte de centre 0
+\end{tiny}}}}{V}}, f(z) = \sum a_n z^{n}
+\end{equation}
+Cette boule ouverte de centre $0$ est inclue dans le disque de convergence du \gls{DSE} : $V \subset ]-R ; R[$.
+\end{dfn}
 
+\begin{theorem}[CNS d'un DSE] % OLD -> revoir, maybe? 
+
+\[
+f:\mathbb{R}\rightarrow K\text{ est un DSE en 0}\Leftrightarrow \boxed{\displaystyle \int_0^x \dfrac{(x-t)^n}{n!}f^{n+1}(t) dt \underset{n\to\infty}{\to}0}
+\]
+
+\end{theorem}
+% section fonctions_DSE (end)
+
+% OLD
 \section{Propriétés de la somme}
 \subsubsection*{Continuité}
 \begin{theorem}
@@ -1836,22 +1913,6 @@ Pour des séries entières avec $R = \min (R_a,R_b)$, alors :
 \[
 \forall x \in ]-R,R[, \sum a_n x^n = \sum b_n x^n \implies \forall n \in \mathbb{N}, a_n = b_n
 \]
-\end{theorem}
-\section{Développement en Séries Entières}
-\begin{dfn}[Fonction développable en série entière]
-$f:\mathbb{K}\to\mathbb{K}$ admet un DSE\index{Developpement en serie entiere@Développement en Série Entière} en $0$ s'il existe une série entière $\sum a_n z^n$ telle que \[
-\forall z \in \textcolor{gray}{\overset{\mathclap{\text{\begin{tiny}
-boule ouverte de centre 0
-\end{tiny}}}}{V}}, f(z) = \sum a_n z^{n}
-\]
-\end{dfn}
-\begin{theorem}
-[CNS d'un DSE]
-
-\[
-f:\mathbb{R}\rightarrow K\text{ est un DSE en 0}\Leftrightarrow \boxed{\displaystyle \int_0^x \dfrac{(x-t)^n}{n!}f^{n+1}(t) dt \underset{n\to\infty}{\to}0}
-\]
-
 \end{theorem}
 
 \chapter{Calcul Différentiel et Intégral}
