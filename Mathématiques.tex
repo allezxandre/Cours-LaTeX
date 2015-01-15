@@ -1774,6 +1774,7 @@ Certains objets mathématiques ont des développements de Taylor exacts. C'est l
 \\
 \section{Rayon de Convergence}
 \begin{dfn}
+Soit $(a_n)_n$ une suite de nombres complexes. On appelle \emph{série entière}\index{Serie@Série!entiere@entière} de la variable complexe $z$ la série de fonctions $\sum a_n z^n$. \par
 Le \emph{rayon de convergence}\index{Rayon de convergence}
 est la borne supérieure de $I=\{z\in\mathbb{R}_{+},\sum|a_{n}|z^{k}\text{ converge}\}$.
 C'est en fait la valeur maximale de $z$ pour laquelle la série converge.\end{dfn}
@@ -1792,7 +1793,10 @@ Pour calculer le rayon de convergence, il importera peu de l'étudier pour les v
 \end{tikzpicture}
 \end{minipage}\\
 \begin{lemme}[d'\textsc{Abel}]
-S'il existe $\rho$ tel que la suite $\left( a_n \rho^n \right)$ soit bornée, alors \[\forall z<\rho,\boxed{\left| a_n z^n \right| \le M\left( \dfrac{|z|}{\rho} \right)^n}\]
+S'il existe $\rho$ tel que la suite $\left( a_n \rho^n \right)$ soit bornée, alors 
+\begin{equation}
+    \forall z<\rho,\left| a_n z^n \right| \le M\left( \dfrac{|z|}{\rho} \right)^n\\ \text{et }\sum a_n z^n\text{ converge absolument}
+\end{equation}
 \end{lemme}
 \begin{theorem}
 Sur le disque ouvert $D_R$ de convergence $]-R,R[$, la série entière $\sum a_n z^n$ converge \emphh{absolument}.
