@@ -1648,6 +1648,7 @@ f:A\subset\mathbb{R}\to\mathbb{R}& & \\
 \end{list}
 \end{prop}
 %
+\needspace{3cm}
 \begin{theorem}[Convergence par changement de base]
 Si $\left(f_n(x)\right)_n$ converge simplement ou uniformément \uline{\textbf{ssi}} $\left(f_{n,i}(x)\right)_n$ converge de la même manière dans la base $\mathcal{B}=(e_i)$
 \end{theorem}
@@ -1768,6 +1769,87 @@ S\text{ est intégrable, et}\\
     Avec les deux séries $\left( \sum \left( \sum_{p=0}^{+\infty} u_{p,q} \right)\right)_q$ et $\left( \sum \left( \sum_{q=0}^{+\infty}  u_{p,q} \right) \right)_p$  qui convergent
 \end{itheorem}
 % section series_doubles (end)
+\chapter{Séries Entières}
+Certains objets mathématiques ont des développements de Taylor exacts. C'est le cas notamment des polynômes, qui sont déjà des développements de Taylor. Les séries géométriques par exemple ont également un développement de Taylor exact : pour la série de terme général $q^k$, on a $\sum_0^\infty q^k = \dfrac{1}{1-q}$. Sinon, la plupart du temps, le développement de Taylor est précis jusqu'à un dernier terme qu'on ne peut calculer, mais qu'on peut quand même approximer en $o(\cdots)$ ou en $O(\cdots)$
+\\
+\section{Rayon de Convergence}
+\begin{dfn}
+Le \emph{rayon de convergence}\index{Rayon de convergence}
+est la borne supérieure de $I=\{z\in\mathbb{R}_{+},\sum|a_{n}|z^{k}\text{ converge}\}$.
+C'est en fait la valeur maximale de $z$ pour laquelle la série converge.\end{dfn}
+\begin{minipage}{0.6\linewidth}
+Pour calculer le rayon de convergence, il importera peu de l'étudier pour les valeurs absolues, les nombres imaginaires, etc... car c'est seulement un rayon. Dans les réels, on appèlera l'intervalle $\textcolor{Red}{\left] -R,R\right[}$ l'intervalle ouvert de convergence.
+\end{minipage}\hspace{0.1\linewidth}
+\begin{minipage}{0.3\linewidth}
+\begin{tikzpicture}
+    \draw [thick, pattern=north west lines, pattern color=gray!40] (0,0) circle(1) (-120:0.9) node[below left]{$R$};    
+    \draw [->,gray] (-1.2,0) -- (1.5,0) node[right]{Réels};
+    \draw [->,gray] (0,-1.5) -- (0,1.2) node[above]{Imaginaires};
+    \draw (0,0) -- (-60:1.3) node{$+$} node[below right]{\resizebox{.45\hsize}{!}{$\sum a_n z^n$ DV grossièrement}};
+    \draw (0,0) -- (+30:0.8) node{$+$} node[above right]{\resizebox{.30\hsize}{!}{$\sum a_n z^n$ CVA}};
+    \draw [very thick,Red] (-1,0) node{$]$} -- (1,0) node{$[$};
+    
+\end{tikzpicture}
+\end{minipage}\\
+\begin{lemme}[d'\textsc{Abel}]
+S'il existe $\rho$ tel que la suite $\left( a_n \rho^n \right)$ soit bornée, alors \[\forall z<\rho,\boxed{\left| a_n z^n \right| \le M\left( \dfrac{|z|}{\rho} \right)^n}\]
+\end{lemme}
+\begin{theorem}
+Sur le disque ouvert $D_R$ de convergence $]-R,R[$, la série entière $\sum a_n z^n$ converge \emphh{absolument}.
+\end{theorem}
+\begin{theorem}
+Sur le disque ouvert $D_R$ de convergence $]-R,R[$, la série entière $\sum a_n z^n$ converge \emphh{uniformément} et sa somme est une fonction \emphh{continue}.
+\end{theorem}
+Pour déterminer le rayon, il existe plusieurs méthodes, mais on se servira principalement du théorème suivant étant une conséquence de la règle de d'\textsc{Alembert} :\\
+
+\begin{itheorem}[Règle de d'\textsc{Alembert}]
+Pour la série entière $\sum a_n z^{k}$ \uline{non nulle à partir d'un certain rang}, et qu'il existe $l$ tel que 
+\[
+\boxed{\left|\dfrac{a_{n+1}}{a_n}\right|\xrightarrow[n\to +\infty]{}l} \text{ alors } l = \frac{1}{R}
+\]
+La réciproque est fausse : si on connait $R$, on a pas $\left|\dfrac{a_{n+1}}{a_n}\right|$\\
+Sinon, on a aussi $\sqrt[n]{|a_n|}\xrightarrow[n\to +\infty]{}l$
+\end{itheorem}
+
+\begin{proof}
+Il suffit d'appliquer d'Alembert (\textit{cf.} théorème \ref{th:Regle_de_dAlembert} page \pageref{th:Regle_de_dAlembert}) à la série de terme général $|a_n z^k|$ (qui est une \gls{SATP}) qu'on prend à partir d'un certain rang tel que $a_n \neq 0$. Donc il existe une limite $l$ telle que \[\dfrac{|a_{n+1}z^{n+1}|}{|a_nz^z|}\xrightarrow[n\to +\infty]{} l|z|\]
+Donc $|a_nz^n|$ converge si $l|z| < 1$, et diverge si $l|z| > 1$.
+\par
+Puisque toute série entière de rayon de convergence $R>0$ est absolument convergente dans son disque ouvert de convergence.
+\end{proof}
+
+\section{Propriétés de la somme}
+\subsubsection*{Continuité}
+\begin{theorem}
+La somme d'une série entière est continue sur son disque ouvert de convergence $R$
+\end{theorem}
+\subsubsection*{Dérivabilité}
+\begin{theorem}[Dérivées successives]
+Les dérivées successives d'une série entière de rayon de convergence $R>0$ ont toutes le même rayon de convergence $R$
+\end{theorem}
+\begin{theorem}
+Pour des séries entières avec $R = \min (R_a,R_b)$, alors : 
+\[
+\forall x \in ]-R,R[, \sum a_n x^n = \sum b_n x^n \implies \forall n \in \mathbb{N}, a_n = b_n
+\]
+\end{theorem}
+\section{Développement en Séries Entières}
+\begin{dfn}[Fonction développable en série entière]
+$f:\mathbb{K}\to\mathbb{K}$ admet un DSE\index{Developpement en serie entiere@Développement en Série Entière} en $0$ s'il existe une série entière $\sum a_n z^n$ telle que \[
+\forall z \in \textcolor{gray}{\overset{\mathclap{\text{\begin{tiny}
+boule ouverte de centre 0
+\end{tiny}}}}{V}}, f(z) = \sum a_n z^{n}
+\]
+\end{dfn}
+\begin{theorem}
+[CNS d'un DSE]
+
+\[
+f:\mathbb{R}\rightarrow K\text{ est un DSE en 0}\Leftrightarrow \boxed{\displaystyle \int_0^x \dfrac{(x-t)^n}{n!}f^{n+1}(t) dt \underset{n\to\infty}{\to}0}
+\]
+
+\end{theorem}
+
 \chapter{Calcul Différentiel et Intégral}
 \section{Dérivation}
 \begin{dfn}[Dérivabilité\index{Derivabilite@Dérivabilité}]
@@ -1901,86 +1983,6 @@ $f\in\mathcal{C}^{k+1}(I,E)$, avec $(a,b)\in I^2$
 %
 %\end{theorem}
 
-\chapter{Séries Entières}
-Certains objets mathématiques ont des développements de Taylor exacts. C'est le cas notamment des polynômes, qui sont déjà des développements de Taylor. Les séries géométriques par exemple ont également un développement de Taylor exact : pour la série de terme général $q^k$, on a $\sum_0^\infty q^k = \dfrac{1}{1-q}$. Sinon, la plupart du temps, le développement de Taylor est précis jusqu'à un dernier terme qu'on ne peut calculer, mais qu'on peut quand même approximer en $o(\cdots)$ ou en $O(\cdots)$
-\\
-\section{Rayon de Convergence}
-\begin{dfn}
-Soit $\sum a_{n}z^{k}$ une série entière. Le \emph{rayon de convergence}\index{Rayon de convergence}
-est la borne supérieure de $I=\{z\in\mathbb{R}_{+},\sum|a_{n}|z^{k}\text{ converge}\}$.
-C'est en fait la valeur maximale de $z$ pour laquelle la série converge.\end{dfn}
-\begin{minipage}{0.6\linewidth}
-Pour calculer le rayon de convergence, il importera peu de l'étudier pour les valeurs absolues, les nombres imaginaires, etc... car c'est seulement un rayon. Dans les réels, on appèlera l'intervalle $\textcolor{Red}{\left] -R,R\right[}$ l'intervalle ouvert de convergence.
-\end{minipage}\hspace{0.1\linewidth}
-\begin{minipage}{0.3\linewidth}
-\begin{tikzpicture}
-	\draw [thick, pattern=north west lines, pattern color=gray!40] (0,0) circle(1) (-120:0.9) node[below left]{$R$};	
-	\draw [->,gray] (-1.2,0) -- (1.5,0) node[right]{Réels};
-	\draw [->,gray] (0,-1.5) -- (0,1.2) node[above]{Imaginaires};
-	\draw (0,0) -- (-60:1.3) node{$+$} node[below right]{\resizebox{.45\hsize}{!}{$\sum a_n z^n$ DV grossièrement}};
-	\draw (0,0) -- (+30:0.8) node{$+$} node[above right]{\resizebox{.30\hsize}{!}{$\sum a_n z^n$ CVA}};
-	\draw [very thick,Red] (-1,0) node{$]$} -- (1,0) node{$[$};
-	
-\end{tikzpicture}
-\end{minipage}\\
-\begin{lemme}[d'\textsc{Abel}]
-S'il existe $\rho$ tel que la suite $\left( a_n \rho^n \right)$ soit bornée, alors \[\forall z<\rho,\boxed{\left| a_n z^n \right| \le M\left( \dfrac{|z|}{\rho} \right)^n}\]
-\end{lemme}
-\begin{theorem}
-Sur le disque ouvert $D_R$ de convergence $]-R,R[$, la série entière $\sum a_n z^n$ converge \emphh{absolument}.
-\end{theorem}
-\begin{theorem}
-Sur le disque ouvert $D_R$ de convergence $]-R,R[$, la série entière $\sum a_n z^n$ converge \emphh{uniformément} et sa somme est une fonction \emphh{continue}.
-\end{theorem}
-Pour déterminer le rayon, il existe plusieurs méthodes, mais on se servira principalement du théorème suivant étant une conséquence de la règle de d'\textsc{Alembert} :\\
-
-\begin{itheorem}[Règle de d'\textsc{Alembert}]
-Pour la série entière $\sum a_n z^{k}$ \uline{non nulle à partir d'un certain rang}, et qu'il existe $l$ tel que 
-\[
-\boxed{\left|\dfrac{a_{n+1}}{a_n}\right|\xrightarrow[n\to +\infty]{}l} \text{ alors } l = \frac{1}{R}
-\]
-La réciproque est fausse : si on connait $R$, on a pas $\left|\dfrac{a_{n+1}}{a_n}\right|$\\
-Sinon, on a aussi $\sqrt[n]{|a_n|}\xrightarrow[n\to +\infty]{}l$
-\end{itheorem}
-
-\begin{proof}
-Il suffit d'appliquer d'Alembert (\textit{cf.} théorème \ref{th:Regle_de_dAlembert} page \pageref{th:Regle_de_dAlembert}) à la série de terme général $|a_n z^k|$ (qui est une \gls{SATP}) qu'on prend à partir d'un certain rang tel que $a_n \neq 0$. Donc il existe une limite $l$ telle que \[\dfrac{|a_{n+1}z^{n+1}|}{|a_nz^z|}\xrightarrow[n\to +\infty]{} l|z|\]
-Donc $|a_nz^n|$ converge si $l|z| < 1$, et diverge si $l|z| > 1$.
-\par
-Puisque toute série entière de rayon de convergence $R>0$ est absolument convergente dans son disque ouvert de convergence.
-\end{proof}
-
-\section{Propriétés de la somme}
-\subsubsection*{Continuité}
-\begin{theorem}
-La somme d'une série entière est continue sur son disque ouvert de convergence $R$
-\end{theorem}
-\subsubsection*{Dérivabilité}
-\begin{theorem}[Dérivées successives]
-Les dérivées successives d'une série entière de rayon de convergence $R>0$ ont toutes le même rayon de convergence $R$
-\end{theorem}
-\begin{theorem}
-Pour des séries entières avec $R = \min (R_a,R_b)$, alors : 
-\[
-\forall x \in ]-R,R[, \sum a_n x^n = \sum b_n x^n \implies \forall n \in \mathbb{N}, a_n = b_n
-\]
-\end{theorem}
-\section{Développement en Séries Entières}
-\begin{dfn}[Fonction développable en série entière]
-$f:\mathbb{K}\to\mathbb{K}$ admet un DSE\index{Developpement en serie entiere@Développement en Série Entière} en $0$ s'il existe une série entière $\sum a_n z^n$ telle que \[
-\forall z \in \textcolor{gray}{\overset{\mathclap{\text{\begin{tiny}
-boule ouverte de centre 0
-\end{tiny}}}}{V}}, f(z) = \sum a_n z^{n}
-\]
-\end{dfn}
-\begin{theorem}
-[CNS d'un DSE]
-
-\[
-f:\mathbb{R}\rightarrow K\text{ est un DSE en 0}\Leftrightarrow \boxed{\displaystyle \int_0^x \dfrac{(x-t)^n}{n!}f^{n+1}(t) dt \underset{n\to\infty}{\to}0}
-\]
-
-\end{theorem}
 \needspace{19cm}
 \chapter{Intégrales sur un intervalle}
 %
