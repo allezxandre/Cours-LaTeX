@@ -1125,8 +1125,9 @@ Le \emph{moment d'inertie}\index{Moment!inertie@d'inertie} d'un solide caractér
 \begin{dfn}[Moment d'inertie]
   Le \emph{moment d'inertie} d'un solide $\Sigma$ par rapport à un axe $\Delta$ est :
   \begin{equation}
-  J_\Delta = \iiint_{P\in \Pi} r^2 \: \mathrm{d}m_P
+  J_\Delta = \iiint \limits_{P \in \Sigma} d(P,\Delta)^2 \: \d m = \iiint \limits_{P \in \Sigma} d(P,\Delta)^2 \: \rho \d V_P
   \end{equation}
+  Où $d(x,\Delta)^2$ est la distance à l'axe $\Delta$ d'un volume élémentaire $\d V$ de masse volumique $\rho$ dans le solide $\Sigma$.
 \end{dfn}
 \begin{theorem}
 On relie la vitesse de rotation d'un axe $\Delta$ du solide à $J_\Delta$ par\\ 
