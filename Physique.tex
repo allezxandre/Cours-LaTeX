@@ -1707,7 +1707,7 @@ La circulation de \E{} ne dépend donc pas du chemin emprunté, mais seulement d
 \end{dfn}
 \begin{itheorem}[Potentiel électrostatique]
    Le \emph{potentiel électrostatique}\index{Potentiel!electrostatique@électrostatique} $V(M)$ est lié au champ $\E (M)$ par la relation :
-   \begin{equation}
+   \begin{equation}\label{eq:potentiel_electrostatique}
    \E{} = -\grad{V}
    \end{equation}
    \Attention{Pour un champ $\E{}(M)$ donné, $V(M)$ n'est pas unique.}
@@ -1969,6 +1969,7 @@ Comme $\diverg \B{} = 0$ (Équation 3 de Maxwell (\ref{eq:MaxwellFaraday})), on 
 Maintenant, en prenant l'équation 2 de Maxwell (\ref{eq:MaxwellFlux}), $\rot \vv{E}=-\dfrac{\partial \left( \rot \vv{A} \right)}{\partial t}$. En intervertissant les opérateurs, et en faisant tout passer à gauche : $$\rot \left( \vv{E} + \dfrac{\partial \vv{A}}{\partial t} \right)=\vv{0}$$ Donc on sait que $\vv{E} + \dfrac{\partial \left( \vv{A} \right)}{\partial t}$ est un champ à gradient. D'où il existe $V$ tel que $$\grad \: V = \vv{E} + \dfrac{\partial \vv{A}}{\partial t}$$
 \end{proof}
 \subsection{Equations de \textsc{Poisson} et de \textsc{Laplace}}
+En \emphhs{statique}, $\rot \E = -\dfrac{\partial \B}{\partial t} = \vv{0}$, ce qui équivaut à l'existence d'un potentiel $V(M)$ tel que $\E = -\grad[V]$ (c'est l'équation \eqref{eq:potentiel_electrostatique} qu'on voit en électrostatique page \pageref{eq:potentiel_electrostatique}). 
 \needspace{7cm}
 \begin{itheorem}
    En régime stationnaire, le potentiel électrique vérifie l'\emph{équation de \textsc{Poisson}}\index{Poisson@\textsc{Poisson}} :
@@ -1980,7 +1981,6 @@ Maintenant, en prenant l'équation 2 de Maxwell (\ref{eq:MaxwellFlux}), $\rot \v
    \begin{equation}
    \Delta V(M) = 0
    \end{equation}
-   
 \end{itheorem}
 \begin{proof}
    Il suffit d'injecter $\E = -\grad V (M)$ à l'équation de \textsc{Maxwell}-\textsc{Gauss}~\eqref{eq:MaxwellGauss}~page~\pageref{eq:MaxwellGauss} : 
@@ -1989,6 +1989,7 @@ Maintenant, en prenant l'équation 2 de Maxwell (\ref{eq:MaxwellFlux}), $\rot \v
    \end{equation}
    Or, par définition, $\diverg[-\grad f] = -\Delta f$. \qed
 \end{proof}
+\Attention{Le potentiel n'existe que quand $\rot \E = \vv{0}$. En général, c'est en statique ou en régime permanent. Mais écrire $V(M,t)$ est absurde !}
 \section{Énergie électromagnétique} % (fold)
 \label{sec:energie_electromagnetique}
 Sur une particule chargée, la majorité des forces sont négligeables devant la force de \textsc{Lorentz}. C'est ainsi qu'on peut appliquer le \gls{TRC} (équation~\eqref{eq:TRC} page~\pageref{eq:TRC})
