@@ -2741,6 +2741,57 @@ $U$ un intervalle ouvert de $\Reel{}^2$, et en reprenant l'équation \eqref{equa
 \end{theorem}
 %
 %
+\chapter{Calcul différentiel} % (fold)
+\label{cha:calcul_differentiel}
+% Je sais que le chapitre "Fonctions de plusieurs variables" est le même, 
+% mais j'ai envie de tout refaire dans ce chapitre.
+Dans ce chapitre, on se place dans $\left( E, N \right)$ et $\left( F,P \right)$, des espaces vectoriels normés de dimension finie. $U$ est un ouvert de $E$
+\[
+    \begin{array}{r c r c l}
+    f&:& U &\to & F \\
+     & & a &\mapsto & f(a)
+    \end{array}
+\]
+\section{Dérivée selon un vecteur, dérivées partielles} % (fold)
+\label{sec:derivee_selon_un_vecteur_derivees_partielles}
+\begin{dfn}[Dérivée selon un vecteur]
+     Soit $f:U\to F$ la fonction définie précédemment.\newline
+    Soit $u$ un vecteur non nul de $E$, et $t$ un réel tel que $a+tu \in U$. \\
+    On dit que $f$ \emph{admet une dérivée selon le vecteur $u$ au point $a$} (ou admet une \emph{dérivée directionnelle}) si la fonction réelle $t\mapsto f(a+tu)$ est dérivable en $0$. Cette dérivée en $a$ est notée $D_uf(a)$. \newline
+    On a alors : 
+    \begin{equation}
+    D_hf(a)=\lim_{\substack{t\rightarrow 0\\ t\neq 0}}\dfrac{f(a+\textcolor{Red}{t}u) - f(a)}{t}
+    \end{equation}
+\end{dfn}
+\begin{dfn}[Dérivées partielles dans une base]
+     
+\end{dfn}
+% section derivee_selon_un_vecteur_derivees_partielles (end)
+\section{Différentielle} % (fold)
+\label{sec:differentielle}
+
+% section differentielle (end)
+\section{Opérations sur les applications différentiables} % (fold)
+\label{sec:operations_sur_les_applications_differentiables}
+
+% section operations_sur_les_applications_differentiables (end)
+\section{Cas des applications numériques} % (fold)
+\label{sec:cas_des_applications_numeriques}
+
+% section cas_des_applications_numeriques (end)
+\section{Vecteurs tangents à une partie d'un espace normé de dimension finie} % (fold)
+\label{sec:vecteurs_tangents_une_partie_d_un_espace_norme_de_dimension_finie}
+
+% section vecteurs_tangents_une_partie_d_un_espace_norme_de_dimension_finie (end)
+\section{Applications de classe $\mathcal{C}^1$} % (fold)
+\label{sec:applications_de_classe_C1}
+
+% section applications_de_classe_C1 (end)
+\section{Applications de classe $\mathcal{C}^k$} % (fold)
+\label{sec:applications_de_classe_C_k}
+
+% section applications_de_classe_C_k (end)
+% chapter calcul_differentiel (end)
 \chapter{Fonctions de plusieurs variables}
 \begin{methode}
 \titre{Étude d'une fonction à deux variables} \newline
