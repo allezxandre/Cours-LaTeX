@@ -1359,7 +1359,6 @@ $c = \lambda \nu $ & $\lambda = c T$
     & Éclairement (\textit{cf.} \eqref{eclairement}) & $\Epsilon = K \langle \vibration^2 \rangle$ \\
 \hline
 \end{tabular}\\
-%
 \titre{Propriétés}
 \begin{tabular}{r @{=} l | r @{=} l}
 \vibration &$ \mathrm{Re}\left( \vibrationC \right)$ 
@@ -1369,8 +1368,8 @@ $c = \lambda \nu $ & $\lambda = c T$
 \end{tabular}
 \end{methode}
 %
-\subsection{Généralités} % (fold)
-\label{sub:generalites_optique}
+\subsection{Modèle scalaire des ondes lumineuses} % (fold)
+\label{sub:modele_scalaire_des_ondes_lumineuses}
 \begin{dfn}[\acrfull{OEM}]
    Une \gls{OEM}\index{Onde!electomagnetique@électromagnétique} est le couple $(\E , \B )$. C'est l'oscillation couplée du champ électrique \E{} et du champ magnétique \B{}. 
 \end{dfn}
@@ -1383,6 +1382,47 @@ $c = \lambda \nu $ & $\lambda = c T$
    \vibration = \sum_i \vibration[i]
    \end{equation}
 \end{theorem}
+\subsubsection{Chemin optique} % (fold)
+\label{ssub:chemin_optique}
+\begin{dfn}[Chemin optique]
+   Soit un rayon lumineux passant par les points $M$ et $N$ en un temps $t_{MN}$. Le \emph{chemin optique}\index{Chemin optique} $(MN)$ parcouru par la lumière est :
+   \begin{equation}
+   (MN) = c\cdot t_{MN} \label{eq:chemin_optique}
+   \end{equation}
+   En \uline{milieu homogène} où l'onde se déplace à une vitesse $v$, si $MN$ est la distance parcourue, on a $t_{MN}=\frac{MN}{v}$.
+\end{dfn}
+\begin{itheorem}[Déphasage dû à la propagation]
+   Soient deux point $M$ et $N$ de chemin optique $(MN)$. Le \emph{retard de phase}\index{Retard de phase} en $N$ par rapport à la phase au point $M$ est :
+   \begin{equation}\label{eq:retard_de_phase}
+   \phase{N} = \phase{M} + \dfrac{2\pi}{\lambda_0}(MN) = \phase{M} + \dfrac{\omega}{c}(MN)
+   \end{equation}
+\end{itheorem}
+\begin{proof}
+   Le retard en temps accumulé en $N$ est de $t_{MN}$. Donc : 
+   \begin{align*}
+       s(N,t) &= \underbrace{s \big(M,t - t_{MN}\big)}_{\text{Vibration en }M,\, t_{MN} \text{ secondes plus tôt}}
+      \intertext{Donc :}
+      \amplitude{N}\cos (\pulsation t - \phase{N}) &= \amplitude{M}\cos \bigg(\pulsation (t - t_{MN}) - \phase{M}\bigg)
+      \intertext{Ce qui implique : }
+      -\phase{N} &= -\pulsation t_{MN} -\phase{M}
+      \intertext{Or par définition de \eqref{eq:chemin_optique} : $t_{MN} = \frac{(MN)}{c}$, d'où :}
+      \phase{N} &= \phase{M} + \dfrac{\pulsation}{c}(MN) \\
+                &= \phase{M} + \dfrac{2\pi }{\lambda_0}(MN)
+   \end{align*}
+   Avec $\lambda_0=cT=c\dfrac{2\pi}{\pulsation}$ la longueur d'onde dans le vide.\qed
+\end{proof}
+\begin{theorem}[Réflexion métallique]
+   La lumière subit un déphasage de $\pi$ lors de sa réflexion dans un matériau. Le chemin optique se voit modifié de $\dfrac{\lambda_0}{2}$ : 
+   \begin{subequations}
+      \begin{align}
+         \phase{\text{Avant réflexion}} &= \phase{\text{Après réflexion}} + \pi \\
+         \phase{\text{Avant réflexion}} &= \phase{\text{Après réflexion}} + \dfrac{\lambda_0}{2}
+      \end{align}
+   \end{subequations}
+\end{theorem}
+% subsubsection chemin_optique (end)
+\subsubsection{Éclairement et intensité} % (fold)
+\label{ssub:eclairement_et_intensite}
 Les récepteurs de lumière (comme l'\oe{}il et les capteurs CDD) sont sensibles à une valeur moyenne de la puissance lumineuse qu'ils reçoivent. Il convient alors de définir l'éclairement pour décrire ce que l'on voit.
 \begin{dfn}[Éclairement]
 Les capteurs photo-sensibles ayant un taux de rafraîchissement lent relativement à la vitesse de la lumière et à sa pulsation \pulsation{}, ils font une moyenne sur une période de la vibration reçue. C'est alors qu'on définit l'\emph{éclairement}\index{Eclairement@Éclairement \Epsilon} : 
@@ -1390,46 +1430,16 @@ Les capteurs photo-sensibles ayant un taux de rafraîchissement lent relativemen
 \Epsilon = K \langle \vibration^2 \rangle
 \end{equation}
 \end{dfn}
-% subsection generalites_optique (end)
-\subsection{Lumière monochromatique} % (fold)
-\label{sub:lumiere_monochromatique}
-\begin{dfn}[Lumière monochromatique]
-    La \emph{lumière monochromatique}\index{monochromatique@\emphi{Lumière }monochromatique} est la forme la plus idéale de vibration. Elle est \og{}purement\fg{} sinusoïdale : 
-    \begin{equation}
-    \vibration = \amplitude{M} \cos (\pulsation{}t - \phase{M})
-    \end{equation}
-\end{dfn}
-Cette vibration présente une périodicité temporelle et une périodicité spatiale : 
-\begin{itemize}
-  \item Périodicité temporelle : \\
-  caractérisée par la \emphh{période}\index{Periode@Période} $\textcolor{couleur4}{T}$, la fréquence $\nu = \frac{1}{\textcolor{couleur4}{T}}$, et la \emph{pulsation}\index{Pulsation@Pulsation $\pulsation$} $\textcolor{couleur5}{\boldsymbol{\pulsation}}$
-  \[
-    \textcolor{couleur5}{\boldsymbol{\pulsation}} = \dfrac{2\pi}{\textcolor{couleur4}{T}}
-  \]
-  \item Périodicité spatiale : \\
-  caractérisée par la \emph{longueur d'onde}\index{Longueur donde@Longueur d'onde $\lambda$} $\textcolor{couleur4}{\lambda}$ (\emphh{période spatiale}), le \emph{nombre d'onde}\index{Nombre donde@Nombre d'onde $\sigma$} $\sigma = \frac{1}{\textcolor{couleur4}{\lambda}}$ (fréquence spatiale), et le \emph{module d'onde}\index{module donde@Module d'onde $k$} (pulsation spatiale) $\textcolor{couleur5}{\boldsymbol{k}}$ :
-  \[
-    \textcolor{couleur5}{\boldsymbol{k}} = \frac{2\pi}{\textcolor{couleur4}{\lambda}}
-  \]
-\end{itemize}
-On les relie avec la vitesse de propagation : \newline
-Pour la lumière dans le vide : 
-\begin{equation}
-\lambda_0 = c T
-\end{equation}
-\subsubsection{Chemin optique} % (fold)
-\label{ssub:chemin_optique}
-\begin{dfn}[Chemin optique]
-   Soit un rayon lumineux passant par les points $M$ et $N$ en un temps $t_{MN}$. Le \emph{chemin optique}\index{Chemin optique} $(MN)$ parcouru par la lumière est :
-   \begin{equation}
-   (MN) = c\cdot t_{MN}
-   \end{equation}
-   En \uline{milieu homogène} où l'onde se déplace à une vitesse $v$, si $MN$ est la distance parcourue, $t_{MN}=\frac{MN}{v}$.
-\end{dfn}
-% subsubsection chemin_optique (end)
-% subsection lumiere_monochromatique (end)
-\subsection{Interférences}
-\subsubsection{Interférences entre deux sources}
+% subsubsection eclairement_et_intensite (end)
+% subsection modele_scalaire_des_ondes_lumineuses (end)
+\subsection{Superposition d'ondes lumineuses} % (fold)
+\label{sub:superposition_ondes_lumineuses}
+\subsubsection{Ondes incohérentes} % (fold)
+\label{ssub:ondes_incoherentes}
+
+% subsubsection ondes_incoherentes (end)
+\subsubsection{Ondes cohérentes} % (fold)
+\label{ssub:ondes_coherentes}
 Prenons deux sources $S_1$ et $S_2$, de vibrations respectives $\vibration[1] = \amplitude[1]{M}  \cos \left( \pulsation[1] t - \phase[1]{M} \right)$ et $\vibration[2] = \amplitude[2]{M}  \cos \left( \pulsation[2] t - \phase[2]{M} \right)$. \\
 \begin{itheorem}[Interférences entre deux sources]
 Pour le système ainsi définit, on a :
@@ -1464,7 +1474,35 @@ D'après la formule de trigonométrie \eqref{trigo} page \pageref{trigo} $( \cos
 %
 On sait de plus que $\langle \cos \big( (\pulsation[1] + \pulsation [2] ) t - \phase[1]{M} - \phase[2]{M} \big) \rangle = 0$ car $\pulsation[1] + \pulsation [2] \neq 0$, et $\langle \cos  \big( (\pulsation[1] - \pulsation [2] ) t - \phase[1]{M} + \phase[2]{M} \big) \rangle = 0 \Leftrightarrow \pulsation[1] - \pulsation [2] = 0 $. 
 \end{proof}
-%
+% subsubsection ondes_coherentes (end)
+% subsection superposition_ondes_lumineuses (end)
+\subsection{Lumière monochromatique} % (fold)
+\label{sub:lumiere_monochromatique}
+\begin{dfn}[Lumière monochromatique]
+    La \emph{lumière monochromatique}\index{monochromatique@\emphi{Lumière }monochromatique} est la forme la plus idéale de vibration. Elle est \og{}purement\fg{} sinusoïdale : 
+    \begin{equation}
+    \vibration = \amplitude{M} \cos (\pulsation{}t - \phase{M})
+    \end{equation}
+\end{dfn}
+Cette vibration présente une périodicité temporelle et une périodicité spatiale : 
+\begin{itemize}
+  \item Périodicité temporelle : \\
+  caractérisée par la \emphh{période}\index{Periode@Période} $\textcolor{couleur4}{T}$, la fréquence $\nu = \frac{1}{\textcolor{couleur4}{T}}$, et la \emph{pulsation}\index{Pulsation@Pulsation $\pulsation$} $\textcolor{couleur5}{\boldsymbol{\pulsation}}$
+  \[
+    \textcolor{couleur5}{\boldsymbol{\pulsation}} = \dfrac{2\pi}{\textcolor{couleur4}{T}}
+  \]
+  \item Périodicité spatiale : \\
+  caractérisée par la \emph{longueur d'onde}\index{Longueur donde@Longueur d'onde $\lambda$} $\textcolor{couleur4}{\lambda}$ (\emphh{période spatiale}), le \emph{nombre d'onde}\index{Nombre donde@Nombre d'onde $\sigma$} $\sigma = \frac{1}{\textcolor{couleur4}{\lambda}}$ (fréquence spatiale), et le \emph{module d'onde}\index{module donde@Module d'onde $k$} (pulsation spatiale) $\textcolor{couleur5}{\boldsymbol{k}}$ :
+  \[
+    \textcolor{couleur5}{\boldsymbol{k}} = \frac{2\pi}{\textcolor{couleur4}{\lambda}}
+  \]
+\end{itemize}
+On les relie avec la vitesse de propagation : \newline
+Pour la lumière dans le vide : 
+\begin{equation}
+\lambda_0 = c T
+\end{equation}
+% subsection lumiere_monochromatique (end)
 \subsubsection{Trous de \textsc{Young}} % (fold)
 \label{ssub:trous_de_young}
 Étudions le dispositif suivant : deux fentes $(F_1)$ et $(F_2)$ sont éclairées par une source $S$ à l'infini formant un angle $\alpha_0$ avec l'origine. 
