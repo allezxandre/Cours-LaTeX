@@ -1434,50 +1434,8 @@ Les capteurs photo-sensibles ayant un taux de rafraîchissement lent relativemen
 % subsection modele_scalaire_des_ondes_lumineuses (end)
 \subsection{Superposition d'ondes lumineuses} % (fold)
 \label{sub:superposition_ondes_lumineuses}
-\subsubsection{Ondes incohérentes} % (fold)
-\label{ssub:ondes_incoherentes}
-
-% subsubsection ondes_incoherentes (end)
-\subsubsection{Ondes cohérentes} % (fold)
-\label{ssub:ondes_coherentes}
-Prenons deux sources $S_1$ et $S_2$, de vibrations respectives $\vibration[1] = \amplitude[1]{M}  \cos \left( \pulsation[1] t - \phase[1]{M} \right)$ et $\vibration[2] = \amplitude[2]{M}  \cos \left( \pulsation[2] t - \phase[2]{M} \right)$. \\
-\begin{itheorem}[Interférences entre deux sources]
-Pour le système ainsi définit, on a :
-\begin{align}\label{interferences}
-\vibration &= \vibration[1] + \vibration[2] \nonumber \\[5pt]
-\Epsilon &= \Epsilon_1 + \Epsilon_2 + \underbrace{2 \sqrt{\Epsilon_1 \Epsilon_2}\cos \left( \phase[2]{M} - \phase[1]{M} \right)}_{\text{Nul si \pulsation[1] $\neq$ \pulsation[2]}}
-\end{align}
-%
-Ainsi, le terme d'interférence $2 \sqrt{\Epsilon_1 \Epsilon_2}\cos \left( \phase[2]{M} - \phase[1]{M} \right)$ n'est valable que si : 
-\begin{itemize}[label=$\bullet$]
-    \item Les ondes $1$ et $2$ doivent être de même pulsation (i.e \pulsation[1] = \pulsation[2])
-    \item Les sources $S_1$ et $S_2$ doivent être cohérentes
-    \item Le déphasage ne doit pas dépasser la longueur de cohérence $l_c$
-\end{itemize}
-\end{itheorem}
-\begin{proof}
-On exprime l'éclairement \Epsilon : 
-\begin{align*}
-\Epsilon &= K \langle \bigg( \vibration[1] + \vibration[2] \bigg)^2 \rangle \\
-         &= K \langle \left( \vibration[1] \right)
-^2 \rangle + K \langle \left( \vibration[2] \right)
-^2 \rangle + 2K\langle \vibration[1] \vibration[2] \rangle \\
-         &= \Epsilon_1 + \Epsilon_2 + \textcolor{Red}{2K\langle \vibration[1] \vibration[2] \rangle}
-\end{align*}
-Étudions ce deuxième terme $\textcolor{Red}{2K\langle \vibration[1] \vibration[2] \rangle}$ :
-\begin{align*}
-\vibration[1] \vibration[2] &= 2K \amplitude[1]{M} \amplitude[2]{M}  \langle \cos \left( \pulsation[1] t - \phase[1]{M} \right)\cos \left( \pulsation[2] t - \phase[2]{M} \right)\rangle \\
-    &= \frac{1}{2}\times 2 K \bigg( \langle \cos \big( (\pulsation[1] + \pulsation [2] ) t - \phase[1]{M} - \phase[2]{M} \big) \rangle \\
-    &\hphantom{Here is some} + \langle \cos  \big( (\pulsation[1] - \pulsation [2] ) t - \phase[1]{M} + \phase[2]{M} \big) \rangle \bigg)
-\end{align*}
-D'après la formule de trigonométrie \eqref{trigo} page \pageref{trigo} $( \cos a \cos b = \frac{1}{2} \big( \cos (a+b) + \cos (a-b) \big) )$. \\
-%
-On sait de plus que $\langle \cos \big( (\pulsation[1] + \pulsation [2] ) t - \phase[1]{M} - \phase[2]{M} \big) \rangle = 0$ car $\pulsation[1] + \pulsation [2] \neq 0$, et $\langle \cos  \big( (\pulsation[1] - \pulsation [2] ) t - \phase[1]{M} + \phase[2]{M} \big) \rangle = 0 \Leftrightarrow \pulsation[1] - \pulsation [2] = 0 $. 
-\end{proof}
-% subsubsection ondes_coherentes (end)
-% subsection superposition_ondes_lumineuses (end)
-\subsection{Lumière monochromatique} % (fold)
-\label{sub:lumiere_monochromatique}
+\subsubsection{Lumière monochromatique} % (fold)
+\label{ssub:lumiere_monochromatique}
 \begin{dfn}[Lumière monochromatique]
     La \emph{lumière monochromatique}\index{monochromatique@\emphi{Lumière }monochromatique} est la forme la plus idéale de vibration. Elle est \og{}purement\fg{} sinusoïdale : 
     \begin{equation}
@@ -1502,9 +1460,47 @@ Pour la lumière dans le vide :
 \begin{equation}
 \lambda_0 = c T
 \end{equation}
-% subsection lumiere_monochromatique (end)
-\subsubsection{Trous de \textsc{Young}} % (fold)
-\label{ssub:trous_de_young}
+% subsubsection lumiere_monochromatique (end)
+\subsubsection{Interférences} % (fold)
+\label{ssub:interferences}
+Prenons deux sources $S_1$ et $S_2$, de vibrations respectives $\vibration[1] = \amplitude[1]{M}  \cos \left( \pulsation[1] t - \phase[1]{M} \right)$ et $\vibration[2] = \amplitude[2]{M}  \cos \left( \pulsation[2] t - \phase[2]{M} \right)$. \\
+\begin{itheorem}[Interférences entre deux sources]
+Pour le système ainsi définit, on a :
+\begin{align}\label{interferences}
+\vibration &= \vibration[1] + \vibration[2] \nonumber \\[5pt]
+\Epsilon &= \Epsilon_1 + \Epsilon_2 + \underbrace{2 \sqrt{\Epsilon_1 \Epsilon_2}\cos \left( \phase[2]{M} - \phase[1]{M} \right)}_{\text{Nul si \pulsation[1] $\neq$ \pulsation[2]}}
+\end{align}
+%
+Ainsi, le terme d'interférence $2 \sqrt{\Epsilon_1 \Epsilon_2}\cos \left( \phase[2]{M} - \phase[1]{M} \right)$ n'est valable que si : 
+\begin{itemize}[label=$\bullet$]
+    \item Les ondes $1$ et $2$ doivent être de même pulsation (i.e \pulsation[1] = \pulsation[2])
+    \item Les sources $S_1$ et $S_2$ doivent être cohérentes
+    \item Le déphasage ne doit pas dépasser la longueur de cohérence $l_c$
+\end{itemize}
+\end{itheorem}
+\begin{proof}\label{proof:eclairement}
+On exprime l'éclairement \Epsilon : 
+\begin{align*}
+\Epsilon &= K \langle \bigg( \vibration[1] + \vibration[2] \bigg)^2 \rangle \\
+         &= K \langle \left( \vibration[1] \right)
+^2 \rangle + K \langle \left( \vibration[2] \right)
+^2 \rangle + 2K\langle \vibration[1] \vibration[2] \rangle \\
+         &= \Epsilon_1 + \Epsilon_2 + \textcolor{Red}{2K\langle \vibration[1] \vibration[2] \rangle}
+\end{align*}
+Étudions ce deuxième terme $\textcolor{Red}{2K\langle \vibration[1] \vibration[2] \rangle}$ :
+\begin{align*}
+\vibration[1] \vibration[2] &= 2K \amplitude[1]{M} \amplitude[2]{M}  \langle \cos \left( \pulsation[1] t - \phase[1]{M} \right)\cos \left( \pulsation[2] t - \phase[2]{M} \right)\rangle \\
+    &= \frac{1}{2}\times 2 K \bigg( \langle \cos \big( (\pulsation[1] + \pulsation [2] ) t - \phase[1]{M} - \phase[2]{M} \big) \rangle \\
+    &\hphantom{Here is some} + \langle \cos  \big( (\pulsation[1] - \pulsation [2] ) t - \phase[1]{M} + \phase[2]{M} \big) \rangle \bigg)
+\end{align*}
+D'après la formule de trigonométrie \eqref{trigo} page \pageref{trigo} $( \cos a \cos b = \frac{1}{2} \big( \cos (a+b) + \cos (a-b) \big) )$. \\
+%
+On sait de plus que $\langle \cos \big( (\pulsation[1] + \pulsation [2] ) t - \phase[1]{M} - \phase[2]{M} \big) \rangle = 0$ car $\pulsation[1] + \pulsation [2] \neq 0$, et $\langle \cos  \big( (\pulsation[1] - \pulsation [2] ) t - \phase[1]{M} + \phase[2]{M} \big) \rangle = 0 \Leftrightarrow \pulsation[1] - \pulsation [2] = 0 $. 
+\end{proof}
+% subsubsection interferences (end)
+% subsection superposition_ondes_lumineuses (end)
+\subsection{Trous d'\textsc{Young}} % (fold)
+\label{sub:trous_de_young}
 Étudions le dispositif suivant : deux fentes $(F_1)$ et $(F_2)$ sont éclairées par une source $S$ à l'infini formant un angle $\alpha_0$ avec l'origine. 
 \begin{center}
 \begin{tikzpicture}[scale=1.4]
@@ -1595,8 +1591,7 @@ On obtient donc le résultat :
    \delta (M) &\approx n_\text{air}a\left( \dfrac{x}{f'} - \alpha_0 \right) \\
    i          &= \dfrac{\lambda_0 f'}{n_\text{air}a}
 \end{empheq}
-% subsubsection trous_de_young (end)
-%
+% subsection trous_de_young (end)
 \subsection{Diffraction}
 \begin{dfn}[Principe d'\textsc{Huygens}-\textsc{Fresnel}\index{Huygens-Fresnel@\textsc{Huygens}-\textsc{Fresnel}}]
 %TODO Terminer l'énoncé
