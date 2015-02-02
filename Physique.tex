@@ -1400,7 +1400,7 @@ $c = \lambda \nu $ & $\lambda = c T$
 \begin{proof}
    Le retard en temps accumulé en $N$ est de $t_{MN}$. Donc : 
    \begin{align*}
-       s(N,t) &= \underbrace{s \big(M,t - t_{MN}\big)}_{\text{Vibration en }M,\, t_{MN} \text{ secondes plus tôt}}
+       s(N,t) &= \underbrace{s \big(M,t - t_{MN}\big)}_{\mathclap{\text{Vibration en }M,\, t_{MN} \text{ secondes plus tôt}}}
       \intertext{Donc :}
       \amplitude{N}\cos (\pulsation t - \phase{N}) &= \amplitude{M}\cos \bigg(\pulsation (t - t_{MN}) - \phase{M}\bigg)
       \intertext{Ce qui implique : }
@@ -1464,8 +1464,8 @@ Pour la lumière dans le vide :
 \subsubsection{Interférences} % (fold)
 \label{ssub:interferences}
 Prenons deux sources $S_1$ et $S_2$, de vibrations respectives $\vibration[1] = \amplitude[1]{M}  \cos \left( \pulsation[1] t - \phase[1]{M} \right)$ et $\vibration[2] = \amplitude[2]{M}  \cos \left( \pulsation[2] t - \phase[2]{M} \right)$. \\
-\begin{itheorem}[Interférences entre deux sources]
-Pour le système ainsi définit, on a :
+\begin{itheorem}[Formule de \textsc{Fresnel}]
+Pour le système ainsi définit, l'éclairement résultant d'interférences est donné par la \emph{formule de \textsc{Fresnel}}\index{Fresnel@\textsc{Fresnel}} :
 \begin{align}\label{interferences}
 \vibration &= \vibration[1] + \vibration[2] \nonumber \\[5pt]
 \Epsilon &= \Epsilon_1 + \Epsilon_2 + \underbrace{2 \sqrt{\Epsilon_1 \Epsilon_2}\cos \left( \phase[2]{M} - \phase[1]{M} \right)}_{\text{Nul si \pulsation[1] $\neq$ \pulsation[2]}}
@@ -1476,26 +1476,41 @@ Ainsi, le terme d'interférence $2 \sqrt{\Epsilon_1 \Epsilon_2}\cos \left( \phas
     \item Les ondes $1$ et $2$ doivent être de même pulsation (i.e \pulsation[1] = \pulsation[2])
     \item Les sources $S_1$ et $S_2$ doivent être cohérentes
     \item Le déphasage ne doit pas dépasser la longueur de cohérence $l_c$
+    \item Le déphasage doit être quasiment constant sur une durée du temps de réponse du détecteur utilisé % NOUVEAU :-) 
 \end{itemize}
 \end{itheorem}
 \begin{proof}\label{proof:eclairement}
-On exprime l'éclairement \Epsilon : 
+On exprime l'éclairement total en $M$, $\Epsilon (M)$ : 
 \begin{align*}
-\Epsilon &= K \langle \bigg( \vibration[1] + \vibration[2] \bigg)^2 \rangle \\
+\Epsilon(M) &= K \langle \bigg( \vibration[1] + \vibration[2] \bigg)^2 \rangle \\
          &= K \langle \left( \vibration[1] \right)
 ^2 \rangle + K \langle \left( \vibration[2] \right)
 ^2 \rangle + 2K\langle \vibration[1] \vibration[2] \rangle \\
-         &= \Epsilon_1 + \Epsilon_2 + \textcolor{Red}{2K\langle \vibration[1] \vibration[2] \rangle}
+         &= \Epsilon_1(M) + \Epsilon_2(M) + \textcolor{Red}{2K\langle \vibration[1] \vibration[2] \rangle}
 \end{align*}
-Étudions ce deuxième terme $\textcolor{Red}{2K\langle \vibration[1] \vibration[2] \rangle}$ :
+Étudions ce deuxième terme $\textcolor{Red}{\Epsilon_{12}(M)=2K\langle \vibration[1] \vibration[2] \rangle}$ :
 \begin{align*}
-\vibration[1] \vibration[2] &= 2K \amplitude[1]{M} \amplitude[2]{M}  \langle \cos \left( \pulsation[1] t - \phase[1]{M} \right)\cos \left( \pulsation[2] t - \phase[2]{M} \right)\rangle \\
-    &= \frac{1}{2}\times 2 K \bigg( \langle \cos \big( (\pulsation[1] + \pulsation [2] ) t - \phase[1]{M} - \phase[2]{M} \big) \rangle \\
-    &\hphantom{Here is some} + \langle \cos  \big( (\pulsation[1] - \pulsation [2] ) t - \phase[1]{M} + \phase[2]{M} \big) \rangle \bigg)
+ \Epsilon_{12}(M) &= 2K \amplitude[1]{M} \amplitude[2]{M}  \langle \cos \left( \pulsation[1] t - \phase[1]{M} \right)\cos \left( \pulsation[2] t - \phase[2]{M} \right)\rangle 
+\intertext{D'après la formule de trigonométrie \eqref{trigo} page \pageref{trigo} $( \cos a \cos b = \frac{1}{2} \big( \cos (a+b) + \cos (a-b) \big) )$ :}
+ \Epsilon_{12}(M) &= \frac{1}{2}\times 2 K \amplitude[1]{M} \amplitude[2]{M} \bigg( \langle \cos \big( (\pulsation[1] + \pulsation [2] ) t - \phase[1]{M} - \phase[2]{M} \big) \rangle \\
+    &\hphantom{Here is some more and moar} + \langle \cos  \big( (\pulsation[1] - \pulsation [2] ) t - \phase[1]{M} + \phase[2]{M} \big) \rangle \bigg)
 \end{align*}
-D'après la formule de trigonométrie \eqref{trigo} page \pageref{trigo} $( \cos a \cos b = \frac{1}{2} \big( \cos (a+b) + \cos (a-b) \big) )$. \\
 %
-On sait de plus que $\langle \cos \big( (\pulsation[1] + \pulsation [2] ) t - \phase[1]{M} - \phase[2]{M} \big) \rangle = 0$ car $\pulsation[1] + \pulsation [2] \neq 0$, et $\langle \cos  \big( (\pulsation[1] - \pulsation [2] ) t - \phase[1]{M} + \phase[2]{M} \big) \rangle = 0 \Leftrightarrow \pulsation[1] - \pulsation [2] = 0 $. 
+La valeur moyenne d'un cosinus étant nulle, on sait de plus que : \newline 
+  $\langle \cos \big( (\pulsation[1] + \pulsation [2] ) t - \phase[1]{M} - \phase[2]{M} \big) \rangle = 0$ car $\pulsation[1] + \pulsation [2] \neq 0$, et que \newline
+  $\langle \cos  \big( (\pulsation[1] - \pulsation [2] ) t - \phase[1]{M} + \phase[2]{M} \big) \rangle \neq 0 \Leftrightarrow \pulsation[1] - \pulsation [2] = 0 $.\par
+
+  Si on considère que $\pulsation[1] - \pulsation [2] = 0$, alors le deuxième terme $\textcolor{Red}{\Epsilon_{12}(M)}$ devient : 
+  \begin{align*}
+    \Epsilon_{12}(M) &= K \amplitude[1]{M} \amplitude[2]{M} \langle \cos  \big( \phase[2]{M} - \phase[1]{M} \big) \rangle\\
+                     &= 2\sqrt{\dfrac{K}{2}\amplitude[1]{M}^2}~\sqrt{\dfrac{K}{2}\amplitude[2]{M}^2} \langle \cos  \big( \phase[2]{M} - \phase[1]{M} \big) \rangle \\
+                     &= 2\sqrt{\Epsilon_1(M)~\Epsilon_2(M)} \langle \cos  \big( \phase[2]{M} - \phase[1]{M} \big) \rangle
+  \end{align*}
+  Comme précédemment, $\langle \cos  \big( \phase[2]{M} - \phase[1]{M} \big) \rangle \neq 0 \Leftrightarrow \phase[2]{M} - \phase[1]{M}$ est constant. \newline 
+  Alors, $\langle \cos  \big( \phase[2]{M} - \phase[1]{M} \big) \rangle = \cos  \big( \phase[2]{M} - \phase[1]{M} \big)$ 
+  \qed
+
+\textbf{Remarque} : en complexe, ça va beaucoup plus vite.
 \end{proof}
 % subsubsection interferences (end)
 % subsection superposition_ondes_lumineuses (end)
