@@ -2772,13 +2772,59 @@ Dans ce chapitre, on se place dans $\left( E, N \right)$ et $\left( F,P \right)$
      
 \end{dfn}
 % section derivee_selon_un_vecteur_derivees_partielles (end)
+\needspace{3cm}
 \section{Différentielle} % (fold)
 \label{sec:differentielle}
+\subsection{Application différentiable} % (fold)
+\label{sub:application_differentiable}
+\begin{dfn}[Application différentiable au point $a$]
+    Soit $f:U\to F$ la fonction définie précédemment.\newline
+    On dit que $f$ est \emph{différentiable}\index{Differentiable@Différentiable} au point $a$ s'il existe une fonction linéaire $\d f(a) : E \to F$ telle que :
+    \begin{equation}
+    \forall h \in E, \ f(a + h) = f(a) + \d f(a)(h) + o(h)
+    \end{equation}
+\end{dfn}
+\Attention{$\d f(a) \in \mathcal{L}(E,F)$ est une application linéaire de $E$ dans $F$. On l'applique sur un vecteur $h$ en notant $\d f(a)(h)$ ou $\d f(a)\cdot h$}
+\begin{theorem}[$f$ dérivable en $a$]
+     Soit $f$ la fonction définie précédemment. \newline
+     Si $f$ est différentiable en $a$, alors $f$ est continue en $a$ et est dérivable en $a$ selon tout vecteur. Sa dérivée selon le vecteur $v$ est alors : 
+     \begin{equation}
+     D_v f(a) = \d f(a)(v)
+     \end{equation}
+\end{theorem}
+% subsection application_differentiable (end)
+\subsection{Jacobien, Jacobienne} % (fold)
+\label{sub:jacobien_jacobienne}
+% TODO: À terminer
+\begin{dfn}[Jacobienne, Jacobien]
+On définit la \emph{Jacobienne}\index{Jacobien@Jacobien(ne)} $\mathcal{J}_a(f)$ comme la matrice de terme général $j_{i,j}=\dfrac{\partial f_i}{\partial x_j}=D_jf_i(a)$. \newline
+Le \emph{Jacobien} est le déterminant de cette matrice.
+\end{dfn}
 
+\textbf{Exemple :} La Jacobienne de la fonction polaire (qui à $(r,\theta )$ associe $(r\cdot \cos{\theta} , r\cdot \sin{\theta} )$) est $\begin{pmatrix}
+\cos{\theta} & -r\sin{\theta} \\
+\sin{\theta} & r\cos{\theta}
+\end{pmatrix}$. Son Jacobien est donc $r\left( \sin^2{\theta} + \cos^2{\theta} \right)=r$
+
+% subsection jacobien_jacobienne (end)
 % section differentielle (end)
 \section{Opérations sur les applications différentiables} % (fold)
 \label{sec:operations_sur_les_applications_differentiables}
-
+\begin{itheorem}[Différentielle d'une composée d'applications]
+Soient $E$,$F$ et $G$ trois espaces vectoriels \emphh{normés} \emphh{réels} de \emphhs{dimension finie}.\newline
+Soient $f$ et $g$ deux fonctions telles que :
+\[
+    \begin{array}{r c l c l c l}
+    f &:& E &\to& F \\
+    g &:& & & F & \to & G 
+    \end{array}
+\]
+Alors, la fonction $g \circ f$ est différentiable sur un ouvert de $E$
+     \begin{equation}
+     \d (g\circ f)(a) = \d g\big( f(a)\big) \circ \d f(a)
+     \end{equation}
+     
+\end{itheorem}
 % section operations_sur_les_applications_differentiables (end)
 \section{Cas des applications numériques} % (fold)
 \label{sec:cas_des_applications_numeriques}
@@ -2858,16 +2904,6 @@ f^{-1} \in \mathcal{C}^1\left( V,U \right)
 \right.
 \]
 \end{dfn}
-
-\begin{dfn}[Jacobienne, Jacobien]
-On définit la \emph{Jacobienne}\index{Jacobien@Jacobien(ne)} $\mathcal{J}_a(f)$ comme la matrice de terme général $j_{i,j}=\dfrac{\partial f_i}{\partial x_j}=D_jf_i(a)$. \newline
-Le \emph{Jacobien} est le déterminant de cette matrice.
-\end{dfn}
-
-\textbf{Exemple :} La Jacobienne de la fonction polaire (qui à $(r,\theta )$ associe $(r\cdot \cos{\theta} , r\cdot \sin{\theta} )$) est $\begin{pmatrix}
-\cos{\theta} & -r\sin{\theta} \\
-\sin{\theta} & r\cos{\theta}
-\end{pmatrix}$. Son Jacobien est donc $r\left( \sin^2{\theta} + \cos^2{\theta} \right)=r$
 
 \section{Inversion locale}
 \begin{itheorem}[Théorème d'inversion locale \textit{(admis)}]
