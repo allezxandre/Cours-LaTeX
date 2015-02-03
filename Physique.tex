@@ -1421,9 +1421,58 @@ $c = \lambda \nu $ & $\lambda = c T$
    \end{subequations}
 \end{theorem}
 % subsubsection chemin_optique (end)
+\subsubsection{Trains d'onde} % (fold)
+\label{ssub:trains_d_onde}
+Le modèle de train d'onde considère une onde lumineuse comme un ensemble de trains d'ondes émis aléatoirement. Il y a donc, pour chaque train d'onde, un temps et une longueur \og{}de cohérence\fg{} pendant lequel un autre train d'onde peut interférer. % Mouais... Moyen cette phrase
+\begin{theorem}[Temps de cohérence]
+   % Copié de Physique MP - J'intègre
+   Les atomes émettent la lumière par trains d'ondes de durée limitée $\tau_c$ telle que : 
+   \begin{equation}
+   \Delta \nu \sim \dfrac{1}{\tau_c}
+   \end{equation}
+   La durée moyenne des trains d'ondes est appelée \emph{temps de cohérence}\index{Temps de coherence@Temps de cohérence}.
+\end{theorem}
+\begin{dfn}[Longueure de cohérence]
+   La \emph{longueur de cohérence}\index{Longueur!coherence@\emphi{de }cohérence} $l_c$ est la distance que parcourt la lumière dans le vide pendant $\tau_c$ : 
+   \begin{equation}
+   l_c = c~\tau_c
+   \end{equation}
+   $l_c$ représente la longueur moyenne d'un train d'onde.
+\end{dfn}
+\begin{figure}[h!]
+\centering
+   \subfigure[Train d'onde dans le temps]{\begin{tikzpicture}[scale=1.4]
+         \begin{scope}[->,>=latex,color=gray]
+         \draw (-0.8,-1) -- (-0.8,1) node[above]{$s(x,t)$};
+         \draw (-1,0) -- (2,0) node[right]{$t$};
+         \end{scope}
+         \begin{scope}[very thin, dashed, color=black!80]
+            \draw (-0.5,0) -- (-0.5,{0.8*sin(-20*0.5 r)});
+            \draw (1.5,0) -- (1.5,{0.8*sin(20*1.5 r)});
+         \end{scope}
+         \draw[domain=-0.5:1.5,samples=200,smooth,variable=\x] plot (\x,{0.8*sin(20 * \x r)});
+         \draw[<->, >=latex] (-0.5,-1) -- (1.5,-1) node[midway, below]{$\tau_c$};
+      \end{tikzpicture}}
+   \hspace{1cm}
+   \subfigure[Train d'onde dans l'espace]{\begin{tikzpicture}[scale=1.4]
+         \begin{scope}[->,>=latex,color=gray]
+         \draw (-0.8,-1) -- (-0.8,1) node[above]{$s(x,t)$};
+         \draw (-1,0) -- (2,0) node[right]{$x$};
+         \end{scope}
+         \begin{scope}[very thin, dashed, color=black!80]
+            \draw (-0.5,0) -- (-0.5,{0.8*sin((-20*0.5 + 0.79) r)});
+            \draw (1.5,0) -- (1.5,{0.8*sin((20*1.5 + 0.79) r)});
+         \end{scope}
+         \draw[domain=-0.5:1.5,samples=200,smooth,variable=\x] plot (\x,{0.8*sin((20 * \x + 0.79) r)});
+         \draw[<->, >=latex] (-0.5,-1) -- (1.5,-1) node[midway, below]{$l_c$};
+      \end{tikzpicture}}
+      % TODO: trains d'onde cohérents
+   \caption{Trains d'onde dans le temps et dans l'espace}
+\end{figure}
+% subsubsection trains_d_onde (end)
 \subsubsection{Éclairement et intensité} % (fold)
 \label{ssub:eclairement_et_intensite}
-Les récepteurs de lumière (comme l'\oe{}il et les capteurs CDD) sont sensibles à une valeur moyenne de la puissance lumineuse qu'ils reçoivent. Il convient alors de définir l'éclairement pour décrire ce que l'on voit.
+Les récepteurs de lumière (comme l'\oe{}il et les capteurs CCD) sont sensibles à une valeur moyenne de la puissance lumineuse qu'ils reçoivent. Il convient alors de définir l'éclairement pour décrire ce que l'on voit.
 \begin{dfn}[Éclairement]
 Les capteurs photo-sensibles ayant un taux de rafraîchissement lent relativement à la vitesse de la lumière et à sa pulsation \pulsation{}, ils font une moyenne sur une période de la vibration reçue. C'est alors qu'on définit l'\emph{éclairement}\index{Eclairement@Éclairement \Epsilon} : 
 \begin{equation}\label{eclairement}
