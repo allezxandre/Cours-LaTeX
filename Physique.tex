@@ -1473,14 +1473,15 @@ Le modèle de train d'onde considère une onde lumineuse comme un ensemble de tr
          \draw (-0.8,-1) -- (-0.8,1) node[above]{$s(x,t)$};
          \draw (-1,0) -- (3,0) node[right]{$x$};
          \end{scope}
-         \begin{scope}[very thin, dashed, color=black!80]
-            \draw (-0.5,0) -- (-0.5,{0.8*sin((-20*0.5 + 0.79) r)});
-            \draw (1.5,0) -- (1.5,{0.8*sin((20*1.5 + 0.79) r)});
-            \draw (0,0) -- (0,{0.8*sin((-15*0 + 0.3) r)});
-            \draw (2.3,0) -- (2.3,{0.8*sin((15*2.3 + 0.3) r)});
+         \begin{scope}[dashed]
+            \draw[color=couleur1!60] (-0.5,0) -- (-0.5,{0.8*sin((-20*0.5 + 0.79) r)});
+            \draw[color=couleur1!60] (1.5,0) -- (1.5,{0.8*sin((20*1.5 + 0.79) r)});
+            \draw[color=couleur2!60] (0,0) -- (0,{0.8*sin((-15*0 + 0.3) r)});
+            \draw[color=couleur2!60] (2.3,0) -- (2.3,{0.8*sin((15*2.3 + 0.3) r)});
          \end{scope}
          \draw[thick, color=couleur1,domain=-0.5:1.5,samples=200,smooth,variable=\x] plot (\x,{0.8*sin((20 * \x + 0.79) r)});
          \draw[thick, color=couleur2,domain=0:2.3,samples=200,smooth,variable=\x] plot (\x,{0.8*sin((15 * \x + 0.3) r)});
+         \draw[|-|, >=latex] (0,-1) -- (1.5,-1) node[midway, below]{Cohérence};
       \end{tikzpicture}}
    \caption{Trains d'onde dans le temps et dans l'espace}
 \end{figure}
