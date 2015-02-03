@@ -2756,14 +2756,19 @@ Dans ce chapitre, on se place dans $\left( E, N \right)$ et $\left( F,P \right)$
 \label{sec:derivee_selon_un_vecteur_derivees_partielles}
 \begin{dfn}[Dérivée selon un vecteur]
      Soit $f:U\to F$ la fonction définie précédemment.\newline
-    Soit $u$ un vecteur non nul de $E$, et $t$ un réel tel que $a+tu \in U$. \\
-    On dit que $f$ \emph{admet une dérivée selon le vecteur $u$ au point $a$} (ou admet une \emph{dérivée directionnelle}) si la fonction réelle $t\mapsto f(a+tu)$ est dérivable en $0$. Cette dérivée en $a$ est notée $D_uf(a)$. \newline
+    Soit $v$ un vecteur non nul de $E$, et $t$ un réel tel que $a+tv \in U$. \\
+    On dit que $f$ \emph{admet une dérivée selon le vecteur $v$ au point $a$} (ou admet une \emph{dérivée directionnelle}) si la fonction réelle $t\mapsto f(a+tv)$ est dérivable en $0$. Cette dérivée en $a$ est notée $D_vf(a)$. \newline
     On a alors : 
     \begin{equation}
-    D_hf(a)=\lim_{\substack{t\rightarrow 0\\ t\neq 0}}\dfrac{f(a+\textcolor{Red}{t}u) - f(a)}{t}
+    D_vf(a)=\lim_{\substack{t\rightarrow 0\\ t\neq 0}}\dfrac{f(a+\textcolor{Red}{t}v) - f(a)}{t}
     \end{equation}
 \end{dfn}
 \begin{dfn}[Dérivées partielles dans une base]
+     Soit $f:U\to F$ la fonction définie précédemment.\newline
+     Soit $(e_1, \cdots ,e_n)$ une base de $E$. On appelle \emph{dérivée partielle}\index{Derivee@Dérivée!partielle} de $f$ dans $(e_n)_n$ ses dérivées par rapport aux vecteurs. La $i$-ième dérivée partielle en $a$ est notée $D_if(a)$ ou $\dfrac{\partial f}{\partial x_i}(a)$. Ainsi : 
+     \begin{equation}
+     \dfrac{\partial f}{\partial x_i}(a)=D_if(a)=\lim_{\substack{t\rightarrow 0\\ t\neq 0}}\dfrac{f(a+\textcolor{Red}{t}e_i) - f(a)}{t}
+     \end{equation}
      
 \end{dfn}
 % section derivee_selon_un_vecteur_derivees_partielles (end)
