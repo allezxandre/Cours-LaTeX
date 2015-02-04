@@ -2769,7 +2769,6 @@ Dans ce chapitre, on se place dans $\left( E, N \right)$ et $\left( F,P \right)$
      \begin{equation}
      \dfrac{\partial f}{\partial x_i}(a)=D_if(a)=\lim_{\substack{t\rightarrow 0\\ t\neq 0}}\dfrac{f(a+\textcolor{Red}{t}e_i) - f(a)}{t}
      \end{equation}
-     
 \end{dfn}
 % section derivee_selon_un_vecteur_derivees_partielles (end)
 \needspace{3cm}
@@ -2797,6 +2796,8 @@ Dans ce chapitre, on se place dans $\left( E, N \right)$ et $\left( F,P \right)$
 \label{sub:jacobien_jacobienne}
 % TODO: À terminer
 \begin{dfn}[Jacobienne, Jacobien]
+  Soient $(e_i)_i$ et $(e'_i)_i$ deux bases de respectivement $E$ et $F$.\newline
+  Soit $f=(f_j)_j$ la fontion définie précédemment telle que $f(x_1,\cdots,x_n) = \sum_i f_i (x_i)\cdot e'_i$. 
 On définit la \emph{Jacobienne}\index{Jacobien@Jacobien(ne)} $\mathcal{J}_a(f)$ comme la matrice de terme général $j_{i,j}=\dfrac{\partial f_i}{\partial x_j}=D_jf_i(a)$. \newline
 Le \emph{Jacobien} est le déterminant de cette matrice.
 \end{dfn}
