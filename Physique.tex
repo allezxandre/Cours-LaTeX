@@ -3340,7 +3340,92 @@ où $m$ est le nombre d'atomes liés à l'atome central et $n$ est le nombre d'e
 % chapter premiere_annee (end)
 \chapter{Premier principe appliqué à la transformation chimique} % (fold)
 \label{cha:premier_principe_applique_la_transformation_chimique}
+\section{Enthalpie standard} % (fold)
+\label{sec:enthalpie_standard}
+\begin{dfn}[État standard] % src: Wikipedia
+   L'\emph{état standard}\index{Etat@État!standard} d'un constituant est défini par son état physique stable à la température T, sous la pression standard : 
+   $\mathrm{P}^\circ = 1~\si{\bar} = 10^5~\si{\pascal}$
+\end{dfn}
+\begin{dfn}[Enthalpie standard de réaction]
+   L'\emph{enthalpie standard de récation}\index{Enthalpie!standard reaction@standard \emphi{de }réaction} $\Delta_{r}H_{(T,P)}$ correspond à la variation d'enthalpie du mélange réactionnel pour $\xi = 1$ mole d'avancement de la réaction en cour, dans l'\emphh{état standard}.\par
+   La réaction est alors dite, suivant le signe de $\Delta_r H^\circ$ : 
+   \begin{itemize}
+     \item \emph{endothermique}\index{Endothermique} (pour $\Delta_r H^\circ > 0$) : \\dans le sens direct, la réaction consomme de la chaleur
+     \item \emph{exothermique}\index{Exothermique} (pour $\Delta_r H^\circ < 0$) : \\dans le sens direct, la réaction dégage de la chaleur
+   \end{itemize}
+\end{dfn}
+\begin{dfn}[Enthalpie standard de formation]
+   On appelle \emph{enthalpie standard de formation}\index{Enthalpie!formation@\emphi{de }formation}, en on note $\Delta H^\circ_f (\ce{AB})$, la variation d'enthalpie lors de la formation d'un constituant \ce{AB}. \\
+   C'est donc l'enthalpie standard de formation $\Delta_rH^\circ$ de la réaction : 
+   \[
+     \ce{
+     A + B -> AB
+     }
+   \]
+\end{dfn}
+\emphh{Remarque :} Les composants simples comme le carbone \ce{C} ou l'hydrogène \ce{H} ont une enthalpie standard de formation nulle. 
+Idem pour les composés stables comme le dioxygène \ce{O2} ou le diazote \ce{N2} : leur enthalpie standard de formation est nulle.
+\[
+  \Delta H_f^\circ \left( \ce{O2}\right) = \Delta H_f^\circ \left( \ce{N2}\right) = \Delta H_f^\circ \left( \ce{C}\right) = \Delta H_f^\circ \left( \ce{H}\right) = 0
+\]
+\begin{dfn}[Grandeur de réaction]
+  Pour toute grandeure extensive $J$ dans une réaction d'avancement $\xi$, on définit sa grandeur de réaction $\Delta_r J$ : 
+  \begin{equation}
+  \Delta_r J = \left( \dfrac{\partial J}{\partial \xi} \right)_{\text{$T,P$ fixés}}
+  \end{equation}
+  $\Delta_r J$ est une grandeur intensive
+\end{dfn}
+\begin{itheorem}[Loi de \textsc{Hess}] % https://fr.wikipedia.org/wiki/Thermochimie#Grandeurs_standards_de_r.C3.A9action
+En conditions standards, les grandeurs de réactions obéissent à la \emph{loi de \textsc{Hess}}\index{Loi!Hess@\emphi{de }\textsc{Hess}} : 
+  \begin{equation}
+    \Delta_r J^\circ = \sum_{\mathclap{\substack{\text{Produits }+\\ \text{Réactifs }-}}} \nu_i~\Delta J^\circ_{f,i}
+  \end{equation}
+  où $\Delta J^\circ_{f,i}$ est une grandeur standard de formation.
+\end{itheorem}
+% section enthalpie_standard (end)
+\section{Effets thermiques pour une transformation monobare} % (fold)
+\label{sec:effets_thermiques_pour_une_transformation_monobare}
+Le programme préconise plutôt une transformation isobare, mais monobare est une condition suffisante. % (il me semble) 
+\begin{dfn}[Transformation monobare]
+   Une transformation \emph{monobare}\index{Monobare} est une transformation s'effectuant à pression extérieur $P_\text{ext}$ constante, et telle que la pression initiale $P_\text{initiale}$ du système soit la même que la pression finale $P_\text{finale}$ : 
+   \begin{equation}\label{eq:dfn:monobare}\tag{Monobare}
+     P_\text{finale} = P_\text{initiale} = P_\text{ext} \\ P_\text{ext} = \text{constante}
+   \end{equation}
+   La pression du système peut varier pendant la transformation (et c'est là la différence avec une transformation \emph{isobare}\index{Isobare}), mais elle doit toujours revenir à la pression extérieure à la fin.
+\end{dfn}
+\begin{theorem}[Application du premier principe]
+   Lors d'une réaction \emphh{monobare} et \emphh{monotherme}, le transfert thermique causé par la transformation se relie à l'enthalpie standard de réaction : 
+   \begin{equation}
+   \Delta H = Q_P = \xi \Delta_r H^\circ
+   \end{equation}
+   
+\end{theorem}
+% section effets_thermiques_pour_une_transformation_monobare (end)
+\section{Relations de \textsc{Kirchhoff}} % (fold)
+\label{sec:relations_de_kirchhoff}
+\begin{theorem}[Relations de \textsc{Kirchhoff}]
+   Les \emph{relations de \textsc{Kirchhoff}}\index{Relation(s)!Kirchhoff@\emphi{de }\textsc{Kirchhoff}} permettent d'exprimer les variations de l'énergie interne standard de réaction $\Delta_r U^0$, de l'enthalpie standard de réaction $\Delta_r H^0$, ou encore de l'entropie standard de réaction $\Delta_r S^0$ en fonction de la température $T$. 
+   % https://fr.wikipedia.org/wiki/Relations_de_Kirchhoff#Relations_de_Kirchhoff
 
+\begin{itemize}[leftmargin=3mm]
+  \item Pour une réaction à température et volume constants :
+        \begin{subequations}
+           \begin{align}
+              \dfrac{\d \Delta_r U^\circ}{\d T} &= \Delta_r C_V^\circ \\
+              \dfrac{\d \Delta_r S^\circ}{\d T} &= \dfrac{\Delta_r C_V^\circ}{T}
+           \end{align}
+        \end{subequations}
+  \item Pour une réaction à température et pression constantes :
+        \begin{subequations}
+           \begin{align}
+              \dfrac{\d \Delta_r H^\circ}{\d T} &= \Delta_r C_P^\circ \\
+              \dfrac{\d \Delta_r S^\circ}{\d T} &= \dfrac{\Delta_r C_P^\circ}{T}
+           \end{align}
+        \end{subequations}
+\end{itemize}
+
+\end{theorem}
+% section relations_de_kirchhoff (end)
 % chapter premier_principe_applique_la_transformation_chimique (end)
 \chapter{Thermochimie}
 %
@@ -3367,18 +3452,6 @@ où $m$ est le nombre d'atomes liés à l'atome central et $n$ est le nombre d'e
   \end{itemize}
 \end{prop}
 
-\begin{dfn}
-  Pour toute grandeure extensive J, on définit : 
-  \begin{equation}
-  \Delta_r J = \left( \dfrac{\partial J}{\partial \xi} \right)_{\text{$T,P$ fixés}}
-  \end{equation}
-\end{dfn}
-
-\begin{theorem}
-  \begin{equation}
-    \Delta_r J = \sum_\text{Produits} J_m - \sum_\text{Réactifs} J_m 
-  \end{equation}
-\end{theorem}
 \begin{dfn}[Variance]
   La \emph{variance}\index{Variance} d'un système est le \uline{nombre maximal de paramètres intensifs que l'on peut choisir} sans remettre en cause l'équilibre du système étudié.
 \end{dfn}
