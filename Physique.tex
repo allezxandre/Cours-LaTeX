@@ -3644,7 +3644,7 @@ On va prendre pour exemple le fer : $Fe^{3+}/Fe(OH)_3 (s)/Fe^{2+}/Fe(OH)_2 (s)/F
 \chapter{Annexe} % (fold)
 \label{cha:annexe_chimie}
 \newgeometry{left=5mm,right=5mm,bottom=5mm,top=5mm}
-\begin{landscape}
+\ifoptionfinal{\begin{landscape}}{}
 \begin{figure}
 \centering
 \includegraphics[keepaspectratio,width=\linewidth]{svg/tableau-periodique.pdf}
@@ -3984,7 +3984,7 @@ On va prendre pour exemple le fer : $Fe^{3+}/Fe(OH)_3 (s)/Fe^{2+}/Fe(OH)_2 (s)/F
 \end{comment}
 \caption{Tableau périodique des éléments de \textsc{Mendeleev}}
 \end{figure}
-\end{landscape}
+\ifoptionfinal{\end{landscape}}{}
 \newgeometry{left=3cm,bottom=5cm,right=3cm,top=5cm} % On restaure la géometrie initiale
 % chapter annexe_chimie (end)
 % part chimie (end)
