@@ -39,9 +39,6 @@
 \usepackage{tikz-3dplot} %Pour les dessins en 3D
 % \usepackage{pst-solides3d} % Pour des meilleurs dessins en 3D
 \usetikzlibrary{arrows,shapes,trees,calc,through,patterns,positioning} % loads some tikz extensions
-\tikzset{every picture/.style={execute at begin picture={ % Inutile avec LuaTeX
-   \shorthandoff{:;!?};}
-}}
 
 \catcode`\@=11 
 \tikzset{rgb color/.code={\pgfutil@definecolor{.}{RGB}{#1}\tikzset{color=.}}} 
