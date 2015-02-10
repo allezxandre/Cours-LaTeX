@@ -76,7 +76,6 @@ decorations.pathreplacing}
                           % Pour les formules de chimie
 \usepackage{siunitx}      % Pour les unités SI 
 \sisetup{inter-unit-product = \ensuremath { { } \cdot { } } }
-%\usepackage{sistyle}      
 %\usepackage{acronym}     % Pour les acronymes
 \usepackage{cancel}       % Pour barrer des parties de formules
 \usepackage{colortbl}     % Pour définir le style des colonnes dans les tableaux
@@ -85,6 +84,9 @@ decorations.pathreplacing}
 %\usepackage{showframe}   % Pour afficher les marges
 \usepackage{pdflscape}    % Pour avoir quelques pages en mode paysage (utiliser \begin{landscape})
 \usepackage{blkarray}     % Pour les matrices par bloc
+\usepackage[obeyFinal]{todonotes}
+                          % Pour les TODO en marges
+\reversemarginpar         % Pour avoir les TODO du bon coté
 \usepackage[unicode=true,
  bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
  breaklinks=false,pdfborder={0 0 1},backref=section,colorlinks=false]
