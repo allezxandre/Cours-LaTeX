@@ -35,6 +35,7 @@
 \usepackage{titlesec}
 %\usepackage[usenames,dvipsnames]{color}%Package des couleurs avant celui de tikz
 \usepackage{calc} %Pour les calculs d'entêtes de définitions
+\usepackage{upgreek} % Pour le beau \varphi
 \usepackage{tikz}
 \usepackage{tikz-3dplot} %Pour les dessins en 3D
 % \usepackage{pst-solides3d} % Pour des meilleurs dessins en 3D
@@ -472,7 +473,7 @@ frametitleaboveskip=0}
 \newcommand{\vibration}[1][]{\ensuremath{s_{#1}(M,t)}}
 \newcommand{\amplitude}[2][]{\ensuremath{\textcolor{Periwinkle}{A_{#1}\left( #2 \right) }}}
 \newcommand{\pulsation}[1][]{\ensuremath{\omega_{#1}{}}}
-\newcommand{\phase}[2][]{\ensuremath{\textcolor{ProcessBlue}{\varphi_{#1}\left( #2 \right) }}}
+\newcommand{\phase}[2][]{\ensuremath{\textcolor{ProcessBlue}{\upvarphi_{#1}\left( #2 \right) }}}
 \newcommand{\Phase}[2][]{\ensuremath{\textcolor{ProcessBlue}{\Phi_{#1}\left( #2 \right) }}}
 
 \newcommand{\vibrationC}[1][]{\ensuremath{\underline{s_{#1}(M,t)}}}
