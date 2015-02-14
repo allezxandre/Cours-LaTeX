@@ -2681,30 +2681,57 @@ C'est une loi\index{Loi!Fourier@\emphi{ de }\textsc{Fourier}} empirique qui donn
    Souvent, $\mathcal{P}_\text{prod} = \iiint \mathcal{P}_V \d V$
 \end{theorem}
 \begin{itheorem}[Bilan local d'énergie]
-Pour un système $\Sigma$ de matière dans un volume $\mathcal{V}$ quelconque, 
-  \begin{equation}
-  \mu c_v \dfrac{\partial T (M,t)}{\partial t} + \diverg \vv*{j}{\text{th}} (M,t) = \mathcal{P}_V (M,t)
+Pour un système $\Sigma$ de matière dans un volume $\mathcal{V}$ quelconque, de capacité thermique massique $c$ et de masse volumique $\mu$, 
+  \begin{equation}\label{eq:bilan_local_thermique}
+  \mu c \dfrac{\partial T (M,t)}{\partial t} + \diverg \vv*{j}{\text{th}} (M,t) = \mathcal{P}_V (M,t)
   \end{equation}
 \end{itheorem}
-\begin{proof}
+\begin{proof}[Bilan à une dimension]
+   On suppose que la température ne dépend que d'une dimension, $x$ par exemple. On compte appliquer le premier principe sous la forme : 
+   \[
+     \d^2 U = \delta^2 Q + \delta^2 W
+   \]
+   On étudie un cylindre de longueur $\d x$, de section $S$ (donc de volume $\mathcal{V} = S\d x$). Si $\mu$ est la masse volumique du cylindre et $c$ sa capacité thermique \textit{massique}, alors la capacité thermique du cylindre étudié est $C = mc = \mu\mathcal{V} c = \mu Sc\d x$. On peut alors exprimer $\d^2 U$ et $\delta^2 Q$ :
+   \begin{align*}
+      \d^2 U &= C\Delta T 
+      \intertext{Donc :}
+      \d^2 U &= \mu Sc\d x(T(x,t+\d t) - T(x,t)) \\
+             &= \mu Sc\d x \d t \dfrac{T(x,t+\d t) - T(x,t)}{\d t} \\
+      \d^2 U &= \mu c \dfrac{\partial T(x,t)}{\partial t} S\d x \d t
+   \end{align*}
+   %TODO: expliquer \delta^2 Q
+   Finalement, puisqu'ici $\delta^2 W = 0$, on retrouve : 
+   \begin{align*}
+      \d^2 U &= \delta^2 Q + 0 
+      \intertext{soit :}
+      \mu c \dfrac{\partial T}{\partial t} \cancel{S \d x \d t} &= -\dfrac{\partial j_\text{th}(x,t)}{\partial x}\cancel{S \d x \d t} \\
+      \mu c \dfrac{\partial T}{\partial t} + \dfrac{\partial j_\text{th}(x,t)}{\partial x} &= 0
+   \end{align*}
+   Qui est l'expression \eqref{eq:bilan_local_thermique}\qed
+\end{proof}
+\begin{proof}[Cas général]
    On utilise le premier principe de thermodynamique vu plus haut. D'après un DL au premier ordre, on détermine : 
    \begin{align*}
-      \d U &= \iiint \limits_{M\in\mathcal{V}} \mu c_v\big( T(M, t+\d t) - T(M,t)\big)\d V \\
-          &= \left( \iiint \limits_{M\in\mathcal{V}} \mu c_v\left( \dfrac{\partial T (M,t)}{\partial t}\right) \right) \d t
+      \d U &= \iiint \limits_{M\in\mathcal{V}} \mu c\big( T(M, t+\d t) - T(M,t)\big)\d V \\
+          &= \left( \iiint \limits_{M\in\mathcal{V}} \mu c\left( \dfrac{\partial T (M,t)}{\partial t}\right) \right) \d t
       \intertext{Le transfert thermique est, par définition de $\vv{j}$ :}
       \delta Q &= \left( -\oiint \vv*{j}{\text{th}} \cdot\vv{\d S} \right)\d t
+      \intertext{Qui est, d'après l'équation d'\textsc{Ostrogradski}~\eqref{eq:Ostrogradski} page~\pageref{eq:Ostrogradski}}
+               &= \left( -\iiint \limits_{M\in\mathcal{V}} \diverg j_\text{th} \d V \right) \d t
       \intertext{Et enfin : }
       \mathcal{P}_\text{prod} \d t &= \left( \iiint \limits_{M\in\mathcal{V}} \mathcal{P}_V \d V \right) \d t
    \end{align*}
+   Puisque le volume est constant et le même pour toutes les intégrales, on peut dire que : 
+   $\mu c\left( \dfrac{\partial T (M,t)}{\partial t}\right)= - \diverg j_\text{th} + \mathcal{P}_V$ \qed
 \end{proof}
 \begin{itheorem}[Équation de diffusion thermique]
 Pour un champ $T$ de températures, on a l'équation :
 \begin{equation}\label{EqDiffusion}
 \boxed{
-\mu c_v \dfrac{\partial T}{\partial t} = \lambda \overbrace{\Delta T}^{\mathclap{\text{Laplacien de } T}} + P_v
+\mu c \dfrac{\partial T}{\partial t} = \lambda \overbrace{\Delta T}^{\mathclap{\text{Laplacien de } T}} + P_v
 }
 \end{equation}
-avec $c_v$ la capacité calorifique \uline{massique} à volume constant, $\mu$ la masse volumique, et $\lambda$ définit comme précédemment.
+avec $c$ la capacité calorifique \uline{massique} à volume constant, $\mu$ la masse volumique, et $\lambda$ définit comme précédemment.
 \end{itheorem}
 \begin{dfn}[Résistance thermique]
 C'est la grandeur $R_{th}$ telle que : \hfill \\
