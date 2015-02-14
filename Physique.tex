@@ -1528,7 +1528,7 @@ Pour la lumière dans le vide :
 Prenons deux sources $S_1$ et $S_2$, de vibrations respectives $\vibration[1] = \amplitude[1]{M}  \cos \left( \pulsation[1] t - \phase[1]{M} \right)$ et $\vibration[2] = \amplitude[2]{M}  \cos \left( \pulsation[2] t - \phase[2]{M} \right)$. \\
 \begin{itheorem}[Formule de \textsc{Fresnel}]
 Pour le système ainsi définit, l'éclairement résultant d'interférences est donné par la \emph{formule de \textsc{Fresnel}}\index{Fresnel@\textsc{Fresnel}} :
-\begin{align}\label{interferences}
+\begin{align}\label{eq:interferences}
 \vibration &= \vibration[1] + \vibration[2] \nonumber \\[5pt]
 \Epsilon &= \Epsilon_1 + \Epsilon_2 + \underbrace{2 \sqrt{\Epsilon_1 \Epsilon_2}\cos \left( \phase[2]{M} - \phase[1]{M} \right)}_{\text{Nul si \pulsation[1] $\neq$ \pulsation[2]}}
 \end{align}
@@ -1575,6 +1575,18 @@ La valeur moyenne d'un cosinus étant nulle, on sait de plus que : \newline
 \textbf{Remarque} : en complexe, ça va beaucoup plus vite.
 \end{proof}
 % subsubsection interferences (end)
+\subsubsection{Contraste} % (fold)
+\label{ssub:contraste}
+\begin{dfn}[Contraste, visibilité]
+   Sur une figure d'interférence, on appelle \emph{contraste}\index{Contraste} ou \emph{visibilité} le rapport : 
+   \begin{equation}
+   C = \dfrac{I_{\text{max}} - I_{\text{min}}}{I_{\text{max}} + I_{\text{min}}}
+   \end{equation}
+\end{dfn}
+\begin{theorem}
+   Le contraste est maximal lorsque $I_1 = I_2$ dans la formule de \textsc{Fresnel}~\eqref{eq:interferences}
+\end{theorem}
+% subsubsection contraste (end)
 % subsection superposition_ondes_lumineuses (end)
 \subsection{Trous d'\textsc{Young}} % (fold)
 \label{sub:trous_de_young}
@@ -1650,24 +1662,36 @@ Calculons la différence de marche $\delta (M)$ :
               \intertext{Les chemins optiques en couleur se soustraient. Il nous reste : } 
    \delta (M) &= (HF_2) + (F_2K)
 \end{align*}
-\Attention{Il ne faut pas omettre de préciser pourquoi $\textcolor{couleur4}{(KM)}$ et $\textcolor{couleur4}{(F_1M)}$ sont identiques}
-En effet : $\textcolor{couleur3}{H}$ et $\textcolor{couleur3}{(F_1)}$ sont dans le même plan d'onde car ils viennent \uline{directement} de $S$ qui est à l'infini et qui émet une onde plane. Mais le plan contenant $\textcolor{couleur4}{K}$ et $\textcolor{couleur4}{(F_1)}$ n'est pas \textit{a priori} un plan d'onde du fait que les ondes issues des fentes ne sont plus planes. Pour raisonner, on dira que $M$ étant une image à l'infini, les plans d'ondes relatifs à $M$ sont les plans perpendiculaires à ses rayons. 
+\Attention{Il ne faut pas omettre de préciser pourquoi $\textcolor{couleur4}{(KM)}$ et $\textcolor{couleur4}{(F_1M)}$ sont identiques.}\par
+En effet : $\textcolor{couleur3}{H}$ et $\textcolor{couleur3}{(F_1)}$ sont dans le même plan d'onde car ils viennent \uline{directement} de $S$ qui est à l'infini et qui émet une onde plane. Mais le plan contenant $\textcolor{couleur4}{K}$ et $\textcolor{couleur4}{(F_1)}$ n'est pas \textit{a priori} un plan d'onde du fait que les ondes issues des fentes ne sont plus planes. Pour raisonner, on dira que l'onde issue de $M$ est sphérique, donc après passage par la lentille, elle devient plane. Ainsi, $\textcolor{couleur4}{(F_1)}$ et $\textcolor{couleur4}{K}$ sont bien sur le même plan d'onde. \par
 Maintenant, en remarquant qu'on peut reporter les angles $\alpha$ et $\alpha_0$ (\textit{cf.} le schéma), les calculs de $(HF_2)$ et $(F_2K)$ se font facilement : 
 \begin{align*}
    (HF_2) &= n_{\text{air}}\, HF_2 \\
           &= n_{\text{air}}\, a (- \sin \alpha_0) \\
           &= - n_{\text{air}} a \sin \alpha_0 \\
           &\approx - n_{\text{air}} a\, \alpha_0
-   (HF_2) \intertext{De même :}
+   \intertext{De même :}
    (F_2K) &= n_\text{air} a \sin \alpha \\
           &\approx n_{\text{air}} a \, \alpha \\
    (F_2K) &\approx n_{\text{air}} a \dfrac{x}{f'}
 \end{align*}
 On obtient donc le résultat : 
-\begin{empheq}[box=\ibox]{align}
-   \delta (M) &\approx n_\text{air}a\left( \dfrac{x}{f'} - \alpha_0 \right) \\
-   i          &= \dfrac{\lambda_0 f'}{n_\text{air}a}
-\end{empheq}
+\begin{subequations}
+   \begin{align}
+      \delta (M) &\approx n_\text{air}a\left( \dfrac{x}{f'} - \alpha_0 \right) \\
+      i          &= \dfrac{\lambda_0 f'}{n_\text{air}a}
+   \end{align}
+\end{subequations}
+Pour décrire au mieux ce que l'on observe, on définit l'ordre d'interférence.
+\begin{dfn}[Ordre d'interférence]
+   L'\emph{ordre d'interférence}\index{Ordre d'interference@Ordre d'interférence} $p(M)$ est défini par :
+   \begin{equation}
+   p(M) = \dfrac{\Delta\upvarphi (M)}{2\pi} = \dfrac{\delta (M)}{\lambda}
+   \end{equation}
+\end{dfn}
+\begin{theorem}
+   Plus l'ordre d'interférence $p$ est proche d'un entier $m \in \mathbb{Z}$, plus l'interférence est constructive, et plus il y a d'intensité lumineuse. À l'inverse, l'interférence est destructive en $m + \frac{1}{2}$.
+\end{theorem}
 % subsection trous_de_young (end)
 \subsection{Diffraction}
 \todo{ Terminer l'énoncé}
