@@ -14,7 +14,6 @@
 \usepackage{imakeidx}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 %\usepackage{index}
-\makeindex
 % \makeindex[name=persons,title=Index des \textsc{Noms}]
 \usepackage[totoc]{idxlayout}
 \usepackage[utf8]{luainputenc}
@@ -89,12 +88,10 @@ decorations.pathreplacing}
 \usepackage[obeyFinal]{todonotes}
                           % Pour les TODO en marges
 \reversemarginpar         % Pour avoir les TODO du bon coté
-\usepackage[unicode=true,
- bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
- breaklinks=false,pdfborder={0 0 1},backref=section,colorlinks=false]
- {hyperref}
 \usepackage[acronym,toc,shortcuts]{glossaries}
 \usepackage{glossary-longragged}
+\usepackage[unicode=true,bookmarks=true,colorlinks=false]{hyperref}
+\makeindex
 %\makeglossaries
 \makenoidxglossaries
     \newacronym{TRC}{TRC}{Théorème de la Résultante Cinétique}
