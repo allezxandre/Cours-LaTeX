@@ -109,6 +109,8 @@ decorations.pathreplacing}
     \newacronym{FEM}{FEM}{Force Électromotrice}
 %    \newacronym{cad}{CÀD}{C'est-à-dire}
     \newacronym[plural={DLs}, longplural={Développements Limités}]{DL}{DL}{Développement Limité}
+    \newacronym[longplural={Espaces Vectoriels}]{ev}{ev}{Espace Vectoriel}
+    \newacronym[longplural={Espaces Vectoriels Normés}]{evn}{evn}{Espace Vectoriel Normé}
     \newacronym[longplural={Lois de Compositions Internes}]{LCI}{LCI}{Loi de Composition Interne}
     \newacronym[longplural={Développements en Série Entière}]{DSE}{DSE}{Développement en Série Entière}
     \newacronym[longplural={Sous-Espaces Propres}]{sep}{s-ep}{sous-espace propre}
@@ -459,6 +461,7 @@ frametitleaboveskip=0}
 \newcommand{\tr}{\mathrm{tr}}
 \newcommand{\qed}{\hfill \ensuremath{\Box}} % Petit workaround de \qed...
 \renewcommand{\epsilon}{\varepsilon} % Je me trompe tout le temps... 
+\newcommand{\Grad}[1][]{\mathrm{Grad}\ifstrempty{#1}{\,}{\left( #1 \right)}} % Le même qu'en physique, mais sans vecteur : pas besoin en maths
 %%%% Commandes pour mise en forme type HTML —————————————————————————————
 
 
