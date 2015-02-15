@@ -12,11 +12,8 @@
 \begin{titlepage}
 \newgeometry{left=3cm,bottom=5cm,right=3cm,top=5cm}	
 	\begin{center}
-		
 		\textsc{}\\[3.5cm]
-		
 		\textsc{\Large Cours de Prépa}\\[0.5cm]
-		
 		% Title
 		\HRule \\[0.4cm]
 		{ \huge \bfseries Mathématiques \\[0.4cm] }
@@ -722,7 +719,7 @@ Quelques définitions portant sur les polynômes :
 \end{dfn}
 \needspace{3cm}
 \begin{theorem}
-     Pour $u$ dans $\mathcal{L}(E)$, l'application $P \mapsto P(u)$ est un \emphhs{morphisme d'algèbre} de $\mathbb{K} [X]$ dans $\mathcal{L}(E)$
+     Pour $u$ dans $\mathscr{L}(E)$, l'application $P \mapsto P(u)$ est un \emphhs{morphisme d'algèbre} de $\mathbb{K} [X]$ dans $\mathscr{L}(E)$
 \end{theorem}
 \begin{theorem}%TODO: fix title [Base de $\mathbb{K} [u]$]
      Si $d$ est le degré du polynôme minimal $P_u$ de $u$, alors la famille $(u^k)_{k \in \left[ 0 , d-1 \right] }$ est une base de $\mathbb{K} [u]$.
@@ -2101,7 +2098,7 @@ $\forall x \in \underbrace{J}_{\mathclap{\text{segment}}} \subset I, \exists M \
 \begin{itheorem}[Comparaison à une série]
     Si $f$ est une fonction continue par morceaux, \emphh{positive} et \emphh{décroissante}  sur $\Reel^+$, alors la série de terme général $\left( \int_{n-1}^n f \right) - f(n) $ est une \gls{SATP} convergente.\\
     \begin{equation}
-        f \in \mathcal{L}^1 \Leftrightarrow \sum f(n) \text{ converge}
+        f \in \mathscr{L}^1 \Leftrightarrow \sum f(n) \text{ converge}
     \end{equation}
     En cas de divergence, $\int f \underset{n \to +\infty}{\sim}\sum f(n)$\\[\baselineskip]
 
@@ -2109,7 +2106,7 @@ $\forall x \in \underbrace{J}_{\mathclap{\text{segment}}} \subset I, \exists M \
 \end{itheorem}
 \begin{itheorem}[CNS de l'intégration]
 $f(x)$ est intégrable sur $I$ si \\
-$\forall x \in I, \boxed{\int_I |f| \le \varphi}$ où $\varphi \in \mathcal{L}^1$
+$\forall x \in I, \boxed{\int_I |f| \le \varphi}$ où $\varphi \in \mathscr{L}^1$
 \end{itheorem}
 \begin{theorem}
 Si $f$ est une fonction intégrable sur $I$,
@@ -2134,8 +2131,8 @@ $
 \end{theorem}
 \section{Espaces vectoriels normés de fonction intégrables}
 \begin{itheorem}[Convergence dominée\index{Convergence!dominee@dominée} ]
-    Si $\big( f_n \big)_n$ est une suite de fonction de $\mathcal{CM}(I,K) $ convergeant simplement vers une fonction $f \in \mathcal{CM}(I,K)$, et s'il existe $\varphi \in \mathcal{L}^1 $ telle que \ibox{$\forall n, | f_n | \le \varphi$},\newline
-    alors $f \in \mathcal{L}$ et $\int_I f = \lim_{n \to +\infty}, \int_I f_n$
+    Si $\big( f_n \big)_n$ est une suite de fonction de $\mathcal{CM}(I,K) $ convergeant simplement vers une fonction $f \in \mathcal{CM}(I,K)$, et s'il existe $\varphi \in \mathscr{L}^1 $ telle que \ibox{$\forall n, | f_n | \le \varphi$},\newline
+    alors $f \in \mathscr{L}$ et $\int_I f = \lim_{n \to +\infty}, \int_I f_n$
 \end{itheorem}
 \begin{itheorem}[Intégration terme à terme]
     \begin{equation}
@@ -2143,13 +2140,13 @@ $
         \left.
         \begin{array}{c c l}
         \displaystyle\sum_{n=0}^{+\infty} & \underbrace{f_n} & \xrightarrow{\text{CVS}} f \\
-                     & f_n \in \mathcal{L}^1 & \\
+                     & f_n \in \mathscr{L}^1 & \\
         \displaystyle\sum  \int_I \vphantom{\overbrace{f_n}} & \textcolor{couleurImp}{|}\overbrace{f_n}\textcolor{couleurImp}{|} & \text{converge}
         \end{array}
         \right\rbrace 
         \implies 
         \begin{array}{l}
-        f \in \mathcal{L}^1 \\
+        f \in \mathscr{L}^1 \\
         \sum f_n \text{ converge} \\
         \int_I f = \sum_{n=0}^{+\infty} \int_I f_n
         \end{array}
@@ -2164,7 +2161,7 @@ La fonction $g : x \mapsto \int_I f(x,t)$ est \uline{\emph{définie et continue}
 \forall t\in I,& x \mapsto f(x,t) \in \mathcal{C}&\text{\textbf{(Continue pour }}\boldsymbol{x)}\\
 \begin{array}{r}
 	\forall (x,t) \in (A\times I)\\
-	\exists \varphi \in \mathcal{L}^{1}\text{ tel que } \\
+	\exists \varphi \in \mathscr{L}^{1}\text{ tel que } \\
 \end{array}& |f(x,t)|\le \varphi&\text{\textbf{(Domination)}}\\
 \end{array}
 \right.
@@ -2184,7 +2181,7 @@ f \text{ admet une dérivée partielle qui vérifie} \\
 \begin{array}{r l l}
 \forall x \in A,& t\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \CM &\boldsymbol{( \mathcal{CPM} }\text{\textbf{ pour }}\boldsymbol{t)}\\
 \forall t\in I,& x\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \mathcal{C} &\text{\textbf{(Continue pour }}\boldsymbol{x)}\\
-\forall (x,t) \in A \times \underbrace{[a,b]}_{\mathclap{\in I}},& \textcolor{Red}{\left|\textcolor{Black}{\dfrac{\partial f}{\partial x}(x,t)}\right|} \le \varphi(t) \in \mathcal{L}^1 & \text{\textbf{(Domination)}}
+\forall (x,t) \in A \times \underbrace{[a,b]}_{\mathclap{\in I}},& \textcolor{Red}{\left|\textcolor{Black}{\dfrac{\partial f}{\partial x}(x,t)}\right|} \le \varphi(t) \in \mathscr{L}^1 & \text{\textbf{(Domination)}}
 \end{array}
 \right.
 \end{array}
@@ -2508,16 +2505,16 @@ Si $f \in \mathcal{CM}_{2\pi}$ et $C^1$ par morceaux, alors sa série de \textsc
 
 \begin{dfn}\index{equation differentielle@Équation Différentielle}
 $I$ un $\mathbb{K}$-Algèbre\\
-On appelle Équation différentielle l'équation $(\mathcal{L})$ :
-\begin{equation}\tag{\ensuremath{\mathcal{L}}}
+On appelle Équation différentielle l'équation $(\mathscr{L})$ :
+\begin{equation}\tag{\ensuremath{\mathscr{L}}}
 a_0(t)y^{(n)}+a_1(t) y^{(n-1)}+\cdots + a_{n-1}(t) y' + a_n(t) y = b(t)
 \end{equation}
-$\left( \vphantom{3^3} a_0,\cdots ,a_n \right)$ est dans $\left( \mathcal{C}(I,\Reel{})\right)^{n+1} $. L'ensemble des solutions de $\mathcal{L}$ dans $I$ est noté $S_I(\mathcal{L})$
+$\left( \vphantom{3^3} a_0,\cdots ,a_n \right)$ est dans $\left( \mathcal{C}(I,\Reel{})\right)^{n+1} $. L'ensemble des solutions de $\mathscr{L}$ dans $I$ est noté $S_I(\mathscr{L})$
 \end{dfn}
 
 \section{Équations Différentielles \emph{Scalaires} d'ordre 1}
 \begin{theorem}[Solution de l'équation différentielle scalaire]\index{equation differentielle@Équation Différentielle!scalaire}
-Si $y'=a(t) y + b(t)$, alors $S_I(\mathcal{L})$ est un sous-espace affine
+Si $y'=a(t) y + b(t)$, alors $S_I(\mathscr{L})$ est un sous-espace affine
 \end{theorem}
 \begin{proof}[Algorithmique]\label{ResolEquDiffScal1}
 Par hypothèse, $a \in \mathcal{C}(I,\Reel{})$, donc $a(t)$ admet une primitive $P(t)=\int \limits_{t_0}^t a(s) \; ds$.
@@ -2540,20 +2537,20 @@ y(t) &=& \int\limits_{t_0}^t \left( \vphantom{{3^3}^3} e^{-P(u)}\, b(u) \: du + 
 
 \begin{dfn}[Équation Différentielle Vectorielle]\index{equation differentielle@Équation Différentielle!vectorielle}
     C'est une équation sous la forme 
-\begin{equation}\label{equaDiffVect}\tag{$\mathcal{L}$}
+\begin{equation}\label{equaDiffVect}\tag{$\mathscr{L}$}
     x'(t) = a(t) x(t) + b(t)
 \end{equation}
-où $a \in \mathcal{C}\left( I,\mathcal{L}(F)\right), \: b\in \mathcal{C}(I,F)$. Le \emph{Problème de \textsc{Cauchy}} \index{Probleme de cauchy@Problème de \textsc{Cauchy}} revient à trouver, pour tout $(t_0,x_0)$ dans $I \times F$, une solution $\varphi$ de \eqref{equaDiffVect}
+où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right), \: b\in \mathcal{C}(I,F)$. Le \emph{Problème de \textsc{Cauchy}} \index{Probleme de cauchy@Problème de \textsc{Cauchy}} revient à trouver, pour tout $(t_0,x_0)$ dans $I \times F$, une solution $\varphi$ de \eqref{equaDiffVect}
 \end{dfn}
 \Attention{
-$a$ est une application de $I$ dans \uline{$\mathcal{L}(F)$}. Donc $a(t)$ est une application linéaire, pas un scalaire}
+$a$ est une application de $I$ dans \uline{$\mathscr{L}(F)$}. Donc $a(t)$ est une application linéaire, pas un scalaire}
 
 \begin{itheorem}[Théorème de \textsc{Cauchy-Lipshitz}\index{Cauchy-Lipshitz@\textsc{Cauchy-Lipshitz}} linéaire]\label{th:CauchyLipschitz}
 Soit l'équation différentielle 
 \begin{equation}\tag{$E$}
  x'(t) = a(t) x(t) + b(t)
 \end{equation}
-où $a \in \mathcal{C}\left( I,\mathcal{L}(F)\right)$, $b\in \mathcal{C}(I,F)$, alors
+où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right)$, $b\in \mathcal{C}(I,F)$, alors
 \[
     \forall (t_0,x_0) \in (I,F), \exists ! \: \varphi \text{ telle que }
     \left|
@@ -2574,7 +2571,7 @@ Un système fondamental de solutions\index{systeme@Système!fondamental de solut
 
 \begin{prop}
     \begin{itemize}
-        \item Si $(\varphi_1, \varphi_2, \cdots , \varphi_n)$ est une base de $S_I(\mathcal{L})$, alors, $\forall t \in I$, $\left( \varphi_1(t), \varphi_2(t), \cdots , \varphi_n(t) \right)
+        \item Si $(\varphi_1, \varphi_2, \cdots , \varphi_n)$ est une base de $S_I(\mathscr{L})$, alors, $\forall t \in I$, $\left( \varphi_1(t), \varphi_2(t), \cdots , \varphi_n(t) \right)
 $ est une base dans $ F$
     \end{itemize}
 \end{prop}
@@ -2617,7 +2614,7 @@ y(t) = e^{(t-t_0)a}x_0 + \int \limits_{t_0}^t e^{(t-s)a}b(s) \: ds
 \section{Équations Différentielles linéaires du second ordre}
 \begin{dfn}[Équation Différentielle Vectorielle]\index{equation differentielle@Équation Différentielle!du second ordre@du 2\ieme{} ordre}
     C'est une équation sous la forme 
-\begin{equation}\label{eq:equaDiff2ndOrdre}\tag{$\mathcal{L}$}
+\begin{equation}\label{eq:equaDiff2ndOrdre}\tag{$\mathscr{L}$}
     y''(t) + a(t) y'(t) + a(t)y(t)= \gamma (t)
 \end{equation}
 \hfill \\[0.5\baselineskip]
@@ -2661,10 +2658,10 @@ Ou encore :
 \subsection{Cas général}
 \begin{itheorem}[Théorème de \textsc{Cauchy-Lipshitz}\index{Cauchy-Lipshitz@\textsc{Cauchy-Lipshitz}} linéaire]
 Soit l'équation différentielle 
-\begin{equation}\tag{$\mathcal{L}$}
+\begin{equation}\tag{$\mathscr{L}$}
     y''(t) + a(t) y'(t) + a(t)y(t)= \gamma (t)
 \end{equation}
-où $a \in \mathcal{C}\left( I,\mathcal{L}(F)\right)$, $b\in \mathcal{C}(I,F)$, alors
+où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right)$, $b\in \mathcal{C}(I,F)$, alors
 \[
     \forall \big( t_0,(x_0,x_0') \big) \in (I,\mathbb{K}^2), \exists ! \: \varphi \text{ telle que }
     \left|
@@ -2786,7 +2783,7 @@ Dans ce chapitre, on se place dans $\left( E, N \right)$ et $\left( F,P \right)$
     \forall h \in E, \ f(a + h) = f(a) + \d f(a)(h) + o(h)
     \end{equation}
 \end{dfn}
-\Attention{$\d f(a) \in \mathcal{L}(E,F)$ est une application linéaire de $E$ dans $F$. On l'applique sur un vecteur $h$ en notant $\d f(a)(h)$ ou $\d f(a)\cdot h$}
+\Attention{$\d f(a) \in \mathscr{L}(E,F)$ est une application linéaire de $E$ dans $F$. On l'applique sur un vecteur $h$ en notant $\d f(a)(h)$ ou $\d f(a)\cdot h$}
 \begin{theorem}[$f$ dérivable en $a$]
      Soit $f$ la fonction définie précédemment. \newline
      Si $f$ est différentiable en $a$, alors $f$ est continue en $a$ et est dérivable en $a$ selon tout vecteur. Sa dérivée selon le vecteur $v$ est alors : 
@@ -2842,13 +2839,25 @@ Alors, la fonction $g \circ f$ est différentiable sur un ouvert de $E$ et :
      \end{equation}
 \end{dfn}
 \todo{Expression dans une base orthonormée}
+\textbf{Remarque :} Parfois, le gradient de $f$ en $a$, $\Grad f(a)$, est aussi noté $\nabla f(a)$
 % subsection gradient (end)
 \subsection{Représentation des formes linéaires} % (fold)
 \label{sub:representation_des_formes_lineaires}
 \begin{dfn}[Dual d'un \gls{ev} réel] % D'après Vuibert
      Soit $E$ un espace euclidien. \\
-     On appelle \emph{dual}\index{Dual} de $E$ l'ensemble des formes linéaires de $E$ dans $\Reel{}$, noté $\mathcal{L}(E,\Reel )$ ou $E^*$.
+     On appelle \emph{dual}\index{Dual} de $E$, et on note $\mathscr{L}(E,\Reel )$ ou $E^*$, l'ensemble des formes linéaires de $E$ dans $\Reel{}$.
 \end{dfn}
+\begin{theorem}[Représentation des formes linéaires]
+     Soit $E$ un espace euclidien.\\
+     Pour toute forme linéaire $f$ de $\mathscr{L}(E,\Reel )$ : 
+     \begin{equation}
+     \exists ! y,\, \forall x\in E,\qquad f(x) = (x|y)
+     \end{equation}
+\end{theorem}
+\begin{proof}
+     Pour tout $y \in E$, on peut associer l'application $\theta_y : x\mapsto (x|y)$. Cette application est linéaire. L'application \[ \left| \begin{array}{r c l c l} \theta &:& E &\to & \mathscr{L}(E,\mathbb{R})\\ && y &\mapsto& \theta_y \end{array}\right.\] est également linéaire. Son noyau $\mathrm{Ker}(\theta )$ étant nul, $\theta$ est injective. Mais $E$ et $\mathscr{L}(E,\mathbb{R})$ étant de même dimension, elle est donc \emphh{bijective}.\\
+     Toute forme linéaire a donc un antécédant par $\theta$.\qed
+\end{proof}
 % subsection representation_des_formes_lineaires (end)
 \subsection{Point critique} % (fold)
 \label{sub:point_critique}
@@ -2886,7 +2895,7 @@ Dans ce chapitre, on se place dans $\left( E, N \right)$ et $\left( F,P \right)$
 \section{Différentielle, dérivée}
 \subsection{Différentielle}
 \begin{dfn}[Différentielle]
-Il existe \uline{au plus} un élément $\varphi$ de $\mathcal{L}(E,F)$ tel que
+Il existe \uline{au plus} un élément $\varphi$ de $\mathscr{L}(E,F)$ tel que
 \[
     f(a+h) \underset{h\to 0}{=} f(a) + \varphi(h) + o(h)
 \]
@@ -2900,7 +2909,7 @@ a_2 \\
 \vdots \\
 a_n
 \end{pmatrix}
-$. De plus, $\varphi (h)$ est une application linéaire : $\varphi(h) \in \mathcal{L}\big( E,F\big)$
+$. De plus, $\varphi (h)$ est une application linéaire : $\varphi(h) \in \mathscr{L}\big( E,F\big)$
 
 \subsection{Dérivée selon un vecteur}
 \begin{dfn}[Dérivée en un point]
