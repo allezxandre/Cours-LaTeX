@@ -2861,7 +2861,27 @@ Alors, la fonction $g \circ f$ est différentiable sur un ouvert de $E$ et :
 % subsection representation_des_formes_lineaires (end)
 \subsection{Point critique} % (fold)
 \label{sub:point_critique}
-
+\begin{dfn}[Point critique]
+     On appelle \emph{point critique}\index{Point critique} d'une application différentiable $f : E \to \Reel{}$ tout point de $E$ tel que 
+     \begin{equation}
+     \d f(a) = 0
+     \end{equation}
+\end{dfn}
+\begin{dfn}[Extremum local]
+     Soit $E$ un espace euclidien, et soit $f : E \to \Reel{}$. \\
+     On dit que $f$ présente un \emph{extremum local}\index{Extremum!local} en un point $a$ si pour tout voisinage de $a$ : 
+     \begin{subequations}
+          \begin{align}
+               \forall x\in V,\, & f(x) \le f(a) & \text{(Maximum local)}\\
+               \forall x\in V,\, & f(x) \ge f(a) & \text{(Minimum local)}
+          \end{align}
+     \end{subequations}
+\end{dfn}
+\begin{itheorem}[Condition nécessaire d'éxistence d'extremum]
+     Soit $E$ un espace euclidien, et soit $f : E \to \Reel{}$ une \emphh{fonction différentiable}. \\
+     Si $f$ présente un extremum local en un point $a$, alors $\d f(a) = 0$.
+\end{itheorem}
+\Attention{La réciproque de ce théorème est fausse}
 % subsection point_critique (end)
 % section cas_des_applications_numeriques (end)
 \section{Vecteurs tangents à une partie d'un espace normé de dimension finie} % (fold)
