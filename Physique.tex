@@ -819,6 +819,21 @@ Cette force\index{Force!rappel@\emphi{de }rappel} est déterminée expérimental
 \captionof{figure}{Force de rappel d'un ressort}
 \end{minipage}
 \end{dfn}
+\section{Loi de la quantité de mouvement} % (fold)
+\label{sec:loi_de_la_quantite_de_mouvement}
+\begin{dfn}[Quantité de mouvement]
+   Un point $M$ de masse $m$ de vecteur vitesse $\vv{v}$ possède une \emph{quantité de mouvement}\index{Quantite de mouvement@Quantité de mouvement} définie par la formule : 
+   \begin{equation}
+   \vv{p}(M) = m\,\vv{v}(M)
+   \end{equation}
+\end{dfn}
+\begin{theorem}
+   La \emph{quantité de mouvement} d'un système $\Sigma$ fermé de centre d'inertie $G$ est
+   \begin{equation}
+   \vv{p}(\Sigma )= m\,\vv{v}(G)
+   \end{equation}
+\end{theorem}
+% section loi_de_la_quantite_de_mouvement (end)
 \section{Approche Énergétique}
 \begin{dfn}[Système conservatif\index{Systeme@Système!conservatif}]
 Un \emph{système conservatif} est un système dont l'\uline{énergie mécanique} $E_m = E_c + E_p$ est \uline{constante}.
@@ -857,14 +872,14 @@ E_c = \frac{1}{2}m v^2
 %
 Pour le \emph{théorème de la puissance cinétique}, \textit{cf} théorème \ref{TPC} page \pageref{TPC}.
 Le théorème de l'énergie cinétique a été vu en première année\footnote{\textit{cf} page 418 du livre \textit{Physique !} de Jérome \textsc{Majou}} : 
-\begin{theorem}[Théorème de l'énergie cinétique]
+\begin{theorem}
 \index{Energie@Énergie!cinétique}
 Il dérive de l'expression de l'énergie mécanique :
 \begin{equation}
 \underbrace{\der{E_m(\Sigma)}{t}}_{\mathclap{\mathcal{P}_\text{action non conservatives}}}=\der{E_c(\Sigma)}{t}+\underbrace{\der{E_p(\Sigma)}{t}}_{\mathclap{\mathcal{P}_\text{action conservatives}}}
 \end{equation}
 \end{theorem}
-\begin{itheorem}
+\begin{itheorem}[Théorème de l'énergie cinétique]
 On peut déduire du théorème précédent que 
 \begin{equation}
 \begin{array}{c c c}
@@ -1026,10 +1041,43 @@ D'où, en utilisant que $
 %
 \subsection{Dérivée en coordonnées polaires} % (fold)
 \label{ssub:derivee_en_coord_polaire}
-\begin{equation}
-\vv{v} = \dot{r}\vv*{u}{r} + r \dot{\theta}\vv*{u}{\theta} \\
-\vv{a} = \left( \ddot{r} - r\dot{\theta}^2\right)\vv*{u}{r} + \left( 2\dot{r}\dot{\theta} + r\ddot{\theta} \right) \vv*{u}{\theta}
-\end{equation}
+\begin{figure}[!h]
+   \centering
+   \begin{tikzpicture}
+  %On dessine le repère
+  \draw [gray,->,>=latex] (0,-0.2) -- (0,2.3) node[left] {$y$};
+  \draw [gray,->,>=latex] (-0.2,0) -- (2.3,0) node[right] {$x$};
+  % Définition des angles
+  \def\angle{35}
+  \def\rayon{2.2}
+  % On dessine les vecteurs u_r et u_\tetha
+  \draw[->,>=latex, color=couleurGrisFonce] (\angle:\rayon) -- ++(\angle:0.3*\rayon) node[right]{$\vv*{u}{r}$};
+  \draw[->,>=latex, color=couleurGrisFonce] (\angle:\rayon) -- ++(90+\angle:0.3*\rayon) node[above]{$\vv*{u}{\theta}$};
+  % On dessine OM
+  \draw (0,0) -- (\angle:\rayon) node[midway, above]{$r$} node{$\bullet$} node[below]{$M$};
+  \draw[->] (0:0.4*\rayon) arc(0:\angle:0.4*\rayon) node[midway, right]{$\theta$};
+\end{tikzpicture}
+\caption{Coordonées polaires}
+\label{fig:coord_polaires}
+\end{figure}
+\begin{itheorem}[Vitesse et accélération en coordonées polaires]
+Soit $\vv{OM} = r\vv*{u}{r}$, comme représenté sur la figure~\ref{fig:coord_polaires}.
+   \begin{equation}
+    \vv{v} = \dot{r}\vv*{u}{r} + r \dot{\theta}\vv*{u}{\theta} \\
+    \vv{a} = \left( \ddot{r} - r\dot{\theta}^2\right)\vv*{u}{r} + \left( 2\dot{r}\dot{\theta} + r\ddot{\theta} \right) \vv*{u}{\theta}
+   \end{equation}
+\end{itheorem}
+\begin{proof}
+   Il suffit de dériver $\vv{OM}$ : 
+   \begin{align*}
+      \vv{v}&= \dot{r}\vv*{u}{r} + r \dfrac{\d \vv*{u}{r}}{\d t} \\
+            &= \dot{r}\vv*{u}{r} + r \dfrac{\d \theta}{\d t} \dfrac{\vv*{u}{r}}{\d \theta} \\
+      \vv{v}&= \dot{r}\vv*{u}{r} + r \dot{\theta}\vv*{u}{\theta} \\
+      \vv{a}&=\dfrac{\d\vv{v}}{\d t} \\
+            &=\ddot{r}\vv*{u}{r}+\dot{r}\dfrac{\d\vv{u}_r}{\d t}+ \left( \dot{r}\dot{\theta}+r\ddot{\theta} \right)\vv*{u}{\theta}+r\dot{\theta}\,\dfrac{\d\vv{u}_\theta}{\d t} \\
+      \vv{a}&= \left( \ddot{r} - r\dot{\theta}^2\right)\vv*{u}{r} + \left( 2\dot{r}\dot{\theta} + r\ddot{\theta} \right) \vv*{u}{\theta}
+   \end{align*}
+\end{proof}
 % subsection derivee_en_coord_polaire (end)
 \begin{theorem}[Relation de \emph{\textsc{Varignon}}\index{Varignon@\textsc{Varignon}}]
 Un moyen mnémotechnique de s'en souvenir : la formule de \og \textbf{Babar} \fg{}
@@ -1062,14 +1110,15 @@ On définit le \emph{moment} $\vv{\mathcal{M}}$\index{Moment!force@d'une force} 
 	\draw [thick,->] (2,0) -- (2,1.4) node[midway, above right] {$\vv{F}$};
 %
 \end{tikzpicture}
+\captionof{figure}{Moment d'une force}
 \end{minipage}
 %
 \end{dfn}
 \begin{dfn}[Torseur cinétique\index{Torseur!cinetique@cinétique}]
-C'est un torseur tout simple $\left[\vv{\sigma},\vv{P}\right]$
+C'est un torseur tout simple $\left[\vv{\sigma},\vv{p}\right]$
 \begin{equation}
-\vv{\sigma}(B)=\vv{\sigma}(A)+\vv{BA}\wedge\vv{P}\\ \text{d'où} \\
-\boxed{\vv{\sigma}(B)=\vv{\sigma}(A)+\vv{BA}\wedge{}M\vv{v}}
+\vv{\sigma}(B)=\vv{\sigma}(A)+\vv{BA}\wedge\vv{p}\\ \text{d'où} \\
+\boxed{\vv{\sigma}(B)=\vv{\sigma}(A)+\vv{BA}\wedge{}m\vv{v}}
 \end{equation}
 \end{dfn}
 \textbf{Rappel}: La vitesse de rotation $\omega$ permet de déterminer la vitesse $\vv{v}$. Pour un solide en rotation autour d'un axe $\Delta$ : 
@@ -1100,6 +1149,7 @@ Le moment cinétique\index{Moment!cinetique@cinétique} caractérise le mouvemen
 	\draw [thick,->,>=stealth] (0,0,0) node[anchor=south west]{$O$} -- (0,1,0) node[anchor=north east] {$M$};
 	\draw [thick,dashed] (0,0,0) node[anchor=south west]{$O$} -- (-1,0,0);
 \end{tikzpicture}
+\captionof{figure}{Moment cinétique}
 \end{minipage}
 \end{dfn}
 %
@@ -3374,6 +3424,11 @@ La notation VSEPR s'exprime par :
 où $m$ est le nombre d'atomes liés à l'atome central et $n$ est le nombre d'entités non liantes (doublets ou électron célibataire).
 \end{methode}
 % section representation (end)
+\section{Cinétique chimique} % (fold)
+\label{sec:cinetique_chimique}
+% TODO: SOON
+\todo{Écrire de la chimie ici}
+% section cinetique_chimique (end)
 \section{Cristallographie} % (fold)
 \label{sec:cristallographie}
 \begin{dfn}[Cristal]
