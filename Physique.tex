@@ -987,6 +987,7 @@ Les forces d'inerties varient suivant le référentiel. On en distingue 4 : \\[0
   Force d'inertie complémentaire de \textsc{Coriolis}\index{Force!Coriolis@\emphi{de }\textsc{Coriolis}} & $\vv{F}_\text{inertie}^{\text{coriolis}}$&$ -2 m \vv*{\omega}{\mathcal{R'}/\mathcal{R}} \wedge \vv{v}(M)_\mathcal{R} $\\
   \hline
 \end{tabular}
+\emphh{Remarque :} La force d'inertie de rotation différentielle est maintenant hors-programme, car on ne se place que dans des cas où la rotation est uniforme. 
 % subsection forces_d_inerties (end)
 \subsubsection{Frottement solide} % (fold)
 \label{ssub:frottement_solide}
@@ -1743,6 +1744,59 @@ Pour décrire au mieux ce que l'on observe, on définit l'ordre d'interférence.
    Plus l'ordre d'interférence $p$ est proche d'un entier $m \in \mathbb{Z}$, plus l'interférence est constructive, et plus il y a d'intensité lumineuse. À l'inverse, l'interférence est destructive en $m + \frac{1}{2}$.
 \end{theorem}
 % subsection trous_de_young (end)
+\subsection{Interféromètre de \textsc{Michelson}} % (fold)
+\label{sub:michelson}
+\begin{figure}[!h]
+   \centering
+   \begin{tikzpicture}
+      \coordinate (S) at (-5 ,0); % la source
+      \coordinate (M'1) at (0,4.5); % symmétrique du miroir à droite
+      \coordinate (M2) at (0,3); % miroir en haut
+      \def\offsetE{-5};
+      \coordinate (E) at (0,\offsetE); % l'écran
+      \def\angleM{10} % On trouvera la position de M sur l'écran à partir de l'angle. C'est plus facile à dessiner comme ça
+      \def\focal{2}
+      %
+      % draw les rayons
+      \draw[dashed] (E) -- (M'1);
+      \path {[cm={0,1,1,0,(0,0)}] (M'1)} coordinate (MS);
+      \draw[dashed] (S) -- (MS);
+      \path (E) ++(0,\focal) ++({\focal * sin \angleM},-\focal) coordinate (M);
+      \draw[->, >=stealth] (E) ++(0,\focal - 0.4*\focal) arc(-90:-90 + \angleM:0.4*\focal) node[midway, below]{$i$}; 
+      %
+      \draw[color=couleur1, thick] (M2) -- (intersection cs: first line={(M2)--++(-90 - \angleM:8)}, second line={(45:-2)--(45:2)}) -- (S); % S -> M2
+      \draw[color=couleur1, thick] (M2) -- (intersection cs: first line={(M2)-- ++(-90 + \angleM:10)}, second line={(0,{\offsetE + \focal})--(10,{\offsetE + \focal})}) -- (M); % M2 -> M
+      %
+      \draw[color=couleur2,thick, dashed] (M'1) -- (intersection cs: first line={(M'1)--++(-90 - \angleM:8)}, second line={(45:-4)--(45:4)}) coordinate (INT1); % INT1 -> M'1 
+      \draw[color=couleur2,thick, dashed] (M'1) -- (intersection cs: first line={(M'1)--++(-90 + \angleM:10)}, second line={(0,{\offsetE + \focal})--(10,{\offsetE + \focal})}) coordinate (INTL) -- (M); % M'1 -> INTL
+      %
+      \draw[color=couleur2, thick] (S) -- (INT1) -- (MS);
+      \draw[color=couleur2, thick] (MS) -- (intersection cs: first line={(MS)--++(180 - \angleM:8)}, second line={(45:-4)--(45:4)}) -- (INTL) -- (M); % S -> M1
+      \draw[->, >=stealth] (M'1) ++(0,- 0.4*\focal) arc(-90:-90 + \angleM:0.4*\focal) node[midway, below]{$i$};
+      \draw[->, >=stealth] (M2) ++(0,- 0.4*\focal) arc(-90:-90 + \angleM:0.4*\focal) node[midway, below]{$i$};
+      \draw[thick] (E) ++(0,\focal) -- ++({\focal * sin \angleM},-\focal) node{$\bullet$} node[above right=2pt]{$M$};
+      % draw la source
+      \draw (S) node[ellipse, fill=white, minimum height=3cm,minimum width=2mm,draw]{$(S)$};
+      % draw les mirroirs
+      \begin{scope}[thick]
+         \draw {[cm={0,1,1,0,(0,0)}] (M'1)} ++(0,1) -- ++(0,-2) node[below]{$M_1$}; 
+      % cf. "The XY- and XYZ-Coordinate Systems" du Manuel TIKZ pour cm
+         \draw[densely dashed] (M'1) ++(1,0) -- ++(-2,0) node[left]{$M'_1$};
+         \draw (M2) ++(1,0) -- ++(-2,0) node[left]{$M_2$};
+      \end{scope}
+      % fill les mirroirs
+      \fill[pattern=north east lines] (M'1) ++(1,0) rectangle ++(-2,0.2);
+      \fill[pattern=north east lines] (M2) ++(1,0) rectangle ++(-2,0.2);
+      \fill[pattern=north east lines] {[cm={0,1,1,0,(0,0)}] (M'1)} ++(0,1) rectangle ++(0.2,-2);
+      % draw la séparatrice
+      \draw[very thick] (45:-2) -- (45:2);
+      % draw l'écran et la lentille
+      \draw[line width=1.5pt] (E) ++(-2.5,0) -- ++(5,0) node[midway, below]{Écran};
+      \draw[<->, thick, >=latex] (E) ++(-3,\focal) -- ++(6,0) node[right]{$(L)$};
+   \end{tikzpicture}
+   \caption{Interféromètre de \textsc{Michelson} en lame d'air}
+\end{figure}
+% subsection michelson (end)
 \subsection{Diffraction}
 \todo{ Terminer l'énoncé}
 \begin{dfn}[Principe d'\textsc{Huygens}-\textsc{Fresnel}\index{Huygens-Fresnel@\textsc{Huygens}-\textsc{Fresnel}}]
