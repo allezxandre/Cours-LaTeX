@@ -1770,8 +1770,7 @@ Pour décrire au mieux ce que l'on observe, on définit l'ordre d'interférence.
       \draw[color=couleur2,thick, dashed] (M'1) -- (intersection cs: first line={(M'1)--++(-90 - \angleM:8)}, second line={(45:-4)--(45:4)}) coordinate (INT1); % INT1 -> M'1 
       \draw[color=couleur2,thick, dashed] (M'1) -- (intersection cs: first line={(M'1)--++(-90 + \angleM:10)}, second line={(0,{\offsetE + \focal})--(10,{\offsetE + \focal})}) coordinate (INTL) -- (M); % M'1 -> INTL
       %
-      \draw[color=couleur2, thick] (S) -- (INT1) -- (MS);
-      \draw[color=couleur2, thick] (MS) -- (intersection cs: first line={(MS)--++(180 - \angleM:8)}, second line={(45:-4)--(45:4)}) -- (INTL) -- (M); % S -> M1
+      \draw[color=couleur2, thick] (S) -- (INT1) -- (MS) -- (intersection cs: first line={(MS)--++(180 - \angleM:8)}, second line={(45:-4)--(45:4)}) -- (INTL) -- (M); % S -> M1 -> M
       \draw[->, >=stealth] (M'1) ++(0,- 0.4*\focal) arc(-90:-90 + \angleM:0.4*\focal) node[midway, below]{$i$};
       \draw[->, >=stealth] (M2) ++(0,- 0.4*\focal) arc(-90:-90 + \angleM:0.4*\focal) node[midway, below]{$i$};
       \draw[thick] (E) ++(0,\focal) -- ++({\focal * sin \angleM},-\focal) node{$\bullet$} node[above right=2pt]{$M$};
