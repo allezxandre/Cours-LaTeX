@@ -85,6 +85,11 @@ decorations.pathreplacing}
 %\usepackage{showframe}   % Pour afficher les marges
 \usepackage{pdflscape}    % Pour avoir quelques pages en mode paysage (utiliser \begin{landscape})
 \usepackage{blkarray}     % Pour les matrices par bloc
+\ifdraft{
+    \usepackage{float}
+    \floatstyle{boxed}
+    \restylefloat{figure}
+}{}
 \usepackage[obeyFinal]{todonotes}
                           % Pour les TODO en marges
 \reversemarginpar         % Pour avoir les TODO du bon coté

@@ -1275,7 +1275,7 @@ Deux conditions :
    \end{tabular}\\
 \titre{Techniques}
 \begin{itemize}[noitemsep, topsep=4pt,parsep=0pt,partopsep=0pt]
-  \item Les dessins miroirs peuvent être \og{}développés\fg{} pour obtenir la repésentation d'une lentille
+  \item Les dessins miroirs peuvent être \og{}développés\fg{} pour obtenir la représentation d'une lentille
   \item Règles de construction pour les dioptres et les miroirs
   \begin{itemize}[noitemsep, topsep=4pt,parsep=0pt,partopsep=0pt]
     \item Un rayon passant par le centre n'est pas dévié
@@ -1746,9 +1746,35 @@ Pour décrire au mieux ce que l'on observe, on définit l'ordre d'interférence.
 % subsection trous_de_young (end)
 \subsection{Interféromètre de \textsc{Michelson}} % (fold)
 \label{sub:michelson}
+L'interféromètre de \textsc{Michelson} est un exemple de dispositif interférométrique à division d'amplitude.
+\subsubsection{Configuration en lame d'air} % (fold)
+\label{ssub:configuration_en_lame_d_air}
+\begin{dfn}[Lame d'air]
+   Dans le dispositif de \textsc{Michelson}, lorsque les miroirs $M_1$ et $M_2$ sont perpendiculaires, on dit que le dispositif est configuré en \emph{lame d'air}\index{michelson!\textsc{Michelson}!lame d'air}. \\
+   $M'_1$, le symmétrique de $M_1$ (\textit{cf.} figure~\ref{fig:michelson_lame_d_air}), est alors à une distance $e$ de $M_2$ et forme une \og{}lame d'air\fg{}.
+\end{dfn}
+\begin{itheorem}
+   Pour un interféromètre de \textsc{Michelson} réglé en \emphh{lame d'air}, en utilisant les notations de la figure~\ref{fig:michelson_lame_d_air} page~\pageref{fig:michelson_lame_d_air}, on démontre les formules suivantes :
+   \begin{subequations}
+   \begin{itemize}[leftmargin=5mm]
+     \item \emphh{Différence de marche :}
+     \begin{equation}
+     \delta (M) = 2ne\cos i
+     \end{equation}
+     \item \emphh{Déphasage :}
+     \begin{equation}
+     \Delta \upvarphi (M) = \dfrac{4\pi ne \cos i}{\lambda_0}
+     \end{equation}
+     \item \emphh{Ordre d'interférences :}
+     \begin{equation}
+     p(M) = \dfrac{2ne\cos i}{\lambda_0}
+     \end{equation}
+   \end{itemize}
+   \end{subequations}
+\end{itheorem}
 \begin{figure}[!h]
    \centering
-   \begin{tikzpicture}[scale=1.2, line join=bevel]
+   \begin{tikzpicture}[line join=bevel]
       \coordinate (S) at (-5 ,0); % la source
       \coordinate (M'1) at (0,5); % symmétrique du miroir à droite
       \coordinate (M2) at (0,3); % miroir en haut
@@ -1777,21 +1803,25 @@ Pour décrire au mieux ce que l'on observe, on définit l'ordre d'interférence.
          \draw[name path global=mirroir1p, densely dashed] (M'1) ++(1.7,0) -- ++(-3.4,0) node[left]{$M'_1$};
          \draw[name path global=mirroir2] (M2) ++(1.7,0) -- ++(-3.4,0) node[left]{$M_2$};
       \end{scope}
+      % draw la fleche entre M'1 et M2
+        \draw[densely dotted] ($ (M2) + (1.7,0) $) -- ($ (M2) + (2.5,0) $);
+        \draw[densely dotted] ($ (M'1) + (1.7,0) $) -- ($ (M'1) + (2.5,0) $);
+        \draw[<->,>=latex,thick] ($ (M2) + (2.5,0) $) -- ($ (M'1) + (2.5,0) $) node[midway, right]{$e$};
       % path les rayons
-      \path[name path=rayon1] (S)--++(\angleM:18);
+      \path[name path=rayon1] (S)--++(\angleM:11);
       \path[name intersections={of=separatrice and rayon1}] (intersection-1) coordinate (K);
-      \path[name path=rayon2] (K)--++(90-\angleM:10);
+      \path[name path=rayon2] (K)--++(90-\angleM:5);
       \path[name intersections={of=mirroir1 and rayon1}] (intersection-1) coordinate (I1);
       \path[name intersections={of=mirroir1p and rayon2}] (intersection-1) coordinate (I1p);
       \path[name intersections={of=mirroir2 and rayon2}] (intersection-1) coordinate (I2);
-      \path[name path=rayon2-l] (I2)--++(-90+\angleM:10);
+      \path[name path=rayon2-l] (I2)--++(-90+\angleM:8);
       \path[name intersections={of=lentille and rayon2-l}] (intersection-1) coordinate (L2);
-      \path[name path=rayon1p] (I1p)--++(-90+\angleM:15);
+      \path[name path=rayon1p] (I1p)--++(-90+\angleM:10);
       \path[name intersections={of=separatrice and rayon1p}] (intersection-1) coordinate (intersecte);
       \path[name intersections={of=lentille and rayon1p}] (intersection-1) coordinate (L1);
       % draw les rayons
       \begin{scope}[decoration={markings, 
-      mark=between positions 0.05 and .95 step 2.7cm with {\arrow{latex}}}, thick]
+      mark=between positions 0.05 and .95 step 2.3cm with {\arrow{latex}}}, thick]
           \draw[color=couleur1!50!couleur2, postaction={decorate}] (S) -- (K) node{$\bullet$} node[below right]{$K$} -- (I2);
           \draw[color=couleur2, postaction={decorate}] (I2) -- (L2) -- (M);
           \draw[color=couleur1, postaction={decorate}, dashed] (I2) -- (I1p) -- (intersecte);
@@ -1809,7 +1839,13 @@ Pour décrire au mieux ce que l'on observe, on définit l'ordre d'interférence.
       \draw[<->, thick, >=latex] (E) ++(-3,\focal) -- ++(6,0) node[right]{$(L)$};
    \end{tikzpicture}
    \caption{Interféromètre de \textsc{Michelson} en lame d'air}
+   \label{fig:michelson_lame_d_air}
 \end{figure}
+% subsubsection configuration_en_lame_d_air (end)
+\subsubsection{Configuration en coin d'air} % (fold)
+\label{ssub:configuration_en_coin_d_air}
+
+% subsubsection configuration_en_coin_d_air (end)
 % subsection michelson (end)
 \subsection{Diffraction}
 \todo{ Terminer l'énoncé}
