@@ -423,6 +423,125 @@ C'est la fonction $\varphi$ telle que
 %TODO Théorème Chinois
 % part structures_algebriques_usuelles (end)
 \part{Algèbre}
+\chapter{Fonctions convexes} % (fold)
+\label{cha:fonctions_convexes}
+\section{Parties convexes d'un espace vectoriel réel} % (fold)
+\label{sec:parties_convexes_d_un_ev}
+\subsection{Barycentre} % (fold)
+\label{sub:barycentre}
+\begin{dfn}[Barycentre]
+     Soit $\big( x_i,\alpha_i\big)_{i\in \mathbb{N}}$ une famille \uline{finie} de points pondérés telle que la somme des coefficients $\sum_i \alpha_i \neq 0$. On appelle \emph{barycentre}\index{Barycentre} des points $x_i$ le point $G$ tel que : 
+     \begin{equation}
+     G = \dfrac{\displaystyle\sum_i \alpha_i~x_i}{\sum \alpha_i}
+     \end{equation}
+\end{dfn}
+% subsection barycentre (end)
+\subsection{Partie convexe} % (fold)
+\label{sub:partie_convexe}
+La partie suivante est copiée de la sous-section~\ref{sub:convexe_connexite} page~\pageref{sub:convexe_connexite} : 
+\begin{dfn}[Convexe]
+    \begin{minipage}{0.6\textwidth}
+        Un ensemble $E$ est \emphh{convexe}\index{Convexe} si : 
+    \begin{equation}
+    \forall (x,y) \in E^2, \forall t \in [0,1], \boxed{tx + (1-t)y \in E}
+    \end{equation}
+    Intuitivement, un ensemble est convexe si on peut relier deux points avec une ligne contenue dans cet ensemble.
+    \end{minipage}\hspace{5mm}
+    \begin{minipage}{0.3\textwidth}
+    \begin{tikzpicture}
+        \draw[thick, color=couleurImp] (0.2,0.2) -- (2.7, 0.5);
+        \filldraw[fill = couleurClaire, decorate, rounded corners=5mm]%
+        (0,0) -- (-0.3,2) -- (3, 2.5) -- (3,0) -- (1.5,1) -- (0.2,-0.5) -- (0,0);
+        \begin{scope}
+        \clip[decorate, rounded corners=5mm] (0,0) -- (-0.3,2) -- (3, 2.5) -- (3,0) -- (1.5,1) -- (0.2,-0.5) -- (0,0);
+        \draw[thick] (0.2,0.2) node{$\bullet$} -- (2.7, 0.5) node{$\bullet$};
+        \end{scope}
+    \end{tikzpicture}
+    \captionof{figure}{Un ensemble \uline{non} convexe}
+    \end{minipage}
+\end{dfn}
+\begin{theorem}[Intersection de convexes]
+     L'intersection d'une famille quelconque de convexes est convexe.\\[\baselineskip]
+     \emphh{Remarque :} Ce théorème est même valable pour une famille infinie.
+\end{theorem}
+\begin{theorem}[Convexe dans \Reel]
+    $I$ de $\Reel{}$ est convexe \emphh{si et seulement si} $I$ est un intervalle de $\Reel{}$
+\end{theorem}
+\begin{itheorem}[Caractérisation à l'aide de barycentres]
+     Une partie $X$ de $E$ est convexe \ssi{} le barycentre $G$ de toute famille pondérée finie $\big( x_i,\alpha_i \big)_i$ telle que $\alpha_i \ge 0\; \forall i$ appartient à $X$ : 
+     \begin{equation}
+     G \in X
+     \end{equation}
+     (Bien sûr, on a toujours $\sum \alpha_i \neq 0$.)
+\end{itheorem}
+% subsection partie_convexe (end)
+% section parties_convexes_d_un_ev (end)
+\section{Fonctions convexes d'une variable réelle} % (fold)
+\label{sec:fonctions_convexes_d_une_variable_reelle}
+La définition suivante est copiée de la définition~\ref{dfn:convexe_connexite} page~\pageref{dfn:convexe_connexite}.
+\begin{dfn}[Fonction convexe]
+   \begin{minipage}{0.75\textwidth}
+    Une fonction $f : I \mapsto \Reel{}$ est dite \emph{convexe}\index{Convexe} si :
+   \begin{equation}
+   \forall (a,b) \in I^2, \forall \lambda  \in ]0,1[, \boxed{f(\lambda a + (1-\lambda )b) \le \lambda f(a) + (1-\lambda )f(b)}
+   \end{equation}
+    \end{minipage}\hspace{2mm}
+    \begin{minipage}{0.2\textwidth}
+    \begin{tikzpicture}
+        \draw [->, >=stealth] (0,0) -- (3.2,0);
+        \draw [->, >=stealth] (0,0) -- (0,3.2);
+        \draw [thick] (0,0).. controls (0.8,0.2) and (2,1) .. (3,3);
+        \draw [color=couleurNoirClair, densely dashed] (0,0) -- (3,3);
+    \end{tikzpicture}
+    \captionof{figure}{Une fonction convexe}
+    \end{minipage}
+\end{dfn}
+\begin{theorem}[Position relative du graphe]
+     Une fonction est convexe \ssi{} tout arc de son graphe est situé en-dessous de la corde correspondante.
+\end{theorem}
+\begin{dfn}[Épigraphe]
+     Soit $f$ une fonction de graphe $\Gamma_f = \{ (x,y)\in I\times \Reel \: |\: y = f(x)\}$.\\
+     On appelle \emph{épigraphe}\index{Epigraphe@Épigraphe} de $f$ l'ensemble $\Gamma_f^+$ des points situés au dessus du graphe $\Gamma_f$. C'est-à-dire : 
+     \begin{equation}
+     \Gamma_f^+ = \{ (x,y)\in I\times\Reel \: |\: y\ge f(x) \}
+     \end{equation}
+\end{dfn}
+\begin{theorem}[Convexité de l'épigraphe]
+     Une fonction est convexe \ssi{} son épigraphe est convexe.
+\end{theorem}
+\begin{itheorem}[Inégalité de \textsc{Jensen}]
+     Soit $f$ une fonction \emphh{convexe} sur un intervalle $I$. \\
+     Soit $n\ge 2$. Soit $(x_1,\cdots ,x_n) \in I^n$ une famille de points de $I$. \\
+     Pour toute famille de \emphhs{réels positifs} $(\lambda_1,\ldots ,\lambda_n)\in {\left( \Reel^+ \right) }^n$ telle que \[
+         \sum_{i=1}^n \lambda_i = 1
+     \]
+     l'\emph{inégalité de \textsc{Jensen}}\index{Inegalite@Inégalité!Jensen@\emphi{de }\textsc{Jensen}} donne :
+     \begin{equation}
+     f \left( \sum_{i=1}^n \lambda_i x_i \right) \le \sum_{i=1}^n \lambda_i f(x_i)
+     \end{equation}
+\end{itheorem}
+\begin{theorem}
+     Soit $f$ une fonction de $\Reel{}$ dans $\Reel{}$ définie sur un intervalle $I$ non vide et non réduit à un singleton.\\
+     Pour tout $x\in I$, soit $\Phi_x$ la fonction :
+     \begin{equation}
+      \Phi_x : t\mapsto \dfrac{f(t) - f(x)}{t-x}
+     \end{equation} 
+     $f$ est convexe sur $I$ \ssi{}, pour tout $x\in I$, $\Phi_x$ est croissante sur $I\backslash \{x\}$.
+\end{theorem}
+\begin{itheorem}[Inégalité des pentes]
+     Soit $f$ une fonction de $\Reel{}$ dans $\Reel{}$ définie sur un \emphhs{ouvert} $I\in \Reel{}$ tel que $I$ n'est pas réduit à un singleton. \\
+     Si $f$ est convexe, alors $f$ est dérivable en tout point de $I$ à gauche et à droite, et pour tout $(x,y) \in I^2$ tel que $x<y$ :
+     \begin{equation}
+     f'_g(x) \le f'_d(x) \le \dfrac{f(y) - f(x)}{y - x} \le f'_g(y) \le f'_d(y)
+     \end{equation}
+     \emphh{Remarque :} On déduit de la dérivabilité que $f$ est continue sur $I$.
+\end{itheorem}
+% section fonctions_convexes_d_une_variable_reelle (end)
+\section{Fonctions convexes dérivables, deux fois dérivables} % (fold)
+\label{sec:fonctions_convexes_derivables_deux_fois_derivables}
+
+% section fonctions_convexes_derivables_deux_fois_derivables (end)
+% chapter fonctions_convexes (end)
 \chapter{Réduction des Endomorphismes}
 \begin{methode}
      \titre{Valeurs propres}
@@ -961,7 +1080,7 @@ _n$ qui converge dans $A$}
 % section applications_continues_sur_une_partie_compacte (end)
 \section{Connexité par arcs} % (fold)
 \label{sec:connexe_par_arcs}
-\subsection{Convexité}
+\subsection{Convexité}\label{sub:convexe_connexite}
 \begin{dfn}[Convexe]
     \begin{minipage}{0.6\textwidth}
         Un ensemble $E$ est \emphh{convexe}\index{Convexe} si : 
@@ -984,6 +1103,7 @@ _n$ qui converge dans $A$}
     \end{minipage}
 \end{dfn}
 \begin{dfn}[Fonction convexe]
+\label{dfn:convexe_connexite}
    \begin{minipage}{0.75\textwidth}
     Une fonction $f : I \mapsto \Reel{}$ est dite convexe si :
    \begin{equation}
