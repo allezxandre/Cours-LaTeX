@@ -435,6 +435,8 @@ C'est la fonction $\varphi$ telle que
      G = \dfrac{\displaystyle\sum_i \alpha_i~x_i}{\sum \alpha_i}
      \end{equation}
 \end{dfn}
+% TODO Rajouter les propriétés des barycentres
+\todo{Rajouter les propriétés des barycentres}
 % subsection barycentre (end)
 \subsection{Partie convexe} % (fold)
 \label{sub:partie_convexe}
@@ -520,6 +522,7 @@ La définition suivante est copiée de la définition~\ref{dfn:convexe_connexite
      f \left( \sum_{i=1}^n \lambda_i x_i \right) \le \sum_{i=1}^n \lambda_i f(x_i)
      \end{equation}
 \end{itheorem}
+\todo{Démo épigraphe}
 \begin{theorem}
      Soit $f$ une fonction de $\Reel{}$ dans $\Reel{}$ définie sur un intervalle $I$ non vide et non réduit à un singleton.\\
      Pour tout $x\in I$, soit $\Phi_x$ la fonction :
@@ -529,6 +532,7 @@ La définition suivante est copiée de la définition~\ref{dfn:convexe_connexite
      $f$ est convexe sur $I$ \ssi{}, pour tout $x\in I$, $\Phi_x$ est croissante sur $I\backslash \{x\}$.
 \end{theorem}
 \begin{itheorem}[Inégalité des pentes]
+\label{thm:inegalite_des_pentes}
      Soit $f$ une fonction de $\Reel{}$ dans $\Reel{}$ définie sur un \emphhs{ouvert} $I\in \Reel{}$ tel que $I$ n'est pas réduit à un singleton. \\
      Si $f$ est convexe, alors $f$ est dérivable en tout point de $I$ à gauche et à droite, et pour tout $(x,y) \in I^2$ tel que $x<y$ :
      \begin{equation}
@@ -536,10 +540,66 @@ La définition suivante est copiée de la définition~\ref{dfn:convexe_connexite
      \end{equation}
      \emphh{Remarque :} On déduit de la dérivabilité que $f$ est continue sur $I$.
 \end{itheorem}
+\begin{dfn}[Fonction concave]
+    \begin{minipage}{0.4\textwidth}
+    Une fonction $f : I \mapsto \Reel{}$ est dite \emph{concave}\index{Concave} si son opposée $-f$ est une fonction convexe. 
+    \end{minipage}\hspace{0.2\textwidth}
+    \begin{minipage}{0.4\textwidth}
+    \begin{center}
+    \begin{tikzpicture}[scale=1.5]
+        \draw [->, >=stealth] (0,0) -- (3.2,0);
+        \draw [->, >=stealth] (0,0) -- (0,2);
+        \draw [thick] (0,0).. controls (0.4,0.8) and (2,2) .. (3,2);
+        \draw [color=couleurNoirClair, densely dashed] (0,0) -- (3,2);
+    \end{tikzpicture}
+    \captionof{figure}{Une fonction concave}
+    \end{center}
+    \end{minipage}
+\end{dfn}
 % section fonctions_convexes_d_une_variable_reelle (end)
 \section{Fonctions convexes dérivables, deux fois dérivables} % (fold)
 \label{sec:fonctions_convexes_derivables_deux_fois_derivables}
+\subsection{Dérivabilité et convexité} % (fold)
+\label{sub:derivabilite_et_convexite}
+\begin{theorem}[Caractérisation par la dérivabilité]
+     Soit $f$ une fonction dérivable sur $I$. \\
+     $f$ est convexe sur $I$ \ssi{} sa dérivée $f'$ est croissante sur $I$.
+\end{theorem}
+\begin{proof}
+     Si $f$ est convexe, d'après le théorème~\ref{thm:inegalite_des_pentes} de l'inégalité des pentes, pour $x < y$, on a $f'(x) \le f(y)$. Donc $f'$ est croissante. \\[\baselineskip]
+     % Cette partie est copiée intégralement de Vuibert
+     Réciproquement, supposons $f'$ croissante, et prenons deux points $x$ et $y$ de $I$ tels que $x < y$. Soient $a$ et $b$ tels que $y = ax + b$ est l'équation de la droite joignant $x$ et $y$. Soit $g(t) = f(t) - (at + b)$, de dérivée $g'(t) = f'(t) -a$ croissante. D'après le théorème~\ref{thm:accroissements_finis} des accroissements finis (page~\pageref{thm:accroissements_finis}), $\exists c\in ]x,y[$ tel que $f'(c) = \dfrac{f(y) - f(x)}{y-x} = a$, c'est-à-dire tel que $g'(c) = 0$. $g'$ étant croissante, elle est négative sur $[x,c]$, et positive sur $[c,y]$. On en déduit le tableau de variation : 
+     \begin{center}
+     \begin{tabular}{r | c c c c c}
+          $t$ & $x$ & & $c$ & & $y$ \\
+          \hline
+          $g'$& & $-$ & $0$ & $+$ & \\
+          \hline
+          \multirow{2}{*}{$g$}& $0$ &&&& $0$ \\
+                                 &   & $\searrow$ & & $\nearrow$ & 
+     \end{tabular}
+     \end{center}
+     Donc $g$ est toujours négative, donc $f(t) \le (at + b)$ implique que la courbe est toujours en dessous de sa corde, donc $f$ est convexe sur $I$.\\[1.5\baselineskip]
+     Ainsi, $f$ convexe $\Longleftrightarrow$ $f'$ est croissante.
+\end{proof}
+\begin{theorem}[Caractérisation par la dérivée double]
+     Soit $f$ une fonction deux fois dérivable sur $I$. \\
+     $f$ est convexe sur $I$ \ssi{} sa dérivée double $f''$ est positive sur $I$ : 
+     \begin{equation}
+     f\text{ convexe sur }I\quad \Longleftrightarrow \quad \forall x\in I,\, f''(x)>0
+     \end{equation}
+\end{theorem}
+% subsection derivabilite_et_convexite (end)
+\subsection{Position de la tangente} % (fold)
+\label{sub:position_de_la_tangente}
+\begin{theorem}[Tangentes]
+     Le graphe d'une fonction convexe \emphh{dérivable} est au-dessus de chacune de ses tangentes
+\end{theorem}
+% subsection position_de_la_tangente (end)
+\subsection{Exemples d'inégalités de convexité} % (fold)
+\label{sub:exemples_d_inegalites_de_convexite}
 
+% subsection exemples_d_inegalites_de_convexite (end)
 % section fonctions_convexes_derivables_deux_fois_derivables (end)
 % chapter fonctions_convexes (end)
 \chapter{Réduction des Endomorphismes}
@@ -2113,6 +2173,7 @@ Si $F$ est la primitive de $f$,
 \section{Accroissements finis}
 \subsection{Cas réel} % (fold)
 \begin{theorem}[Accroissements finis\index{Accroissements finis}]
+\label{thm:accroissements_finis}
 \begin{minipage}{0.6\textwidth}
 $f \in \mathcal{D}\big( ]a,b[,\Reel{} \big)$, alors 
 \begin{equation}
