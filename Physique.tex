@@ -67,6 +67,7 @@
 \end{titlepage}
 \addtocounter{page}{1}
 \tableofcontents
+\listoffigures
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Début du livre
 \part{Physique}
 %
@@ -1772,9 +1773,10 @@ L'interféromètre de \textsc{Michelson} est un exemple de dispositif interféro
    \end{itemize}
    \end{subequations}
 \end{itheorem}
-\begin{figure}[!h]
-   \centering
-   \begin{tikzpicture}[line join=bevel]
+%
+\begin{figure}[h!]
+\centering
+   \begin{tikzpicture}[line join=bevel, scale=1.2] % Michelson en lame d'air - Copyright (c) 2015 Alexandre
       \coordinate (S) at (-5 ,0); % la source
       \coordinate (M'1) at (0,5); % symmétrique du miroir à droite
       \coordinate (M2) at (0,3); % miroir en haut
@@ -1792,16 +1794,16 @@ L'interféromètre de \textsc{Michelson} est un exemple de dispositif interféro
       % path la séparatrice et la lentille (draw plus bas)
       \path[name path=separatrice] (45:-2.7) -- (45:2.7);
       \draw[name path=lentille] (E) ++(-3,\focal) -- ++(6,0);
-      % fill les mirroirs
+      % fill les miroirs
       \fill[pattern=north east lines] (M'1) ++(1.7,0) rectangle ++(-3.4,0.2);
       \fill[pattern=north east lines] (M2) ++(1.7,0) rectangle ++(-3.4,0.2);
       \fill[pattern=north east lines] {[cm={0,1,1,0,(0,0)}] (M'1)} ++(0,1.7) rectangle ++(0.2,-3.4);
-      % draw les mirroirs
+      % draw les miroirs
       \begin{scope}[thick]
-         \draw[name path global=mirroir1] {[cm={0,1,1,0,(0,0)}] (M'1)} ++(0,1.7) -- ++(0,-3.4) node[below]{$M_1$}; 
+         \draw[name path global=miroir1] {[cm={0,1,1,0,(0,0)}] (M'1)} ++(0,1.7) -- ++(0,-3.4) node[below]{$M_1$}; 
       % cf. "The XY- and XYZ-Coordinate Systems" du Manuel TIKZ pour cm
-         \draw[name path global=mirroir1p, densely dashed] (M'1) ++(1.7,0) -- ++(-3.4,0) node[left]{$M'_1$};
-         \draw[name path global=mirroir2] (M2) ++(1.7,0) -- ++(-3.4,0) node[left]{$M_2$};
+         \draw[name path global=miroir1p, densely dashed] (M'1) ++(1.7,0) -- ++(-3.4,0) node[left]{$M'_1$};
+         \draw[name path global=miroir2] (M2) ++(1.7,0) -- ++(-3.4,0) node[left]{$M_2$};
       \end{scope}
       % draw la fleche entre M'1 et M2
         \draw[densely dotted] ($ (M2) + (1.7,0) $) -- ($ (M2) + (2.5,0) $);
@@ -1811,9 +1813,9 @@ L'interféromètre de \textsc{Michelson} est un exemple de dispositif interféro
       \path[name path=rayon1] (S)--++(\angleM:11);
       \path[name intersections={of=separatrice and rayon1}] (intersection-1) coordinate (K);
       \path[name path=rayon2] (K)--++(90-\angleM:5);
-      \path[name intersections={of=mirroir1 and rayon1}] (intersection-1) coordinate (I1);
-      \path[name intersections={of=mirroir1p and rayon2}] (intersection-1) coordinate (I1p);
-      \path[name intersections={of=mirroir2 and rayon2}] (intersection-1) coordinate (I2);
+      \path[name intersections={of=miroir1 and rayon1}] (intersection-1) coordinate (I1);
+      \path[name intersections={of=miroir1p and rayon2}] (intersection-1) coordinate (I1p);
+      \path[name intersections={of=miroir2 and rayon2}] (intersection-1) coordinate (I2);
       \path[name path=rayon2-l] (I2)--++(-90+\angleM:8);
       \path[name intersections={of=lentille and rayon2-l}] (intersection-1) coordinate (L2);
       \path[name path=rayon1p] (I1p)--++(-90+\angleM:10);
@@ -1821,7 +1823,7 @@ L'interféromètre de \textsc{Michelson} est un exemple de dispositif interféro
       \path[name intersections={of=lentille and rayon1p}] (intersection-1) coordinate (L1);
       % draw les rayons
       \begin{scope}[decoration={markings, 
-      mark=between positions 0.05 and .95 step 2.3cm with {\arrow{latex}}}, thick]
+      mark=between positions 0.1 and .98 step 2.3cm with {\arrow{latex}}}, thick]
           \draw[color=couleur1!50!couleur2, postaction={decorate}] (S) -- (K) node{$\bullet$} node[below right]{$K$} -- (I2);
           \draw[color=couleur2, postaction={decorate}] (I2) -- (L2) -- (M);
           \draw[color=couleur1, postaction={decorate}, dashed] (I2) -- (I1p) -- (intersecte);
@@ -1841,12 +1843,140 @@ L'interféromètre de \textsc{Michelson} est un exemple de dispositif interféro
    \caption{Interféromètre de \textsc{Michelson} en lame d'air}
    \label{fig:michelson_lame_d_air}
 \end{figure}
+\FloatBarrier
 % subsubsection configuration_en_lame_d_air (end)
 \subsubsection{Configuration en coin d'air} % (fold)
 \label{ssub:configuration_en_coin_d_air}
-
+\begin{dfn}[Configuration en coin d'air]
+   Dans le dispositif de \textsc{Michelson}, lorsque les miroirs $M_1$ et $M_2$ ne sont pas perpendiculaires, on dit que le dispositif est configuré en \emph{coin d'air}\index{michelson!\textsc{Michelson}!coin d'air}. \\
+   $M'_1$, le symmétrique de $M_1$ (\textit{cf.} figure~\ref{fig:michelson_coin_d_air}), est alors incliné d'un angle $\alpha$ par rapport à $M_2$ et forme un \og{}coin d'air\fg{}.
+\end{dfn}
+\begin{itheorem}
+   Pour un interféromètre de \textsc{Michelson} réglé en \emphh{coin d'air}, on démontre les formules suivantes :
+   \begin{subequations}
+   \begin{itemize}[leftmargin=5mm]
+     \item \emphh{Différence de marche :}
+     \begin{equation}
+     \delta (M) = 2ne
+     \end{equation}
+     \item \emphh{Déphasage :}
+     \begin{equation}
+     \Delta \upvarphi (M) = \dfrac{4\pi ne }{\lambda_0}
+     \end{equation}
+     \item \emphh{Ordre d'interférences :}
+     \begin{equation}
+     p(M) = \dfrac{2ne}{\lambda_0}
+     \end{equation}
+   \end{itemize}
+   \end{subequations}
+   Ce théorème est admis.
+\end{itheorem}
+\begin{figure}[h!t] % Michelson en coin d'air - Copyright (c) 2015 Alexandre
+\centering
+   \begin{tikzpicture}[line join=bevel,scale=1.2]
+      \coordinate (S) at (-8 ,0); % la source
+      \def\lentilleSource{2};
+      \coordinate (M'1) at (0,3); % symmétrique du miroir à droite
+      \coordinate (M2) at (0,3); % miroir en haut
+      \def\offsetE{-5};
+      \coordinate (E) at (0,\offsetE); % l'écran
+      \def\angleM{6} % On trouvera la position de M sur l'écran à partir de l'angle. C'est plus facile à dessiner comme ça
+      \def\focal{2}
+      \def\angleRot{12}
+      %
+      \draw[dashed, color=black!40] (E) -- (M'1);
+      \path {[cm={0,1,1,0,(0,0)}] (M'1)} coordinate (M1);
+      \draw[dashed, color=black!40] (S.east) -- (M1);
+      \path (E) ++(0,\focal) ++({\focal * sin \angleM},-\focal) coordinate (Mp);
+      % path la séparatrice, l'écran et les lentilles (draw plus bas)
+      \draw[name path=lentille source,<->, thick, >=latex] (S) ++(\lentilleSource,-3) -- ++(0,6) node[at start, below]{$(L_1)$};
+      \path[name path=separatrice] (45:-4) -- (45:4);
+      \path[name path=lentille] (E) ++(-4,\focal) -- ++(8,0);
+      \path (E) ++(0,\focal) coordinate (L); % Copyright (c) 2015 Alexandre
+      \path[name path=ecran] (E) ++(-2.5,0) -- ++(5,0);
+      % fill les miroirs
+      \fill[pattern=north east lines, rotate=\angleRot] (M'1) ++(1.7,0) rectangle ++(-3.4,0.08);
+      \fill[pattern=north east lines] (M2) ++(1.7,0) rectangle ++(-3.4,0.08); 
+      \fill[pattern=north east lines, rotate=-\angleRot] (M1) ++(0,1.7) rectangle ++(0.2,-3.4);
+      % draw les miroirs
+      \begin{scope}[thick]
+         \draw[name path global=miroir1] (M1) ++(-\angleRot+90:1.7) -- ++(-\angleRot+90:-3.4) node[below]{$M_1$}; 
+      % cf. "The XY- and XYZ-Coordinate Systems" du Manuel TIKZ pour cm
+         \draw[name path global=miroir1p, densely dashed, rotate=\angleRot] (M'1) ++(1.7,0) -- ++(-3.4,0) node[left]{$M'_1$};
+         \draw[name path global=miroir2] (M2) ++(1.7,0) -- ++(-3.4,0) node[left]{$M_2$};
+      \end{scope}
+      % épaisseur e
+      \path[name path=ligne-e] (M2) ++(1.5,1) -- (1.5,0);
+      \path[name intersections={of=ligne-e and miroir2}] (intersection-1) coordinate (e2);
+      \path[name intersections={of=ligne-e and miroir1p}] (intersection-1) coordinate (e1);
+      \draw[<->,thick,couleur3] (e1) -- (e2) node[midway, right]{$e(x)$};
+      % le reste
+      \draw[densely dotted, thick] (S) ++(\lentilleSource,0) -- ++(\angleM:-\lentilleSource / cos \angleM) coordinate (S1) ++(\lentilleSource,-2) coordinate (S2); % définition de deux points S1 et S2. S2 est le point sur la lentille source
+      \ifdraft{
+        \draw[name path=rayon1,color=Red] (S2)--++(\angleM:9);
+      }
+      {
+        \path[name path=rayon1] (S2)--++(\angleM:9);
+      }
+      \path[name intersections={of=separatrice and rayon1}] (intersection-1) coordinate (K);
+      \path[name path=rayon2] (K)--++(90-\angleM:5);
+      \path[name intersections={of=miroir1 and rayon1}] (intersection-1) coordinate (I1);
+      \path[name intersections={of=miroir1p and rayon2}] (intersection-1) coordinate (I1p);
+      \path[name intersections={of=miroir2 and rayon2}] (intersection-1) coordinate (I2);
+      \path[name path=rayon2-l] (I2)--++(-90+\angleM:8);
+      \path[name intersections={of=lentille and rayon2-l}] (intersection-1) coordinate (L2);
+      \ifdraft{
+        \draw[name path=rayon1p, color=Red] (I1p)--++(-90+\angleM+2*\angleRot:8);
+      }
+      {
+        \path[name path=rayon1p] (I1p)--++(-90+\angleM+2*\angleRot:8);
+      }
+      \path[name intersections={of=separatrice and rayon1p}] (intersection-1) coordinate (intersecte);
+      \path[name intersections={of=lentille and rayon1p}] (intersection-1) coordinate (L1);
+      \path[name intersections={of=rayon2-l and rayon1p}] (intersection-1) coordinate (M);
+      \ifdraft{
+        \draw[name path=symmetrie, color=Red] (M) -- ($(M)!1.4!(L)$) node{$*$};
+      }
+      {
+        \path[name path=symmetrie] (M) -- ($(M)!1.4!(L)$);
+      }
+      \path[name intersections={of=symmetrie and ecran}] (intersection-1) coordinate (Mp);
+      % fill+draw les angles
+      \fill[fill=gray] (S) ++(\lentilleSource,0) -- ++(-1.2,0) node[midway,above]{$i$} arc(180:180+\angleM:1.2) -- cycle;
+      \draw[thick] (S) ++(\lentilleSource,0) ++(-1.2,0) arc(180:180+\angleM:1.2);
+      \fill[fill=gray] (S2) -- ++(1.8,0) arc(0:\angleM:1.8) node[midway,right]{$i$}  -- cycle;
+      \draw[thick] (S2) ++(1.8,0) arc(0:\angleM:1.8);
+      \draw[dashed] (S2) -- ++(3,0);
+      % draw les rayons
+      \begin{scope}[decoration={markings, 
+      mark=between positions 0.08 and .93 step 2.7cm with {\arrow{latex}}}, thick]
+          \draw[color=couleur1!50!couleur2, postaction={decorate}] (S1) node{$\bullet$}  -- (S2) -- (K) node{$\bullet$} node[below right]{$K$};
+          \draw[color=couleur2, postaction={decorate}] (K) -- (I2) -- (L2) -- (Mp);
+          \draw[color=couleur1, postaction={decorate}, densely dotted] (K) -- (I1p) -- (intersecte);
+          \draw[color=couleur1, postaction={decorate}] (K) -- (I1) -- (intersecte) -- (L1) -- (Mp);
+          \draw[thick] (M) node{$+$} node[right]{$M$};
+      \end{scope}
+          \draw[dotted] (M) -- (Mp) {[thick] node{$\bullet$} node[above right=2pt]{$M'$}};
+      % draw la source
+      \draw (S) node[ellipse, minimum height=3cm,minimum width=2mm,draw]{$(S)$};
+      % draw la séparatrice
+      \draw[very thick] (45:-3.2) -- (45:3.2);
+      % draw l'écran et la lentille
+      \draw[line width=1.5pt] (E) ++(-2.5,0) -- ++(5,0) node[midway, below]{Écran};
+      \draw[<->, thick, >=latex] (E) ++(-3,\focal) -- ++(6,0) node[right]{$(L_2)$};
+   \end{tikzpicture}
+   \caption[Interféromètre de \textsc{Michelson} en coin d'air]{Interféromètre de \textsc{Michelson} en coin d'air. La lentille $(L_1)$ permet d'obtenir une source étendue à l'infinie. La lentille $(L_2)$ conjugue $M$ à $M'$.}
+   \label{fig:michelson_coin_d_air}
+\end{figure}
+\begin{theorem}
+   Si on note $x$ l'abscisse de la réflexion sur le miroir, et $\alpha$ l'inclinaison du miroir, alors $e(M)$ est donné par :
+   \begin{equation}
+   e(M) = |\alpha x |
+   \end{equation}
+\end{theorem}
 % subsubsection configuration_en_coin_d_air (end)
 % subsection michelson (end)
+\FloatBarrier
 \subsection{Diffraction}
 \todo{ Terminer l'énoncé}
 \begin{dfn}[Principe d'\textsc{Huygens}-\textsc{Fresnel}\index{Huygens-Fresnel@\textsc{Huygens}-\textsc{Fresnel}}]
@@ -1858,6 +1988,7 @@ La vibration lumineuse en un point donné est la somme des vibrations émises pa
   \end{equation}
 \end{dfn}
 %
+\needspace{9cm}
 \begin{itheorem}[Diffraction de \textsc{Fraunhoffer}\index{Fraunhoffer@\textsc{Fraunhoffer}}]
 % Petit dessin de Fraunhoffer
 \begin{center}
