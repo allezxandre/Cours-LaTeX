@@ -566,7 +566,7 @@ La définition suivante est copiée de la définition~\ref{dfn:convexe_connexite
      $f$ est convexe sur $I$ \ssi{} sa dérivée $f'$ est croissante sur $I$.
 \end{theorem}
 \begin{proof}
-     Si $f$ est convexe, d'après le théorème~\ref{thm:inegalite_des_pentes} de l'inégalité des pentes, pour $x < y$, on a $f'(x) \le f(y)$. Donc $f'$ est croissante. \\[\baselineskip]
+     Si $f$ est convexe, d'après le théorème~\ref{thm:inegalite_des_pentes} de l'inégalité des pentes, pour $x < y$, on a $f'(x) \le f(y)$. Donc $f'$ est croissante. \\[0.7\baselineskip]
      % Cette partie est copiée intégralement de Vuibert
      Réciproquement, supposons $f'$ croissante, et prenons deux points $x$ et $y$ de $I$ tels que $x < y$. Soient $a$ et $b$ tels que $y = ax + b$ est l'équation de la droite joignant $x$ et $y$. Soit $g(t) = f(t) - (at + b)$, de dérivée $g'(t) = f'(t) -a$ croissante. D'après le théorème~\ref{thm:accroissements_finis} des accroissements finis (page~\pageref{thm:accroissements_finis}), $\exists c\in ]x,y[$ tel que $f'(c) = \dfrac{f(y) - f(x)}{y-x} = a$, c'est-à-dire tel que $g'(c) = 0$. $g'$ étant croissante, elle est négative sur $[x,c]$, et positive sur $[c,y]$. On en déduit le tableau de variation : 
      \begin{center}
@@ -579,8 +579,8 @@ La définition suivante est copiée de la définition~\ref{dfn:convexe_connexite
                                  &   & $\searrow$ & & $\nearrow$ & 
      \end{tabular}
      \end{center}
-     Donc $g$ est toujours négative, donc $f(t) \le (at + b)$ implique que la courbe est toujours en dessous de sa corde, donc $f$ est convexe sur $I$.\\[1.5\baselineskip]
-     Ainsi, $f$ convexe $\Longleftrightarrow$ $f'$ est croissante.
+     Donc $g$ est toujours négative, donc $f(t) \le (at + b)$ implique que la courbe est toujours en dessous de sa corde, donc $f$ est convexe sur $I$.\\[\baselineskip]
+     Ainsi, $f$ convexe $\Longleftrightarrow$ $f'$ est croissante.\qed
 \end{proof}
 \begin{theorem}[Caractérisation par la dérivée double]
      Soit $f$ une fonction deux fois dérivable sur $I$. \\
@@ -2270,6 +2270,46 @@ On utilisera
 \end{enumerate}
 Souvent, on ne peut intégrer sur tout un intervalle comme $[0;+\infty ]$. Pour y remédier, on peut poser $a>0$ tel que notre fonction soit intégrable sur $[a;+ \infty [$. Alors, la fonction est intégrable sur $\cup [a;+\infty [ = \Reel{}^+$
 \end{methode}
+\section{Intégrale généralisée sur un intervalle de la forme $[a,+\infty[$} % (fold)
+\label{sec:integrale_generalisee}
+\subsection{Définition} % (fold)
+\label{sub:definition}
+\begin{dfn}[Intégrale convergente]
+     Pour $f : [a,+\infty[ \to \mathbb{K}$ une fonction $\mathcal{CPM}$, l'intégrale $\int_a^{+\infty} f$ est dite \emph{convergente}\index{Integrale@Intégrale!convergente} si la fonction $F : x \mapsto \int_a^x f$ a une limite finie en $x\to +\infty$.\\
+     Si tel est le cas, on note $\int_a^{+\infty} f$ cette limite.
+\end{dfn}
+% subsection definition (end)
+\subsection{Propriétés de l'intégrale} % (fold)
+\label{sub:proprietes_integrale}
+\begin{dfn}[Notation $\mathcal{L}^1$]
+     Soient $E$ et $F$ deux intervalles de $\mathbb{K}$.\\
+     On note $\mathcal{L}^1(E,F)$ l'ensemble des fonctions continues par morceaux de $E$ dans $F$ dont l'intégrale sur $E$ converge.
+\end{dfn}
+\begin{theorem}[Linéarité de l'intégration]
+     $\mathcal{L}^1\left( [a,+\infty [,\mathbb{K} \right)$ est un $\mathbb{K}$-espace vectoriel.\\
+     L'application $\left\lbrace \begin{array}{r c l}\mathcal{L}^1\left( [a,+\infty [,\mathbb{K} \right) &\longto &\mathbb{K}\\f&\longmapsto &\int_a^{+\infty} f\end{array} \right\rbrace$ est \emphh{linéaire}.
+\end{theorem}
+\begin{theorem}[Positivité]
+     Soit $f \in \mathcal{L}^1\bigg( [a,+\infty [,\mathbb{K}\bigg)$.\\
+     Si $f$ est positive, alors : 
+     \begin{equation}
+     \int_a^{+\infty} f \ge 0
+     \end{equation}
+     De plus, si $f$ est \emphh{continue} sur $[a,+\infty[$ et si $\int_a^{+\infty} f = 0$, alors $f$ est nulle sur $[a,+\infty[$.
+\end{theorem}
+\begin{theorem}[Dérivation]
+     Soit $f$ une application \emphhs{continue} de $\mathcal{L}^1\left( [a,+\infty [,\mathbb{K}\right)$.\\
+     L'application $\left\lbrace \begin{array}{r c l} [a,+\infty [ &\longto &\mathbb{K}\\x&\longmapsto &\int_x^{+\infty} f\end{array} \right\rbrace$ est \emphh{dérivable} et de dérivée $-f$ sur $[a,+\infty [$.
+\end{theorem}
+% subsection proprietes_integrale (end)
+% section integrale_generalisee (end)
+\section{Intégrabilité sur un intervalle de la forme $[&,+\infty [$} % (fold)
+\label{sec:integrabilite}
+\begin{dfn}[Fonction intégrable]
+     Soit $f$ une fonction $\mathcal{CPM}$ de $[a,+\infty[$ dans $\mathbb{K}$.\\
+     On dit que $f$ est \emph{intégrable} sur $[a,+\infty[$ si $\int_a^{+\infty} |f|$ est convergente. 
+\end{dfn}
+% section integrabilite (end)
 \section{Intégrabilité}
 À l'origine, on donne plusieurs définitions de l'intégrabilité : d'abord pour les fonctions positives, puis pour les autres en disant que c'est si $|f|$ est intégrable. On donne ici une définition plus générale : 
 \begin{dfn}[Fonction intégrable]
