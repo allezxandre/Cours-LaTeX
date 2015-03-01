@@ -2069,7 +2069,7 @@ boule ouverte de centre 0
 Cette boule ouverte de centre $0$ est inclue dans le disque de convergence du \gls{DSE} : $V \subset ]-R ; R[$.
 \end{dfn}
 
-\begin{theorem}[CNS d'un DSE] % OLD -> revoir, maybe? 
+\begin{theorem}[\gls{CNS} d'un DSE] % OLD -> revoir, maybe? 
 
 \[
 f:\mathbb{R}\rightarrow K\text{ est un DSE en 0}\Leftrightarrow \boxed{\displaystyle \int_0^x \dfrac{(x-t)^n}{n!}f^{n+1}(t) dt \underset{n\to\infty}{\to}0}
@@ -2275,6 +2275,7 @@ Souvent, on ne peut intégrer sur tout un intervalle comme $[0;+\infty ]$. Pour 
 \subsection{Définition} % (fold)
 \label{sub:definition}
 \begin{dfn}[Intégrale convergente]
+    \label{dfn:integrale_convergente}
      Pour $f : [a,+\infty[ \to \mathbb{K}$ une fonction $\mathcal{CPM}$, l'intégrale $\int_a^{+\infty} f$ est dite \emph{convergente}\index{Integrale@Intégrale!convergente} si la fonction $F : x \mapsto \int_a^x f$ a une limite finie en $x\to +\infty$.\\
      Si tel est le cas, on note $\int_a^{+\infty} f$ cette limite.
 \end{dfn}
@@ -2285,11 +2286,14 @@ Souvent, on ne peut intégrer sur tout un intervalle comme $[0;+\infty ]$. Pour 
      Soient $E$ et $F$ deux intervalles de $\mathbb{K}$.\\
      On note $\mathcal{L}^1(E,F)$ l'ensemble des fonctions continues par morceaux de $E$ dans $F$ dont l'intégrale sur $E$ converge.
 \end{dfn}
+\Attention{Cette notation est normalement utilisée pour une fonction intégrable. Une fonction dont l'intégrale converge n'est pas forcément intégrable (\textit{cf.} définition \ref{dfn:integrable} page \pageref{dfn:integrable}), c'est sa valeur absolue qui doit avoir une intégrale convergente !}\\
 \begin{theorem}[Linéarité de l'intégration]
+    \label{thm:integration_linearite}
      $\mathcal{L}^1\left( [a,+\infty [,\mathbb{K} \right)$ est un $\mathbb{K}$-espace vectoriel.\\
      L'application $\left\lbrace \begin{array}{r c l}\mathcal{L}^1\left( [a,+\infty [,\mathbb{K} \right) &\longto &\mathbb{K}\\f&\longmapsto &\int_a^{+\infty} f\end{array} \right\rbrace$ est \emphh{linéaire}.
 \end{theorem}
 \begin{theorem}[Positivité]
+    \label{thm:integration_positivite}
      Soit $f \in \mathcal{L}^1\bigg( [a,+\infty [,\mathbb{K}\bigg)$.\\
      Si $f$ est positive, alors : 
      \begin{equation}
@@ -2299,17 +2303,131 @@ Souvent, on ne peut intégrer sur tout un intervalle comme $[0;+\infty ]$. Pour 
 \end{theorem}
 \begin{theorem}[Dérivation]
      Soit $f$ une application \emphhs{continue} de $\mathcal{L}^1\left( [a,+\infty [,\mathbb{K}\right)$.\\
-     L'application $\left\lbrace \begin{array}{r c l} [a,+\infty [ &\longto &\mathbb{K}\\x&\longmapsto &\int_x^{+\infty} f\end{array} \right\rbrace$ est \emphh{dérivable} et de dérivée $-f$ sur $[a,+\infty [$.
+     L'application $\left\lbrace \begin{array}{r c l} [a,+\infty [ &\longto &\mathbb{K}\\x&\longmapsto &\int_x^{+\infty} f\end{array} \right\rbrace$ est \emphh{dérivable} et de dérivée $(-f)$ sur $[a,+\infty [$.
 \end{theorem}
 % subsection proprietes_integrale (end)
 % section integrale_generalisee (end)
 \section{Intégrabilité sur un intervalle de la forme $[a,+\infty [$} % (fold)
 \label{sec:integrabilite}
 \begin{dfn}[Fonction intégrable]
+    \label{dfn:integrable}
      Soit $f$ une fonction $\mathcal{CPM}$ de $[a,+\infty[$ dans $\mathbb{K}$.\\
-     On dit que $f$ est \emph{intégrable} sur $[a,+\infty[$ si $\int_a^{+\infty} |f|$ est convergente. 
+     On dit que $f$ est \emph{intégrable}\index{Integrable@Intégrable} sur $[a,+\infty[$ si $\int_a^{+\infty} |f|$ est convergente : 
+     \begin{equation}
+     f\text{ intégrable si } |f|\in\mathcal{L}^1\bigg([a,+\infty[,\mathbb{K}\bigg)
+     \end{equation}
 \end{dfn}
+\emphh{Remarque : }Cela revient à dire que $f$ est intégrable si $\int_a^{+\infty} f$ converge absoluement. 
+% Remarque de Vuibert : 
+Si $\int_a^{+\infty} f$ est seulement convergente, l'intégrale est dite \emph{semi-convergente}\index{Integrale@Intégrale!semi-convergente}
+\begin{theorem}
+     Si $f$ est intégrable sur $[a,+\infty[$, alors $\int_a^{+\infty} f$ converge.
+\end{theorem}
 % section integrabilite (end)
+\section{Intégration des fonctions positives sur un intervalle de la forme $[a,+\infty[$} % (fold)
+\label{sec:integration_fonction_positives}
+\begin{itheorem}[Fonction positive intégrable]
+    \label{thm:fonction_positive_integrable}
+     Soit $f$ une fonction positive sue $[a,+\infty [$.\\
+     L'intégrale $\int_a^{+\infty} f$ converge \ssi{} $x \longmapsto \int_a^{+\infty} f$ est majorée : 
+     \begin{equation}
+     \int_a^{+\infty} f\text{ converge }\Longleftrightarrow \exists M\in \mathbb{R}^+\text{ tel que }\int_a^{+\infty} f \le M
+     \end{equation}
+\end{itheorem}
+\begin{itheorem}[Intégrabilité de $x \mapsto \frac{1}{x^\alpha}$]
+     Soit $\alpha$ dans \Reel{}.\\
+     La fonction $x \longmapsto \dfrac{1}{x^\alpha}$ est intégrable sur $[1,+\infty [$ \ssi{} $\alpha > 1$.\\[1.3\baselineskip] 
+     On étudie ici des intervalles du type $[a,+\infty [$, mais il peut être bon de savoir que la fonction $x \longmapsto \dfrac{1}{x^\alpha}$ est intégrable sur $[0,1 [$ \ssi{} $\alpha < 1$.
+\end{itheorem}
+\begin{itheorem}[Relations de comparaison]
+    \label{thm:relations_de_comparaison_fonction_positive}
+     Soient $f$ et $g$ deux fonctions \emphhs{réelles}, \emphhs{positives}, et \emphhs{continues par morceaux} sur $[a,+\infty [$ : 
+     % \begin{itemize}
+         % \item si $0\le f \le g$, l'intégrabilité de $g$ sur $[a,+\infty [$ implique celle de $f$ ;
+         % \item si $f(x) \underset{x\to +\infty}{=} O\big( g(x)\big)$, l'intégrabilité de $g$ sur $[a,+\infty [$ implique celle de $f$ ;
+         % \item si $f(x) \underset{x\to +\infty}{\sim} g(x)$, l'intégrabilité de $g$ sur $[a,+\infty [$ \emphh{équivaut} à celle de $f$.
+     % \end{itemize}
+     % Version plus explicite : 
+     \\[0.4\baselineskip]
+     \begin{tabular}{@{si }c@{, \qquad}c }
+         $0\le f \le g$&$g \in \mathcal{L}^1\left( [a,+\infty [,\Reel{}\right)\implies f \in \mathcal{L}^1\left( [a,+\infty [,\Reel{}\right)$ \\[6mm]
+             $f(x) \, \underset{\mathclap{x\to +\infty}}{=} \, \mathcal{O}\big( g(x)\big)$& $g \in \mathcal{L}^1\left( [a,+\infty [,\Reel{}\right)\implies f \in \mathcal{L}^1\left( [a,+\infty [,\Reel{}\right)$\\[6mm]
+                 $f(x) \;\underset{\mathclap{x\to +\infty}}{\textcolor{couleurImp}{\sim}}\; g(x)$&$g \in \mathcal{L}^1\left( [a,+\infty [,\Reel{}\right)\textcolor{couleurImp}{\Longleftrightarrow} f \in \mathcal{L}^1\left( [a,+\infty [,\Reel{}\right)$
+     \end{tabular}\\
+\end{itheorem}
+% section integration_fonction_positives (end)
+\section{Intégration sur un intervalle quelconque} % (fold)
+\label{sec:integration_intervalle_quelconque}
+\subsection{Sur un intervalle semi-ouvert} % (fold)
+\label{sub:sur_un_intervalle_semi_ouvert}
+% Je vais pas réecrire/copier tout en changeant juste un signe, ça va alourdir pour rien, donc : 
+Les définitions et théorèmes vus dans les sections précédentes s'appliquent en remplaçant $+\infty$ par un réel $b$ quelconque de \Reel{}. On effectue alors l'étude sur un semi-ouvert $[a,b[$. On retrouve alors : 
+\begin{itemize}[label=$-$]
+    \item la définition \ref{dfn:integrale_convergente} d'une intégrale convergente ;
+    \item la définition \ref{dfn:integrable} d'une fonction intégrable ;
+    \item le théorème \ref{thm:fonction_positive_integrable}, \gls{CNS} d'une fonction positive intégrable ;
+    \item le théorème \ref{thm:relations_de_comparaison_fonction_positive} des relations de comparaisons.
+\end{itemize}
+\begin{itheorem}[Intégrabilité de $x\mapsto \frac{1}{(x-a)^\alpha}$]
+     Soit $\alpha$ dans \Reel{}.\\
+     La fonction $x \longmapsto \dfrac{1}{(x-a)^\alpha}$ est intégrable sur $]a,b]$ \ssi{} $\alpha < 1$ ($x-a > 0$). \\
+     La fonction $x \mapsto \dfrac{1}{|x-a|^\alpha}$ est intégrable sur $[b,a[$ \ssi{} $\alpha < 1$ \newline ($x-a < 0$).
+\end{itheorem}
+% subsection sur_un_intervalle_semi_ouvert (end)
+\subsection{Sur un intervalle de la forme $]a,b[$} % (fold)
+\label{sub:intervalle_ouvert}
+\begin{dfn}[L'ensemble $\overline{\Reel}$]
+     On note $\overline{\Reel}$ l'ensemble $\Reel{} \cup \{ -\infty, +\infty \}$. 
+\end{dfn}
+\Attention{L'ensemble $\overline{\Reel}$ n'a aucune des propriétés algébriques familières qu'on a dans $\Reel{}$ : par exemple, $a+b=a+c\implies b=c$ n'est plus vrai dans $\overline{\Reel}$.} \\ % Remarque de Aleg sur 'http://www.les-mathematiques.net/phorum/read.php?4,317735,317744#msg-317744'
+\begin{dfn}[Intégrale convergente sur un ouvert]
+     Soit $f$ une fonction $\mathcal{CPM}\big( ]a,b[,\mathbb{K}\big)$. Soit $(a,b) \in \overline{\Reel}^2$. \\
+     L'intégrale $\int_a^b f$ est dite \emph{convergente}\index{Integrale@Intégrale!convergente} s'il existe $c\in ]a,b[$ tel que les deux intégrales $\int_a^c f$ et $\int_c^b f$ convergent sur leur intervalle semi-ouvert. On pose alors : 
+     \begin{equation}
+     \int_a^b f = \int_a^c f + \int_c^b f
+     \end{equation}
+\end{dfn}
+% Idem : je vais pas réecrire/copier tout en changeant juste un signe, ça va alourdir pour rien, donc : 
+Les définitions et théorèmes vus dans les sections précédentes s'appliquent en remplaçant $+\infty$ par un réel $b$ quelconque de \Reel{}. On effectue alors l'étude sur un ouvert $]a,b[$ et on retrouve : 
+\begin{itemize}[label=$-$]
+    \item la définition \ref{dfn:integrale_convergente} d'une intégrale convergente ;
+    \item la définition \ref{dfn:integrable} d'une fonction intégrable ;
+    \item le théorème \ref{thm:fonction_positive_integrable}, \gls{CNS} d'une fonction positive intégrable.
+\end{itemize}
+% subsection intervalle_ouvert (end)
+\subsection{Sur un intervalle $I$ quelconque} % (fold)
+\label{sub:sur_un_intervalle_i}
+\begin{theorem}[Relation de \textsc{Chasles}]
+     Soit $f \in \mathcal{CPM}(I,\mathbb{K})$ dont l'intégrale sur $I$ converge. Pour tout $(a,b,c)\in \overline{I}^3$ dans $\overline{\Reel{}}$, la \emph{relation de \textsc{Chasles}}\index{Chasles@\textsc{Chasles}} nous donne : 
+     \begin{equation}
+     \int_a^b f + \int_b^c f = \int_a^c f \tag{Chasles}
+     \end{equation}
+\end{theorem}
+Soit $I$ un intervalle quelconque entre deux bornes $a$ et $b$. \\
+Soit $f\in \mathcal{L}^1(I,\mathbb{K})$, on note $\int_I f$ l'intégrale $\int_a^b f$. On retrouve :
+\begin{itemize}[label=$-$]
+    \item le théorème \ref{thm:integration_linearite} de linéarité de l'intégration : $\mathcal{L}^1(I,\mathbb{K})$ est un $\mathbb{K}$-espace vectoriel ;
+    \item le théorème \ref{thm:integration_positivite} de positivité de l'intégration.
+\end{itemize}
+\begin{theorem}[Inégalité triangulaire]
+    Soit $f$ et $g$ deux fonctions de $\mathcal{L}^p(I,\mathbb{K})$ avec $p\in \mathbb{R}$. L'\emph{inégalité triangulaire} des intégrale donne :
+     \begin{equation}
+     \left(\int_I|f+g|^p \right)^{\frac 1 p} \leq \left(\int_I|f|^p\right)^{\frac 1 p}+\left(\int_I|g|^p\right)^{\frac 1 p}
+     \end{equation}
+     C'est l'inégalité de \textsc{Minkowski} appliquée aux intégrales. Elle est au programme dans le chapitre~\ref{cha:fonctions_convexes} des fonctions~convexes (page~\pageref{cha:fonctions_convexes}), en tant qu'\og{}exemple d'inégalités de convexité\fg{}.
+\end{theorem}
+%todo DEMO MINKOWSKI
+\todo{Démo de \textsc{Minkowski}}
+\begin{itheorem}[Changement de variable]
+     Soit $f$ une fonction \emphh{continue} sur $]a,b[$ et soit ${\varphi : ]\alpha , \beta [ \to ]a,b[}$ une fonction \emphhs{bijective} (donc strictement monotone) et de classe $\mathscr{C}^1$. \\
+     Les intégrales $\int_a^b f$ et $\int_\alpha^\beta f\circ \varphi \cdot |\varphi'|$ sont de même nature. Si elles convergent, elles sont égales : 
+     \begin{equation}
+     \int \limits_a^b f(t)\d t = \int \limits_\alpha^\beta f\big(\varphi(u)\big)\cdot \varphi'(u) \d u
+     \end{equation}
+     \emphh{Remarque :} On a nécessairement $\lim_{x\to \alpha} \varphi (x) = a$ et $\lim_{x\to \beta} \varphi (x) = b$.
+\end{itheorem}
+% subsection sur_un_intervalle_i (end)
+% section integration_intervalle_quelconque (end)
 \section{Intégrabilité}
 À l'origine, on donne plusieurs définitions de l'intégrabilité : d'abord pour les fonctions positives, puis pour les autres en disant que c'est si $|f|$ est intégrable. On donne ici une définition plus générale : 
 \begin{dfn}[Fonction intégrable]
@@ -2325,7 +2443,7 @@ $\forall x \in \underbrace{J}_{\mathclap{\text{segment}}} \subset I, \exists M \
 
     Si $f$ est une fonction continue par morceaux, \emphh{positive}, \emphh{croissante} et \textcolor{couleurImp}{\uline{majorée}} sur $\Reel^+$, alors la série de terme général $\left( \int_n^{n+1} f \right) - f(n)$ est une \gls{SATP} convergente.
 \end{itheorem}
-\begin{itheorem}[CNS de l'intégration]
+\begin{itheorem}[\gls{CNS} de l'intégration]
 $f(x)$ est intégrable sur $I$ si \\
 $\forall x \in I, \boxed{\int_I |f| \le \varphi}$ où $\varphi \in \mathscr{L}^1$
 \end{itheorem}
