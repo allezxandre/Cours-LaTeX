@@ -2297,19 +2297,19 @@ Souvent, on ne peut intégrer sur tout un intervalle comme $[0;+\infty ]$. Pour 
 % subsection definition (end)
 \subsection{Propriétés de l'intégrale} % (fold)
 \label{sub:proprietes_integrale}
-\begin{dfn}[Notation $\mathcal{L}^1$]
+\begin{dfn}[Notation $\mathcal{L}^\frac{1}{2}$]
      Soient $E$ et $F$ deux intervalles de $\mathbb{K}$.\\
-     On note $\mathcal{L}^1(E,F)$ l'ensemble des fonctions continues par morceaux de $E$ dans $F$ dont l'intégrale sur $E$ converge.
+     On note $\mathcal{L}^\frac{1}{2}(E,F)$ l'ensemble des fonctions $f \in \mathcal{CPM}(E,F)$ dont la valeur absolue $|f|$ est intégrable sur $E$.
 \end{dfn}
-\Attention{Cette notation est normalement utilisée pour une fonction intégrable. Une fonction dont l'intégrale converge n'est pas forcément intégrable (\textit{cf.} définition \ref{dfn:integrable} page \pageref{dfn:integrable}), c'est sa valeur absolue qui doit avoir une intégrale convergente !}\\
+\Attention{Cette notation n'existe pas, je l'ai inventée pour alléger la suite}
 \begin{theorem}[Linéarité de l'intégration]
     \label{thm:integration_linearite}
-     $\mathcal{L}^1\left( [a,+\infty [,\mathbb{K} \right)$ est un $\mathbb{K}$-espace vectoriel.\\
-     L'application $\left\lbrace \begin{array}{r c l}\mathcal{L}^1\left( [a,+\infty [,\mathbb{K} \right) &\longto &\mathbb{K}\\f&\longmapsto &\int_a^{+\infty} f\end{array} \right\rbrace$ est \emphh{linéaire}.
+     $\mathcal{L}^\frac{1}{2}\left( [a,+\infty [,\mathbb{K} \right)$ est un $\mathbb{K}$-espace vectoriel.\\
+     L'application $\left\lbrace \begin{array}{r c l}\mathcal{L}^\frac{1}{2}\left( [a,+\infty [,\mathbb{K} \right) &\longto &\mathbb{K}\\f&\longmapsto &\int_a^{+\infty} f\end{array} \right\rbrace$ est \emphh{linéaire}.
 \end{theorem}
 \begin{theorem}[Positivité]
     \label{thm:integration_positivite}
-     Soit $f \in \mathcal{L}^1\bigg( [a,+\infty [,\mathbb{K}\bigg)$.\\
+     Soit $f \in \mathcal{L}^\frac{1}{2}\bigg( [a,+\infty [,\mathbb{K}\bigg)$.\\
      Si $f$ est positive, alors : 
      \begin{equation}
      \int_a^{+\infty} f \ge 0
@@ -2317,7 +2317,7 @@ Souvent, on ne peut intégrer sur tout un intervalle comme $[0;+\infty ]$. Pour 
      De plus, si $f$ est \emphh{continue} sur $[a,+\infty[$ et si $\int_a^{+\infty} f = 0$, alors $f$ est nulle sur $[a,+\infty[$.
 \end{theorem}
 \begin{theorem}[Dérivation]
-     Soit $f$ une application \emphhs{continue} de $\mathcal{L}^1\left( [a,+\infty [,\mathbb{K}\right)$.\\
+     Soit $f$ une application \emphhs{continue} de $\mathcal{L}^\frac{1}{2}\left( [a,+\infty [,\mathbb{K}\right)$.\\
      L'application $\left\lbrace \begin{array}{r c l} [a,+\infty [ &\longto &\mathbb{K}\\x&\longmapsto &\int_x^{+\infty} f\end{array} \right\rbrace$ est \emphh{dérivable} et de dérivée $(-f)$ sur $[a,+\infty [$.
 \end{theorem}
 % subsection proprietes_integrale (end)
@@ -2333,6 +2333,11 @@ Souvent, on ne peut intégrer sur tout un intervalle comme $[0;+\infty ]$. Pour 
      \end{equation}
 \end{dfn}
 \emphh{Remarque : }Cela revient à dire que $f$ est intégrable si $\int_a^{+\infty} f$ converge absoluement. 
+\begin{dfn}[Notation $\mathcal{L}^1$]
+     Soient $E$ et $F$ deux intervalles de $\mathbb{K}$.\\
+     On note $\mathcal{L}^1(E,F)$ l'ensemble des fonctions $f \in \mathcal{CPM}(E,F)$ dont la valeur absolue $|f|$ est intégrable sur $E$.
+\end{dfn}
+\Attention{Une fonction dont l'intégrale converge n'est pas forcément intégrable (\textit{cf.} définition \ref{dfn:integrable} page \pageref{dfn:integrable}), c'est sa valeur absolue qui doit avoir une intégrale convergente !}\\
 % Remarque de Vuibert : 
 Si $\int_a^{+\infty} f$ est seulement convergente, l'intégrale est dite \emph{semi-convergente}\index{Integrale@Intégrale!semi-convergente}
 \begin{theorem}
@@ -2488,31 +2493,30 @@ Soit $f\in \mathcal{L}^1(I,\mathbb{K})$, on note $\int_I f$ l'intégrale $\int_a
     Soit $n\in \mathbb{N}$. Si $\big( f_n \big)_n$ est une suite de fonction de $\mathcal{CPM}(I,K) $ convergeant simplement vers une fonction $f \in \mathcal{CPM}(I,K)$, et s'il existe $\varphi \in \mathcal{L}^1 $ telle que \ibox{$\forall n, | f_n | \le \varphi$},\newline
     alors $f \in \mathcal{L}$ et $\int_I f = \lim_{n \to +\infty}, \int_I f_n$
 \end{itheorem}
-\begin{theorem}[Convergence dominée de fonction à paramètre réel]
-    Soit $\lambda\in \Reel{}$. Si $\big( f_\lambda \big)_\lambda$ est une suite de fonction de $\mathcal{CPM}(I,K) $ convergeant simplement vers une fonction $f \in \mathcal{CPM}(I,K)$, et s'il existe $\varphi \in \mathcal{L}^1 $ telle que \ibox{$\forall n, | f_\lambda | \le \varphi$},\newline
-    alors $f \in \mathcal{L}$ et $\int_I f = \lim_{n \to +\infty}, \int_I f_\lambda$
-\end{theorem}
+\todo{Paramètre réel}
+%\begin{theorem}[Convergence dominée de fonction à paramètre réel]
+    %Soit $\lambda\in \Reel{}$. Si $\big( f_\lambda \big)_\lambda$ est une suite de fonction de $\mathcal{CPM}(I,K) $.\\
+    % convergeant simplement vers une fonction $f \in \mathcal{CPM}(I,K)$, et s'il existe $\varphi \in \mathcal{L}^1 $ telle que \ibox{$\forall n, | f_\lambda | \le \varphi$},\newline
+    %alors $f \in \mathcal{L}$ et $\int_I f = \lim_{n \to +\infty}, \int_I f_\lambda$
+%\end{theorem}
 % subsection convergence_dominee (end)
 \subsection{Intégration terme à terme} % (fold)
 \label{sub:integration_terme_terme}
 \begin{itheorem}[Intégration terme à terme]
-    \begin{equation}
+    Si $
         \displaystyle
         \left.
         \begin{array}{c c l}
-        \displaystyle\sum_{n=0}^{+\infty} & \underbrace{f_n} & \xrightarrow{\text{CVS}} f \\
+        \displaystyle\sum & \underbrace{f_n} & \xrightarrow{\text{CVS}} f \\
                      & f_n \in \mathcal{L}^1 & \\
-        \displaystyle\sum  \int_I \vphantom{\overbrace{f_n}} & \textcolor{couleurImp}{|}\overbrace{f_n}\textcolor{couleurImp}{|} & \text{converge}
+        \displaystyle\sum  \int_I \! \vphantom{\overbrace{f_n}} & \textcolor{couleurImp}{|}\overbrace{f_n}\textcolor{couleurImp}{|} & \text{converge}
         \end{array}
-        \right\rbrace 
-        \implies 
-        \begin{array}{l}
-        f \in \mathcal{L}^1 \\
-        \sum f_n \text{ converge} \\
+        \right\rbrace$, alors $f$ est intégrable et :
+        \begin{equation}
         \int_I f = \sum_{n=0}^{+\infty} \int_I f_n
-        \end{array}
-    \end{equation}
+        \end{equation}
 \end{itheorem}
+\emphh{Remarque :} L'hypothèse de convergence de $\displaystyle\sum  \int_I |f_n|$ est en faite une hypothèse de domination.
 % subsection integration_terme_terme (end)
 % section passage_la_limite_sous_l_integrale (end)
 \section{Continuité d'une intégrale à paramètre} % (fold)
@@ -2563,6 +2567,7 @@ Alors, la dérivée de $g$ est $g'(x) = \int_I \dfrac{\partial f}{\partial x}(x,
 $f(x)\in \mathcal{CM}$ est intégrable sur $I$ si \\
 $\forall x \in \underbrace{J}_{\mathclap{\text{segment}}} \subset I, \exists M \in \mathbb{R}^+$ \textbf{tel que} $\int_J |f| \le M$
 \end{dfn}
+\needspace{5cm}
 \begin{itheorem}[\gls{CNS} de l'intégration]
 $f(x)$ est intégrable sur $I$ si \\
 $\forall x \in I, \boxed{\int_I |f| \le \varphi}$ où $\varphi \in \mathscr{L}^1$
