@@ -313,7 +313,7 @@ frametitle={%
 {\strut Théorème~\thetheo:~#1};}}%
 }% 
 
-\mdfsetup{ frametitleaboveskip=-10pt, leftmargin=0cm, innerleftmargin=2mm,leftline=true, linecolor=black!40,%
+\mdfsetup{ skipabove={1.2\baselineskip}, innertopmargin={1.2\baselineskip},frametitleaboveskip=-10pt, leftmargin=0cm, innerleftmargin=2mm,leftline=true, linecolor=black!40,%
 linewidth=1pt,topline=true,rightline=true}%
 \begin{mdframed}[]\relax%
 }{\end{mdframed}}
@@ -333,7 +333,8 @@ frametitle={%
 \tikz[baseline=(current bounding box.east),outer sep=0pt] \node[anchor=east,rectangle,color=couleurGrisFonce,fill=couleurFonce]
 {\strut \textcolor{couleurClaire}{Théorème~\thetheo:}\textcolor{White}{~#1}};}}%
 }% 
-\mdfsetup{ frametitleaboveskip=-10pt, leftmargin=0cm, innerleftmargin=2mm,leftline=true,outerlinewidth=0.5pt, linecolor=couleurGrisFonce, linewidth=1pt, topline=true, backgroundcolor=couleurGrisClair!40, rightline=true}%
+\mdfsetup{ 
+  skipabove={1.2\baselineskip}, innertopmargin={1.2\baselineskip},frametitleaboveskip=-10pt, leftmargin=0cm, innerleftmargin=2mm,leftline=true,outerlinewidth=0.5pt, linecolor=couleurGrisFonce, linewidth=1pt, topline=true, backgroundcolor=couleurGrisClair!40, rightline=true}%
 \begin{mdframed}[]\color{couleurNoirClair}\relax%
 %
 }{\end{mdframed}}

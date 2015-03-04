@@ -157,10 +157,11 @@ Si $x_n$ est une suite de $(E,N)^\mathbb{N}$ et $(\alpha_n)$ une suite de $\Reel
     \end{equation}
 \end{dfn}
 \begin{dfn}[$O(\cdots)$ et $o(\cdots)$ dans \Reel{}]
+\label{dfn:domination_negligeabilite}
     Si $(\alpha_n)_n$ est une suite à valeurs dans $\Reel^{\textcolor{couleurImp}{*}}$, 
     \begin{equation}
-    \begin{array}{r@{\text{, si et seulement si }}c}
-       x_n \underset{n\to +\infty}{=} O(\alpha_n) & \dfrac{x_n}{\alpha_n} \text{ est bornée} \\[15pt]
+    \begin{array}{r@{\text{, \ssi{} }}c}
+       x_n \underset{n\to +\infty}{=} O(\alpha_n) & \dfrac{x_n}{\alpha_n} \text{ est bornée.} \\[15pt]
        x_n \underset{n\to +\infty}{=} o(\alpha_n) & \dfrac{x_n}{\alpha_n} \xrightarrow[n\to +\infty]{} 0
       \end{array} 
     \end{equation}
@@ -1315,6 +1316,58 @@ La série $S$ de terme général $\color{couleurFonce!90} u_n$ est la suite $\le
         \sum u_n \text{ converge} \Leftrightarrow \sum_{k=0}^n u_n \text{ est majorée}
     \end{equation}
 \end{itheorem}
+% section SATP (end)
+\section{Complément sur les séries numériques} % (fold)
+\label{sec:complement_sur_les_series_numeriques}
+\subsection{Règle de d'\textsc{Alembert}} % (fold)
+\label{sub:regle_de_d_alembert}
+\begin{lemme}
+    Pour toute suite $(u_n)$ \uline{strictement positive}, s'il existe une suite $(\alpha_n)$ \uline{strictement positive} telle que $\dfrac{u_{n+1}}{u_n}\le \dfrac{\alpha_{n+1}}{\alpha_n}$, alors 
+    \begin{equation}
+    u_n \underset{+\infty}{=} O(\alpha_n)
+    \end{equation}
+\end{lemme}
+\begin{itheorem}[Règle de d'\textsc{Alembert}]\label{th:Regle_de_dAlembert}
+    Si, à partir d'un certain rang, $\left\lbrace
+    \begin{aligned}
+        u_n &> 0    \\
+        \dfrac{u_{n+1}}{u_n} &\to l
+    \end{aligned}
+    \right. $ alors :
+    \begin{equation}
+    \left\lbrace
+    \begin{aligned}
+        \text{Si } l >1, & \sum u_n \text{ diverge grossièrement}   \\
+        \text{Si } l <1, & \sum u_n \text{ converge} 
+    \end{aligned}
+    \right.
+    \end{equation}
+\end{itheorem}
+Ce théorème est peu utile car il est \og{}trop vrai\fg{}.
+% subsection regle_de_d'alembert (end)
+\subsection{Séries alternées} % (fold)
+\label{sub:series_alternees}
+\begin{dfn}[Série alternée]
+    La série $\sum u_n$ est une \emph{série alternée}\index{Serie@Série!alternee@alternée} s'il existe $(\alpha_n)$ une suite positive et $\varepsilon \in \lbrace -1 ; 1 \rbrace$ tels que $u_n = \varepsilon (-1)^n\alpha_n$
+\end{dfn}
+\begin{itheorem}[Théorème spécial des séries alternées\index{TSSA} (TSSA)]
+    Si $\left\lbrace \begin{aligned} \sum u_n &\text{ est une série alternée}\\ (|u_n|) &\text{ est décroissante} \\ (|u_n|) &\xrightarrow[+\infty]{} 0 \end{aligned}\right.$, alors $\sum u_n$ \uline{converge} et $\forall n \ge 0, \textcolor{couleurImp}{\left| \vphantom{\sum_{k=n}^{+\infty}} \right. } \sum_{k=n}^{+\infty}u_k \textcolor{couleurImp}{\left. \vphantom{\sum_{k=n}^{+\infty}} \right| } \le \textcolor{couleurImp}{|} u_n\textcolor{couleurImp}{|}$
+\end{itheorem}
+\Attention{Ne pas oublier les valeurs absolues pour l'étude des séries alternées.}
+% subsection series_alternees (end)
+\subsection{Comparaison série intégrale} % (fold)
+\label{sub:comparaison_serie_integrale}
+\needspace{7cm}
+\begin{itheorem}[Comparaison d'une série à une intégrale]
+    Si $f$ est une fonction continue par morceaux, \emphh{positive} et \emphh{décroissante}  sur $\Reel^+$, alors la série de terme général $\left( \int_{n-1}^n f \right) - f(n) $ est une \gls{SATP} convergente.\\
+    \begin{equation}
+        f \in \mathcal{L}^1 \Leftrightarrow \sum f(n) \text{ converge}
+    \end{equation}
+    En cas de divergence, $\int f \underset{n \to +\infty}{\sim}\sum f(n)$\\[\baselineskip]
+
+    Si $f$ est une fonction continue par morceaux, \emphh{positive}, \emphh{croissante} et \textcolor{couleurImp}{\uline{majorée}} sur $\Reel^+$, alors la série de terme général $\left( \int_n^{n+1} f \right) - f(n)$ est une \gls{SATP} convergente.
+\end{itheorem}
+% subsection comparaison_serie_integrale (end)
 \subsection{Comparaison des \gls{SATP}} % (fold)
 \label{sub:comparaison_des_satp}
 \begin{itheorem}[Théorème de comparaison des \glspl{SATP}]
@@ -1360,45 +1413,7 @@ La série $S$ de terme général $\color{couleurFonce!90} u_n$ est la suite $\le
      On a majoré par quelque chose d'aussi petit qu'on veut, et alors $S_n$ converge \qed
 \end{proof}
 % subsection comparaison_des_satp (end)
-\subsection{Règle de d'\textsc{Alembert}} % (fold)
-\label{sub:regle_de_d_alembert}
-\begin{lemme}
-    Pour toute suite $(u_n)$ \uline{strictement positive}, s'il existe une suite $(\alpha_n)$ \uline{strictement positive} telle que $\dfrac{u_{n+1}}{u_n}\le \dfrac{\alpha_{n+1}}{\alpha_n}$, alors 
-    \begin{equation}
-    u_n \underset{+\infty}{=} O(\alpha_n)
-    \end{equation}
-\end{lemme}
-\begin{itheorem}[Règle de d'\textsc{Alembert}]\label{th:Regle_de_dAlembert}
-    Si, à partir d'un certain rang, $\left\lbrace
-    \begin{aligned}
-        u_n &> 0    \\
-        \dfrac{u_{n+1}}{u_n} &\to l
-    \end{aligned}
-    \right. $ alors :
-    \begin{equation}
-    \left\lbrace
-    \begin{aligned}
-        \text{Si } l >1, & \sum u_n \text{ diverge grossièrement}   \\
-        \text{Si } l <1, & \sum u_n \text{ converge} 
-    \end{aligned}
-    \right.
-    \end{equation}
-\end{itheorem}
-
-
-Ce théorème est peu utile car il est \og{}trop vrai\fg{}.
-% subsection regle_de_d'alembert (end)
-% section SATP (end)
-\section{Séries alternées} % (fold)
-\label{sec:series_alternees}
-\begin{dfn}[Série alternée]
-    La série $\sum u_n$ est une \emph{série alternée}\index{Serie@Série!alternee@alternée} s'il existe $(\alpha_n)$ une suite positive et $\varepsilon \in \lbrace -1 ; 1 \rbrace$ tels que $u_n = \varepsilon (-1)^n\alpha_n$
-\end{dfn}
-\begin{itheorem}[Théorème spécial des séries alternées\index{TSSA} (TSSA)]
-    Si $\left\lbrace \begin{aligned} \sum u_n &\text{ est une série alternée}\\ (|u_n|) &\text{ est décroissante} \\ (|u_n|) &\xrightarrow[+\infty]{} 0 \end{aligned}\right.$, alors $\sum u_n$ \uline{converge} et $\forall n \ge 0, \textcolor{couleurImp}{\left| \vphantom{\sum_{k=n}^{+\infty}} \right. } \sum_{k=n}^{+\infty}u_k \textcolor{couleurImp}{\left. \vphantom{\sum_{k=n}^{+\infty}} \right| } \le \textcolor{couleurImp}{|} u_n\textcolor{couleurImp}{|}$
-\end{itheorem}
-\Attention{Ne pas oublier les valeurs absolues pour l'étude des séries alternées.}
-% section series_alternees (end)
+% section complement_sur_les_series_numeriques (end)
 \section{Hors programme} % (fold)
 \label{sec:hors_programme}
 Tous les théorèmes vus ici sont à démontrer.
@@ -2422,27 +2437,132 @@ Soit $f\in \mathcal{L}^1(I,\mathbb{K})$, on note $\int_I f$ l'intégrale $\int_a
      Soit $f$ une fonction \emphh{continue} sur $]a,b[$ et soit ${\varphi : ]\alpha , \beta [ \to ]a,b[}$ une fonction \emphhs{bijective} (donc strictement monotone) et de classe $\mathscr{C}^1$. \\
      Les intégrales $\int_a^b f$ et $\int_\alpha^\beta f\circ \varphi \cdot |\varphi'|$ sont de même nature. Si elles convergent, elles sont égales : 
      \begin{equation}
-     \int \limits_a^b f(t)\d t = \int \limits_\alpha^\beta f\big(\varphi(u)\big)\cdot \varphi'(u) \d u
+     \int \limits_a^b f(t)\d t = \int \limits_\alpha^\beta f\Big(\varphi(u)\Big)\cdot \varphi'(u) \d u
      \end{equation}
      \emphh{Remarque :} On a nécessairement $\lim_{x\to \alpha} \varphi (x) = a$ et $\lim_{x\to \beta} \varphi (x) = b$.
 \end{itheorem}
+\begin{itheorem}[Intégration par parties]
+     Soit $(a,b)\in \overline{\Reel}^2$. Soient $f$ et $g$ deux fonctions $\mathscr{C}^1$ sur $[a,b]$. \\
+     Si $f\cdot g$ possède des limites finies aux bornes $a$ et $b$ de l'intervalle, alors les intégrales $\int_a^b f\cdot g'$ et $\int_a^b f'\cdot g$ sont de même nature.\\
+     Si les intégrales convergent : 
+     \begin{equation}
+     \int \limits_a^b f(t)g'(t)\d t = \left[ fg \right]_a^b - \int \limits_a^b f'(t)g(t)\d t
+     \end{equation}
+     où $\left[ fg \right]_a^b = \lim_{x\to b} (f\cdot g)(x) - \lim_{x\to a} (f\cdot g)(x) $
+\end{itheorem}
 % subsection sur_un_intervalle_i (end)
 % section integration_intervalle_quelconque (end)
-\section{Intégrabilité}
+\section{Intégration des relations de comparaison} % (fold)
+\label{sec:integration_des_relations_de_comparaison}
+\begin{itheorem}[1\ier{} théorème d'intégration des relations de comparaison]
+    Soient $f$ et $g$ deux fonctions $\mathcal{CPM}\Big( [a,b[, \Reel^+ \Big)$ telles qu'on ait une des conditions suivantes : $
+    \left\lbrace
+    \begin{aligned}
+        f &\le g    \\
+        f &= o(g)   \\
+        f &= O(g)
+    \end{aligned}
+    \right. $ (\textit{cf}. définition~\ref{dfn:domination_negligeabilite} page~\pageref{dfn:domination_negligeabilite}% C'est une définition avec les suites, mais c'est pas grave :D
+    ), alors :
+    \begin{subequations}
+    \begin{equation}
+     \int_a^b g\text{ converge} \implies \int_a^b f\text{ converge}
+    \end{equation}
+    On a également la contraposée : 
+    \begin{equation}
+    \int_a^b f\text{ diverge} \implies \int_a^b g\text{ diverge}
+    \end{equation}
+    \end{subequations}
+\end{itheorem}
+\emphh{Remarque :} D'après le programme officiel, seule la fonction de référence doit être positive. % Le problème c'est que je ne sais pas c'est laquelle moi :D Je pense que c'est g
+\begin{itheorem}[2\ieme{} théorème d'intégration des relations de comparaison]
+     Soient $f$ et $g$ deux fonctions $\mathcal{CPM}\Big( [a,b[, \Reel^+ \Big)$. \newline
+     Si $f \sim g$, alors $f$ et $g$ sont de même nature.
+\end{itheorem}
+% section integration_des_relations_de_comparaison (end)
+\section{Passage à la limite sous l'intégrale} % (fold)
+\label{sec:passage_la_limite_sous_l_integrale}
+\subsection{Convergence dominée} % (fold)
+\label{sub:convergence_dominee}
+\begin{itheorem}[Convergence dominée\index{Convergence!dominee@dominée} ]
+    Soit $n\in \mathbb{N}$. Si $\big( f_n \big)_n$ est une suite de fonction de $\mathcal{CPM}(I,K) $ convergeant simplement vers une fonction $f \in \mathcal{CPM}(I,K)$, et s'il existe $\varphi \in \mathcal{L}^1 $ telle que \ibox{$\forall n, | f_n | \le \varphi$},\newline
+    alors $f \in \mathcal{L}$ et $\int_I f = \lim_{n \to +\infty}, \int_I f_n$
+\end{itheorem}
+\begin{theorem}[Convergence dominée de fonction à paramètre réel]
+    Soit $\lambda\in \Reel{}$. Si $\big( f_\lambda \big)_\lambda$ est une suite de fonction de $\mathcal{CPM}(I,K) $ convergeant simplement vers une fonction $f \in \mathcal{CPM}(I,K)$, et s'il existe $\varphi \in \mathcal{L}^1 $ telle que \ibox{$\forall n, | f_\lambda | \le \varphi$},\newline
+    alors $f \in \mathcal{L}$ et $\int_I f = \lim_{n \to +\infty}, \int_I f_\lambda$
+\end{theorem}
+% subsection convergence_dominee (end)
+\subsection{Intégration terme à terme} % (fold)
+\label{sub:integration_terme_terme}
+\begin{itheorem}[Intégration terme à terme]
+    \begin{equation}
+        \displaystyle
+        \left.
+        \begin{array}{c c l}
+        \displaystyle\sum_{n=0}^{+\infty} & \underbrace{f_n} & \xrightarrow{\text{CVS}} f \\
+                     & f_n \in \mathcal{L}^1 & \\
+        \displaystyle\sum  \int_I \vphantom{\overbrace{f_n}} & \textcolor{couleurImp}{|}\overbrace{f_n}\textcolor{couleurImp}{|} & \text{converge}
+        \end{array}
+        \right\rbrace 
+        \implies 
+        \begin{array}{l}
+        f \in \mathcal{L}^1 \\
+        \sum f_n \text{ converge} \\
+        \int_I f = \sum_{n=0}^{+\infty} \int_I f_n
+        \end{array}
+    \end{equation}
+\end{itheorem}
+% subsection integration_terme_terme (end)
+% section passage_la_limite_sous_l_integrale (end)
+\section{Continuité d'une intégrale à paramètre} % (fold)
+\label{sec:continuite_d_une_integrale_parametre}
+\begin{theorem}[Continuité]
+La fonction $g : x \mapsto \int_I f(x,t)$ est \uline{\emph{définie et continue}} sur $A$ si 
+\begin{equation}\left\lbrace
+\begin{array}{l l c}
+\forall x\in A,& t \mapsto f(x,t) \in \mathcal{CM}&\boldsymbol{( \mathcal{CPM} }\text{\textbf{ pour }}\boldsymbol{t)}\\
+\forall t\in I,& x \mapsto f(x,t) \in \mathcal{C}&\text{\textbf{(Continue pour }}\boldsymbol{x)}\\
+\begin{array}{r}
+    \forall (x,t) \in (A\times I)\\
+    \exists \varphi \in \mathscr{L}^{1}\text{ tel que } \\
+\end{array}& |f(x,t)|\le \varphi&\text{\textbf{(Domination)}}\\
+\end{array}
+\right.
+\end{equation}
+On a aussi la version avec $\mathcal{C}^{k}$ mais ce n'est pas au programme
+\end{theorem}
+% section continuite_d_une_integrale_parametre (end)
+\section{Dérivation d'un intégrale à paramètre} % (fold)
+\label{sec:derivation_d_un_integrale_parametre}
+\begin{itheorem}[Dérivabilité]
+La fonction $g : x \mapsto \int_I f(x,t)$ est \uline{\emph{dérivable et continue $\left( \mathcal{C}^1 \right)$}} sur $A$ si 
+\begin{equation}
+\left\lbrace
+\begin{array}{l}
+\forall x\in A, t \mapsto f(x,t) \in \mathcal{CM}\quad \boldsymbol{(f} \text{\textbf{ intégrable pour }}\boldsymbol{t)}\\
+f \text{ admet une dérivée partielle qui vérifie} \\
+\left\lbrace
+\arraycolsep=0.5pt\def\arraystretch{1.8}
+\begin{array}{r l l}
+\forall x \in A,& t\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \CM &\boldsymbol{( \mathcal{CPM} }\text{\textbf{ pour }}\boldsymbol{t)}\\
+\forall t\in I,& x\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \mathcal{C} &\text{\textbf{(Continue pour }}\boldsymbol{x)}\\
+\forall (x,t) \in A \times \underbrace{[a,b]}_{\mathclap{\in I}},& \textcolor{Red}{\left|\textcolor{Black}{\dfrac{\partial f}{\partial x}(x,t)}\right|} \le \varphi(t) \in \mathscr{L}^1 & \text{\textbf{(Domination)}}
+\end{array}
+\right.
+\end{array}
+\right.
+\end{equation}
+
+Alors, la dérivée de $g$ est $g'(x) = \int_I \dfrac{\partial f}{\partial x}(x,t) \d t$
+\end{itheorem}
+% section derivation_d_un_integrale_parametre (end)
+\section{Intégrabilité (Ancienne version)}
 À l'origine, on donne plusieurs définitions de l'intégrabilité : d'abord pour les fonctions positives, puis pour les autres en disant que c'est si $|f|$ est intégrable. On donne ici une définition plus générale : 
 \begin{dfn}[Fonction intégrable]
 $f(x)\in \mathcal{CM}$ est intégrable sur $I$ si \\
 $\forall x \in \underbrace{J}_{\mathclap{\text{segment}}} \subset I, \exists M \in \mathbb{R}^+$ \textbf{tel que} $\int_J |f| \le M$
 \end{dfn}
-\begin{itheorem}[Comparaison à une série]
-    Si $f$ est une fonction continue par morceaux, \emphh{positive} et \emphh{décroissante}  sur $\Reel^+$, alors la série de terme général $\left( \int_{n-1}^n f \right) - f(n) $ est une \gls{SATP} convergente.\\
-    \begin{equation}
-        f \in \mathscr{L}^1 \Leftrightarrow \sum f(n) \text{ converge}
-    \end{equation}
-    En cas de divergence, $\int f \underset{n \to +\infty}{\sim}\sum f(n)$\\[\baselineskip]
-
-    Si $f$ est une fonction continue par morceaux, \emphh{positive}, \emphh{croissante} et \textcolor{couleurImp}{\uline{majorée}} sur $\Reel^+$, alors la série de terme général $\left( \int_n^{n+1} f \right) - f(n)$ est une \gls{SATP} convergente.
-\end{itheorem}
 \begin{itheorem}[\gls{CNS} de l'intégration]
 $f(x)$ est intégrable sur $I$ si \\
 $\forall x \in I, \boxed{\int_I |f| \le \varphi}$ où $\varphi \in \mathscr{L}^1$
@@ -2491,45 +2611,6 @@ $
         \end{array}
     \end{equation}
 \end{itheorem}
-\section{Intégrales dépendant d'un paramètre}
-\begin{theorem}[Continuité]
-La fonction $g : x \mapsto \int_I f(x,t)$ est \uline{\emph{définie et continue}} sur $A$ si 
-\begin{equation}\left\lbrace
-\begin{array}{l l c}
-\forall x\in A,& t \mapsto f(x,t) \in \mathcal{CM}&\boldsymbol{( \mathcal{CPM} }\text{\textbf{ pour }}\boldsymbol{t)}\\
-\forall t\in I,& x \mapsto f(x,t) \in \mathcal{C}&\text{\textbf{(Continue pour }}\boldsymbol{x)}\\
-\begin{array}{r}
-	\forall (x,t) \in (A\times I)\\
-	\exists \varphi \in \mathscr{L}^{1}\text{ tel que } \\
-\end{array}& |f(x,t)|\le \varphi&\text{\textbf{(Domination)}}\\
-\end{array}
-\right.
-\end{equation}
-On a aussi la version avec $\mathcal{C}^{k}$ mais ce n'est pas au programme
-\end{theorem}
-\begin{itheorem}[Dérivabilité]
-La fonction $g : x \mapsto \int_I f(x,t)$ est \uline{\emph{dérivable et continue $\left( \mathcal{C}^1 \right)$}} sur $A$ si 
-
-\[
-\left\lbrace
-\begin{array}{l}
-\forall x\in A, t \mapsto f(x,t) \in \mathcal{CM}\quad \boldsymbol{(f} \text{\textbf{ intégrable pour }}\boldsymbol{t)}\\
-f \text{ admet une dérivée partielle qui vérifie} \\
-\left\lbrace
-\arraycolsep=0.5pt\def\arraystretch{1.8}
-\begin{array}{r l l}
-\forall x \in A,& t\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \CM &\boldsymbol{( \mathcal{CPM} }\text{\textbf{ pour }}\boldsymbol{t)}\\
-\forall t\in I,& x\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \mathcal{C} &\text{\textbf{(Continue pour }}\boldsymbol{x)}\\
-\forall (x,t) \in A \times \underbrace{[a,b]}_{\mathclap{\in I}},& \textcolor{Red}{\left|\textcolor{Black}{\dfrac{\partial f}{\partial x}(x,t)}\right|} \le \varphi(t) \in \mathscr{L}^1 & \text{\textbf{(Domination)}}
-\end{array}
-\right.
-\end{array}
-\right.
-\]
-
-Alors, la dérivée de $g$ est $g'(x) = \int_I \dfrac{\partial f}{\partial x}(x,t) \d t$
-\end{itheorem}
-
 \section{Fonction Gamma}
 \begin{dfn}[Fonction Gamma]
 On définit $\Gamma$\index{Gamma} de $]0,+\infty[$ par
