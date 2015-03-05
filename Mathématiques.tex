@@ -2263,15 +2263,16 @@ $f\in\mathcal{C}^{k+1}(I,E)$, avec $(a,b)\in I^2$
 	\begin{itemize}\itemsep2pt
 		\item Trouver un équivalent
 		\item Trouver un $o(\cdots)$
-		\item Avoir une primitive finie
+		\item Avoir une primitive dont la limite vers la borne est finie
 		
 	\end{itemize}
 	\item Comparer la fonction \hfill \\ On pourra utiliser :
 	\begin{itemize}\itemsep2pt
-		\item La fonction \emph{exponentielle}
-		\item L'intégrale de \emph{Riemann} : $\frac{1}{t^\alpha}$\\
-        En particulier : $f$ est intégrable si $\exists \alpha < 1$ tel que $f(x)\, x^\alpha \xrightarrow[x \to 0]{} 0$
-		\item L'intégrale de \emph{Bertrand} : $\dfrac{1}{|\ln (t)|^\beta t^\alpha}$
+		\item La fonction \emph{exponentielle} ; % WHAT ? Pourquoi j'ai écrit ça ???
+        \item Les croissances comparées ;
+		\item L'intégrale de \emph{\textsc{Riemann}} : $\frac{1}{t^\alpha}$ (théorème \ref{thm:integrale_riemann} page~\pageref{thm:integrale_riemann}) \\
+        \item Une extension de \textsc{Riemann} : par exemple, $f$ est intégrable sur $]0,1[$ si $\exists \alpha < 1$ tel que $f(x)\, x^\alpha \xrightarrow[x \to 0]{} 0$, car alors, quand $x$ tend vers $0$, $x^\alpha f(x) \le 1$ et on retrouve \textsc{Riemann}.
+		\item L'intégrale de \emph{\textsc{Bertrand}} (hors programme) : $\dfrac{1}{|\ln (t)|^\beta t^\alpha}$
 	\end{itemize}
 \end{enumerate}
 \titre{Pour intégrer}
@@ -2284,6 +2285,13 @@ On utilisera
 	\item L'intégrale d'un polynôme est un polynôme
 \end{enumerate}
 Souvent, on ne peut intégrer sur tout un intervalle comme $[0;+\infty ]$. Pour y remédier, on peut poser $a>0$ tel que notre fonction soit intégrable sur $[a;+ \infty [$. Alors, la fonction est intégrable sur $\cup [a;+\infty [ = \Reel{}^+$
+\titre{Formes usuelles}
+\begin{tabulary}{\textwidth}{| c | C |}
+     \emphh{Forme} & \emphh{Méthode} \\
+     $\dfrac{\sqrt{a} - \sqrt{b}}{x}$ & Multiplier le dénominateur et le numérateur par le conjugué $\sqrt{a}+\sqrt{b}$ pour obtenir $a-b$ en haut \\
+     $\dfrac{\ln x}{x^\alpha}$ & On remarque que $x^{\frac{\alpha + 1}{2}}\dfrac{\ln x}{x^\alpha} = \dfrac{\ln x}{x^{\frac{\alpha - 1}{2}}}$ qui tend vers $0$ en $+\infty$. On a alors $\dfrac{\ln x}{x^\alpha}\underset{+\infty}{=}o \left( \dfrac{1}{x^{\frac{\alpha + 1}{2}}} \right) $. Plus qu'à appliquer \textsc{Riemann}. \\
+     $\dfrac{1}{(x+a)\cdots(x+z)}$&Décomposition en éléments simples !
+\end{tabulary}
 \end{methode}
 \section{Intégrale généralisée sur un intervalle de la forme $[a,+\infty[$} % (fold)
 \label{sec:integrale_generalisee}
@@ -2355,6 +2363,7 @@ Si $\int_a^{+\infty} f$ est seulement convergente, l'intégrale est dite \emph{s
      \end{equation}
 \end{itheorem}
 \begin{itheorem}[Intégrabilité de $x \mapsto \frac{1}{x^\alpha}$]
+\label{thm:integrale_riemann}
      Soit $\alpha$ dans \Reel{}.\\
      La fonction $x \longmapsto \dfrac{1}{x^\alpha}$ est intégrable sur $[1,+\infty [$ \ssi{} $\alpha > 1$.\\[1.3\baselineskip] 
      On étudie ici des intervalles du type $[a,+\infty [$, mais il peut être bon de savoir que la fonction $x \longmapsto \dfrac{1}{x^\alpha}$ est intégrable sur $[0,1 [$ \ssi{} $\alpha < 1$.
@@ -2491,7 +2500,7 @@ Soit $f\in \mathcal{L}^1(I,\mathbb{K})$, on note $\int_I f$ l'intégrale $\int_a
 \label{sub:convergence_dominee}
 \begin{itheorem}[Convergence dominée\index{Convergence!dominee@dominée} ]
     Soit $n\in \mathbb{N}$. Si $\big( f_n \big)_n$ est une suite de fonction de $\mathcal{CPM}(I,K) $ convergeant simplement vers une fonction $f \in \mathcal{CPM}(I,K)$, et s'il existe $\varphi \in \mathcal{L}^1 $ telle que \ibox{$\forall n, | f_n | \le \varphi$},\newline
-    alors $f \in \mathcal{L}$ et $\int_I f = \lim_{n \to +\infty}, \int_I f_n$
+    alors $f \in \mathcal{L}^1$ et $\int_I f = \lim_{n \to +\infty} \int_I f_n$
 \end{itheorem}
 \todo{Paramètre réel}
 %\begin{theorem}[Convergence dominée de fonction à paramètre réel]
