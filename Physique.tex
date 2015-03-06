@@ -2051,6 +2051,12 @@ En remaniant l'équation \eqref{HuygensFresnel} d'\textsc{Huygens}-\textsc{Fresn
    \end{equation}
    $k$ est appelé \emph{ordre de diffraction}
 \end{itheorem}
+\begin{proof}
+   Calculons la différence de marche $\delta_d (M)$ entre deux rayons : 
+   \[
+     \delta_d (M) = 
+   \]
+\end{proof}
 %TODO Démo de la formule des réseaux
 \todo{Démo de la formule des réseaux}
 % subsection reseaux (end)
@@ -3693,7 +3699,7 @@ où $m$ est le nombre d'atomes liés à l'atome central et $n$ est le nombre d'e
 \begin{dfn}[Grandeure intensive/extensive]
   Une grandeure \emph{extensive}\index{Extensive@\emphi{Grandeur} Extensive} est une grandeure proportionnelle à la taille du système qu'elle caractérise.
 \end{dfn}
-
+%
 \begin{prop}
   \begin{itemize}[label=$\bullet$]
    \item $\mathrm{extensive}\times \mathrm{intensive}= \mathrm{extensive}$ \\
@@ -3701,7 +3707,8 @@ où $m$ est le nombre d'atomes liés à l'atome central et $n$ est le nombre d'e
    \item $J_\mathrm{extensive}\left( \alpha n, \alpha V \right) = \alpha J(n,V)$
   \end{itemize}
 \end{prop}
-
+%
+\needspace{4cm}
 \begin{dfn}[Variance]
   La \emph{variance}\index{Variance} d'un système est le \uline{nombre maximal de paramètres intensifs que l'on peut choisir} sans remettre en cause l'équilibre du système étudié.
 \end{dfn}
@@ -3775,16 +3782,17 @@ $\Delta_rG^\circ$ caractérise l'équilibre de réaction\index{equilibre de reac
     v_\text{vol} = \dfrac{1}{V} \dfrac{\d \xi}{\d t} = \dfrac{1}{\nu_i}\dfrac{\d c_i}{\d t}
   \end{equation*}
 \end{dfn}
-\begin{theorem}[Loi de vitesse]
-  On peut relier la vitesse de réaction à la constante de vitesse $k$ et les concentrations $c_i$ : 
+\begin{dfn}[Loi de vitesse]
+  Une réaction chimique admet un ordre si on peut relier la vitesse de réaction à la constante de vitesse $k$ et aux concentrations $[A_k]$ : 
   \begin{subequations}
   \begin{align}
-    v &= k \cdot f(c_i)
-    \intertext{où $f(c_i)$ est une fonction des concentrations. Souvent, on a :}
-    \Aboxed{v &= k \prod_i c_i}
+    v &= k \cdot f\Big( [A_k]\Big) 
+    \intertext{où $f\Big( [A_k]\Big) $ est une fonction des concentrations. Souvent, on a :}
+    \Aboxed{v &= k \prod_i [A_k]^{\alpha_i}}
   \end{align}
+  $\alpha_i$ est appelé \emph{ordre partiel} de la réaction par rapport à 
   \end{subequations}
-\end{theorem}
+\end{dfn}
 % subsection avancement_reactionnel (end)
 \subsection{Loi d'action de masse} % (fold)
 \label{sub:loi_d_action_de_masse}
