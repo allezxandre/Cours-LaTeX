@@ -3167,9 +3167,45 @@ et alors, le flux radiatif\index{Flux!radiatif} suit une loi de \textsc{Newton} 
 h^\text{rad} = 4\sigma T_0^4
 \end{equation}
 \end{theorem}
+\chapter{Thermodynamique statistique} % (fold)
+\label{cha:thermodynamique_statistique}
+\section{Monde microscopique, monde macroscopique} % (fold)
+\label{sec:monde_microscopique_monde_macroscopique}
+
+% section monde_microscopique_monde_macroscopique (end)
+\section{Facteur de \textsc{Boltzmann}} % (fold)
+\label{sec:facteur_de_boltzmann}
+\subsection{Atmosphère isotherme} % (fold)
+\label{sub:atmosphere_isotherme}
+\begin{theorem}[Équation fondamentale de l'hydrostatique]
+À une altitude $z$, la variation de la pression $P(z)$ s'exprime en fonction de la masse volumique $\mu (z)$ d'un système : 
+   \begin{equation}
+   \dfrac{\d P(z)}{\d z}=-\mu (z)g
+   \end{equation}
+\end{theorem}
+\begin{itheorem}
+   La solution à l'équation différentielle précédente est :
+   \begin{equation}
+   P(z) = P_0~e^{-\dfrac{z Mg}{RT}}
+   \end{equation}
+\end{itheorem}
+% subsection atmosphere_isotherme (end)
+\subsection{Atmosphère terrestre} % (fold)
+\label{sub:atmosphere_terrestre}
+\begin{itheorem}
+   La probabilité $\d p(z)$ pour une molécule de se trouver entre les cotes $z$ et $z+\d z$ est \emphh{proportionnelle} au \emph{facteur de \textsc{Boltzmann}}\index{Facteur de Boltzmann@Facteur de \textsc{Boltzmann}} : 
+   \begin{equation}
+   \d p(z) = A e^{-\dfrac{E_p(z)}{k_B T}}
+   \end{equation}
+   Cette probabilité est appellée le \emph{poids de \textsc{Boltzmann}}\index{Poids de Boltzmann@Poids de \textsc{Boltzmann}}
+\Attention{$\d p$ est une \uline{probabilité} ! Pas une pression !}
+\end{itheorem}
+% subsection atmosphere_terrestre (end)
+% section facteur_de_boltzmann (end)
+% chapter thermodynamique_statistique (end)
 \chapter{Annexe}
 %TODO Grandeurs à connaitre
-\todo{ Grandeurs à connaitre}
+\todo{Grandeurs à connaitre}
 \section{Trigonométrie}
 \subsection{Définition}
 On aura souvent besoin de trigonométrie en Physique. Surtout les règles sur les sinus et cosinus. Bien sûr, la première chose à ne jamais oublier, c'est leur définition en exponentielle : \\
