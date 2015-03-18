@@ -1270,6 +1270,267 @@ L'\emph{adhérence}\index{Adherence@Adhérence} de $A$, notée $\overline{A}$ es
     La réciproque (\textit{Les parties complètes sont les parties fermées}) est vraie si $E$ est un espace de \textsc{Banach}.
 \end{itheorem}
 % section topologie (end)
+\chapter{Espaces Préhilbertiens réels}
+Dans cette section, on se placera dans \Reel{}.
+\begin{methode}
+\titre{Définitions rapides}
+\begin{description}
+\item[Produit Scalaire] \textit{cf.} définition \ref{DefProduitScal} page \pageref{DefProduitScal}
+\item[Éléments orthogonaux] $x$ et $y$ sont orthogonaux si $( x | y ) = 0 $
+\item[Famille orthogonale] $(e_i|e_j) = \delta{i,j}$
+\item[Distance de $x$ à une partie $F$] $d(x,F) = \| x - p_f(x) \|$
+\end{description}
+\end{methode}
+\section{Produit scalaire}
+\begin{dfn}[Produit scalaire]\label{DefProduitScal}
+Le produit scalaire \index{Produit scalaire} est défini comme suit : 
+\[
+\begin{array}{c r l l}
+(i)&\forall x \in E\backslash \{ 0 \} , &\uline{\varphi(x,x)>0}&\text{\textbf{(définie positive)}}\\
+(ii)&\forall (x,y) \in E^2, &\uline{\varphi (x,y) = \varphi (y,x)} &\text{\textbf{(symétrie)}}\\
+(iii)&\forall x \in E, &\uline{y \mapsto \varphi(x,y) \text{ est linéaire}}&\text{\textbf{(linéaire à droite)}}
+\end{array}
+\]
+On peut associer un produit scalaire $(\cdot | \cdot )$ à un espace vectoriel $E$. L'espace $(E, (\cdot | \cdot ))$ est appelé \emph{espace préhilbertien}\index{Espace!prehilbertien@préhilbertien}.
+\end{dfn}
+\textbf{Remarque :} La symétrie et la linéarité impliquent la linéarité à gauche, donc la bilinéarité du produit scalaire.
+\begin{theorem}[Continuité du produit scalaire]
+     Le produit scalaire est une application bilinéaire \emphhs{continue} de $E\times E$ dans $\Reel{}$.
+\end{theorem}
+\begin{theorem}[Norme associée]\label{NormeAssocieProdScal} 
+$x\mapsto \sqrt{(x|x)}$ définit une norme sur $E$. On la note $||x||$, et $||x||^2 = (x|x)$.
+\end{theorem}
+\begin{theorem}[Inégalité \textsc{Cauchy-Schwarz}\index{inegalite@Inégalité!cauchy@de \textsc{Cauchy-Schwarz}}]
+\begin{subequations}
+\begin{align}
+\textcolor{Red}{|}(x|y)\textcolor{Red}{|} &\le (x|x)^{\frac{1}{2}} \times (y|y)^{\frac{1}{2}}
+\intertext{qu'on peut aussi écrire :}
+\textcolor{Red}{|}(x|y)\textcolor{Red}{|}&\le \| x\| \times \| y\|
+\end{align}
+\end{subequations}
+avec égalité si et seulement si $(x,y)$ est une famille liée.
+\end{theorem}
+\section{Orthogonalité}
+\begin{dfn}[Éléments orthogonaux]
+Deux éléments $x$ et $y$ sont orthogonaux si $(x|y)=0$
+\end{dfn}
+\begin{theorem}[Pythagore]
+Si $x_1, \cdots , x_n$ sont des éléments de $E$ deux à deux \uline{orthogonaux}, alors 
+\begin{equation}
+\left| \left| \sum_{i=0}^{n} x_i \right| \right| ^2 = \sum_{i=0}^n  \| x_i\| ^2
+\end{equation}
+\Attention{Ce sont bien des normes car $x_i$ au carré n'existe pas (qu'est-ce que le produit de deux vecteurs ?), du coup on utilise $\| \cdot \| ^2 = (\cdot | \cdot )$}
+\end{theorem}
+\begin{itheorem}[Procédé d'orthonormalisation de \textsc{Schmidt}]\index{Procede@Procédé! Orthonormalisation@d'Orthonormalisation de \textsc{Schmidt}}
+Pour toute base de $(e_i)$, il existe une base $(\varepsilon_i)$ telle que :
+\begin{equation}
+\left\lbrace
+\begin{array}{l}
+(\varepsilon_i)\text{ est une base \uline{orthonormée}}\\
+\mathrm{Vect}(e_1,\cdots ,e_n) = \mathrm{Vect}(\varepsilon_1, \cdots ,\varepsilon_n)\\
+(e_i|\varepsilon_i) > 0
+\end{array}
+\right.
+\end{equation}
+
+On aura souvent recours à compléter une base $(e_i)_k$ avec $n-k$ vecteurs orthonormaux aux $(\varepsilon_i)_k$ par le théorème de la base incomplète.
+\end{itheorem}
+\begin{theorem}[Inégalité de \textsc{Bessel} \index{inegalite@Inégalité!Bessel@de \textsc{Bessel}}]
+Si $(e_i)$ est une base orthonormée : 
+$\boxed{\sum_i (e_i|x)^2 \le \| x \|^2}$
+\end{theorem}
+
+\section{Automorphismes ortogonaux}
+$u$ est un endomorphisme, donc il est \uline{linéaire}.
+\begin{dfn}
+    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
+    \begin{enumerate}
+        \item $u$ un endomorphisme, il existe \emphh{un \uline{unique}} endomorphisme $u^*$ tel que
+        \begin{equation*}
+            \forall (x,y) \in E, (u(x)|y) = (x | u^*(y))
+        \end{equation*}
+        $u^*$ est l'\emph{adjoint}\index{Adjoint} de $u$.
+        \item $u$ est \emph{autoadjoint}\index{autoadjoint@Autoadjoint} (symétrique) si $u^* = u$ 
+        \item $u$ est un \emph{automorphisme orthogonal}\index{Automorphisme orthogonal} si $u^* = u^{-1}$. On note $u \in \mathcal{O}(E)$
+    \end{enumerate}
+\end{dfn}
+
+\begin{prop}
+    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
+    \begin{enumerate}
+        \item Si $M_\mathcal{B}(u) = A$, alors $M_\mathcal{B}(u^*) = {}^tA$
+        \item $\mathrm{Ker}(u^*) = \left[ \mathrm{Im}(u) \right]^\perp$
+        \item $\mathrm{Im}(u^*) = \left[ \mathrm{Ker}(u) \right]^\perp$
+        \item $\chi_u = \chi_{u^*}$
+        \item $(u\circ v)^* = v^* \circ u^*$
+    \end{enumerate}
+\end{prop}
+
+\begin{theorem}[Caractérisation d'un automorphisme orthogonal]
+    $u$ est un automorphisme orthogonal si les assertions suivantes (équivalentes) sont vérifiées :
+    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
+    \begin{enumerate}
+        \item $u$ conserve la norme
+        \item $u$ conserve le produit scalaire
+        \item $u\left(\mathcal{B}_\text{orthonormée}\right) = \mathcal{B}'_\text{orthonormée}$
+        \item $\forall \mathcal{B'}_\text{orthonormée}, \exists \mathcal{B}_\text{orthonormée}$ telle que $u\left(\mathcal{B}_\text{orthonormée}\right) = \mathcal{B}'_\text{orthonormée}$
+        \item $\exists \mathcal{B}_\text{orthonormée} $ telle que $\left| \begin{gathered}
+            U{}^tU = I_n\\
+            \text{ ou }\\
+            {}^tUU = I_n
+        \end{gathered}\right|$ où $U = M_\mathcal{B}(u)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{itheorem}[Théorème spectral]
+    Tout \emphh{endomorphisme auto-adjoint} est diagonalisable, et il existe une base orthonormale de vecteurs propres de $u$.\par
+
+    Toute \emphh{matrice symétrique \uline{réelle}} est diagonalisable. On peut aussi dire : 
+    \begin{equation}
+    \forall A \in S_n, \exists  \left| \begin{gathered} P \in \mathcal{O}(n) \\ D \in \mathcal{D}_n(\Reel) \end{gathered} \right. \text{ tel que } A = PDP^{-1} = PD{}^tP
+    \end{equation}
+\end{itheorem}
+\chapter{Espaces Préhilbertiens complexes}
+\section{Structure Préhilbertienne complexe}
+On se place dans $\Cmplx$ et on établit de nouveau le \uline{produit scalaire} comme à la définition \ref{DefProduitScal} page \pageref{DefProduitScal} du chapitre précédent. À une différence prêt, la symétrie est appelée \textbf{symétrie hermitienne}
+\begin{dfn}[Produit scalaire]\label{DefProduitScalCmplx}
+Le produit scalaire \index{Produit scalaire} est défini comme suit : 
+\[
+\begin{array}{c r l l}
+(i)&\forall x \in E\backslash \{ 0 \} , &{\varphi(x,x)>0}&\text{\textbf{(définie positive)}}\\
+(ii)&\forall (x,y) \in E^2, &{\varphi (x,y) = \overline {\varphi (y,x)}} &\text{\textbf{(symétrie hermitienne)}}\\
+(iii)&\forall x \in E, &{y \mapsto \varphi(x,y) \text{ est linéaire}}&\text{\textbf{(linéaire à droite)}}
+\end{array}
+\]
+On peut associer un produit scalaire $(\cdot | \cdot )$ à un espace vectoriel $E$. L'espace $\left( E, (\cdot | \cdot ) \right)
+$ est appelé \emph{espace préhilbertien}\index{Espace!prehilbertien@préhilbertien}.
+\end{dfn}
+\section{Orthogonalité}
+\begin{theorem}[Inégalité de \textsc{Bessel} \index{inegalite@Inégalité!Bessel@de \textsc{Bessel}}]
+Si $(e_i)$ est une base orthonormée : 
+$\boxed{\sum_i \textcolor{Red}{|}(e_i|x)\textcolor{Red}{|}^2 \le \textcolor{Red}{N_2}^2 (x)}$
+\end{theorem}
+\section{Séries de \textsc{Fourier}}
+\begin{methode}
+\titre{Coefficients}
+\begin{description}
+\item[Exponentiels] $c_n(f) = \dfrac{1}{2\pi} \int_{-\pi}^{\pi}e^{-int} f(t)\, \d t$
+\item[Trigonométriques] \hfill \\[-10pt]
+    \begin{itemize}\itemsep2pt
+        \item $a_n(f) = \dfrac{1}{\pi} \int_{-\pi}^{\pi} \cos (nt) f(t)\, \d t$
+        \item $b_n(f) = \dfrac{1}{\pi} \int_{-\pi}^{\pi} \sin (nt) f(t)\, \d t$
+    \end{itemize}
+\end{description}
+\end{methode}
+On note $\boldsymbol{ \mathcal{C}_{2\pi}}$ l'espace vectoriel des applications $f : \Reel \to \Cmplx$ \textbf{{$\boldsymbol{ 2\pi}$-périodiques}} et \textbf{continues} sur $[0,2\pi]$.\\
+On note $\boldsymbol{ \mathcal{CM}_{2\pi}}$ l'espace vectoriel des applications $f : \Reel \to \Cmplx$ \textbf{{$\boldsymbol{ 2\pi}$-périodiques}} et \textbf{continues par morceaux} sur $[0,2\pi]$.\\[3pt]
+\Attention{Sur $\mathcal{CM}_{2\pi}$, $N_1, N_2$ et $N_\infty$ ne sont plus des normes, mais elles fonctionnent toujours de la même manière}
+
+Cette sous-section se base sur le théorème suivant : 
+\begin{theorem}
+Pour toute fonction dans $\mathcal{CM}_{2\pi}$, il existe une suite $\left( f_n \right)_n$ d'éléments de $\mathcal{C}_{2\pi}$ telle que $\boxed{N_2(f-f_n)\xrightarrow[n\to\infty]{} 0}$
+\end{theorem}
+
+L'objectif des séries de \textsc{Fourier} est de \og transposer \fg une fonction dans une base de $\mathcal{C}_{2\pi}$. \\
+
+On prendra pour bases $(e^{it},e^{2it},\cdots e^{int})$ ou $\left( cos(t),cos(2t),\cdots ,cos(nt)\right)$ par exemple, et grâce à un produit scalaire, on obtient la décomposition de notre fonction dans la base.\\
+C'est ainsi qu'on définit les coefficients : 
+
+
+\begin{dfn}[Coefficients exponentiels]
+Pour une fonction $f$ dans $\mathcal{CM}_{2\pi}$ :\\
+\begin{center}
+ \ibox{
+$
+c_n(f) = \color{Black!50}{\underbrace{\color{Black}{\dfrac{1}{2\pi}}}_{\mathclap{\text{on est sur }\mathcal{CM}_{2\pi}}}} \color{Black}{\int \limits_0^{2\pi}e^{-i\cdot n\cdot t} f(t)\, dt}
+$}
+ \end{center}
+
+En effet : $c_n(f) = (e_n | f)$ avec $e_n = e^{int}$. Or le produit scalaire pour des fonctions est $(g|f)=\int_0^{2\pi} \overline{g(t)}\; f(t) \: dt$, d'où $(e_n|f)=\int_0^{2\pi} \overline{e^{int}}\; f(t) \: dt=\int_0^{2\pi} e^{\emph{-}int}\; f(t) \: dt$
+\end{dfn}
+
+On aurait très bien pu intégrer sur $[-\pi,\pi]$ au lieu de $[0,2\pi]$. C'est ce qu'on fera plus tard avec les coefficients trigonométriques.
+\begin{prop}
+\begin{itemize}
+\item $g : t \mapsto f(-t),\: c_n(g) = c_{-n}(f)$
+\item $f_a : t \mapsto f(t + a),\: c_n(f_a) = e^{ina}c_n(f)$
+\end{itemize}
+\end{prop}
+\begin{theorem}[Dérivée de $f$]
+$c_n(f') = in\, c_n(f)$ \\
+d'où, par récurrence : $\boxed{c_n\left( f^{(k)}\right) = (in)^k c_n(f)}$
+\end{theorem}
+\begin{dfn}[Coefficients trigonométriques]
+Pour une fonction $f$ dans $\mathcal{CM}_{2\pi}$ :\\
+\begin{center}
+ \fcolorbox{couleurNoirClair}{couleurClaire!20}{
+$
+a_n(f) = \dfrac{1}{\pi} \int \limits_{-\pi}^{\pi} \cos(nt) f(t)\, dt
+$} et  \fcolorbox{couleurNoirClair}{couleurClaire!20}{
+$
+b_n(f) = \dfrac{1}{\pi} \int \limits_{-\pi}^{\pi} \sin(nt) f(t)\, dt
+$}
+ \end{center}
+Ici, c'est $\dfrac{1}{\pi}$ en facteur, car $N_2^2 \left( \cos(n \bullet)\right) = \frac{1}{2}$
+
+\end{dfn}
+\begin{prop}
+\begin{itemize}
+\item $a_n(f) = c_n(f) + c_{-n}(f)$ et $b_n(f) = i(c_n(f) + c_{-n}(f))$
+\item Si $f$ est paire, alors $b_n = 0 \: \forall n$
+\item Si $f$ est impaire, alors $a_n = 0 \: \forall n$
+\end{itemize}
+\end{prop}
+En général, on utilisera ces coefficients si $f$ présente une parité.
+\begin{dfn}[Série de \textsc{Fourier}]
+On appelle \emph{série de \textsc{Fourier}}\index{fourier@\emphi{Série de }\textsc{Fourier}} de $f$ la série $\sum u_n$ où $\left|
+\begin{array}{l l l l}
+u_0 &=& c_0(f) \; e_0&\\
+u_n &=& c_n(f) \; e_n + c_{-n}(f) \; e_{-n}
+\end{array}
+\right.$\\
+$S_n(f)$ est appelée \emph{somme partielle de rang $\boldsymbol n$ de la série de \textsc{Fourier}}
+\end{dfn}
+\begin{theorem}[Inégalité de Bessel\index{inegalite@Inégalité!Bessel@de \textsc{Bessel}}]
+Si $f \in \mathcal{CM}_{2\pi}$, alors : \[\sum_{k=\textcolor{Red}{-n}}^{n} \left| c_n(f) \right| ^{\textcolor{Red}{2}}\le N_2^{\textcolor{Red}{2}}(f)\]
+\end{theorem}
+\begin{theorem}[Théorème de convergence \textsc{Parseval}]
+Si $f$\index{Parseval@\textsc{Parseval}!convergence@\emphi{théorème de }convergence} est une fonction de \uline{$\mathcal{CM}_{2\pi}$}, alors $\boxed{N_2\left(\vphantom{{3^3}^3} f-S_n(f) \right)_n}$ converge vers 0
+\end{theorem}
+Avec ce nouveau théorème, on trouve le cas d'égalité de l'inégalité de Bessel :
+\begin{itheorem}[Égalité de Parseval\index{Parseval@\string\textsc{Parseval}!egalite@égalité}]
+Si $f$ est une fonction de \uline{$\mathcal{CM}_{2\pi}$} : 
+\begin{center}
+\fcolorbox{couleurNoirClair}{couleurGrisFonce!15}{
+$\sum_{n\textcolor{Red}{\in \mathbb{Z}}} \left| c_n(f) \right| ^{\textcolor{Red}{2}}=N_2^{\textcolor{Red}{2}}(f)$ 
+}
+\end{center}
+En réel, cette égalité devient : 
+\[
+N_2^2(f) = \left( \dfrac{a_0(f)}{2} \right) ^2 + \frac{1}{2}\sum_{n=1}^{+\infty} \left[ a_n^2(f) + b_n(f)^2 \right]
+\]
+\end{itheorem}
+\begin{theorem}[Calcul des Coefficients]
+    Si on a la suite $s_n$ telle que $\left| \begin{gathered} s_n = \sum_{k=-n}^n \alpha_k e_k \\ N_2(s_k - f) \xrightarrow[n\to +\infty ]{} 0 \end{gathered}\right. $, alors $\forall k\in \mathbb{Z}, c_n(f) = \alpha_n$
+\end{theorem}
+    \begin{proof}\hfill \\
+        D'après l'inégalité de \textsc{Cauchy}-\textsc{Schwarz}, $|c_k(s_n - f)|\le N_2(s_n - f)$. Donc $|c_k(f) - \alpha_k|\le N_2(s_n - f) \xrightarrow[n\to +\infty]{} 0$, d'où, quand $n\to +\infty$, $c_n(f) = \alpha_n$.
+    \end{proof}
+\begin{itheorem}[Théorème de convergence normale]
+Si $f$ est \underline{$\mathcal{C}_{2\pi}$ et de classe $\mathcal{C}^1$ par morceaux\footnote{$\mathcal{C}^1$ par morceaux c'est à dire que la dérivée est continue par morceaux, à ne pas confondre avec $f \in \mathcal{CM}$}}
+\begin{tabbing}
+alors \= sa série de \textsc{Fourier} \emph{converge normalement} et sa somme vaut $f$ \\
+ \> sa somme partielle de sa série de \textsc{Fourier} $S_n$ \emph{converge uniformément}
+\end{tabbing}
+\end{itheorem}
+\begin{dfn}[Noyau de \textsc{Dirichlet}]
+On appelle \emph{noyau de \textsc{Dirichlet}}\index{dirichlet@\textsc{Dirichlet}!Noyau}, et on note $D_p(t)$ la somme : $D_p(t)=\sum_{k=-p}^p e^{ikt}$
+\end{dfn}
+\begin{itheorem}[Noyau de \textsc{Dirichlet}]
+Si $f \in \mathcal{CM}_{2\pi}$ et $C^1$ par morceaux, alors sa série de \textsc{Fourier} \emph{converge simplement} sur \Reel{}. \\
+\emph{Sa somme} au point $x$, notée $\overset{\sim}{f}(x)$ est égale à $\frac{1}{2}\lim_{h\to 0^+}[f(x+h) + f(x-h)]$. Si $f$ est \emph{continue}, alors $\overset{\sim}{f}(x) = f(x)$.
+\end{itheorem}
+% section Espaces préhilbertiens (end)
 \part{Analyse}
 \chapter{Séries} % (fold)
 \label{cha:series}
@@ -2672,266 +2933,6 @@ d'où $\Gamma(n+1)=n!$	CQFD.
 $f$ une fonction continue de $[\alpha{},\beta{}]\times [a,b]$ dans $\mathbb{C}$. \\
 Alors $\displaystyle\int_{\alpha}^{\beta}\left(\displaystyle\int_{a}^{b}f(x,t)dt\right)dx=\displaystyle\int_{a}^{b}\left(\displaystyle\int_{\alpha}^{\beta}f(x,t)dx\right)dt$
 \end{dfn}
-\chapter{Espaces Préhilbertiens réels}
-Dans cette section, on se placera dans \Reel{}.
-\begin{methode}
-\titre{Définitions rapides}
-\begin{description}
-\item[Produit Scalaire] \textit{cf.} définition \ref{DefProduitScal} page \pageref{DefProduitScal}
-\item[Éléments orthogonaux] $x$ et $y$ sont orthogonaux si $( x | y ) = 0 $
-\item[Famille orthogonale] $(e_i|e_j) = \delta{i,j}$
-\item[Distance de $x$ à une partie $F$] $d(x,F) = \| x - p_f(x) \|$
-\end{description}
-\end{methode}
-\section{Produit scalaire}
-\begin{dfn}[Produit scalaire]\label{DefProduitScal}
-Le produit scalaire \index{Produit scalaire} est défini comme suit : 
-\[
-\begin{array}{c r l l}
-(i)&\forall x \in E\backslash \{ 0 \} , &\uline{\varphi(x,x)>0}&\text{\textbf{(définie positive)}}\\
-(ii)&\forall (x,y) \in E^2, &\uline{\varphi (x,y) = \varphi (y,x)} &\text{\textbf{(symétrie)}}\\
-(iii)&\forall x \in E, &\uline{y \mapsto \varphi(x,y) \text{ est linéaire}}&\text{\textbf{(linéaire à droite)}}
-\end{array}
-\]
-On peut associer un produit scalaire $(\cdot | \cdot )$ à un espace vectoriel $E$. L'espace $(E, (\cdot | \cdot ))$ est appelé \emph{espace préhilbertien}\index{Espace!prehilbertien@préhilbertien}.
-\end{dfn}
-\textbf{Remarque :} La symétrie et la linéarité impliquent la linéarité à gauche, donc la bilinéarité du produit scalaire.
-\begin{theorem}[Continuité du produit scalaire]
-     Le produit scalaire est une application bilinéaire \emphhs{continue} de $E\times E$ dans $\Reel{}$.
-\end{theorem}
-\begin{theorem}[Norme associée]\label{NormeAssocieProdScal} 
-$x\mapsto \sqrt{(x|x)}$ définit une norme sur $E$. On la note $||x||$, et $||x||^2 = (x|x)$.
-\end{theorem}
-\begin{theorem}[Inégalité \textsc{Cauchy-Schwarz}\index{inegalite@Inégalité!cauchy@de \textsc{Cauchy-Schwarz}}]
-\begin{subequations}
-\begin{align}
-\textcolor{Red}{|}(x|y)\textcolor{Red}{|} &\le (x|x)^{\frac{1}{2}} \times (y|y)^{\frac{1}{2}}
-\intertext{qu'on peut aussi écrire :}
-\textcolor{Red}{|}(x|y)\textcolor{Red}{|}&\le \| x\| \times \| y\|
-\end{align}
-\end{subequations}
-avec égalité si et seulement si $(x,y)$ est une famille liée.
-\end{theorem}
-\section{Orthogonalité}
-\begin{dfn}[Éléments orthogonaux]
-Deux éléments $x$ et $y$ sont orthogonaux si $(x|y)=0$
-\end{dfn}
-\begin{theorem}[Pythagore]
-Si $x_1, \cdots , x_n$ sont des éléments de $E$ deux à deux \uline{orthogonaux}, alors 
-\begin{equation}
-\left| \left| \sum_{i=0}^{n} x_i \right| \right| ^2 = \sum_{i=0}^n  \| x_i\| ^2
-\end{equation}
-\Attention{Ce sont bien des normes car $x_i$ au carré n'existe pas (qu'est-ce que le produit de deux vecteurs ?), du coup on utilise $\| \cdot \| ^2 = (\cdot | \cdot )$}
-\end{theorem}
-\begin{itheorem}[Procédé d'orthonormalisation de \textsc{Schmidt}]\index{Procede@Procédé! Orthonormalisation@d'Orthonormalisation de \textsc{Schmidt}}
-Pour toute base de $(e_i)$, il existe une base $(\varepsilon_i)$ telle que :
-\begin{equation}
-\left\lbrace
-\begin{array}{l}
-(\varepsilon_i)\text{ est une base \uline{orthonormée}}\\
-\mathrm{Vect}(e_1,\cdots ,e_n) = \mathrm{Vect}(\varepsilon_1, \cdots ,\varepsilon_n)\\
-(e_i|\varepsilon_i) > 0
-\end{array}
-\right.
-\end{equation}
-
-On aura souvent recours à compléter une base $(e_i)_k$ avec $n-k$ vecteurs orthonormaux aux $(\varepsilon_i)_k$ par le théorème de la base incomplète.
-\end{itheorem}
-\begin{theorem}[Inégalité de \textsc{Bessel} \index{inegalite@Inégalité!Bessel@de \textsc{Bessel}}]
-Si $(e_i)$ est une base orthonormée : 
-$\boxed{\sum_i (e_i|x)^2 \le \| x \|^2}$
-\end{theorem}
-
-\section{Automorphismes ortogonaux}
-$u$ est un endomorphisme, donc il est \uline{linéaire}.
-\begin{dfn}
-    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
-    \begin{enumerate}
-        \item $u$ un endomorphisme, il existe \emphh{un \uline{unique}} endomorphisme $u^*$ tel que
-        \begin{equation*}
-            \forall (x,y) \in E, (u(x)|y) = (x | u^*(y))
-        \end{equation*}
-        $u^*$ est l'\emph{adjoint}\index{Adjoint} de $u$.
-        \item $u$ est \emph{autoadjoint}\index{autoadjoint@Autoadjoint} (symétrique) si $u^* = u$ 
-        \item $u$ est un \emph{automorphisme orthogonal}\index{Automorphisme orthogonal} si $u^* = u^{-1}$. On note $u \in \mathcal{O}(E)$
-    \end{enumerate}
-\end{dfn}
-
-\begin{prop}
-    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
-    \begin{enumerate}
-        \item Si $M_\mathcal{B}(u) = A$, alors $M_\mathcal{B}(u^*) = {}^tA$
-        \item $\mathrm{Ker}(u^*) = \left[ \mathrm{Im}(u) \right]^\perp$
-        \item $\mathrm{Im}(u^*) = \left[ \mathrm{Ker}(u) \right]^\perp$
-        \item $\chi_u = \chi_{u^*}$
-        \item $(u\circ v)^* = v^* \circ u^*$
-    \end{enumerate}
-\end{prop}
-
-\begin{theorem}[Caractérisation d'un automorphisme orthogonal]
-    $u$ est un automorphisme orthogonal si les assertions suivantes (équivalentes) sont vérifiées :
-    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
-    \begin{enumerate}
-        \item $u$ conserve la norme
-        \item $u$ conserve le produit scalaire
-        \item $u\left(\mathcal{B}_\text{orthonormée}\right) = \mathcal{B}'_\text{orthonormée}$
-        \item $\forall \mathcal{B'}_\text{orthonormée}, \exists \mathcal{B}_\text{orthonormée}$ telle que $u\left(\mathcal{B}_\text{orthonormée}\right) = \mathcal{B}'_\text{orthonormée}$
-        \item $\exists \mathcal{B}_\text{orthonormée} $ telle que $\left| \begin{gathered}
-            U{}^tU = I_n\\
-            \text{ ou }\\
-            {}^tUU = I_n
-        \end{gathered}\right|$ où $U = M_\mathcal{B}(u)$
-    \end{enumerate}
-\end{theorem}
-
-\begin{itheorem}[Théorème spectral]
-    Tout \emphh{endomorphisme auto-adjoint} est diagonalisable, et il existe une base orthonormale de vecteurs propres de $u$.\par
-
-    Toute \emphh{matrice symétrique \uline{réelle}} est diagonalisable. On peut aussi dire : 
-    \begin{equation}
-    \forall A \in S_n, \exists  \left| \begin{gathered} P \in \mathcal{O}(n) \\ D \in \mathcal{D}_n(\Reel) \end{gathered} \right. \text{ tel que } A = PDP^{-1} = PD{}^tP
-    \end{equation}
-\end{itheorem}
-\chapter{Espaces Préhilbertiens complexes}
-\section{Structure Préhilbertienne complexe}
-On se place dans $\Cmplx$ et on établit de nouveau le \uline{produit scalaire} comme à la définition \ref{DefProduitScal} page \pageref{DefProduitScal} du chapitre précédent. À une différence prêt, la symétrie est appelée \textbf{symétrie hermitienne}
-\begin{dfn}[Produit scalaire]\label{DefProduitScalCmplx}
-Le produit scalaire \index{Produit scalaire} est défini comme suit : 
-\[
-\begin{array}{c r l l}
-(i)&\forall x \in E\backslash \{ 0 \} , &{\varphi(x,x)>0}&\text{\textbf{(définie positive)}}\\
-(ii)&\forall (x,y) \in E^2, &{\varphi (x,y) = \overline {\varphi (y,x)}} &\text{\textbf{(symétrie hermitienne)}}\\
-(iii)&\forall x \in E, &{y \mapsto \varphi(x,y) \text{ est linéaire}}&\text{\textbf{(linéaire à droite)}}
-\end{array}
-\]
-On peut associer un produit scalaire $(\cdot | \cdot )$ à un espace vectoriel $E$. L'espace $\left( E, (\cdot | \cdot ) \right)
-$ est appelé \emph{espace préhilbertien}\index{Espace!prehilbertien@préhilbertien}.
-\end{dfn}
-\section{Orthogonalité}
-\begin{theorem}[Inégalité de \textsc{Bessel} \index{inegalite@Inégalité!Bessel@de \textsc{Bessel}}]
-Si $(e_i)$ est une base orthonormée : 
-$\boxed{\sum_i \textcolor{Red}{|}(e_i|x)\textcolor{Red}{|}^2 \le \textcolor{Red}{N_2}^2 (x)}$
-\end{theorem}
-\section{Séries de \textsc{Fourier}}
-\begin{methode}
-\titre{Coefficients}
-\begin{description}
-\item[Exponentiels] $c_n(f) = \dfrac{1}{2\pi} \int_{-\pi}^{\pi}e^{-int} f(t)\, \d t$
-\item[Trigonométriques] \hfill \\[-10pt]
-	\begin{itemize}\itemsep2pt
-		\item $a_n(f) = \dfrac{1}{\pi} \int_{-\pi}^{\pi} \cos (nt) f(t)\, \d t$
-		\item $b_n(f) = \dfrac{1}{\pi} \int_{-\pi}^{\pi} \sin (nt) f(t)\, \d t$
-	\end{itemize}
-\end{description}
-\end{methode}
-On note $\boldsymbol{ \mathcal{C}_{2\pi}}$ l'espace vectoriel des applications $f : \Reel \to \Cmplx$ \textbf{{$\boldsymbol{ 2\pi}$-périodiques}} et \textbf{continues} sur $[0,2\pi]$.\\
-On note $\boldsymbol{ \mathcal{CM}_{2\pi}}$ l'espace vectoriel des applications $f : \Reel \to \Cmplx$ \textbf{{$\boldsymbol{ 2\pi}$-périodiques}} et \textbf{continues par morceaux} sur $[0,2\pi]$.\\[3pt]
-\Attention{Sur $\mathcal{CM}_{2\pi}$, $N_1, N_2$ et $N_\infty$ ne sont plus des normes, mais elles fonctionnent toujours de la même manière}
-
-Cette sous-section se base sur le théorème suivant : 
-\begin{theorem}
-Pour toute fonction dans $\mathcal{CM}_{2\pi}$, il existe une suite $\left( f_n \right)_n$ d'éléments de $\mathcal{C}_{2\pi}$ telle que $\boxed{N_2(f-f_n)\xrightarrow[n\to\infty]{} 0}$
-\end{theorem}
-
-L'objectif des séries de \textsc{Fourier} est de \og transposer \fg une fonction dans une base de $\mathcal{C}_{2\pi}$. \\
-
-On prendra pour bases $(e^{it},e^{2it},\cdots e^{int})$ ou $\left( cos(t),cos(2t),\cdots ,cos(nt)\right)$ par exemple, et grâce à un produit scalaire, on obtient la décomposition de notre fonction dans la base.\\
-C'est ainsi qu'on définit les coefficients : 
-
-
-\begin{dfn}[Coefficients exponentiels]
-Pour une fonction $f$ dans $\mathcal{CM}_{2\pi}$ :\\
-\begin{center}
- \ibox{
-$
-c_n(f) = \color{Black!50}{\underbrace{\color{Black}{\dfrac{1}{2\pi}}}_{\mathclap{\text{on est sur }\mathcal{CM}_{2\pi}}}} \color{Black}{\int \limits_0^{2\pi}e^{-i\cdot n\cdot t} f(t)\, dt}
-$}
- \end{center}
-
-En effet : $c_n(f) = (e_n | f)$ avec $e_n = e^{int}$. Or le produit scalaire pour des fonctions est $(g|f)=\int_0^{2\pi} \overline{g(t)}\; f(t) \: dt$, d'où $(e_n|f)=\int_0^{2\pi} \overline{e^{int}}\; f(t) \: dt=\int_0^{2\pi} e^{\emph{-}int}\; f(t) \: dt$
-\end{dfn}
-
-On aurait très bien pu intégrer sur $[-\pi,\pi]$ au lieu de $[0,2\pi]$. C'est ce qu'on fera plus tard avec les coefficients trigonométriques.
-\begin{prop}
-\begin{itemize}
-\item $g : t \mapsto f(-t),\: c_n(g) = c_{-n}(f)$
-\item $f_a : t \mapsto f(t + a),\: c_n(f_a) = e^{ina}c_n(f)$
-\end{itemize}
-\end{prop}
-\begin{theorem}[Dérivée de $f$]
-$c_n(f') = in\, c_n(f)$ \\
-d'où, par récurrence : $\boxed{c_n\left( f^{(k)}\right) = (in)^k c_n(f)}$
-\end{theorem}
-\begin{dfn}[Coefficients trigonométriques]
-Pour une fonction $f$ dans $\mathcal{CM}_{2\pi}$ :\\
-\begin{center}
- \fcolorbox{couleurNoirClair}{couleurClaire!20}{
-$
-a_n(f) = \dfrac{1}{\pi} \int \limits_{-\pi}^{\pi} \cos(nt) f(t)\, dt
-$} et  \fcolorbox{couleurNoirClair}{couleurClaire!20}{
-$
-b_n(f) = \dfrac{1}{\pi} \int \limits_{-\pi}^{\pi} \sin(nt) f(t)\, dt
-$}
- \end{center}
-Ici, c'est $\dfrac{1}{\pi}$ en facteur, car $N_2^2 \left( \cos(n \bullet)\right) = \frac{1}{2}$
-
-\end{dfn}
-\begin{prop}
-\begin{itemize}
-\item $a_n(f) = c_n(f) + c_{-n}(f)$ et $b_n(f) = i(c_n(f) + c_{-n}(f))$
-\item Si $f$ est paire, alors $b_n = 0 \: \forall n$
-\item Si $f$ est impaire, alors $a_n = 0 \: \forall n$
-\end{itemize}
-\end{prop}
-En général, on utilisera ces coefficients si $f$ présente une parité.
-\begin{dfn}[Série de \textsc{Fourier}]
-On appelle \emph{série de \textsc{Fourier}}\index{fourier@\emphi{Série de }\textsc{Fourier}} de $f$ la série $\sum u_n$ où $\left|
-\begin{array}{l l l l}
-u_0 &=& c_0(f) \; e_0&\\
-u_n &=& c_n(f) \; e_n + c_{-n}(f) \; e_{-n}
-\end{array}
-\right.$\\
-$S_n(f)$ est appelée \emph{somme partielle de rang $\boldsymbol n$ de la série de \textsc{Fourier}}
-\end{dfn}
-\begin{theorem}[Inégalité de Bessel\index{inegalite@Inégalité!Bessel@de \textsc{Bessel}}]
-Si $f \in \mathcal{CM}_{2\pi}$, alors : \[\sum_{k=\textcolor{Red}{-n}}^{n} \left| c_n(f) \right| ^{\textcolor{Red}{2}}\le N_2^{\textcolor{Red}{2}}(f)\]
-\end{theorem}
-\begin{theorem}[Théorème de convergence \textsc{Parseval}]
-Si $f$\index{Parseval@\textsc{Parseval}!convergence@\emphi{théorème de }convergence} est une fonction de \uline{$\mathcal{CM}_{2\pi}$}, alors $\boxed{N_2\left(\vphantom{{3^3}^3} f-S_n(f) \right)_n}$ converge vers 0
-\end{theorem}
-Avec ce nouveau théorème, on trouve le cas d'égalité de l'inégalité de Bessel :
-\begin{itheorem}[Égalité de Parseval\index{Parseval@\string\textsc{Parseval}!egalite@égalité}]
-Si $f$ est une fonction de \uline{$\mathcal{CM}_{2\pi}$} : 
-\begin{center}
-\fcolorbox{couleurNoirClair}{couleurGrisFonce!15}{
-$\sum_{n\textcolor{Red}{\in \mathbb{Z}}} \left| c_n(f) \right| ^{\textcolor{Red}{2}}=N_2^{\textcolor{Red}{2}}(f)$ 
-}
-\end{center}
-En réel, cette égalité devient : 
-\[
-N_2^2(f) = \left( \dfrac{a_0(f)}{2} \right) ^2 + \frac{1}{2}\sum_{n=1}^{+\infty} \left[ a_n^2(f) + b_n(f)^2 \right]
-\]
-\end{itheorem}
-\begin{theorem}[Calcul des Coefficients]
-    Si on a la suite $s_n$ telle que $\left| \begin{gathered} s_n = \sum_{k=-n}^n \alpha_k e_k \\ N_2(s_k - f) \xrightarrow[n\to +\infty ]{} 0 \end{gathered}\right. $, alors $\forall k\in \mathbb{Z}, c_n(f) = \alpha_n$
-\end{theorem}
-    \begin{proof}\hfill \\
-        D'après l'inégalité de \textsc{Cauchy}-\textsc{Schwarz}, $|c_k(s_n - f)|\le N_2(s_n - f)$. Donc $|c_k(f) - \alpha_k|\le N_2(s_n - f) \xrightarrow[n\to +\infty]{} 0$, d'où, quand $n\to +\infty$, $c_n(f) = \alpha_n$.
-    \end{proof}
-\begin{itheorem}[Théorème de convergence normale]
-Si $f$ est \underline{$\mathcal{C}_{2\pi}$ et de classe $\mathcal{C}^1$ par morceaux\footnote{$\mathcal{C}^1$ par morceaux c'est à dire que la dérivée est continue par morceaux, à ne pas confondre avec $f \in \mathcal{CM}$}}
-\begin{tabbing}
-alors \= sa série de \textsc{Fourier} \emph{converge normalement} et sa somme vaut $f$ \\
- \> sa somme partielle de sa série de \textsc{Fourier} $S_n$ \emph{converge uniformément}
-\end{tabbing}
-\end{itheorem}
-\begin{dfn}[Noyau de \textsc{Dirichlet}]
-On appelle \emph{noyau de \textsc{Dirichlet}}\index{dirichlet@\textsc{Dirichlet}!Noyau}, et on note $D_p(t)$ la somme : $D_p(t)=\sum_{k=-p}^p e^{ikt}$
-\end{dfn}
-\begin{itheorem}[Noyau de \textsc{Dirichlet}]
-Si $f \in \mathcal{CM}_{2\pi}$ et $C^1$ par morceaux, alors sa série de \textsc{Fourier} \emph{converge simplement} sur \Reel{}. \\
-\emph{Sa somme} au point $x$, notée $\overset{\sim}{f}(x)$ est égale à $\frac{1}{2}\lim_{h\to 0^+}[f(x+h) + f(x-h)]$. Si $f$ est \emph{continue}, alors $\overset{\sim}{f}(x) = f(x)$.
-\end{itheorem}
 \part{Équations Différentielles}
 \chapter{Équations Différentielles Linéaire}
 \begin{methode}
