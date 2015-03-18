@@ -500,7 +500,7 @@ Pour ne pas avoir trop d'équations redondantes avec les lois de Kirchoff, on po
 \end{itemize}
 \end{methode}
 %
-\section{Circuits linéaires dans l'\gls{ARQS}} % (fold)
+\section[Circuits linéaires dans l'\acrshort{ARQS}]{Circuits linéaires dans l'\gls{ARQS}} % (fold)
 \label{sec:circuits_lineaires_dans_l_ARQS}
 \begin{dfn}[\acrfull{ARQS}]
    On parle d'\gls{ARQS}\index{ARQS@\gls{ARQS}} quand le courant se propage assez rapidement pour pouvoir considérer que son établissement est instantané. \newline
@@ -3171,7 +3171,12 @@ h^\text{rad} = 4\sigma T_0^4
 \label{cha:thermodynamique_statistique}
 \section{Monde microscopique, monde macroscopique} % (fold)
 \label{sec:monde_microscopique_monde_macroscopique}
-
+  % Bon, c'est juste pour ne pas avoir une première section vide : 
+\begin{dfn}[Échelles microscopique, mésoscopique, et macroscopique]
+   L'\emph{échelle macroscopique} est notre échelle. Une longueur microscopiques et de l'ordre du mètre (ou bien plus grande).\\
+   L'\emph{échelle microscopique} est l'échelle des molécules. Une longueur microscopique est de l'ordre de grandeur du libre parcours moyen des molécules. \\
+   L'\emph{échelle mésoscopique} est une échelle à la fois très petite devant l'échelle macroscopique et très grande devant l'échelle microscopique. 
+\end{dfn}
 % section monde_microscopique_monde_macroscopique (end)
 \section{Facteur de \textsc{Boltzmann}} % (fold)
 \label{sec:facteur_de_boltzmann}
@@ -3180,32 +3185,83 @@ h^\text{rad} = 4\sigma T_0^4
 \begin{theorem}[Équation fondamentale de l'hydrostatique]
 À une altitude $z$, la variation de la pression $P(z)$ s'exprime en fonction de la masse volumique $\mu (z)$ d'un système : 
    \begin{equation}
-   \dfrac{\d P(z)}{\d z}=-\mu (z)g
+   \dfrac{\d P(z)}{\d z}=-\mu (z)g\label{eq:eq_fondamentale_hydrostatique}
    \end{equation}
 \end{theorem}
+\begin{proof}
+   On étudie un gaz situé dans un cylindre de section $S$ entre $z$ et $z+\d z$. \\
+   On applique un \gls{PFD} à notre cylindre entre $z$ et $z+\d z$, à l'équilibre : 
+   \begin{align*}
+      \sum \vv{F} &= \vv{0} \\
+      \underbrace{-\mu(z) S\d z~g\vv*{u}{z}}_{\text{Poids}} + \underbrace{P(z)S\vv*{u}{z}}_{\substack{\text{Pression sur la}\\\text{tranche inférieure}}} + \underbrace{(-P(z+\d z)S\vv*{u}{z})}_{\substack{\text{Pression sur la}\\\text{tranche supérieure}}} &= \vv{0}
+      \intertext{En projetant sur $\vv*{u}{z}$ et en simplifiant :}
+      -\mu (z) g\d z + P(z) - P(z+\d z) &= 0
+   \end{align*}
+D'où, puisque $P(z+\d z) = {P(z) + \dfrac{\d P(z)}{\d z}\d z}$ : 
+${\dfrac{\d P(z)}{\d z} = -\mu (z) g}$\qed
+\end{proof}
 \begin{itheorem}
    La solution à l'équation différentielle précédente est :
    \begin{equation}
    P(z) = P_0~e^{-\dfrac{z Mg}{RT}}
    \end{equation}
+   $H = \dfrac{RT}{Mg}$ est la distance caractéristique de la variation de la pression.
 \end{itheorem}
-% subsection atmosphere_isotherme (end)
-\subsection{Atmosphère terrestre} % (fold)
-\label{sub:atmosphere_terrestre}
-\begin{itheorem}
+\begin{proof}
+   On étudie un gaz situé dans un cylindre de section $S$ entre $z$ et $z+\d z$. \\
+   D'après l'équation~\eqref{eq:gaz_parfait} d'état des gaz~parfaits : 
+   \begin{align*}
+      P(z)~\d V &= \d n(z) ~RT
+      \intertext{Or, en notant $\mu(z)$ la masse volumique du gaz en $z$ :}
+      \d n(z) &= \dfrac{\d m(z)}{M} = \dfrac{\mu(z) S\d z}{M}
+      \intertext{On réinjecte :}
+      P(z)~\d V &= \dfrac{\mu(z) S\d z}{M}~RT
+      \intertext{et sachant que $\frac{\d V}{S}=\d z$, on a :}
+      \mu(z) &= \dfrac{P(z)~M}{RT}
+   \end{align*}
+   Depuis l'équation fondamentale de l'hydrostatique (équation~\eqref{eq:eq_fondamentale_hydrostatique}), on obtient une équation différentielle : 
+   \begin{align*}
+      \dfrac{\d P(z)}{\d z} &= - \dfrac{M}{RT}P(z)g \\
+      \dfrac{\d P(z)}{\d z} + \dfrac{Mg}{RT}P(z) &= 0
+   \end{align*}
+   La solution à cette équation est donc $P(z) = P_0~e^{-\dfrac{z~Mg}{RT}}$\qed
+\end{proof}
+Puisque $PV=nRT$, on peut utiliser cette équation pour déterminer l'expression de grandeurs comme la masse volumique $\mu (z)$ ou $\d n(z)$ : 
+\[
+  \mu(z) = \mu_0~e^{-\dfrac{z~Mg}{RT}}
+\]
+\begin{theorem}
    La probabilité $\d p(z)$ pour une molécule de se trouver entre les cotes $z$ et $z+\d z$ est \emphh{proportionnelle} au \emph{facteur de \textsc{Boltzmann}}\index{Facteur de Boltzmann@Facteur de \textsc{Boltzmann}} : 
    \begin{equation}
-   \d p(z) = A e^{-\dfrac{E_p(z)}{k_B T}}
+   \d p(z) = A~e^{-\dfrac{E_p(z)}{k_B T}}
    \end{equation}
-   Cette probabilité est appellée le \emph{poids de \textsc{Boltzmann}}\index{Poids de Boltzmann@Poids de \textsc{Boltzmann}}
+   Cette probabilité est appelée le \emph{poids de \textsc{Boltzmann}}\index{Poids de Boltzmann@Poids de \textsc{Boltzmann}}
 \Attention{$\d p$ est une \uline{probabilité} ! Pas une pression !}
+\end{theorem}
+
+% subsection atmosphere_isotherme (end)
+\subsection[Poids de \textsc{Boltzmann}]{Poids de \textsc{Boltzmann} d'une particule indépendante à l'équilibre avec un thermostat} % (fold)
+\label{sub:poids_de_boltzmann_d_une_particule_independante_a_l_equilibre_avec_un_thermostat}
+On va généraliser ce qu'on vient de voir au cas d'un système constitué de particules indépendantes, c'est-à-dire qui n’interagissent pas entre elles.
+\begin{itheorem}
+   La probabilité $\d p(E_i)$ qu'une particule microscopique \emphh{indépendante} soit dans un état quantique d'énergie $E_i$ est \emphh{proportionnelle} au \emph{facteur de \textsc{Boltzmann}}\index{Facteur de Boltzmann@Facteur de \textsc{Boltzmann}} :
+   \begin{equation}
+    \d p(E_i) = A~e^{-\dfrac{E_i}{k_B T}}
+   \end{equation}
 \end{itheorem}
-% subsection atmosphere_terrestre (end)
+Pour déterminer la constante $A$, on utilise le théorème suivant de condition de normalisation : 
+\begin{theorem}[Condition de normalisation]
+La somme des probabilités est égale à $1$. Autrement dit : 
+   \begin{equation}
+   \sum_i p(E_i) = 1
+   \end{equation}
+\end{theorem}
+% subsection poids_de_boltzmann_d_une_particule_independante_a_l_equilibre_avec_un_thermostat (end)
 % section facteur_de_boltzmann (end)
 % chapter thermodynamique_statistique (end)
 \chapter{Annexe}
-%TODO Grandeurs à connaitre
-\todo{Grandeurs à connaitre}
+%TODO Grandeurs à connaître
+\todo{Grandeurs à connaître}
 \section{Trigonométrie}
 \subsection{Définition}
 On aura souvent besoin de trigonométrie en Physique. Surtout les règles sur les sinus et cosinus. Bien sûr, la première chose à ne jamais oublier, c'est leur définition en exponentielle : \\
