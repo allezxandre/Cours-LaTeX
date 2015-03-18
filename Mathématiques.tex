@@ -1050,6 +1050,59 @@ Dans une espace vectoriel normé $(E,N)$, on définit les boules centrées en $a
     Sphère & ${x \in E | N(x-a)= r } $ \\
     \end{tabular}
 \end{dfn}
+% subsection boules (end)
+\subsection{Parties, suites, fonctions bornées} % (fold)
+\label{sub:parties_suites_fonctions_bornees}
+\begin{dfn}[Partie bornée]
+     Une partie $A$ de $E$ est dite \emph{bornée} s'il existe une boule $B(a,r)$ la contenant : 
+     \begin{equation}
+     \exists(a,r),\, A \subset B(a,r)
+     \end{equation}
+\end{dfn}
+\begin{theorem}[\acrshort{CNS} d'une partie bornée]
+     Une partie $A$ de $E$ est \emph{bornée} \ssi{} il existe un réel $M$ tel que :
+     \begin{equation}
+     \forall x\in A,\, \| A \| \le M
+     \end{equation}
+\end{theorem}
+\Attention{Le caractère borné d'une partie dépend de la norme. Il peut donc arriver qu'une partie soit bornée pour une norme et pas pour une autre.}
+\begin{dfn}[Application bornée]
+     Une application $f:X\to E$ est dite \emph{bornée} si l'ensemble $\lbrace f(x),\, x\in X\rbrace $ est borné.
+\end{dfn}
+% subsection parties_suites_fonctions_bornees (end)
+\subsection{Produit scalaire} % (fold)
+\label{sub:produit_scalaire}
+\begin{dfn}[Produit scalaire]\label{dfn:ProduitScal}
+Le \emph{produit scalaire}\index{Produit scalaire} est défini comme suit : 
+\[
+\begin{array}{c r l l}
+(i)&\forall x \in E\backslash \{ 0 \} , &\uline{\varphi(x,x)>0}&\text{\textbf{(définie positive)}}\\
+(ii)&\forall (x,y) \in E^2, &\uline{\varphi (x,y) = \varphi (y,x)} &\text{\textbf{(symétrie)}}\\
+(iii)&\forall x \in E, &\uline{y \mapsto \varphi(x,y) \text{ est linéaire}}&\text{\textbf{(linéaire à droite)}}
+\end{array}
+\]
+On peut associer un produit scalaire $(\cdot | \cdot )$ à un espace vectoriel $E$. L'espace $(E, (\cdot | \cdot ))$ est appelé \emph{espace préhilbertien}\index{Espace!prehilbertien@préhilbertien}.
+\end{dfn}
+\textbf{Remarque :} La symétrie et la linéarité impliquent la linéarité à gauche, donc la bilinéarité du produit scalaire.
+\begin{theorem}[Continuité du produit scalaire]
+     Le produit scalaire est une application bilinéaire \emphhs{continue} de $E\times E$ dans $\Reel{}$.
+\end{theorem}
+\begin{itheorem}[Norme associée]\label{NormeAssocieProdScal} 
+$x\mapsto \sqrt{(x|x)}$ définit une norme sur $E$. On la note $||x||$, et $||x||^2 = (x|x)$.
+\end{itheorem}
+\begin{itheorem}[Inégalité \textsc{Cauchy-Schwarz}\index{inegalite@Inégalité!cauchy@de \textsc{Cauchy-Schwarz}}]
+\begin{subequations}
+\begin{align}
+\textcolor{Red}{|}(x|y)\textcolor{Red}{|} &\le \sqrt{(x|x)} \times \sqrt{(y|y)}
+\intertext{qu'on peut aussi écrire :}
+\textcolor{Red}{|}(x|y)\textcolor{Red}{|}&\le \| x\| \times \| y\|
+\end{align}
+\end{subequations}
+avec égalité si et seulement si $(x,y)$ est une famille liée.
+\end{itheorem}
+% subsection produit_scalaire (end)
+\section{Suites d'éléments d'un espace vectoriel normé} % (fold)
+\label{sec:suites_evn}
 \begin{dfn}[Convergence d'une suite]
     On dit que la suite des $(x_n)_n $ converge si l'une des conditions suivantes est vérifiée : 
     \begin{equation}
@@ -1060,10 +1113,6 @@ Dans une espace vectoriel normé $(E,N)$, on définit les boules centrées en $a
     \end{array}
     \end{equation}
 \end{dfn}
-% subsection boules (end)
-\section{Suites d'éléments d'un espace vectoriel normé} % (fold)
-\label{sec:suites_evn}
-
 % section suites_evn (end)
 \section{Comparaison des normes} % (fold)
 \label{sec:comparaison_des_normes}
@@ -1275,41 +1324,12 @@ Dans cette section, on se placera dans \Reel{}.
 \begin{methode}
 \titre{Définitions rapides}
 \begin{description}
-\item[Produit Scalaire] \textit{cf.} définition \ref{DefProduitScal} page \pageref{DefProduitScal}
+\item[Produit Scalaire] \textit{cf.} définition \ref{dfn:ProduitScal} page \pageref{dfn:ProduitScal}
 \item[Éléments orthogonaux] $x$ et $y$ sont orthogonaux si $( x | y ) = 0 $
 \item[Famille orthogonale] $(e_i|e_j) = \delta{i,j}$
 \item[Distance de $x$ à une partie $F$] $d(x,F) = \| x - p_f(x) \|$
 \end{description}
 \end{methode}
-\section{Produit scalaire}
-\begin{dfn}[Produit scalaire]\label{DefProduitScal}
-Le produit scalaire \index{Produit scalaire} est défini comme suit : 
-\[
-\begin{array}{c r l l}
-(i)&\forall x \in E\backslash \{ 0 \} , &\uline{\varphi(x,x)>0}&\text{\textbf{(définie positive)}}\\
-(ii)&\forall (x,y) \in E^2, &\uline{\varphi (x,y) = \varphi (y,x)} &\text{\textbf{(symétrie)}}\\
-(iii)&\forall x \in E, &\uline{y \mapsto \varphi(x,y) \text{ est linéaire}}&\text{\textbf{(linéaire à droite)}}
-\end{array}
-\]
-On peut associer un produit scalaire $(\cdot | \cdot )$ à un espace vectoriel $E$. L'espace $(E, (\cdot | \cdot ))$ est appelé \emph{espace préhilbertien}\index{Espace!prehilbertien@préhilbertien}.
-\end{dfn}
-\textbf{Remarque :} La symétrie et la linéarité impliquent la linéarité à gauche, donc la bilinéarité du produit scalaire.
-\begin{theorem}[Continuité du produit scalaire]
-     Le produit scalaire est une application bilinéaire \emphhs{continue} de $E\times E$ dans $\Reel{}$.
-\end{theorem}
-\begin{theorem}[Norme associée]\label{NormeAssocieProdScal} 
-$x\mapsto \sqrt{(x|x)}$ définit une norme sur $E$. On la note $||x||$, et $||x||^2 = (x|x)$.
-\end{theorem}
-\begin{theorem}[Inégalité \textsc{Cauchy-Schwarz}\index{inegalite@Inégalité!cauchy@de \textsc{Cauchy-Schwarz}}]
-\begin{subequations}
-\begin{align}
-\textcolor{Red}{|}(x|y)\textcolor{Red}{|} &\le (x|x)^{\frac{1}{2}} \times (y|y)^{\frac{1}{2}}
-\intertext{qu'on peut aussi écrire :}
-\textcolor{Red}{|}(x|y)\textcolor{Red}{|}&\le \| x\| \times \| y\|
-\end{align}
-\end{subequations}
-avec égalité si et seulement si $(x,y)$ est une famille liée.
-\end{theorem}
 \section{Orthogonalité}
 \begin{dfn}[Éléments orthogonaux]
 Deux éléments $x$ et $y$ sont orthogonaux si $(x|y)=0$
@@ -1392,8 +1412,8 @@ $u$ est un endomorphisme, donc il est \uline{linéaire}.
 \end{itheorem}
 \chapter{Espaces Préhilbertiens complexes}
 \section{Structure Préhilbertienne complexe}
-On se place dans $\Cmplx$ et on établit de nouveau le \uline{produit scalaire} comme à la définition \ref{DefProduitScal} page \pageref{DefProduitScal} du chapitre précédent. À une différence prêt, la symétrie est appelée \textbf{symétrie hermitienne}
-\begin{dfn}[Produit scalaire]\label{DefProduitScalCmplx}
+On se place dans $\Cmplx$ et on établit de nouveau le \uline{produit scalaire} comme à la définition \ref{dfn:ProduitScal} page \pageref{dfn:ProduitScal} du chapitre précédent. À une différence prêt, la symétrie est appelée \textbf{symétrie hermitienne}
+\begin{dfn}[Produit scalaire]\label{dfn:ProduitScalCmplx}
 Le produit scalaire \index{Produit scalaire} est défini comme suit : 
 \[
 \begin{array}{c r l l}
