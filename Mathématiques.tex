@@ -1,11 +1,7 @@
 % !TEX encoding = UTF-8 Unicode
-
-%\RequirePackage[leqno]{amsmath}
 \documentclass[11pt,a4paper,fleqn,pdftex]{report}
 \include{Preambule}
 \begin{document}
-
-
 \newcounter{density}
 \setcounter{density}{20}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Page de Garde
@@ -2268,7 +2264,7 @@ $f\in\mathcal{C}^{k+1}(I,E)$, avec $(a,b)\in I^2$
 	\end{itemize}
 	\item Comparer la fonction \hfill \\ On pourra utiliser :
 	\begin{itemize}\itemsep2pt
-		\item La fonction \emph{exponentielle} ; % WHAT ? Pourquoi j'ai écrit ça ???
+		\item La fonction \emph{exponentielle} ; % WHAT ? Pourquoi j'ai écrit ça ??? Croissances comparées peut-être ? 
         \item Les croissances comparées ;
 		\item L'intégrale de \emph{\textsc{Riemann}} : $\frac{1}{t^\alpha}$ (théorème \ref{thm:integrale_riemann} page~\pageref{thm:integrale_riemann}) \\
         \item Une extension de \textsc{Riemann} : par exemple, $f$ est intégrable sur $]0,1[$ si $\exists \alpha < 1$ tel que $f(x)\, x^\alpha \xrightarrow[x \to 0]{} 0$, car alors, quand $x$ tend vers $0$, $x^\alpha f(x) \le 1$ et on retrouve \textsc{Riemann}.
@@ -2276,7 +2272,6 @@ $f\in\mathcal{C}^{k+1}(I,E)$, avec $(a,b)\in I^2$
 	\end{itemize}
 \end{enumerate}
 \titre{Pour intégrer}
-\\[5pt]
 On utilisera
 \begin{enumerate}
 	\item Les intégrations par partie
@@ -2290,7 +2285,13 @@ Souvent, on ne peut intégrer sur tout un intervalle comme $[0;+\infty ]$. Pour 
      \emphh{Forme} & \emphh{Méthode} \\
      $\dfrac{\sqrt{a} - \sqrt{b}}{x}$ & Multiplier le dénominateur et le numérateur par le conjugué $\sqrt{a}+\sqrt{b}$ pour obtenir $a-b$ en haut \\
      $\dfrac{\ln x}{x^\alpha}$ & On remarque que $x^{\frac{\alpha + 1}{2}}\dfrac{\ln x}{x^\alpha} = \dfrac{\ln x}{x^{\frac{\alpha - 1}{2}}}$ qui tend vers $0$ en $+\infty$. On a alors $\dfrac{\ln x}{x^\alpha}\underset{+\infty}{=}o \left( \dfrac{1}{x^{\frac{\alpha + 1}{2}}} \right) $. Plus qu'à appliquer \textsc{Riemann}. \\
-     $\dfrac{1}{(x+a)\cdots(x+z)}$&Décomposition en éléments simples !
+     $\dfrac{1}{(x+a)\cdots(x+z)}$&Décomposition en éléments simples !\\
+\end{tabulary}
+\titre{Applications classiques des théorèmes}
+\begin{tabulary}{\textwidth}{| r@{ - (} c @{) }| C |}
+     \small{Dérivation d'une intégrale à paramètre}&\ref{thm:derivation_d_une_integrale_parametres}&Montrer que $\lim\left( \int \cdots\right) = \int \left( \lim \cdots\right) $\\
+     \small{Intégration terme-à-terme}&\ref{thm:integration_terme_terme}&Montrer une égalité du type $\int f_\text{\gls{DSE}} = \int \left( \sum (\gls{DSE}) \right) = \sum \left( \int \cdots \right)$\\
+     Convergence dominée&\ref{thm:convergence_dominee}&Dériver une fonction de type $f(x)=\int_I \varphi(x,t)\d t$
 \end{tabulary}
 \end{methode}
 \section{Intégrale généralisée sur un intervalle de la forme $[a,+\infty[$} % (fold)
@@ -2499,19 +2500,27 @@ Soit $f\in \mathcal{L}^1(I,\mathbb{K})$, on note $\int_I f$ l'intégrale $\int_a
 \subsection{Convergence dominée} % (fold)
 \label{sub:convergence_dominee}
 \begin{itheorem}[Convergence dominée\index{Convergence!dominee@dominée} ]
+\label{thm:convergence_dominee}
     Soit $n\in \mathbb{N}$. Si $\big( f_n \big)_n$ est une suite de fonction de $\mathcal{CPM}(I,K) $ convergeant simplement vers une fonction $f \in \mathcal{CPM}(I,K)$, et s'il existe $\varphi \in \mathcal{L}^1 $ telle que \ibox{$\forall n, | f_n | \le \varphi$},\newline
     alors $f \in \mathcal{L}^1$ et $\int_I f = \lim_{n \to +\infty} \int_I f_n$
 \end{itheorem}
-\todo{Paramètre réel}
-%\begin{theorem}[Convergence dominée de fonction à paramètre réel]
-    %Soit $\lambda\in \Reel{}$. Si $\big( f_\lambda \big)_\lambda$ est une suite de fonction de $\mathcal{CPM}(I,K) $.\\
-    % convergeant simplement vers une fonction $f \in \mathcal{CPM}(I,K)$, et s'il existe $\varphi \in \mathcal{L}^1 $ telle que \ibox{$\forall n, | f_\lambda | \le \varphi$},\newline
-    %alors $f \in \mathcal{L}$ et $\int_I f = \lim_{n \to +\infty}, \int_I f_\lambda$
-%\end{theorem}
+\begin{theorem}[Convergence dominée de fonction à paramètre réel]
+\label{thm:convergence_dominee_reel}
+    Soit $\lambda\in J\subset \Reel{}$. On suppose que :
+    \begin{itemize}
+        \item $\big( f_\lambda \big)_\lambda$ est une suite de fonction de $\mathcal{CPM}(I,K)$ ;
+        \item pour tout $x\in I$, pour tout $\lambda_0\in \overline{J}$, $f_\lambda (x) \xrightarrow[\lambda \to \lambda_0]{} f (x)$ avec $f \in \mathcal{CPM}(I,K)$ ;
+        \item il existe $\varphi \in \mathcal{L}^1 $ telle que \ibox{$\forall n, | f_\lambda | \le \varphi$}.
+    \end{itemize}
+    Alors, $f \in \mathcal{L}^1$, et $\int_I f = \lim_{\lambda \to \lambda_0} \int_I f_\lambda$
+\end{theorem}
+\todo{Démo !}
+% TODO: Démo du paramètre réel. On la fait par caractérisation séquentielle sur le théorème de CVD.
 % subsection convergence_dominee (end)
 \subsection{Intégration terme à terme} % (fold)
 \label{sub:integration_terme_terme}
 \begin{itheorem}[Intégration terme à terme]
+\label{thm:integration_terme_terme}
     Si $
         \displaystyle
         \left.
@@ -2549,6 +2558,7 @@ On a aussi la version avec $\mathcal{C}^{k}$ mais ce n'est pas au programme
 \section{Dérivation d'un intégrale à paramètre} % (fold)
 \label{sec:derivation_d_un_integrale_parametre}
 \begin{itheorem}[Dérivabilité]
+\label{thm:derivation_d_une_integrale_parametres}
 La fonction $g : x \mapsto \int_I f(x,t)$ est \uline{\emph{dérivable et continue $\left( \mathcal{C}^1 \right)$}} sur $A$ si 
 \begin{equation}
 \left\lbrace
@@ -2569,6 +2579,7 @@ f \text{ admet une dérivée partielle qui vérifie} \\
 
 Alors, la dérivée de $g$ est $g'(x) = \int_I \dfrac{\partial f}{\partial x}(x,t) \d t$
 \end{itheorem}
+\todo{Intégrale $\mathcal{C}^k$}
 % section derivation_d_un_integrale_parametre (end)
 \section{Intégrabilité (Ancienne version)}
 À l'origine, on donne plusieurs définitions de l'intégrabilité : d'abord pour les fonctions positives, puis pour les autres en disant que c'est si $|f|$ est intégrable. On donne ici une définition plus générale : 
@@ -2685,6 +2696,9 @@ Le produit scalaire \index{Produit scalaire} est défini comme suit :
 On peut associer un produit scalaire $(\cdot | \cdot )$ à un espace vectoriel $E$. L'espace $(E, (\cdot | \cdot ))$ est appelé \emph{espace préhilbertien}\index{Espace!prehilbertien@préhilbertien}.
 \end{dfn}
 \textbf{Remarque :} La symétrie et la linéarité impliquent la linéarité à gauche, donc la bilinéarité du produit scalaire.
+\begin{theorem}[Continuité du produit scalaire]
+     Le produit scalaire est une application bilinéaire \emphhs{continue} de $E\times E$ dans $\Reel{}$.
+\end{theorem}
 \begin{theorem}[Norme associée]\label{NormeAssocieProdScal} 
 $x\mapsto \sqrt{(x|x)}$ définit une norme sur $E$. On la note $||x||$, et $||x||^2 = (x|x)$.
 \end{theorem}
@@ -2698,6 +2712,10 @@ $x\mapsto \sqrt{(x|x)}$ définit une norme sur $E$. On la note $||x||$, et $||x|
 \end{subequations}
 avec égalité si et seulement si $(x,y)$ est une famille liée.
 \end{theorem}
+\section{Orthogonalité}
+\begin{dfn}[Éléments orthogonaux]
+Deux éléments $x$ et $y$ sont orthogonaux si $(x|y)=0$
+\end{dfn}
 \begin{theorem}[Pythagore]
 Si $x_1, \cdots , x_n$ sont des éléments de $E$ deux à deux \uline{orthogonaux}, alors 
 \begin{equation}
@@ -2705,10 +2723,6 @@ Si $x_1, \cdots , x_n$ sont des éléments de $E$ deux à deux \uline{orthogonau
 \end{equation}
 \Attention{Ce sont bien des normes car $x_i$ au carré n'existe pas (qu'est-ce que le produit de deux vecteurs ?), du coup on utilise $\| \cdot \| ^2 = (\cdot | \cdot )$}
 \end{theorem}
-\section{Orthogonalité}
-\begin{dfn}[Éléments orthogonaux]
-Deux éléments $x$ et $y$ sont orthogonaux si $(x|y)=0$
-\end{dfn}
 \begin{itheorem}[Procédé d'orthonormalisation de \textsc{Schmidt}]\index{Procede@Procédé! Orthonormalisation@d'Orthonormalisation de \textsc{Schmidt}}
 Pour toute base de $(e_i)$, il existe une base $(\varepsilon_i)$ telle que :
 \begin{equation}
