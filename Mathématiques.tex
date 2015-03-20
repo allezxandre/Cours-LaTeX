@@ -1119,9 +1119,8 @@ avec égalité si et seulement si $(x,y)$ est une famille liée.
 \begin{dfn}[Normes équivalentes]
      On dit que deux normes $N_1$ et $N_2$ sont équivalentes si
      \begin{equation}
-     \exists (c,C)\in \mathbb{R}^{\textcolor{couleurImp}{+}},\, \forall x \in E,\, cN_1(x) \le N_2(x) \le CN_1(x)
-     \end{equation}
-     
+     \exists (c,C)\in {\mathbb{R}^{\textcolor{couleurImp}{+}}}^2,\, \forall x \in E,\, cN_1(x) \le N_2(x) \le CN_1(x)
+     \end{equation}     
 \end{dfn}
 \begin{itheorem}[Dimension finie]
      Dans un espace vectoriel de dimension finie, toutes les normes sont équivalentes.
@@ -1335,12 +1334,20 @@ Dans cette section, on se placera dans \Reel{}.
 Deux éléments $x$ et $y$ sont orthogonaux si $(x|y)=0$
 \end{dfn}
 \begin{theorem}[Pythagore]
-Si $x_1, \cdots , x_n$ sont des éléments de $E$ deux à deux \uline{orthogonaux}, alors 
+Si $(x_1, \cdots , x_n)$ est une famille d'éléments de $E$ deux à deux \emphhs{orthogonaux}, alors 
 \begin{equation}
 \left| \left| \sum_{i=0}^{n} x_i \right| \right| ^2 = \sum_{i=0}^n  \| x_i\| ^2
 \end{equation}
 \Attention{Ce sont bien des normes car $x_i$ au carré n'existe pas (qu'est-ce que le produit de deux vecteurs ?), du coup on utilise $\| \cdot \| ^2 = (\cdot | \cdot )$}
 \end{theorem}
+\begin{proof}
+     On procède par récurrence. Avec une famille à deux éléments : 
+     \begin{align*}
+         \| x_1 + x_2 \|^2 &= \|x\|^2 + 2(x|y)+ \|y\|^2
+         \intertext{Puisque $x_1$ et $x_2$ sont orthogonaux par hypothèse, on obtient :}
+         \| x_1 + x_2 \|^2 &= \|x\|^2 + \|y\|^2
+     \end{align*}
+\end{proof}
 \begin{itheorem}[Procédé d'orthonormalisation de \textsc{Schmidt}]\index{Procede@Procédé! Orthonormalisation@d'Orthonormalisation de \textsc{Schmidt}}
 Pour toute base de $(e_i)$, il existe une base $(\varepsilon_i)$ telle que :
 \begin{equation}
@@ -1401,7 +1408,6 @@ $u$ est un endomorphisme, donc il est \uline{linéaire}.
         \end{gathered}\right|$ où $U = M_\mathcal{B}(u)$
     \end{enumerate}
 \end{theorem}
-
 \begin{itheorem}[Théorème spectral]
     Tout \emphh{endomorphisme auto-adjoint} est diagonalisable, et il existe une base orthonormale de vecteurs propres de $u$.\par
 
@@ -1410,6 +1416,49 @@ $u$ est un endomorphisme, donc il est \uline{linéaire}.
     \forall A \in S_n, \exists  \left| \begin{gathered} P \in \mathcal{O}(n) \\ D \in \mathcal{D}_n(\Reel) \end{gathered} \right. \text{ tel que } A = PDP^{-1} = PD{}^tP
     \end{equation}
 \end{itheorem}
+\section{Isométries vectorielles d'un espace euclidien} % (fold)
+\label{sec:isometries_vectorielles_d_un_espace_euclidien}
+\begin{dfn}[Isométrie vectorielle d'un espace euclidien]
+     Soit $E$ un espace euclidien.\\
+     On dit que $u\in \mathcal{L}(E)$ est une \emph{isométrie vectorielle}\index{Isometrie@Isométrie!vectorielle} si $u$ est un endomorphisme qui \emphhs{conserve la norme} :
+     \begin{equation}
+     \forall x\in E,\qquad \|u(x)\| = \| x\|
+     \end{equation}
+\end{dfn}
+\begin{theorem}[Bijectivité]
+     Une isométrie vectorielle est bijective.
+\end{theorem}
+\begin{proof}
+     Une isométrie vectorielle est injective : 
+     \begin{align*}
+         u(x) = 0 &\implies \| u(x)\| = 0\\ 
+                  &\implies \| x \| = \| u(x)\| = 0\\ 
+                  &\implies x=0
+     \end{align*}
+     Puisque $E$ est un espace euclidien, il est de dimension finie. Ainsi injectivité~$\Leftrightarrow$~bijectivité, et $u$ est bijective.\qed
+\end{proof}
+\begin{theorem}[\acrshort{CNS} avec le produit scalaire]
+     $u\in \mathcal{L}(E)$ est une \emphh{isométrie vectorielle} \ssi{} $u$ conserve le produit scalaire : 
+     \begin{equation}
+     \forall (x,y)\in E^2,\qquad \Big( u(x) \Big| u(y) \Big) = \big( x|y\big) 
+     \end{equation}
+\end{theorem}
+\begin{proof}
+     Commençons par le sens \og{}conserve le produit~scalaire~$\implies$~isométrie~vectorielle\fg{} : 
+     \begin{equation*}
+          \|u(x) \| = \sqrt{\big( u(x) | u(x) \big) }= \sqrt{\big( x | x \big) } = \| x \|
+     \end{equation*}
+     Réciproquement, montrons que \og{}conserve le produit~scalaire~$\Longleftarrow$~isométrie~vectorielle\fg{}.\newline
+     Si $u$ est une isométrie vectorielle, d'après les identités de polarisation : 
+     \begin{align*}
+          \left( u(x) | u(y) \right) 
+    &= \frac{1}{4} \left( \| u(x) + u(y) \|^2 - \| u(x) - u(y) \|^2 \right) \\
+    &= \frac{1}{4} \left( \| x+y \|^2 - \| x-y \|^2 \right) \\ % Par linéarité de u
+    &= (x|y)
+     \end{align*}
+     On a alors montré l'équivalence.\qed
+\end{proof}
+% section isometries_vectorielles_d_un_espace_euclidien (end)
 \chapter{Espaces Préhilbertiens complexes}
 \section{Structure Préhilbertienne complexe}
 On se place dans $\Cmplx$ et on établit de nouveau le \uline{produit scalaire} comme à la définition \ref{dfn:ProduitScal} page \pageref{dfn:ProduitScal} du chapitre précédent. À une différence prêt, la symétrie est appelée \textbf{symétrie hermitienne}
