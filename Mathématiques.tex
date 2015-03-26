@@ -3003,7 +3003,7 @@ $f$ une fonction continue de $[\alpha{},\beta{}]\times [a,b]$ dans $\mathbb{C}$.
 Alors $\displaystyle\int_{\alpha}^{\beta}\left(\displaystyle\int_{a}^{b}f(x,t)dt\right)dx=\displaystyle\int_{a}^{b}\left(\displaystyle\int_{\alpha}^{\beta}f(x,t)dx\right)dt$
 \end{dfn}
 \part{Équations Différentielles}
-\chapter{Équations Différentielles Linéaire}
+\chapter{Équations Différentielles Linéaires}
 \begin{methode}
 \titre{Résoudre une équation différentielle}
 \begin{description}
@@ -3020,16 +3020,130 @@ Alors $\displaystyle\int_{\alpha}^{\beta}\left(\displaystyle\int_{a}^{b}f(x,t)dt
 \end{description}
 
 \end{methode}
+Dans ce chapitre, $I$ désigne un intervalle de $\mathbb{R}$, et $E$ est un $\mathbb{K}$-espace~vectoriel \emphhs{de dimension finie} $n$.
+\section{Généralités} % (fold)
+\label{sec:ED_generalites}
+\subsection{Équation différentielle linéaire} % (fold)
+\label{sub:equa_diff_lineaire}
 
-\begin{dfn}\index{equation differentielle@Équation Différentielle}
-$I$ un $\mathbb{K}$-Algèbre\\
-On appelle Équation différentielle l'équation $(\mathscr{L})$ :
-\begin{equation}\tag{\ensuremath{\mathscr{L}}}
+\begin{dfn}[Équation différentielle linéaire d'ordre $1$]
+     On appelle \emph{équation différentielle d'ordre $1$}\index{equation differentielle@Équation différentielle} l'équation~\eqref{eq:equa_diff_lineaire_ordre_1} :
+     \begin{equation}\tag{\ensuremath{\mathcal{L}}}\label{eq:equa_diff_lineaire_ordre_1}
+     x' = a(t)(x) +b(t)
+     \end{equation}
+     avec $a\in \mathcal{C}\big( I,\mathscr{L}(E)\big)$ et $b\in \mathcal{C}\big( I,E\big)$.\\
+     L'application $x : I\to E$, dérivable, est \emph{solution} de l'équation~\eqref{eq:equa_diff_lineaire_ordre_1} si : 
+     \begin{equation}
+     \forall t\in I,\qquad x'(t) = a(t)\Big( x(t)\Big) +b(t)
+     \end{equation}
+\end{dfn}
+\Attention{
+$a$ est une application de $I$ dans \uline{$\mathscr{L}(F)$}. Donc $a(t)$ est une application linéaire, pas un scalaire}
+%
+\begin{dfn}[Forme matricielle]
+     En choissisant une base de $E$, l'équation peut s'écrire matriciellement :
+     \begin{equation}
+     X'(t)=A(t)X(t)+B(t)
+     \end{equation}
+     avec $A\in \mathcal{C}\Big( I,M_n (\mathbb{R})\Big) $ et $B \in \mathcal{C}\big( I,\mathbb{R}^n\big) $
+\end{dfn}
+\begin{dfn}[Équation homogène associée]
+     On appelle \emph{équation homogène}\index{equation homogene@Équation homogène} associée à l'équation~différentielle~\eqref{eq:equa_diff_lineaire_ordre_1} l'équation : 
+     \begin{equation}\tag{\ensuremath{\mathcal{H}}}\label{eq:equa_diff_homogene_ordre_1}
+     x'=a(t)(x)
+     \end{equation}
+\end{dfn}
+\begin{theorem}[Principe de superposition]
+     \begin{tabbing}
+          Si \=$x_1$ est solution de \=$x'=a(t)~x+b_1(t)$\\
+          et \>$x_2$ \rule{6em}{0.4pt} \>$x'=a(t)~x+b_2(t)$
+     \end{tabbing}
+     alors $x_1+x_2$ est solution de 
+     \begin{equation}
+     x' = a(t)(x) + b_1(t) + b_2(t)
+     \end{equation}
+\end{theorem}
+% subsection equa_diff_lineaire (end)
+\subsection{Problème de \textsc{Cauchy}} % (fold)
+\label{sub:probleme_de_cauchy}
+\begin{dfn}[Problème de \textsc{Cauchy}]
+     On appelle \emph{problème de \textsc{Cauchy}}\index{Probleme de cauchy@Problème de \textsc{Cauchy}} pour l'équation différentielle~\eqref{eq:equa_diff_lineaire_ordre_1} l'ensemble constitué par \eqref{eq:equa_diff_lineaire_ordre_1} et un couple $(t_0,x_0)$ formant une condition initiale :
+     \begin{equation}\label{eq:probleme_cauchy}
+     \left\lbrace
+     \begin{array}{rcl@{\qquad}c}
+          x'(t) &=& a(t)\big( x(t)\big) +b(t)  &\eqref{eq:equa_diff_lineaire_ordre_1}\\
+          x(t_0) &=& x_0                       &\text{(Condition initiale)}
+     \end{array}
+     \right.
+     \end{equation}
+\end{dfn}
+\begin{theorem}[Mise sous forme intégrale]
+     $x\in \mathcal{C}(I,F)$ est \emphh{solution du problème~de~\textsc{Cauchy}}~\eqref{eq:probleme_cauchy} \ssi{} :
+     \begin{equation}
+     x(t) = x_0 + \int_{t_0}^t \Big( a(u)\big(x(u)\big) + b(u)\Big) \d u
+     \end{equation}
+\end{theorem}
+% subsection probleme_de_cauchy (end)
+\subsection{Équation scalaire linéaire d'ordre $n$} % (fold)
+\label{sub:equation_scalaire_lineaire_d_ordre_n}
+\begin{dfn}[Équation scalaire linéaire]
+     Avec les notations précédentes, une équation de la forme
+     \begin{equation}
+     x' = a(t)x + b(t)
+     \end{equation}
+     est scalaire si $n=\dim E = 1$.
+\end{dfn}
+\begin{dfn}[Équation différentielle linéaire d'ordre $n$]
+On appelle \emph{équation différentielle d'ordre $n$}\index{equation differentielle@Équation Différentielle} l'équation~\eqref{eq:ED_lineaire_ordre_n} :
+\begin{equation}\tag{\ensuremath{\mathscr{L}}}\label{eq:ED_lineaire_ordre_n}
 a_0(t)y^{(n)}+a_1(t) y^{(n-1)}+\cdots + a_{n-1}(t) y' + a_n(t) y = b(t)
 \end{equation}
-$\left( \vphantom{3^3} a_0,\cdots ,a_n \right)$ est dans $\left( \mathcal{C}(I,\Reel{})\right)^{n+1} $. L'ensemble des solutions de $\mathscr{L}$ dans $I$ est noté $S_I(\mathscr{L})$
+$\left( \vphantom{3^3} a_0,\cdots ,a_n \right)$ est dans $\Big( \mathcal{C}(I,\Reel{})\Big)^{n+1} $. \\
+Cette équation est équivalente à un système différentiel linéaire de la forme 
+    $$ X'(t) = A(t)X(t) + B(t) $$ 
+avec $A\in \mathcal{C}\Big( I,M_n (\mathbb{R})\Big) $ et $B \in \mathcal{C}\big( I,\mathbb{R}^n\big) $
 \end{dfn}
+% subsection equation_scalaire_lineaire_d_ordre_n (end)
+% section ED_generalites (end)
+\section{Solutions d'une équation différentielle linéaire} % (fold)
+\label{sec:solutions_d_une_equation_differentielle_lineaire}
+\begin{itheorem}[Théorème de \textsc{Cauchy-Lipshitz}\index{Cauchy-Lipshitz@\textsc{Cauchy-Lipshitz}} linéaire]\label{th:CauchyLipschitz}
+Soit l'équation différentielle 
+\begin{equation}\tag{$E$}
+ x'(t) = a(t) x(t) + b(t)
+\end{equation}
+où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right)$, $b\in \mathcal{C}(I,F)$, alors
+\begin{equation}
+    \forall (t_0,x_0) \in (I,F), \exists ! \: \varphi \text{ telle que }
+    \left|
+    \begin{array}{l}
+        \varphi \text{ soit solution de l'équation }(E)\\
+        \varphi(t_0)=x_0
+    \end{array}
+    \right.
+\end{equation}
+\end{itheorem}
+\todo{Cas des équations d'ordre $n$}% TODO: Cas des équations d'ordre $n$
+% section solutions_d_une_equation_differentielle_lineaire (end)
+\section{Exponentielle d'un endomorphisme, d'une matrice} % (fold)
+\label{sec:exponentielle_d_un_endomorphisme_d_une_matrice}
 
+% section exponentielle_d_un_endomorphisme_d_une_matrice (end)
+\section{Systèmes différentiels linéaires homogènes à coefficients constants} % (fold)
+\label{sec:systemes_differentiels_lineaires_homogenes_coefficients_constants}
+
+% section systemes_differentiels_lineaires_homogenes_coefficients_constants (end)
+\section{Méthode de variation des constantes} % (fold)
+\label{sec:methode_de_variation_des_constantes}
+
+% section methode_de_variation_des_constantes (end)
+\section{Équations différentielles scalaires du second ordre} % (fold)
+\label{sec:equations_differentielles_scalaires_du_second_ordre}
+
+% section equations_differentielles_scalaires_du_second_ordre (end)
+%%%%%%%
+%%%%%%%%%%%%%%%%% Equations Différentielles %%%%% -> OLD <- %%%%%%%%%%%%%%%%%%%
+%%%%%%%
 \section{Équations Différentielles \emph{Scalaires} d'ordre 1}
 \begin{theorem}[Solution de l'équation différentielle scalaire]\index{equation differentielle@Équation Différentielle!scalaire}
 Si $y'=a(t) y + b(t)$, alors $S_I(\mathscr{L})$ est un sous-espace affine
@@ -3050,52 +3164,32 @@ y(t) &=& \int\limits_{t_0}^t \left( \vphantom{{3^3}^3} e^{-P(u)}\, b(u) \: du + 
 \end{array}
 \] est solution de l'équation.
 \end{proof}
-
+%
 \section{Équations Différentielles \emph{Vectorielles} d'ordre 1}
-
+\subsubsection{Problème de \textsc{Cauchy}} % (fold)
+\label{ssub:probleme_de_Cauchy}
 \begin{dfn}[Équation Différentielle Vectorielle]\index{equation differentielle@Équation Différentielle!vectorielle}
     C'est une équation sous la forme 
 \begin{equation}\label{equaDiffVect}\tag{$\mathscr{L}$}
     x'(t) = a(t) x(t) + b(t)
 \end{equation}
-où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right), \: b\in \mathcal{C}(I,F)$. Le \emph{Problème de \textsc{Cauchy}} \index{Probleme de cauchy@Problème de \textsc{Cauchy}} revient à trouver, pour tout $(t_0,x_0)$ dans $I \times F$, une solution $\varphi$ de \eqref{equaDiffVect}
+où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right), \: b\in \mathcal{C}(I,F)$. \\Le \emph{Problème de \textsc{Cauchy}} \index{Probleme de cauchy@Problème de \textsc{Cauchy}} revient à trouver, pour tout $(t_0,x_0=x(t_0))$ dans $I \times F$, une solution $\varphi$ de \eqref{equaDiffVect}
 \end{dfn}
 \Attention{
 $a$ est une application de $I$ dans \uline{$\mathscr{L}(F)$}. Donc $a(t)$ est une application linéaire, pas un scalaire}
-
-\begin{itheorem}[Théorème de \textsc{Cauchy-Lipshitz}\index{Cauchy-Lipshitz@\textsc{Cauchy-Lipshitz}} linéaire]\label{th:CauchyLipschitz}
-Soit l'équation différentielle 
-\begin{equation}\tag{$E$}
- x'(t) = a(t) x(t) + b(t)
-\end{equation}
-où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right)$, $b\in \mathcal{C}(I,F)$, alors
-\[
-    \forall (t_0,x_0) \in (I,F), \exists ! \: \varphi \text{ telle que }
-    \left|
-    \begin{array}{l}
-        \varphi \text{ soit solution de l'équation }(E)\\
-        \varphi(t_0)=x_0
-    \end{array}
-    \right.
-\]
-\end{itheorem}
-
+% subsubsection probleme_de_Cauchy (end)
 \subsubsection{Système fondamental}
-
 \begin{dfn}[Système Fondamental]
-
-Un système fondamental de solutions\index{systeme@Système!fondamental de solution@fondamental de solutions} est une base dans l'espace $S_I(\textcolor{Red}{\mathcal{H}})$ des solutions.
+Un \emph{système fondamental} de solutions\index{systeme@Système!fondamental de solution@fondamental de solutions} est une base dans l'espace $S_I(\textcolor{Red}{\mathcal{H}})$ des solutions.
 \end{dfn}
-
+%
 \begin{prop}
     \begin{itemize}
         \item Si $(\varphi_1, \varphi_2, \cdots , \varphi_n)$ est une base de $S_I(\mathscr{L})$, alors, $\forall t \in I$, $\left( \varphi_1(t), \varphi_2(t), \cdots , \varphi_n(t) \right)
 $ est une base dans $ F$
     \end{itemize}
 \end{prop}
-
-
-
+%
 \begin{dfn}[Wronskien]
 Le Wronskien\index{Wronskien} est le déterminant d'un système fondamental de solution. 
 \begin{equation}\label{Wronskien}\tag{Wronskien}
@@ -3228,7 +3322,7 @@ M\begin{pmatrix} x \\ y \end{pmatrix} & \mapsto &\overrightarrow{V(M)} \left( \b
 \begin{dfn}[Système Autonome]
 On appelle \emph{système autonome}\index{systeme@Système!autonome} associé au champ de vecteur $\overrightarrow{V(M)}$ le système différentiel 
 \begin{empheq}[box=\ibox]{equation}
-    \dfrac{dM}{dt}=\overrightarrow{V(M)}
+    \dfrac{\d M}{\d t}=\overrightarrow{V(M)}
 \end{empheq}
 \end{dfn}
 Le mot \textit{autonome} témoigne de la non-dépendance en $t$ du champ de vecteur $\overrightarrow{V(M)}$
