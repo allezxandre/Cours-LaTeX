@@ -9,5 +9,5 @@
 *.thm
 *.synctex*
 MWE/*
-
 *.lof
+.st*
