@@ -3177,7 +3177,7 @@ h^\text{rad} = 4\sigma T_0^4
    Pour une onde de fréquence $\nu = =\frac{1}{T} = \frac{c}{\lambda}$, l'énergie $E_\text{photon}$ et la quantité de mouvement $p_\text{photon}$ d'un photon sont donnés par la \emph{relation de \textsc{Planck}-\textsc{Einstein}}\index{Planck-Einstein@\textsc{Planck}-\textsc{Einstein}} :
    \begin{subequations}
       \begin{align}
-      E_\text{photon} &= \dfrac{h}{\nu} \\
+      E_\text{photon} &= h\nu \\
       p_\text{photon} &= \dfrac{h}{\lambda} = \dfrac{h\nu}{c}
       \end{align}
    \end{subequations}
@@ -3189,10 +3189,10 @@ On donne la valeur de la constante de \textsc{Planck} :
 h &\approx  6,626 069 57 \times 10^{-34}  \si{\joule\second} \\
 h &\approx 4,134 335 9 \times 10^{-15} \si{\electronvolt\second}
 \end{align*}
-La constante de \textsc{Planck} réduite $\si{\planckbar} = \dfrac{h}{2\pi}$ sera également utilisée : 
+La constante de \textsc{Planck} réduite $\hbar = \dfrac{h}{2\pi}$ sera également utilisée : 
 \begin{align*}
-   \si{\planckbar} &\approx 1,054 571 726 \times 10^{-34} \si{\joule\second} \\
-   \si{\planckbar} &\approx 6,582 119 28 \times 10^{-16} \si{\electronvolt\second}
+   \hbar &\approx 1,054 571 726 \times 10^{-34} \si{\joule\second} \\
+   \hbar &\approx 6,582 119 28 \times 10^{-16} \si{\electronvolt\second}
 \end{align*}
 \begin{itheorem}[Relation de \textsc{De Broglie}]
    À une particule matérielle de quantité de mouvement de norme $p$, la relation de \textsc{De Broglie} associe une longueur d'onde $\lambda_\text{DB}$ : 
@@ -3204,14 +3204,70 @@ La constante de \textsc{Planck} réduite $\si{\planckbar} = \dfrac{h}{2\pi}$ ser
 \subsection{Fonction d'onde et équation de \textsc{Schrödinger}} % (fold)
 \label{sub:fonction_d_onde_et_equation_de_schrodinger}
 %TODO dfn de la fonction d'onde
+%     à valeurs complexes
+%     homogène à l'inverse de la racine d'une distance
 \todo{Définir la fonction d'onde}
 \begin{dfn}[Probabilité de présence]
-   La probabilité de présence d'une particule $t$ dans un volume mésoscopique $\d V$ centré en un point $M$ est donné par la relation : 
+   La probabilité de présence d'une particule $t$ entre $x$ et $x+\d x$ est donné par la relation : 
    \begin{equation}
-   \d P(M,t) = \Psi (M,t) \bar{\Psi (M,t)} \d V = |\Psi (M,t) |^2 \d V
+   \d P(x,t) = \Psi (x,t) \overline{\Psi (x,t)} \d x = |\Psi (x,t) |^2 \d x
    \end{equation}
 \end{dfn}
+\begin{itheorem}[Condition de normalisation]
+   Soit $\mathscr{D}$ le domaine de l'espace accessible à la particule. La condition de normalisation traduit le fait que la particule se trouve \emphhs{de façon certaine} dans le domaine $\mathscr{D}$ : 
+   \begin{equation}
+   \int_\mathscr{D} |\Psi (x,t) |^2 \d x = 1
+   \end{equation}
+\end{itheorem}
 % subsection fonction_d_onde_et_equation_de_schrodinger (end)
+\subsection{Équation de \textsc{Schrödinger}} % (fold)
+\label{sub:equation_de_schrodinger}
+\begin{dfn}[Équation de \textsc{Schrödinger}]
+   On considère le mouvement \emphhs{unidirectionnel} une particule quantique de masse $m$. L'interaction de la particule avec les autres éléments du système sera réunie dans une énergie potentielle $V(x)$ indépendante du temps (conformément au programme). \\
+   L'\emph{équation de \textsc{Schrödinger}}\index{Equation@Équation!Schrodinger@\emphi{de} \textsc{Schrödinger}} donne : 
+   \begin{equation}
+   i\hbar \dfrac{\partial \Psi (x,t)}{\partial t} = -\dfrac{\hbar^2}{2m}\dfrac{\partial^2 \Psi (x,t)}{\partial x^2} + V(x)\Psi (x,t)
+   \end{equation}
+\end{dfn}
+\Attention{$V(x)$ est une énergie potentielle. On l'appelle parfois \og{}potentiel\fg{}, mais ça ne concerne pas seulement les interactions électromagnétiques.}
+\begin{dfn}[État stationnaire]% Depuis Physique Tout-en-un MP
+   On appelle \emph{état stationnaire} un état du système caractérisé par une fonction d'onde \emphhs{factorisée} sous la forme 
+   \begin{equation}
+   \Psi (x,t) = \upvarphi (x) f(t)
+   \end{equation}
+   où $f$ et $\upvarphi$ sont \textit{a priori} deux fonctions à valeur \emphh{complexe}.
+\end{dfn}
+\begin{itheorem}[Équation de \textsc{Schrödinger} indépendante du temps]\label{thm:schrodinger_stationnaire}
+Pour une fonction d'onde à l'état stationnaire sous la forme $\Psi(x,t) = \upvarphi (x) e^{i\alpha (t) }$ où $\alpha (t)$ est une fonction du temps, l'équation de \textsc{Schrödinger} se met sous la forme :
+   \begin{equation}
+   - \dfrac{\hbar^2}{2m}\dfrac{\d^2 \upvarphi (x)}{\d x^2} + V(x)\upvarphi (x) = E\upvarphi (x)
+   \end{equation}
+   où $E=-\hbar \dfrac{\d \alpha (t)}{\d t}$. En notant $\omega = - \dot{\alpha}(t)$, $E=\hbar \omega$
+\end{itheorem}
+% subsection equation_de_schrodinger (end)
+\subsection{Inégalité de \textsc{Heisenberg}} % (fold)
+\label{sub:inegalite_de_heisenberg}
+\begin{theorem}[Inégalité spatiale]
+   Il existe une limitation à la définition de la position (d'indétermination $\Delta x$)\linebreak % Sinon on a des problèmes de mocheté :/ 
+   et de la quantité de mouvement (d'indétermination $\Delta p_x$) imposée par \linebreak % Sinon on a des problèmes de mocheté :/ 
+   l'\emph{inégalité d'\textsc{Heisenberg}}\index{Inegalite@Inégalité!Heisenberg@\emphi{d'}\textsc{Heisenberg}} : 
+   \begin{equation}
+   \Delta x \cdot \Delta p_x \ge \dfrac{\hbar}{2}
+   \end{equation}
+\end{theorem}
+\begin{theorem}[Inégalité temps-énergie]
+   La pulsation, d'incertitude $\Delta \omega$, et la durée, caractérisé par $\tau$, la durée caractéristique d'évolution d'un signal sont limités dans leur définition par :
+   \begin{subequations}
+      \begin{equation}
+      \tau \cdot \Delta \omega \ge \frac{1}{2}
+      \end{equation}
+      En utilisant la relation $E = \hbar \omega$ du théorème~\ref{thm:schrodinger_stationnaire} page~\pageref{thm:schrodinger_stationnaire} : 
+      \begin{equation}
+      \tau \cdot \Delta E \ge \dfrac{\hbar}{2}
+      \end{equation}
+   \end{subequations}
+\end{theorem}
+% subsection inegalite_de_heisenberg (end)
 % section introduction_la_mecanique_quantique (end)
 \section{Évolution d'une particule quantique libre} % (fold)
 \label{sec:evolution_d_une_particule_quantique_libre}
