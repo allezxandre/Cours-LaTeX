@@ -3223,9 +3223,9 @@ La constante de \textsc{Planck} réduite $\hbar = \dfrac{h}{2\pi}$ sera égaleme
 \subsection{Équation de \textsc{Schrödinger}} % (fold)
 \label{sub:equation_de_schrodinger}
 \begin{dfn}[Équation de \textsc{Schrödinger}]
-   On considère le mouvement \emphhs{unidirectionnel} une particule quantique de masse $m$. L'interaction de la particule avec les autres éléments du système sera réunie dans une énergie potentielle $V(x)$ indépendante du temps (conformément au programme). \\
+   On considère le mouvement \emphhs{unidirectionnel} d'une particule quantique de masse $m$. L'interaction de la particule avec les autres éléments du système sera réunie dans une énergie potentielle $V(x)$ indépendante du temps (conformément au programme). \\
    L'\emph{équation de \textsc{Schrödinger}}\index{Equation@Équation!Schrodinger@\emphi{de} \textsc{Schrödinger}} donne : 
-   \begin{equation}
+   \begin{equation}\label{eq:schrodinger}
    i\hbar \dfrac{\partial \Psi (x,t)}{\partial t} = -\dfrac{\hbar^2}{2m}\dfrac{\partial^2 \Psi (x,t)}{\partial x^2} + V(x)\Psi (x,t)
    \end{equation}
 \end{dfn}
@@ -3242,8 +3242,11 @@ Pour une fonction d'onde à l'état stationnaire sous la forme $\Psi(x,t) = \upv
    \begin{equation}
    - \dfrac{\hbar^2}{2m}\dfrac{\d^2 \upvarphi (x)}{\d x^2} + V(x)\upvarphi (x) = E\upvarphi (x)
    \end{equation}
-   où $E=-\hbar \dfrac{\d \alpha (t)}{\d t}$. En notant $\omega = - \dot{\alpha}(t)$, $E=\hbar \omega$
+   où $E=-\hbar \dfrac{\d \alpha (t)}{\d t}$. En notant $\omega = - \dot{\alpha}(t)$, on a $E=\hbar \omega$.
 \end{itheorem}
+\begin{theorem}[Caractérisation d'un état stationnaire]
+   Un état stationnaire est caractérisé par une densité de probabilité $\dfrac{\d P}{\d x} = | \Psi (x,t) |^2$ \emphhs{indépendante du temps}.
+\end{theorem}
 % subsection equation_de_schrodinger (end)
 \subsection{Inégalité de \textsc{Heisenberg}} % (fold)
 \label{sub:inegalite_de_heisenberg}
@@ -3271,7 +3274,22 @@ Pour une fonction d'onde à l'état stationnaire sous la forme $\Psi(x,t) = \upv
 % section introduction_la_mecanique_quantique (end)
 \section{Évolution d'une particule quantique libre} % (fold)
 \label{sec:evolution_d_une_particule_quantique_libre}
-
+Dans cette section, on considère le mouvement d'une particule lorsque $V(x)=0$, c'est-à-dire qui évolue dans le vide sans interaction. L'équation~\eqref{eq:schrodinger} de \textsc{Schrödinger} devient alors : 
+\begin{equation}\label{eq:schrodinger_libre}
+i\hbar \dfrac{\partial \Psi (x,t)}{\partial t} = - \dfrac{\hbar^2}{2m} \dfrac{\partial^2 \Psi (x,t) }{\partial x^2}
+\end{equation}
+\begin{itheorem}[Relation de dispersion et vitesse de phase]
+   La  résolution de l'équation~\eqref{eq:schrodinger_libre} conduit à la relation de dispersion suivante : 
+   \begin{subequations}
+      \begin{equation}
+      \omega = \dfrac{\hbar k^2}{2m}
+      \end{equation}
+      On peut alors en déduire une vitesse de phase $v_\upvarphi = \dfrac{\omega}{k}$ : 
+      \begin{equation}
+      v_\upvarphi = \dfrac{\hbar k }{2m}
+      \end{equation}
+   \end{subequations}
+\end{itheorem}
 % section evolution_d_une_particule_quantique_libre (end)
 \section{Évolution d'une particule quantique dans un potentiel} % (fold)
 \label{sec:evolution_d_une_particule_quantique_dans_un_potentiel}
