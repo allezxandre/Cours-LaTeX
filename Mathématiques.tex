@@ -1887,22 +1887,23 @@ Tous les théorèmes vus ici sont à démontrer.
 % subsection famille_sommable_complexe_reel (end)
 % section familles_sommables (end)
 % chapter familles_sommables_de_nombres_complexes (end)
-\chapter{Probabilités sur un univers au plus dénombrable} % (fold)
-\label{cha:probabilites_sur_un_univers_au_plus_denombrable}
+\chapter{Variables aléatoires discrètes} % (fold)
+\label{cha:variables_aleatoires_discretes}
 \section{Espace probabilisé} % (fold)
 \label{sec:espace_probabilise}
 \begin{dfn}[Univers]
      Un \emph{univers}\index{univers} $\Omega$ est l'ensemble des issues d'une expérience aléatoire.\\
      L'ensemble des parties de l'univers $\Omega$ est noté $\mathcal{P}(\Omega{})$
 \end{dfn}
-\begin{dfn}[Tribu]
+\begin{dfn}[Tribu, espace probabilisable, évènement]
      Une \emph{tribu}\index{Tribu} sur un univers $\Omega$ est un sous-ensemble $\mathscr{T}$ de $\mathcal{P}(\Omega{})$ vérifiant les propriétés :
      \begin{itemize}
          \item $\Omega \in \mathscr{T}$
          \item $\forall A \in \mathscr{T},\: \overline{A} \in \mathscr{T}$
          \item $\forall \left( A_n \right)_{n\in \mathbb{N}} \in \mathscr{T}^\mathbb{N},\: \bigcup_{n\in \mathbb{N}} A_n \in \mathscr{T}$
      \end{itemize}
-     Le couple $(\Omega, \mathscr{T})$ est appelé \emph{espace probabilisable}\index{Espace!probabilisable}.
+     Le couple $(\Omega, \mathscr{T})$ est appelé \emph{espace probabilisable}\index{Espace!probabilisable}.\\
+     Un élément de la tribu $\mathscr{T}$ est appelé un \emph{évènement}\index{Evenement@Évènement}
 \end{dfn}
 \begin{prop}
      Si $(\Omega, \mathscr{T})$ est un espace probabilisable, et $A_i$ un élément de $\mathscr{T}$ :
@@ -1915,7 +1916,7 @@ Tous les théorèmes vus ici sont à démontrer.
      \end{itemize}
 \end{prop}
 \begin{dfn}[Incompatibilité, implication]
-     Deux évènements $A$ et $B$ sont incompatibles si $A \cap B = \varnothing$\\
+     Deux évènements $A$ et $B$ sont dits \emph{incompatibles}\index{Evenements@Évènements!incompatibles} si $A \cap B = \varnothing$\\
      On dit que $A \underset{\text{implique}}{\implies} B$ quand $A \subset B$
 \end{dfn}
 \Attention{Ne pas confondre ($A \cap B = \varnothing$) et ($P(A\cap B) = 0$)}
@@ -1928,11 +1929,11 @@ Tous les théorèmes vus ici sont à démontrer.
          \item $\forall (p,q) \in I^2,\, p\neq q,\, A_p \cap A_q = \varnothing$
      \end{itemize}
 \end{dfn}
-\begin{dfn}[Probabilité]
+\begin{dfn}[Probabilité]\label{dfn:probabilite}
      Soit $(\Omega, \mathscr{T})$ un espace probabilisable. La \emph{probabilité}\index{Probabilite@Probabilité} est l'application $\mathbb{P} : \mathscr{T} \to [0,1]$ telle que :
      \begin{itemize}
          \item $\mathbb{P}(\Omega) = 1$
-         \item Pour toute suite $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ d'éléments \emphhs{deux à deux incompatibles} : 
+         \item Pour toute suite $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ d'évènements \emphhs{deux à deux incompatibles} : 
          \begin{itemize}
              \item $\sum \mathbb{P}(A_n)$ converge
              \item $\mathbb{P}\left( \bigcup_{n=0}^{+\infty} A_n \right) = \sum_{n=0}^{+\infty} \mathbb{P}(A_n)$\\
@@ -1941,10 +1942,34 @@ Tous les théorèmes vus ici sont à démontrer.
      \end{itemize}
      Le triplet $(\Omega, \mathscr{T},\mathbb{P})$ est appelé \emph{espace probabilisé}\index{Espace!probabilise@probabilisé}
 \end{dfn}
-\Attention{Espace propabilisable $(\Omega, \mathscr{T}) \neq$ Espace probablilisé $(\Omega, \mathscr{T},\mathbb{P})$}
-
-La propriété de $\sigma$-additivité existe sous forme d'inégalité quand les évènements ne sont pas incompatibles :
+\Attention{Espace propabilisable $(\Omega, \mathscr{T}) \neq$ Espace probablilisé $(\Omega, \mathscr{T},\mathbb{P})$}\\[\baselineskip]
+\begin{theorem}[Caractérisation par une famille sommable]
+     Soit $\Omega$ un univers fini ou dénombrable. \newline
+     Soit une application $\left\lbrace \begin{array}{r c l} \Omega &\longto& \mathbb{R}^+ \\ \omega &\longmapsto& p_\omega \end{array}\right.$ telle que $(p_\omega)_{\omega\in\Omega}$ soit une \emphhs{famille sommable} de somme $1$.\newline
+     Soit $\left\lbrace \begin{array}{r c l} \mathbb{P} : \mathcal{P}(\Omega)&\longto& \mathbb{R}^+ \\ A &\longmapsto& \sum_{\omega \in A} p_\omega \end{array}\right.$\\
+     Alors $\big( \Omega, \mathcal{P}(\Omega ), \mathbb{P}\big)$ est un espace probabilisé.
+\end{theorem}
+% section espace_probabilise (end)
+\section{Propriétés élémentaires des probabilités} % (fold)
+\label{sec:proprietes_elementaires_des_probabilites}
+\begin{theorem}[Théorème de la limité monotone]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P}\big)$ un espace probabilisé.\\
+     \begin{subequations}
+     \begin{itemize}[leftmargin=5.5mm]
+         \item Si $A_n$ est une suite croissante d'évènements ($A_n\subset A_{n+1}$), alors :
+         \begin{equation}
+         \mathbb{P}(A_n) \xrightarrow[n\to +\infty]{} \mathbb{P}\big( \bigcup_{n=0}^{+\infty} A_n\big) 
+         \end{equation}
+         \item Si $A_n$ est une suite décroissante d'évènements ($A_{n+1}\subset A_{n}$), alors :
+         \begin{equation}
+         \mathbb{P}(A_n) \xrightarrow[n\to +\infty]{} \mathbb{P}\big( \bigcap_{n=0}^{+\infty} A_n\big) 
+         \end{equation}
+     \end{itemize}
+     \end{subequations}
+\end{theorem}
+Dans la définition~\ref{dfn:probabilite} de la probabilité, la propriété de $\sigma$-additivité nécessite que les évènements soient incompatibles. Cette propriété existe sous forme d'inégalité quand les évènements ne sont pas incompatibles :
 \begin{itheorem}[Inégalité de \textsc{Boole}]
+\index{Inegalite@Inégalité!Boole@\emphi{de} Boole}
 Soit $(\Omega, \mathscr{T},\mathbb{P})$ un espace probablilisé. \\
 Soit $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ telle que $\sum \mathbb{P}(A_n)$ converge. Alors :
      \begin{equation}
@@ -1961,23 +1986,18 @@ Soit $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ telle que $\sum \mathbb
           \mathbb{P} \left( \bigcup_{n=0}^{+\infty} A_n \right) = \sum_{n=0}^{+\infty} \mathbb{P}(C_n) \le \sum_{n=0}^{+\infty} \mathbb{P}(A_n)
      \end{equation*}
 \end{proof}
-% section espace_probabilise (end)
-\section{Conditionnement} % (fold)
-\label{sec:conditionnement}
-
-% section conditionnement (end)
+%TODO Évènements négligeables/presque sûrs
+\todo{Évènements négligeables / presque sûrs}
+% section proprietes_elementaires_des_probabilites (end)
 \section{Indépendance} % (fold)
 \label{sec:independance}
 \begin{dfn}[Évènements indépendants]
-     Deux évènements $A$ et $B$ sont indépendants lorsque 
+     Deux évènements $A$ et $B$ sont dits \emph{indépendants}\index{Evenements@Évènements!independants@indépendants} lorsque 
      \begin{equation}
      \mathbb{P}(A\cap B) = \mathbb{P}(A)\times \mathbb{P}(B)
      \end{equation}
 \end{dfn}
 % section independance (end)
-% chapter probabilites_sur_un_univers_au_plus_denombrable (end)
-\chapter{Variables aléatoires discrètes} % (fold)
-\label{cha:variables_aleatoires_discretes}
 \section{Espérance} % (fold)
 \label{sec:esperance}
 \subsection{Définitions} % (fold)
