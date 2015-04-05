@@ -3223,7 +3223,7 @@ La constante de \textsc{Planck} réduite $\hbar = \dfrac{h}{2\pi}$ sera égaleme
 \subsection{Équation de \textsc{Schrödinger}} % (fold)
 \label{sub:equation_de_schrodinger}
 \begin{dfn}[Équation de \textsc{Schrödinger}]
-   On considère le mouvement \emphhs{unidirectionnel} d'une particule quantique de masse $m$. L'interaction de la particule avec les autres éléments du système sera réunie dans une énergie potentielle $V(x)$ indépendante du temps (conformément au programme). \\
+   On considère le mouvement \emphhs{unidirectionnel} d'une particule quantique de masse $m$. L'interaction de la particule avec les autres éléments du système sera réunie dans une énergie potentielle $V(x)$ \emphhs{indépendante du temps} (conformément au programme). \\
    L'\emph{équation de \textsc{Schrödinger}}\index{Equation@Équation!Schrodinger@\emphi{de} \textsc{Schrödinger}} donne : 
    \begin{equation}\label{eq:schrodinger}
    i\hbar \dfrac{\partial \Psi (x,t)}{\partial t} = -\dfrac{\hbar^2}{2m}\dfrac{\partial^2 \Psi (x,t)}{\partial x^2} + V(x)\Psi (x,t)
@@ -3239,7 +3239,7 @@ La constante de \textsc{Planck} réduite $\hbar = \dfrac{h}{2\pi}$ sera égaleme
 \end{dfn}
 \begin{itheorem}[Équation de \textsc{Schrödinger} indépendante du temps]\label{thm:schrodinger_stationnaire}
 Pour une fonction d'onde à l'état stationnaire sous la forme $\Psi(x,t) = \upvarphi (x) e^{i\alpha (t) }$ où $\alpha (t)$ est une fonction du temps, l'équation de \textsc{Schrödinger} se met sous la forme :
-   \begin{equation}
+   \begin{equation}\label{eq:schrodinger_stationnaire}
    - \dfrac{\hbar^2}{2m}\dfrac{\d^2 \upvarphi (x)}{\d x^2} + V(x)\upvarphi (x) = E\upvarphi (x)
    \end{equation}
    où $E=-\hbar \dfrac{\d \alpha (t)}{\d t}$. En notant $\omega = - \dot{\alpha}(t)$, on a $E=\hbar \omega$.
@@ -3293,7 +3293,21 @@ i\hbar \dfrac{\partial \Psi (x,t)}{\partial t} = - \dfrac{\hbar^2}{2m} \dfrac{\p
 % section evolution_d_une_particule_quantique_libre (end)
 \section{Évolution d'une particule quantique dans un potentiel} % (fold)
 \label{sec:evolution_d_une_particule_quantique_dans_un_potentiel}
-
+Dans cette partie, nous nous limiterons à des solutions stationnaires de l'équation~\eqref{eq:schrodinger} de \textsc{Schrödinger}. On pourra donc résoudre l'équation de \textsc{Schrödinger} indépendante du temps \eqref{eq:schrodinger_stationnaire} : 
+\begin{equation*}
+   - \dfrac{\hbar^2}{2m}\dfrac{\d^2 \upvarphi (x)}{\d x^2} + V(x)\upvarphi (x) = E\upvarphi (x)
+\end{equation*}\par
+On se place dans le cas où la longueur d'onde de \textsc{De Broglie} des particules quantiques est très inférieure à la longueur caractéristique des variations du potentiel $V(x)$. On modélise alors la marche de potentiel de la manière suivante : 
+\begin{equation*}
+   V(x)= \left\lbrace \begin{array}{l l} 0&\text{ pour }x<0 \\ V_0&\text{ pour }x\ge 0\end{array}\right.
+\end{equation*}
+\begin{dfn}[Coefficients de transmission et de réflexion]
+   En ayant définis des vecteurs densité de courant de probabilité $\vv*{j}{i}$, $\vv*{j}{r}$ et $\vv*{j}{t}$, respectivement pour les ondes incidente, réfléchie, et transmise, on peut définir les probabilités de réflexion $R$ et de transmission $T$ : 
+      \begin{equation}
+         R = \dfrac{\| \vv*{j}{r}\| }{\| \vv*{j}{i} \|}\\
+         T = \dfrac{\| \vv*{j}{t}\| }{\| \vv*{j}{i} \|}
+      \end{equation}
+\end{dfn}
 % section evolution_d_une_particule_quantique_dans_un_potentiel (end)
 % chapter mecanique_quantique (end)
 \chapter{Thermodynamique statistique} % (fold)
