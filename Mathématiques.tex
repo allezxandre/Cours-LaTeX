@@ -663,7 +663,13 @@ La définition suivante est copiée de la définition~\ref{dfn:convexe_connexite
          E = \mathrm{Ker} A(u) \oplus \mathrm{Ker} B(u)
      \]
      \titre{Diagonalisation}
-
+Pour vérifier qu'une diagonalisation est possible, se rapporter au théorème~\ref{thm:caracterisation_diagonalisation} page~\pageref{thm:caracterisation_diagonalisation} sur la caractérisation de la diagonalisation. Une fois vérifiée, la diagonalisation peut s'effectuer à l'aide des astuces suivantes : 
+\begin{itemize}
+    \item Chercher un vecteur propre évident, par exemple $\begin{pmatrix} 1\\ \vdots \\ 1 \end{pmatrix}$ si les lignes sont toutes de même somme ;
+    \item Utiliser des opérations sur des lignes ou des colonnes et développer pour obtenir un déterminant plus simple à calculer ;
+    \item Faire un pivot de \textsc{Gauss} pour obtenir une matrice triangulaire (ou éventuellement triangulaire par blocs) ;
+    \item Calculer le polynôme caractéristique avec la méthode de \textsc{Sarrus}.
+\end{itemize}
 \end{methode}
 \section{Genéralités}
 %
@@ -967,9 +973,17 @@ Ces deux théorèmes peuvent également se traduire matriciellement.
      $P(u)$ est appelé \emph{polynôme de l'endomorphisme}\index{Polynome@Polynôme!endomorphisme@\emphi{d'un }endomorphisme} $u$.
 \end{dfn}
 \needspace{3cm}
-\begin{theorem}
-     Pour $u$ dans $\mathscr{L}(E)$, l'application $P \mapsto P(u)$ est un \emphhs{morphisme d'algèbre} de $\mathbb{K} [X]$ dans $\mathscr{L}(E)$
+\begin{theorem}[Morphisme d'algèbre $P \mapsto P(u)$]
+     Pour $u$ dans $\mathscr{L}(E)$, l'application $P \mapsto P(u)$ est un \emphhs{morphisme d'algèbre} de $\mathbb{K} [X]$ dans $\mathscr{L}(E)$.\\
 \end{theorem}
+%todo Noyau et image de ce morphisme
+\todo{Noyau et Image de ce morphisme}
+\subsection{Polynôme minimal}
+\begin{dfn}[Polynôme minimal]
+% Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé le polynôme minimal tel que pour tout morphisme $\varphi{}$, $\Pi_{\varphi}(\varphi{}) = 0$ \textcolor{couleurFonce!70}{CÀD} $\left( \Pi_\varphi \right) = \mathrm{Ker}(\varphi{})$
+Soit $u$ un endomorphisme de $E$, $\mathbb{K}$-espace vectoriel. \\
+On appelle \emph{polynôme minimal}\index{Polynome@Polynôme!minimal} l'unique polynôme $\Pi_u$ \emphhs{unitaire} et \emphhs{non nul}, s'il existe, tel que $\Pi_u$ annule $u$ et soit de plus petit degré ($\forall~Q$ diviseur de $\Pi_u$ distinct de $\Pi_u$, $Q(u)\neq 0$).
+\end{dfn}
 \begin{theorem}%TODO: fix title [Base de $\mathbb{K} [u]$]
      Si $d$ est le degré du polynôme minimal $P_u$ de $u$, alors la famille $(u^k)_{k \in \left[ 0 , d-1 \right] }$ est une base de $\mathbb{K} [u]$.
 \end{theorem}
@@ -977,14 +991,39 @@ Ces deux théorèmes peuvent également se traduire matriciellement.
      Soit $d$ le degré minimal du polynôme minimal $P_u$. La famille $(\mathrm{Id}, u, u^2, \ldots , u^{d-1} )$ est libre. 
      %TODO: Finir cette demo (p. 84 dans le livre de Vuibert)
 \end{proof}
-\subsubsection{\textsc{Cayley}-\textsc{Hamilton}} % (fold)
-\label{ssub:Cayley-Hamilton}
+\subsection{Valeur propre et polynôme annulateur} % (fold)
+\label{sub:valeur_propre_et_polynome_annulateur}
+\begin{theorem}
+     Soit $u$ un endomorphisme de $E$. Soit $P$ un polynôme de $\mathbb{K} [X]$.\\
+     Pour toute valeur propre $\lambda$ de $u$, $P(\lambda)$ est une valeur propre de $P(u)$.
+\end{theorem}
+\begin{proof}
+     \begin{align*}
+         u(x) = \lambda x   &\implies u^k(x) = \lambda^k x \\
+                            &\implies P(u)(x) = \sum_k a_k~u^k(x) = P(\lambda)x
+     \end{align*}
+     On remarque que le vecteur propre associé à $\lambda$ est aussi associé à $P(\lambda )$.\qed
+\end{proof}
+\begin{itheorem}
+     Si $P$ annule $u$, toute valeur propre de $u$ est une racine de $P$.
+\end{itheorem}
+\begin{proof}
+     On se sert du théorème précédent : 
+     \begin{align*}
+          P(u) = 0 &\implies P(u)(x) = 0\\
+                   &\implies P(\lambda)x = P(u)(x) = 0
+     \end{align*}
+     Puisque $x\neq 0$, on retrouve que $\lambda$ est racine de $P$.\qed
+\end{proof}
+% subsection valeur_propre_et_polynome_annulateur (end)
+\subsection{\textsc{Cayley}-\textsc{Hamilton}} % (fold)
+\label{sub:Cayley-Hamilton}
 \begin{itheorem}[\textsc{Cayley-Hamilton}%
 \index{Cayley-Hamilton@\textsc{Cayley-Hamilton}}]
 Si $u$ est un endomorphisme d'un espace vectoriel \uline{fini}, alors le polynôme caractéristique $\chi_u$ est un polynôme annulateur de $u$. \\
 Le polynôme caractéristique est donc un multiple du polynôme minimal. 
 \end{itheorem}
-% subsubsection Cayley-Hamilton (end)
+% subsection Cayley-Hamilton (end)
 % section polyn_mes_d_un_endomorphisme (end)
 \section{Lemme de décomposition des noyaux} % (fold)
 \label{sec:lemme_de_decomposition_des_noyaux}
@@ -1010,12 +1049,9 @@ Maintenant, on va voir le théorème dans une forme plus générale, qu'on dédu
 % section lemme_de_decomposition_des_noyaux (end)
 \section{Polynômes annulateurs et diagonalisabilité} % (fold)
 \label{sec:polynomes_annulateurs_et_diagonalisabilite}
-\begin{dfn}[Polynôme minimal]
-Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé le polynôme minimal tel que pour tout morphisme $\varphi{}$, $\Pi_{\varphi}(\varphi{}) = 0$ \textcolor{couleurFonce!70}{CÀD} $\left( \Pi_\varphi \right)
- = \mathrm{Ker}(\varphi{})$
-\end{dfn}
 %
-\begin{theorem}[Formule de \textsc{Grassman}]
+\todo{Bouger \textsc{Grass}-dude}
+\begin{theorem}[Formule de \textsc{Grassman}] % Qu'est-ce que ça fout là ?
      \index{Grassman@\textsc{Grassman}}Si $V$ et $W$ sont deux espaces vectoriels de \emphh{dimension finie} de $E$ alors :
      \begin{equation}
      \dim (V+W) = \dim V + \dim W - \dim (V\cap W)
@@ -1024,7 +1060,26 @@ Il existe un \uline{unique} polynôme \uline{unitaire} $\Pi_{\varphi}$ appelé l
 % section polynomes_annulateurs_et_diagonalisabilite (end)
 \section{Endomorphismes à polynôme minimal scindé} % (fold)
 \label{sec:endomorphismes_polynome_minimal_scinde}
-
+\begin{dfn}[Sous-espace caractéristique]
+     Soit $u$ un endomorphisme trigonalisable de $E$. Son polynôme caractéristique $\chi_u$ est scindé : 
+     \[
+         \chi_u = \prod_{i=1}^k \big( X - \lambda_i \big)^{m_i}
+     \]
+     On appelle \emph{sous-espace caractéristique}\index{Sous-espace!caracteristique@caractéristique} de $u$ les sous-espaces : 
+     \begin{equation}
+     F_{\lambda_i}(u) = \mathrm{Ker} (u-\lambda_i \mathrm{Id}_E)^{m_i}
+     \end{equation}
+\end{dfn}
+\begin{theorem}[Décomposition avec les sous-espaces caractéristiques]
+     Soit $u$ un endomorphisme pour lequel il existe un polynôme annulateur scindé (c'est-à-dire $u$ est trigonalisable). \\
+     L'endomorphisme $u_i : F_{\lambda_i} \to F_{\lambda_i}$ induit par $u$ dans $F_{\lambda_i}$ est la somme d'une homothétie et d'un endomorphisme nilpotent.
+\end{theorem}
+\begin{proof}
+     On a :
+     \[ u_i = \lambda_i \mathrm{Id}_E + (u_i - \lambda_i \mathrm{Id}_E) \]
+     Ici, $\lambda_i \mathrm{Id}_E$ est une homothétie.\\
+     De plus, $(u_i - \lambda_i \mathrm{Id}_E)^{m_i} = 0$ par définition de $F_{\lambda_i}$, donc $(u_i - \lambda_i \mathrm{Id}_E)$ est un endomorphisme nilpotent.\qed
+\end{proof}
 % section endomorphismes_polynome_minimal_scinde (end)
 % chapter Reduction (end)
 \chapter{Topologie des espaces vectoriels normés}
