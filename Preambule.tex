@@ -290,7 +290,7 @@ frametitle={%
 \tikz[baseline=(current bounding box.east),outer sep=0pt] \node[anchor=east,rectangle,fill=white]
 {\strut Définition~\thedfn : ~#1};}}%
 }% 
-\mdfsetup{skipabove={1.2\baselineskip}, innertopmargin=0pt,skipbelow=10pt,leftmargin=-10mm, innerleftmargin=1mm, linecolor=black!80, outerlinewidth=1pt, topline=true, rightline=false, bottomline=false, frametitleaboveskip=-10pt} 
+\mdfsetup{needspace=30pt, skipabove={1.2\baselineskip}, innertopmargin=0pt,skipbelow=10pt,leftmargin=-10mm, innerleftmargin=1mm, linecolor=black!80, outerlinewidth=1pt, topline=true, rightline=false, bottomline=false, frametitleaboveskip=-10pt} 
 \begin{mdframed}[]\relax%
 }{\end{mdframed}} 
 
@@ -313,8 +313,10 @@ frametitle={%
 {\strut Théorème~\thetheo:~#1};}}%
 }% 
 
-\mdfsetup{ skipabove={1.2\baselineskip}, innertopmargin=0pt,frametitleaboveskip=-10pt, leftmargin=0cm, innerleftmargin=2mm,leftline=true, linecolor=black!40,%
-linewidth=1pt,topline=true,rightline=true}%
+\mdfsetup{ 
+    ntheorem, needspace=30pt,% skipabove={1.2\baselineskip}, skipbelow={0.5\baselineskip}, 
+    innertopmargin=0pt,frametitleaboveskip=-10pt, leftmargin=0cm, innerleftmargin=2mm,leftline=true, linecolor=black!40,%
+    linewidth=1pt,topline=true,rightline=true}%
 \begin{mdframed}[]\relax%
 }{\end{mdframed}}
 
@@ -334,18 +336,20 @@ frametitle={%
 {\strut \textcolor{couleurClaire}{Théorème~\thetheo:}\textcolor{White}{~#1}};}}%
 }% 
 \mdfsetup{ 
-  skipabove={1.2\baselineskip}, innertopmargin=0pt,frametitleaboveskip=-10pt, leftmargin=0cm, innerleftmargin=2mm,leftline=true,outerlinewidth=0.5pt, linecolor=couleurGrisFonce, linewidth=1pt, topline=true, backgroundcolor=couleurGrisClair!40, rightline=true}%
+  ntheorem, needspace=30pt, %skipabove={1.2\baselineskip}, skipbelow={0.5\baselineskip}, 
+  innertopmargin=0pt,frametitleaboveskip=-10pt, leftmargin=0cm, innerleftmargin=2mm,leftline=true,outerlinewidth=0.5pt, linecolor=couleurGrisFonce, linewidth=1pt, topline=true, backgroundcolor=couleurGrisClair!40, rightline=true}%
 \begin{mdframed}[]\color{couleurNoirClair}\relax%
 %
 }{\end{mdframed}}
 
 \newmdtheoremenv[
+  ntheorem,
   topline=false,
   rightline=false,
   bottomline=true,
   leftmargin=1cm,
   skipabove=0pt,
-  skipbelow=1.5\medskipamount,
+  %skipbelow=1.5\medskipamount,
   footnoteinside=false
 ]{proof}{Preuve}[theo]
 
