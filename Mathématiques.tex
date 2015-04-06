@@ -241,14 +241,14 @@ Si $x_n$ est une suite de $(E,N)^\mathbb{N}$ et $(\alpha_n)$ une suite de $\Reel
 \end{table}
 %
 \chapter{Groupes et sous-groupes}
-\section{Définition d'un groupe} % (fold)
+\section{Groupes et sous-groupes} % (fold)
 \label{sec:definition_d_un_groupe}
 \begin{dfn}[Groupe]
      On appelle \emph{groupe}\index{Groupe} le couple $(G,*)$ où $G$ est un ensemble muni d'$*$, une \gls{LCI} associative, symétrique, et admettant un neutre.
 \end{dfn}
 % section definition_d_un_groupe (end)
-\section{Produit fini de groupes} % (fold)
-\label{sec:produit_fini_de_groupes}
+\subsection{Produit fini de groupes} % (fold)
+\label{sub:produit_fini_de_groupes}
 \begin{dfn}[Groupe Produit]
      Soient $(G,*)$ et $(G',\circ)$ deux groupes. \newline
      Le groupe $\left( G\times G', \square \right)$ tel que
@@ -260,13 +260,14 @@ Si $x_n$ est une suite de $(E,N)^\mathbb{N}$ et $(\alpha_n)$ une suite de $\Reel
 \begin{exemple}[Groupe de \textsc{Klein}]\label{ex:groupe_de_klein}
      Le groupe $(\mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z})$ est appelé \emphh{groupe de \textsc{Klein}}\index{Groupe!Klein@\emphi{de }\textsc{Klein}}. C'est un groupe produit, il n'est pas isomorphe à $\mathbb{Z}/4\mathbb{Z}$, et \emphhs{il a la spécificité de ne pas être cyclique}. 
 \end{exemple}
-% section produit_fini_de_groupes (end)
-\section{Sous-groupe} % (fold)
+% subsection produit_fini_de_groupes (end)
+\subsection{Sous-groupe} % (fold)
 \label{sec:sous_groupe}
 \begin{dfn}[Sous-groupe]
      Soit $(G,*)$ un groupe, et soit $H$ une partie de $G$\\
      On dit que $H$ est un \emph{sous-groupe}\index{Sous-groupe} de $G$ si, muni de la \gls{LCI} $*$, $H$ est un groupe stable par $*$.
 \end{dfn}
+\needspace{5cm}
 \begin{itheorem}[Caractérisation d'un sous-groupe]
      Avec les notations précédentes, $H$ est un sous-groupe de $G$ si : 
      \begin{itemize}
@@ -291,8 +292,7 @@ Si $x_n$ est une suite de $(E,N)^\mathbb{N}$ et $(\alpha_n)$ une suite de $\Reel
 \end{proof}
 \begin{dfn}[Sous-groupe engendré]
      Soit $G$ un groupe, et soit $A$ une partie de $G$. \\
-     L'intersection des sous-groupes de $G$ contenant $A$ est le plus petit sous-groupe contenant $A$. On le note $\langle A \rangle$, et on dit que c'est le \emph{sous-groupe engendré}\index{Sous-groupe!engendre@engendré} par $A$.\\
-     Quand $A=\lbrace a \rbrace$ est une partie à un seul élément, on dit que $\langle a \rangle$ est un \emph{groupe monogène}\index{Monogene@Monogène}\index{Groupe!monogene@monogène}
+     L'intersection des sous-groupes de $G$ contenant $A$ est le plus petit sous-groupe contenant $A$. On le note $\langle A \rangle$, et on dit que c'est le \emph{sous-groupe engendré}\index{Sous-groupe!engendre@engendré} par $A$.
 \end{dfn}
 \begin{itheorem}[Sous-groupes de $\left( \mathbb{Z},+ \right) $]\label{thm:sous_groupe_de_Z}
      Pour tout sous-groupe $H$ de $\left( \mathbb{Z},+ \right),\,\exists n\in \mathbb{N}$ tel que $H=n\mathbb{Z}$
@@ -308,19 +308,19 @@ Si $x_n$ est une suite de $(E,N)^\mathbb{N}$ et $(\alpha_n)$ une suite de $\Reel
      \end{gather*}
      Or $n$ étant le plus petit entier dans $H$, $r$ dans $H$ étant inférieur à $n$, $r=0$, donc $m=nq$\qed
 \end{proof}
-% section sous_groupe (end)
+% subsection sous_groupe (end)
 \section{Morphismes de groupes} % (fold)
 \label{sec:morphismes_de_groupes}
 \subsection{Définition} % (fold)
 \label{sub:morphismes_de_groupe_definition}
-\begin{dfn}[Morphisme de groupe]
+\begin{dfn}[Morphisme de groupes]
      On appelle \emph{morphisme}\index{Morphisme!groupe@\emphi{de }groupe} d'un groupe $(G,*)$ à un groupe $(H,\times )$ l'application $f$ telle que
      \begin{equation}
      \forall (x,y) \in G^2,\, f \left( x*y \right) = f(x)\times  f(y)
      \end{equation}
 \end{dfn}
 % subsection morphismes_de_groupe_definition (end)
-\subsection{Propriétés d'un morphisme de groupe} % (fold)
+\subsection{Propriétés d'un morphisme de groupes} % (fold)
 \label{sub:proprietes_d_un_morphisme}
 \begin{theorem}[Image et image réciproque d'un sous-groupe]
      L'image d'un sous-groupe par un morphisme est un sous groupe. \newline
@@ -342,14 +342,21 @@ Si $x_n$ est une suite de $(E,N)^\mathbb{N}$ et $(\alpha_n)$ une suite de $\Reel
      \captionof{figure}{Image et image réciproque d'un sous-groupe par un morphisme $f$}
      \end{center}
 \end{theorem}
-\begin{theorem}[Condition d'injectivité d'un morphisme]
+\begin{itheorem}[Condition d'injectivité d'un morphisme]
      Soit $f$ un morphisme de groupes de $\left( G,* \right) $ dans $\left( H, \times \right) $. Alors : 
      \begin{tabbing}
           $f$ est \= \emphh{surjective} \= $\Leftrightarrow \mathrm{Im} f = H$ \kill
           $f$ est \> \emphh{injective} \> $\Leftrightarrow \mathrm{Ker} f = \lbrace e \rbrace$ \\
           $f$ est \> \emphh{surjective} \> $\Leftrightarrow \mathrm{Im} f = H$
      \end{tabbing}
-\end{theorem}
+\end{itheorem}
+\begin{prop}
+Soit $f : G \to G'$ un morphisme de groupes de neutres respectifs $e$ et $e'$. Alors : 
+     \begin{itemize}
+         \item $f(e) = e'$
+         \item $\forall x\in G,\, f(x^{-1}) = f(x)^{-1}$
+     \end{itemize}
+\end{prop}
 % subsection proprietes_d_un_morphisme (end)
 \subsection{Isomorphismes} % (fold)
 \label{sub:isomorphismes}
@@ -363,10 +370,38 @@ Si $x_n$ est une suite de $(E,N)^\mathbb{N}$ et $(\alpha_n)$ une suite de $\Reel
 % section morphismes_de_groupes (end)
 \section{Groupes monogènes et cycliques} % (fold)
 \label{sec:groupes_monogenes_et_cycliques}
-
+\begin{dfn}[Groupe $\big( \mathbb{Z}/n\mathbb{Z},+ \big)$]
+Un élément de $\mathbb{Z}/ n\mathbb{Z}$ est la classe des éléments ayant tous le même reste par la division euclidienne par $n$.\newline
+$\big( \mathbb{Z}/n\mathbb{Z},+ \big)$ est un groupe.
+\end{dfn}
+E.g.\textit{: Dans $\mathbb{Z}/3\mathbb{Z}$, l'élément $\bar{1}$ est la classe des éléments de $\mathbb{Z}$ ayants tous le même reste $\bar{1}$ dans leur division par $3$.}
+\begin{theorem}[Générateurs de $\mathbb{Z}/n\mathbb{Z}$]
+     Soit $n\in \mathbb{N}^*$. Les éléments générateurs du groupe $\big( \mathbb{Z}/n\mathbb{Z},+ \big)$ sont les classes $\dot{k}$ où $k \wedge n = 1$.
+\end{theorem}
+\begin{dfn}[Groupe monogène]
+     $G$ est un \emph{groupe monogène}\index{Monogene@Monogène}\index{Groupe!monogene@monogène} s'il est engendré par un seul élément $a$, c'est-à-dire si $G = \langle a \rangle$.
+\end{dfn}
+\begin{dfn}[Groupe cyclique]
+     Un groupe monogène fini est appelé \emph{groupe cyclique}.\\
+     Plus visuellement, un groupe monogène est cyclique $G = \langle a \rangle$ s'il peut s'écrire sous la forme : 
+     \[G = \left\lbrace e,a,a^2,\ldots,a^n \right\rbrace \]
+\end{dfn}
+\begin{itheorem}
+     Tout groupe monogène infini est isomorphe à $(\mathbb{Z},+)$.\\
+     Tout groupe monogène fini de cardinal $n$ (groupe cyclique d'ordre $n$) est isomorphe à $\big(\mathbb{Z}/n\mathbb{Z},+\big)$.
+\end{itheorem}
 % section groupes_monogenes_et_cycliques (end)
 \section{Ordre d'un élément dans un groupe} % (fold)
 \label{sec:ordre_d_un_element_dans_un_groupe}
+\begin{dfn}[Ordre d'un groupe]
+     L'\emph{ordre}\index{Ordre!groupe@\emphi{d'un} groupe} d'un groupe fini est son cardinal $n$.
+\end{dfn}
+\begin{dfn}[Ordre d'un élément dans un groupe]
+     Soit $a\in G$. Si $\langle a \langle$ est fini, l'\emph{ordre de $a$}\index{Ordre!element@\emphi{d'un} élément} est le cardinal de ce sous-groupe.
+\end{dfn}
+\begin{itheorem}[Théorème de \textsc{Lagrange}]
+     Dans un groupe fini, l'ordre d'un sous-groupe est un \emphhs{diviseur} de l'ordre du groupe.
+\end{itheorem}
 \begin{dfn}[Éléments nilpotents]
 Un élément est \emph{nilpotent}\index{Nilpotent} si, composé par lui même, il peut être nul : 
 \begin{equation}
@@ -403,11 +438,6 @@ Une relation d'ordre $\mathcal{R}$ est également une relation binaire. Elle se 
 
 \Attention{Bien savoir ce que signifient Symétrie et Anti-symétrie}
 
-\section{Idéaux de $\mathbb{Z}$}
-\begin{dfn}
-Un élément de $\mathbb{Z}/ n\mathbb{Z}$ est la classe des éléments ayant tous le même reste par la division euclidienne par n.\newline
-E.g.\textit{: Dans $\mathbb{Z}/3\mathbb{Z}$, l'élément $\bar{1}$ est la classe des éléments de $\mathbb{Z}$ ayants tous le même reste $\bar{1}$ dans leur division par $3$.}
-\end{dfn}
 
 
 \begin{theorem}[Indicatrice d'\textsc{Euler}\index{Euler@\textsc{Euler}}]
