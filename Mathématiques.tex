@@ -678,9 +678,9 @@ La définition suivante est copiée de la définition~\ref{dfn:convexe_connexite
      A_1 = P A_2 P^{-1}
      \end{equation}
 \end{theorem}
-\begin{theorem}
+\begin{itheorem}[Trace et déterminant]
      Deux matrices semblables ont la même trace et le même déterminant. Ce sont des \emph{invariants de similitude}.% interprétation géométrique du programme
-\end{theorem}
+\end{itheorem}
 C'est ce dernier théorème qui permet de confirmer l'unicité de la trace et du déterminant d'un endomorphisme.
 %TODO: Propriétés de la trace et du determinant
 % subsection matrices_carrees_semblables (end)
@@ -742,7 +742,7 @@ Si on reprend le sous-espace $F$, on peut trouver une base $(e_1, \cdots , e_p)$
 \end{dfn}
 \subsection{Éléments propres en dimension finie} % (fold)
 \label{sub:elements_propres_dim_finie}
-\Attention{On se place dans un espace $E$ de \emphhs{dimension finie}. Les théorèmes et définitions qui suivent ne sont valables (au propgramme) que dans ces conditions. }
+\Attention{On se place dans un espace $E$ de \emphhs{dimension finie}. Les théorèmes et définitions qui suivent ne sont valables (au programme) que dans ces conditions. }
 \begin{dfn}[Spectre]
      Le spectre d'un endomorphisme $u$ de $E$, noté $\mathrm{sp}(u)$, est l'ensemble de ses valeurs propres. 
 \end{dfn}
@@ -758,7 +758,10 @@ Le programme officiel précise le corrolaire qui va avec :
      Toute famille de vecteurs propres dont les valeurs propres associées sont deux à deux distinctes est libre. 
 \end{theorem}
 \begin{theorem}
-  Pour $u$ un endomorphisme de $E$ de dimension finie $n$, le spectre de $u$ est fini, et de cardinal \emphhs{au plus} $n$.
+  Pour $u$ un endomorphisme de $E$ de dimension finie $n$, le \textbf{spectre} de $u$ est fini, et de cardinal \emphhs{au plus} $n$.
+\end{theorem}
+\begin{theorem}
+     Deux matrices semblables ont même spectre.
 \end{theorem}
 \begin{itheorem}[Endomorphismes commutant]
     Soient $u$ et $v$ sont deux endomorphismes d'un espace $E$ de dimension finie. \\
@@ -851,18 +854,16 @@ Le polynôme caractéristique de cette matrice est
 \chi_A = \det (A - X\, I_n) = \prod (a_{i,i} - X)
 \end{equation}
 \end{theorem}
-\begin{theorem}[Polynôme caractéristiqur d'un endomorphisme induit]
+\begin{theorem}[Polynôme caractéristique d'un endomorphisme induit]
      Soit $u$ un endomorphisme de $E$. Le polynôme caractéristique d'un endomorphisme induit de $u$ divise $\chi_u$.
 \end{theorem}
 \section{Endomorphismes et matrices carrées diagonalisables}
 \label{sec:diagonalisation}
+\subsection{Endomorphisme diagonalisable}
 \begin{dfn}[Endomorphisme diagonalisable]
-     On dit que $u$ de $E$ est \emph{diagonalisable}\index{Diagonalisable} s'il existe une base $\mathcal{B}$ de $E$ dans laquelle la matrice de $u$ est diagonalisable.
+     On dit qu'un endomorphisme $u$ de $E$ est \emph{diagonalisable}\index{Diagonalisable!endomorphisme} s'il existe une base $\mathcal{B}$ de $E$ dans laquelle la matrice de $u$ est \emphhs{diagonale}.\\
+     On verra au théorème~\ref{thm:caracterisation_diagonalisation} que cette base $\mathcal{B}$ est constituée des vecteurs propres.
 \end{dfn}
-\begin{dfn}[Matrice diagonalisable]
-     Une matrice carrée est dite \emph{diagonalisable} si l'endomorphisme de $\mathbb{K}^n$ qui lui est canoniquement associé est diagonalisable. 
-\end{dfn}
-%
 \begin{dfn}[Quelques définitions]
 Quelques définitions portant sur les polynômes : 
     \begin{description}
@@ -870,20 +871,62 @@ Quelques définitions portant sur les polynômes :
     \item[Polynôme scindé] $P$ est scindé s'il peut s'écrire comme \uline{le produit de polynômes du premier degré}.
     \end{description}
 \end{dfn}
-\begin{itheorem}[Caractérisation de la diagonalisation]
+\begin{itheorem}[Caractérisation de la diagonalisation]\label{thm:caracterisation_diagonalisation}
     On donne des équivalences à ``$u$ diagonalisable'' : 
     \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
     \begin{enumerate}
-        \item $E$ admet une base formée des vecteurs propres de $u$
-        \item $E$ est somme directe d'espaces sur lesquels $u$ induit des homothéties
-        \item $\chi_u$ est scindé, et $\omega (\lambda ) = \dim (E_\lambda)$
-        \item $n = \sum \dim E_\lambda $
-        \item $u$ admet pour matrice une matrice diagonalisable
+        \item $E$ admet une base formée des vecteurs propres de $u$ ;
+        \item $E$ est somme directe des espaces propres de $u$ : $E = \bigoplus_{\lambda\in \mathrm{sp}(u)} E_\lambda$ ;
+        \item $\dim E = \sum \dim E_\lambda $ ;
+        \item le polynôme caractéristique $\chi_u$ de $u$ est scindé, et $\omega (\lambda ) = \dim (E_\lambda)$ ;
+        \item le polynôme minimal $\Pi_u$ de $u$ est scindé à racines simples ;
+        \item $u$ possède au moins un polynôme annulateur scindé à racines simples ;
+        \item $u$ admet pour matrice une matrice diagonalisable.
     \end{enumerate}
 \end{itheorem}
+Enfin, une condition juste suffisante pour diagonaliser un endomorphisme : 
+\begin{theorem}[Condition suffisante de diagonalisation]
+     Si $u$ admet $n = \dim E$ valeurs propres distinctes deux à deux, alors $u$ est diagonalisable.
+\end{theorem}
+%
+\subsection{Matrice diagonalisable}
+\begin{dfn}[Matrice diagonalisable]
+     Une matrice carrée $A$ est dite \emph{diagonalisable}\index{Diagonalisable!matrice} si l'endomorphisme de $\mathbb{K}^n$ canoniquement associé est diagonalisable.
+\end{dfn}
+On se servira plutôt du théorème suivant comme définition :
+\begin{itheorem}
+      Une matrice carrée $A$ est diagonalisable \ssi{} elle est semblable à une matrice diagonale $D$ : 
+     \begin{equation}
+      \exists P\in \mathrm{GL}_n(\mathbb{K})\, \qquad A = PDP^{-1}
+      \end{equation} 
+      $P$ est la matrice de passage de la base canonique de $\mathbb{K}^n$ à une base de vecteurs propres de $A$.
+\end{itheorem}
+On peut alors traduire matriciellement tous les théorèmes vus dans la section précédente, notamment le théorème~\ref{thm:caracterisation_diagonalisation} page~\pageref{thm:caracterisation_diagonalisation} qui caractérise la diagonalisation.
 % section diagonalisation (end)
-\section{Endomorphismes et matrices carrées trigonalisables}
-
+\section{Endomorphismes et matrices carrées trigonalisables} % (fold)
+\label{sec:endomorphismes_et_matrices_carrees_trigonalisables} 
+\begin{dfn}[Endomorphisme trigonalisable]
+     On dit qu'un endomorphisme $u$ de $E$ est \emph{trigonalisable}\index{Trigonalisable!endomorphisme} s'il existe une base $\mathcal{B}$ de $E$ dans laquelle la matrice de $u$ est \emphhs{triangulaire supérieure}.
+\end{dfn}
+% Bizarrement, le programme officiel définit dans le sens opposé la trigonalisation. En trigonalisation, c'est à partir d'une matrice, en diagonalisation, c'est à partir d'un endomorphisme.
+\begin{dfn}[Matrice trigonalisable]
+     Une matrice carrée $A$ est dite \emph{trigonalisable}\index{Trigonalisable!matrice} si elle est semblable à une matrice triangulaire supérieure $T$ : 
+     \begin{equation}
+      \exists P\in \mathrm{GL}_n(\mathbb{K})\, \qquad A = PTP^{-1}
+      \end{equation} 
+\end{dfn}
+\begin{theorem}[Autre ``définition'']
+     Une matrice carrée est trigonalisable \ssi{} l'endomorphisme $u$ canoniquement associé est trigonalisable.
+\end{theorem}
+\begin{itheorem}[Caractérisation de la trigonalisation]
+     Un endomorphisme $u$ est trigonalisable \ssi{} son polynôme caractéristique ou son polynôme annulateur est scindé.\\
+     Plus généralement, $u$ est trigonalisable \ssi{} $u$ possède au moins un polynôme annulateur scindé.
+\end{itheorem}
+\begin{theorem}[Trigonalisation dans $\mathbb{C}$]
+     Tout endomorphisme d'un $\mathbb{C}$-espace vectoriel est trigonalisable.
+\end{theorem}
+Ces deux théorèmes peuvent également se traduire matriciellement.
+% section endomorphismes_et_matrices_carrees_trigonalisables (end)
 \section{Endomorphismes nilpotents} % (fold)
 \label{sec:endomorphismes_nilpotents}
 \subsection{Définition}
@@ -897,7 +940,7 @@ Quelques définitions portant sur les polynômes :
 \end{theorem}
 %TODO: demo? (Très facile)
 \begin{theorem}[Majoration de l'indice de nilpotence]
-     Dans un espace de dimension $n$, l'indice de nilpotence d'un endomorphisme ne dépasse pas $n$. \\
+     Dans un espace $E$ de dimension $n$, l'indice de nilpotence d'un endomorphisme ne dépasse pas $n$. \par
      Si $u$ est nilpotent d'indice $n$, il existe une base $\mathcal{B}$ dans laquelle la matrice de $u$ est de la forme :
      \begin{equation}
      J_n=
