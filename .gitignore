@@ -11,3 +11,5 @@
 MWE/*
 *.lof
 .st*
+*.fdb_latexmk
+*.fls
