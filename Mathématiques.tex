@@ -2767,9 +2767,9 @@ Souvent, on ne peut intégrer sur tout un intervalle comme $[0;+\infty ]$. Pour 
 \end{tabulary}
 \titre{Applications classiques des théorèmes}
 \begin{tabulary}{\textwidth}{| r@{ - (} c @{) }| C |}
-     \small{Dérivation d'une intégrale à paramètre}&\ref{thm:derivation_d_une_integrale_parametres}&Montrer que $\lim\left( \int \cdots\right) = \int \left( \lim \cdots\right) $\\
+     Convergence dominée&\ref{thm:convergence_dominee}&Montrer que $\lim\left( \int \cdots\right) = \int \left( \lim \cdots\right) $\\
      \small{Intégration terme-à-terme}&\ref{thm:integration_terme_terme}&Montrer une égalité du type $\int f_\text{\gls{DSE}} = \int \left( \sum (\gls{DSE}) \right) = \sum \left( \int \cdots \right)$\\
-     Convergence dominée&\ref{thm:convergence_dominee}&Dériver une fonction de type $f(x)=\int_I \varphi(x,t)\d t$
+     \small{Dérivation d'une intégrale à paramètre}&\ref{thm:derivation_d_une_integrale_parametres}&Dériver une fonction de type $F(x)=\int_I f(x,t)\d t$
 \end{tabulary}
 \end{methode}
 \section{Intégrale généralisée sur un intervalle de la forme $[a,+\infty[$} % (fold)
@@ -3018,7 +3018,8 @@ Soit $f\in \mathcal{L}^1(I,\mathbb{K})$, on note $\int_I f$ l'intégrale $\int_a
 \section{Continuité d'une intégrale à paramètre} % (fold)
 \label{sec:continuite_d_une_integrale_parametre}
 \begin{theorem}[Continuité]
-La fonction $g : x \mapsto \int_I f(x,t)$ est \uline{\emph{définie et continue}} sur $A$ si 
+     Soit $A$ une partie d'un espace normé, et soit $I$ un intervalle de \Reel{}.\\
+     Soit $f : \big( A\times I\big) \longto \mathbb{K}$ une fonction. Soit $k\in \mathbb{N}$. \\ Si : 
 \begin{equation}\left\lbrace
 \begin{array}{l l c}
 \forall x\in A,& t \mapsto f(x,t) \in \mathcal{CM}&\boldsymbol{( \mathcal{CPM} }\text{\textbf{ pour }}\boldsymbol{t)}\\
@@ -3030,34 +3031,63 @@ La fonction $g : x \mapsto \int_I f(x,t)$ est \uline{\emph{définie et continue}
 \end{array}
 \right.
 \end{equation}
-On a aussi la version avec $\mathcal{C}^{k}$ mais ce n'est pas au programme
+alors la fonction $F : x \mapsto \int_I f(x,t)$ est \uline{\emph{définie et continue}} sur $A$ si 
 \end{theorem}
 % section continuite_d_une_integrale_parametre (end)
 \section{Dérivation d'un intégrale à paramètre} % (fold)
 \label{sec:derivation_d_un_integrale_parametre}
-\begin{itheorem}[Dérivabilité]
+\begin{itheorem}[Dérivabilité d'un intégrale à paramètre]
 \label{thm:derivation_d_une_integrale_parametres}
-La fonction $g : x \mapsto \int_I f(x,t)$ est \uline{\emph{dérivable et continue $\left( \mathcal{C}^1 \right)$}} sur $A$ si 
+     Soient $I$ et $A$ des intervalles quelconques de \Reel{}.\\
+     Soit $f : \big( A\times I\big) \longto \mathbb{K}$ une fonction. Soit $k\in \mathbb{N}$. \\ Si : 
+\begin{subequations}
 \begin{equation}
 \left\lbrace
 \begin{array}{l}
-\forall x\in A, t \mapsto f(x,t) \in \mathcal{CM}\quad \boldsymbol{(f} \text{\textbf{ intégrable pour }}\boldsymbol{t)}\\
+\forall x\in A, t \mapsto f(x,t) \in \mathscr{L}^1\quad \boldsymbol{(f} \text{\textbf{ intégrable pour }}\boldsymbol{t)}\\
 f \text{ admet une dérivée partielle qui vérifie} \\
 \left\lbrace
 \arraycolsep=0.5pt\def\arraystretch{1.8}
 \begin{array}{r l l}
-\forall x \in A,& t\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \CM &\boldsymbol{( \mathcal{CPM} }\text{\textbf{ pour }}\boldsymbol{t)}\\
-\forall t\in I,& x\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \mathcal{C} &\text{\textbf{(Continue pour }}\boldsymbol{x)}\\
+\forall x \in A,& t\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \mathscr{L}^1 &\boldsymbol{( \mathcal{CPM} }\text{\textbf{ pour }}\boldsymbol{t)}\\
+\forall t\in I,& x\mapsto \dfrac{\partial f}{\partial x}(x,t) \in \mathcal{C} &\boldsymbol{(\mathscr{C}^1}\text{\textbf{ pour }}\boldsymbol{x)}\\
 \forall (x,t) \in A \times \underbrace{[a,b]}_{\mathclap{\in I}},& \textcolor{Red}{\left|\textcolor{Black}{\dfrac{\partial f}{\partial x}(x,t)}\right|} \le \varphi(t) \in \mathscr{L}^1 & \text{\textbf{(Domination)}}
 \end{array}
 \right.
 \end{array}
 \right.
 \end{equation}
-
-Alors, la dérivée de $g$ est $g'(x) = \int_I \dfrac{\partial f}{\partial x}(x,t) \d t$
+alors, la fonction $F : x \mapsto \int_I f(x,t)$ est \uline{\emph{dérivable et $\mathscr{C}^1$}} sur $A$, et :
+\begin{equation}
+\forall x\in A,\qquad F'(x) = \int_I \dfrac{\partial f}{\partial x}(x,t) \d t
+\end{equation}
+\end{subequations}
 \end{itheorem}
-\todo{Intégrale $\mathcal{C}^k$}
+\begin{theorem}[Classe $\mathscr{C}^k$ d'une intégrale à paramètre]
+     Soient $I$ et $A$ des intervalles quelconques de \Reel{}.\\
+     Soit $f : \big( A\times I\big) \longto \mathbb{K}$ une fonction. Soit $k\in \mathbb{N}$. \\ Si : 
+\begin{subequations}
+\begin{equation}
+\left\lbrace
+\begin{array}{l}
+\forall x \in A,\, \forall j\in \llbracket 0, k - 1 \rrbracket,\quad  t \mapsto f(x,t) \in \mathscr{L}^1\quad \boldsymbol{(f} \text{\textbf{ intégrable }$\boldsymbol{k}$\textbf{ fois pour }}\boldsymbol{t)}\\
+\left\lbrace
+\arraycolsep=0.5pt\def\arraystretch{2.2}
+\begin{array}{r l c}
+\forall x \in A,\quad & t\mapsto \dfrac{\partial^{k} f}{\partial x^{k}}(x,t) \in \CM&\boldsymbol{( \mathcal{C}^{k}\mathcal{PM} }\text{\textbf{ pour }}\boldsymbol{t)} \\
+\forall t\in I,\, \forall j\in \llbracket 0, k \rrbracket,\quad & x\mapsto \dfrac{\partial^j f}{\partial x^j}(x,t) \in \mathcal{C} &\boldsymbol{(\mathscr{C}^k}\text{\textbf{ pour }}\boldsymbol{x)}\\
+\forall (x,t) \in A \times \underbrace{[a,b]}_{\mathclap{\in I}},& \textcolor{Red}{\left|\textcolor{Black}{\dfrac{\partial f}{\partial x}(x,t)}\right|} \le \varphi(t) \in \mathscr{L}^1 & \text{\textbf{(Domination)}}
+\end{array}
+\right.
+\end{array}
+\right.
+\end{equation}
+Alors $t\longmapsto \dfrac{\partial^k f}{\partial x^k}(x,t)$ est intégrable sur $I$, $F : x \longmapsto \int_I f(x,t) \d t$ est de classe $\mathscr{C}^k$ sur $A$, et :
+\begin{equation}
+\forall x \in A,\qquad F^{(k)}(x) = \int_I \dfrac{\partial^k f}{\partial x^k}(x,t) \d t
+\end{equation}
+\end{subequations}
+\end{theorem}
 % section derivation_d_un_integrale_parametre (end)
 \section{Intégrabilité (Ancienne version)}
 À l'origine, on donne plusieurs définitions de l'intégrabilité : d'abord pour les fonctions positives, puis pour les autres en disant que c'est si $|f|$ est intégrable. On donne ici une définition plus générale : 
