@@ -444,6 +444,13 @@ Souvent, on a le débit massique, l'équation plus pertinente serait donc $\d m 
    Y\left( \Sigma_{A'B'}\right) &=& &&Y\left( \Sigma_{A'B}\right) &+& y_s\, \d m_s
    \end{array}
    \]
+   D'où la formule suivante :
+   \begin{align*}
+     \d Y_\Sigma &= Y_\Sigma(t+\d t) - Y_\Sigma (t) \\
+                 &= \bigg( \cancel{Y\left( \Sigma_{A'B}\right)} + y_s\, \d m_s \bigg) - \bigg( y_e\, \d m_e + \cancel{Y\left( \Sigma_{A'B}\right)} \bigg) \\
+     \d Y_\Sigma &= \d m ~ (y_s - y_e)
+   \end{align*}
+
 \end{proof}
 \begin{figure}\label{fig:systeme_ouvert}
    \centering
