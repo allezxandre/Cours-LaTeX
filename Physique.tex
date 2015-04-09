@@ -415,7 +415,7 @@ De la preuve précédente, on tire une dernière formule pour les gaz parfaits :
 \end{dfn}
 \begin{dfn}[Débits massiques]
    On se place dans le cas de systèmes ouverts en \emphh{régime stationnaire}. La masse étant une caractéristique du fluide, elle ne varie pas non plus. \\
-   C'est-à-dire que le débit de fluide massique entrant $D_{m_e}$ est égal au débit massique de fluide sortant $D_{m_s}$, et on peut définir le \emph{débit massique} $D_m$ à travers le système comme étant $D_m =D_{m_e} = D_{m_s}$.\\
+   C'est-à-dire que le débit de fluide massique entrant $D_{m_e}$ est égal au débit massique de fluide sortant $D_{m_s}$, et on peut définir le \emph{débit massique}\index{Debit massique@Débit massique} $D_m$ à travers le système comme étant $D_m =D_{m_e} = D_{m_s}$.\\
    Si $\d m$ est la masse de fluide entrée/sortie pendant un court instant $\d t$ : 
    \begin{equation}
    D_m = \dfrac{\d m}{\d t}
@@ -432,6 +432,78 @@ Souvent, on a le débit massique, l'équation plus pertinente serait donc $\d m 
    Toutes ces grandeurs \emphhs{se rapportent au fluide} qui traverse le système et sont \emphh{massiques}. $w_u$ est le travail massique utile à l'intérieur du système, par exemple une hélice, et ne prend pas en compte le travail des forces de pression.\\ % Je sais, ça fait deux retours à la ligne en considérant la fonction \Attention juste en dessous, mais c'est pour le design
    \Attention{Ça ressemble beaucoup au premier principe, mais c'est \uline{l'enthalpie qui rentre en jeu}, car elle inclut $u$ et le travail des forces de pression qui se trouvaient dans le membre de droite de l'équation.}
 \end{itheorem}
+\begin{proof}
+   On étudie le système~$\Sigma$ représenté par la zone \textcolor{couleurClaire}{colorée} sur la figure~\ref{fig:systeme_ouvert}. Le système est représenté en deux instants. À l'instant $t$, il se trouve entre les points $A$ et $B$, et en $t+\d t$, il se trouve entre les points $A'$ et $B'$. La zone entre $A'$ et $B$ (le système interne) sera notée $\Sigma_{A'B}$.\\
+   On démontre d'abord une formule générale : soit $Y$ une grandeur extensive du système (par exemple $U$ ou $S$). On note $y$ sa valeur massique : $Y = y\d m$. \\
+   $Y$ est une grandeur extensive, donc on peut étudier le système aux différents instants :
+   \[
+   \begin{array}{r c r c c c l}
+   Y\left( \Sigma_{AB}\right) &=& \underbrace{Y \left( \Sigma_{AA'} \right)}  &+& Y\left( \Sigma_{A'B}\right)& \\
+   Y\left( \Sigma_{AB}\right) &=& y_e\, \d m_e &+& Y\left( \Sigma_{A'B}\right)& \\
+   Y\left( \Sigma_{A'B'}\right) &=& &&Y\left( \Sigma_{A'B}\right) &+& \underbrace{Y \left( \Sigma{BB'} \right) } \\
+   Y\left( \Sigma_{A'B'}\right) &=& &&Y\left( \Sigma_{A'B}\right) &+& y_s\, \d m_s
+   \end{array}
+   \]
+\end{proof}
+\begin{figure}\label{fig:systeme_ouvert}
+   \centering
+   \subfloat[Système à $t$]{
+     \begin{tikzpicture}[scale=0.9]
+        \def\ouverture{0.7}
+        \def\longueur{1.5}
+        \coordinate (A') at (-2,1.5);
+        \coordinate (B) at (2,-1.5);
+        % remplissage du rectangle et des tuyaux
+        \fill[color=couleurClaire] (A') rectangle (B);
+        \fill[color=couleurClaire] (A') -- ++(-0.8*\longueur,0) coordinate (A) -- ++ (0,-\ouverture) -- ++(0.8*\longueur,0) -- cycle; 
+          % on ne fill pas jusqu'à B' dans le système actuel
+        \path (B) -- ++(0.8*\longueur,0) coordinate (B') -- ++ (0,\ouverture) -- ++(-0.8*\longueur,0) -- cycle; 
+        % contour du rectangle
+        \draw[very thick] (A') -- ++(-\longueur,0) ++(0,-\ouverture) -- ++(\longueur,0) -- (-2,-1.5) -- (B);
+        \draw[very thick] (B) -- ++(\longueur,0) ++(0,\ouverture) -- ++(-\longueur,0) -- (2,1.5) -- (A');
+        % les coordonnées
+        \begin{scope}[dash pattern = on 1.5 pt off 1.5 pt, thick]
+          \draw (A') node[above]{$A'$} -- ++(0,-\ouverture); 
+          \draw (A) node[above]{$A$} -- ++(0,-\ouverture);
+          \draw (B') node[below]{$B'$} -- ++(0,\ouverture);
+          \draw (B) node[below]{$B$} -- ++(0,\ouverture);
+        \end{scope}
+        % Masse dm
+        \path (A) ++(0.4*\longueur,-0.5*\ouverture) node{$\d m_e$};
+        % Système Sigma
+        \node at (-0.2*\longueur,0.05*\longueur) {$\scalebox{2}{\Sigma}$};
+    \end{tikzpicture}
+   }
+   \hspace{0.1\linewidth}
+   \subfloat[Système à $t+\d t$]{
+     \begin{tikzpicture}[scale=0.9]
+        \def\ouverture{0.7}
+        \def\longueur{1.5}
+        \coordinate (A') at (-2,1.5);
+        \coordinate (B) at (2,-1.5);
+        % remplissage du rectangle et des tuyaux
+        \fill[color=couleurClaire] (A') rectangle (B);
+          % on ne fill pas A-A' dans le système actuel
+        \path (A') -- ++(-0.8*\longueur,0) coordinate (A) -- ++ (0,-\ouverture) -- ++(0.8*\longueur,0) -- cycle; 
+        \fill[color=couleurClaire] (B) -- ++(0.8*\longueur,0) coordinate (B') -- ++ (0,\ouverture) -- ++(-0.8*\longueur,0) -- cycle; 
+        % contour du rectangle
+        \draw[very thick] (A') -- ++(-\longueur,0) ++(0,-\ouverture) -- ++(\longueur,0) -- (-2,-1.5) -- (B);
+        \draw[very thick] (B) -- ++(\longueur,0) ++(0,\ouverture) -- ++(-\longueur,0) -- (2,1.5) -- (A');
+        % les coordonnées
+        \begin{scope}[dash pattern = on 1.5 pt off 1.5 pt, thick]
+          \draw (A') node[above]{$A'$} -- ++(0,-\ouverture); 
+          \draw (A) node[above]{$A$} -- ++(0,-\ouverture);
+          \draw (B') node[below]{$B'$} -- ++(0,\ouverture);
+          \draw (B) node[below]{$B$} -- ++(0,\ouverture);
+        \end{scope}
+        % Masse dm
+        \path (B') ++(-0.4*\longueur,0.5*\ouverture) node{$\d m_s$};
+        % Système Sigma
+        \node at (0.2*\longueur,-0.05*\longueur) {$\scalebox{2}{\Sigma}$};
+    \end{tikzpicture}
+   }
+   \caption{Étude thermodynamique d'un système ouvert}
+\end{figure}
 \todo{ Proof du PPSO}
 \subsection{Deuxième principe} % (fold)
 \label{sub:deuxieme_principe}
