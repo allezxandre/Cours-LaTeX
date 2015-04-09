@@ -415,7 +415,7 @@ De la preuve précédente, on tire une dernière formule pour les gaz parfaits :
 \end{dfn}
 \begin{dfn}[Débits massiques]
    On se place dans le cas de systèmes ouverts en \emphh{régime stationnaire}. La masse étant une caractéristique du fluide, elle ne varie pas non plus. \\
-   C'est-à-dire que le débit de fluide massique entrant $\d m_e$ est égal au débit massique de fluide sortant $\d m_s$, et on peut définir le \emph{débit massique} $D_m$ à travers le système comme étant $D_m =\d m_e = \d m_s$.\\
+   C'est-à-dire que le débit de fluide massique entrant $D_{m_e}$ est égal au débit massique de fluide sortant $D_{m_s}$, et on peut définir le \emph{débit massique} $D_m$ à travers le système comme étant $D_m =D_{m_e} = D_{m_s}$.\\
    Si $\d m$ est la masse de fluide entrée/sortie pendant un court instant $\d t$ : 
    \begin{equation}
    D_m = \dfrac{\d m}{\d t}
@@ -427,7 +427,7 @@ Souvent, on a le débit massique, l'équation plus pertinente serait donc $\d m 
 \begin{itheorem}[Premier principe en système ouvert]
    Dans un système ouvert en régime stationnaire, le \emph{premier principe} s'écrit : 
    \begin{equation}
-   dm \bigg( \Delta h + \Delta e_c +\Delta e_p \bigg) = dm \big( q + w_u \big)\\ \quad\text{avec }\Delta a = a_s - a_e
+   \d m \bigg( \Delta h + \Delta e_c +\Delta e_p \bigg) = \d m \big( q + w_u \big)\\ \quad\text{avec }\Delta a = a_s - a_e
    \end{equation}
    Toutes ces grandeurs \emphhs{se rapportent au fluide} qui traverse le système et sont \emphh{massiques}. $w_u$ est le travail massique utile à l'intérieur du système, par exemple une hélice, et ne prend pas en compte le travail des forces de pression.\\ % Je sais, ça fait deux retours à la ligne en considérant la fonction \Attention juste en dessous, mais c'est pour le design
    \Attention{Ça ressemble beaucoup au premier principe, mais c'est \uline{l'enthalpie qui rentre en jeu}, car elle inclut $u$ et le travail des forces de pression qui se trouvaient dans le membre de droite de l'équation.}
