@@ -2050,7 +2050,7 @@ Tous les théorèmes vus ici sont à démontrer.
 \Attention{Ne pas confondre ($A \cap B = \varnothing$) et ($P(A\cap B) = 0$)}
 \begin{dfn}[Système complet d'évènements]
      Soit $(\Omega, \mathscr{T})$ un espace probabilisable.\\
-     Soit $I$ fini ou égal à $\mathbb{N}$\newline
+     Soit $I$ fini ou égal à $\mathbb{N}$.\newline
      Un \emph{système complet d'évènements}\index{Systeme complet@Système complet\emphi{ (probabilités)}} est \emphhs{une suite d'évènements} $(A_i)_{i\in I}$ telle que :
      \begin{itemize}
          \item $\bigcup_{i\in I} A_i = \Omega$
@@ -2117,8 +2117,40 @@ Soit $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ telle que $\sum \mathbb
 %TODO Évènements négligeables/presque sûrs
 \todo{Évènements négligeables / presque sûrs}
 % section proprietes_elementaires_des_probabilites (end)
-\section{Indépendance} % (fold)
+\section{Probabilités conditionnelles et indépendance} % (fold)
 \label{sec:independance}
+\subsection{Probabilités conditionnelles} % (fold)
+\label{sub:probabilites_conditionnelles}
+\begin{itheorem}[Probabilité conditionnelle]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace propbabilisé. \newline
+     Soit $A \in \mathscr{T}$ de probabilité non nulle. \\
+     L'application 
+     \begin{equation}
+     \mathbb{P}_A : \left\lbrace
+     \begin{array}{r c l}
+          \mathscr{T} &\longto & [0,1] \\
+          B &\longmapsto & \dfrac{\mathbb{P} (A\cap B)}{\mathbb{P} (A)}
+     \end{array}
+     \right.
+     \end{equation}
+     est une probabilité appellée \emph{probabilité sachant $A$}.
+\end{itheorem}
+On notera également $\mathbb{P}\big( B | A\big) = \mathbb{P}_A(B)$ pour ``probabilité de $B$ sachant $A$''.
+\begin{theorem}[Formule des probabilités composées]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace propbabilisé. \newline
+     Soit $(A_n)$ une suite d'évènements de $\mathscr{T}$ telle que $\mathbb{P} \Big( \bigcap_{k=1}^n A_k \Big) > 0$. Alors :
+     \begin{equation}
+     \mathbb{P} \left( \bigcap_{k=1}^n A_k \right) = \mathbb{P}\Bigg(A_n \Bigg| \bigcap_{k=1}^{n-1} A_k \Bigg) \times \mathbb{P}\Bigg(A_{n-1} \Bigg| \bigcap_{k=1}^{n-2} A_k \Bigg) \times \cdots \times \mathbb{P}(A_2|A_1) \times \mathbb{P}(A_1)
+     \end{equation}
+\end{theorem}
+\begin{itheorem}[Formule des probabilités totales]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace propbabilisé. \newline
+     Soit $A_n$ un \emphhs{système complet} d'évènements de probabilités non nulles. Alors :
+     \begin{equation}
+     \forall B\in \mathscr{T},\qquad \mathbb{P}(B) = \sum_{n=0}^{+\infty} \mathbb{P}_{A_k}(B)\, \mathbb{P}(A_k)
+     \end{equation}
+\end{itheorem}
+% subsection probabilites_conditionnelles (end)
 \begin{dfn}[Évènements indépendants]
      Deux évènements $A$ et $B$ sont dits \emph{indépendants}\index{Evenements@Évènements!independants@indépendants} lorsque 
      \begin{equation}
