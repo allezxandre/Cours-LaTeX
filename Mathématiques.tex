@@ -2122,7 +2122,7 @@ Soit $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ telle que $\sum \mathbb
 \subsection{Probabilités conditionnelles} % (fold)
 \label{sub:probabilites_conditionnelles}
 \begin{itheorem}[Probabilité conditionnelle]
-     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace propbabilisé. \newline
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
      Soit $A \in \mathscr{T}$ de probabilité non nulle. \\
      L'application 
      \begin{equation}
@@ -2137,14 +2137,14 @@ Soit $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ telle que $\sum \mathbb
 \end{itheorem}
 On notera également $\mathbb{P}\big( B | A\big) = \mathbb{P}_A(B)$ pour ``probabilité de $B$ sachant $A$''.
 \begin{theorem}[Formule des probabilités composées]
-     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace propbabilisé. \newline
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
      Soit $(A_n)$ une suite d'évènements de $\mathscr{T}$ telle que $\mathbb{P} \Big( \bigcap_{k=1}^n A_k \Big) > 0$. Alors :
      \begin{equation}
      \mathbb{P} \left( \bigcap_{k=1}^n A_k \right) = \mathbb{P}\Bigg(A_n \Bigg| \bigcap_{k=1}^{n-1} A_k \Bigg) \times \mathbb{P}\Bigg(A_{n-1} \Bigg| \bigcap_{k=1}^{n-2} A_k \Bigg) \times \cdots \times \mathbb{P}(A_2|A_1) \times \mathbb{P}(A_1)
      \end{equation}
 \end{theorem}
 \begin{itheorem}[Formule des probabilités totales]
-     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace propbabilisé. \newline
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
      Soit $(A_n)_{n\in\mathbb{N}}$ un \emphhs{système complet} d'évènements de probabilités non nulles. Alors :
      \begin{equation}
      \forall B\in \mathscr{T},\qquad \mathbb{P}(B) = \sum_{n=0}^{+\infty} \mathbb{P}_{A_n}(B)\, \mathbb{P}(A_n)
