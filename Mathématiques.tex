@@ -2145,29 +2145,52 @@ On notera également $\mathbb{P}\big( B | A\big) = \mathbb{P}_A(B)$ pour ``proba
 \end{theorem}
 \begin{itheorem}[Formule des probabilités totales]
      Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace propbabilisé. \newline
-     Soit $A_n$ un \emphhs{système complet} d'évènements de probabilités non nulles. Alors :
+     Soit $(A_n)_{n\in\mathbb{N}}$ un \emphhs{système complet} d'évènements de probabilités non nulles. Alors :
      \begin{equation}
-     \forall B\in \mathscr{T},\qquad \mathbb{P}(B) = \sum_{n=0}^{+\infty} \mathbb{P}_{A_k}(B)\, \mathbb{P}(A_k)
+     \forall B\in \mathscr{T},\qquad \mathbb{P}(B) = \sum_{n=0}^{+\infty} \mathbb{P}_{A_n}(B)\, \mathbb{P}(A_n)
+     \end{equation}
+\end{itheorem}
+\begin{proof}
+     $(A_n)_{n\in\mathbb{N}}$ est un système complet d'évènements. Ainsi, les évènements $B\cap A_n$ sont deux à deux incompatibles, et $\bigcup_{n\in\mathbb{N}} \left( B\cap A_n\right) = B$. Or $\mathbb{P}_{A_n}(B) = \dfrac{\mathbb{P}(A_n\cap B)}{\mathbb{P}(A_n)}$, ainsi : 
+     \[
+         \mathbb{P}(B) = \sum_{n=0}^{+\infty} \mathbb{P} \left( B\cap A_n \right)
+                       = \sum_{n=0}^{+\infty} \mathbb{P}_{A_n}(B) \mathbb{P}(A_n)
+     \]
+\end{proof}
+\begin{itheorem}[Formule de \textsc{Bayes}]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
+     Soit $(A_n)_{n\in\mathbb{N}}$ un \emphhs{système complet} d'évènements de probabilités non nulles. Alors :
+     \begin{equation}
+     \forall B\in \mathscr{T},\: \forall i\in \mathbb{N},\qquad \mathbb{P}_B(A_i) = \dfrac{\mathbb{P}_{A_i}(B)\,\mathbb{P}(A_i)}{\displaystyle\sum_{n=0}^{+\infty}\mathbb{P}_{A_n} (B)\, \mathbb{P}(A_n)}
      \end{equation}
 \end{itheorem}
 % subsection probabilites_conditionnelles (end)
+\subsection{Indépendance} % (fold)
+\label{sub:independance}
 \begin{dfn}[Évènements indépendants]
      Deux évènements $A$ et $B$ sont dits \emph{indépendants}\index{Evenements@Évènements!independants@indépendants} lorsque 
      \begin{equation}
      \mathbb{P}(A\cap B) = \mathbb{P}(A)\times \mathbb{P}(B)
      \end{equation}
 \end{dfn}
+% subsection independance (end)
 % section independance (end)
 \section{Espérance} % (fold)
 \label{sec:esperance}
 \subsection{Définitions} % (fold)
 \label{sub:esperance_definitions}
+\begin{subequations}
 \begin{dfn}[Espérance d'une famille finie]
      Soit $X$ une variable aléatoire prenant un nombre fini de valeurs $x_1, x_2, \cdots , x_n$. L'\emph{espérance}\index{Esperance@Espérance} de $X$ est donnée par la somme finie :
      \begin{equation}
-     E(X) = \sum_{i=1}^n x_i \mathbb{P}_X(x_i)
+     E(X) = \sum_{i=1}^n x_i \mathbb{P}(X = x_i)
      \end{equation}
 \end{dfn}
+\textbf{Remarque :} On assimile souvent l'espérance à la moyenne, car puisque la somme des probabilités est $1$, on peut très bien écrire que : 
+\begin{equation}
+    E(X) = \dfrac{\displaystyle\sum_{i=1}^n x_i \mathbb{P}(X = x_i)}{\displaystyle\sum_{i=1}^n \mathbb{P}(X = x_i)}
+\end{equation}
+\end{subequations}
 On peut étendre la définition précédente au cas où les valeurs de $X$ forment une famille sommable :
 \begin{dfn}[Espérance d'une variable aléatoire discrète]
      Soit $X$ une variable aléatoire \emphh{réelle discrète}. On dit que $X$ est d'\emph{espérance} finie si la famille $\left( x\mathbb{P}_X(x)\right)_{x\in X(\Omega)}$ est sommable.
