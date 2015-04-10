@@ -424,17 +424,14 @@ De la preuve précédente, on tire une dernière formule pour les gaz parfaits :
 Souvent, on a le débit massique, l'équation plus pertinente serait donc $\d m = D_m\times \d t$
 % subsection systeme_ouvert (end)
 \subsection{Premier principe}
-\begin{itheorem}[Premier principe en système ouvert]
-   Dans un système ouvert en régime stationnaire, le \emph{premier principe} s'écrit : 
+\begin{theorem}[Grandeur extensive en régime stationnaire]
+   Soit $Y$ une grandeur extensive quelconque (\textit{cf.} définition~\eqref{dfn:grandeure_intensive_extensive} page~\pageref{dfn:grandeure_intensive_extensive}). Si $y$ est la grandeur massique associée telle que $Y = y~\d m$. Alors
    \begin{equation}
-   \d m \bigg( \Delta h + \Delta e_c +\Delta e_p \bigg) = \d m \big( q + w_u \big)\\ \quad\text{avec }\Delta a = a_s - a_e
+   \d Y_\Sigma = \d m~\Delta y \\ \quad\text{avec }\Delta y = y_s - y_e \label{eq:grandeur_extensive_systeme_ouvert}
    \end{equation}
-   Toutes ces grandeurs \emphhs{se rapportent au fluide} qui traverse le système et sont \emphh{massiques}. $w_u$ est le travail massique utile à l'intérieur du système, par exemple une hélice, et ne prend pas en compte le travail des forces de pression.\\ % Je sais, ça fait deux retours à la ligne en considérant la fonction \Attention juste en dessous, mais c'est pour le design
-   \Attention{Ça ressemble beaucoup au premier principe, mais c'est \uline{l'enthalpie qui rentre en jeu}, car elle inclut $u$ et le travail des forces de pression qui se trouvaient dans le membre de droite de l'équation.}
-\end{itheorem}
+\end{theorem}
 \begin{proof}
-   On étudie le système~$\Sigma$ représenté par la zone \textcolor{couleurClaire}{colorée} sur la figure~\ref{fig:systeme_ouvert}. Le système est représenté en deux instants. À l'instant $t$, il se trouve entre les points $A$ et $B$, et en $t+\d t$, il se trouve entre les points $A'$ et $B'$. La zone entre $A'$ et $B$ (le système interne) sera notée $\Sigma_{A'B}$.\\
-   On démontre d'abord une formule générale : soit $Y$ une grandeur extensive du système (par exemple $U$ ou $S$). On note $y$ sa valeur massique : $Y = y\d m$. \\
+   On étudie le système~$\Sigma$ représenté par la zone \colorbox{couleurClaire}{colorée} sur la figure~\ref{fig:systeme_ouvert}. \\
    $Y$ est une grandeur extensive, donc on peut étudier le système aux différents instants :
    \[
    \begin{array}{r c r c c c l}
@@ -450,9 +447,9 @@ Souvent, on a le débit massique, l'équation plus pertinente serait donc $\d m 
                  &= \bigg( \cancel{Y\left( \Sigma_{A'B}\right)} + y_s\, \d m_s \bigg) - \bigg( y_e\, \d m_e + \cancel{Y\left( \Sigma_{A'B}\right)} \bigg) \\
      \d Y_\Sigma &= \d m ~ (y_s - y_e)
    \end{align*}
-
+   En notant $\Delta y = y_s - y_e$, on retrouve l'équation recherchée.\qed
 \end{proof}
-\begin{figure}
+\begin{figure}[b]
    \centering
    \subfloat[Système à $t$]{
      \begin{tikzpicture}[scale=0.9]
@@ -509,10 +506,31 @@ Souvent, on a le débit massique, l'équation plus pertinente serait donc $\d m 
         \node at (0.2*\longueur,-0.05*\longueur) {$\scalebox{2}{\Sigma}$};
     \end{tikzpicture}
    }
-   \caption{Étude thermodynamique d'un système ouvert}
+   \caption[Étude thermodynamique d'un système ouvert]{Étude thermodynamique d'un système ouvert. \\Le système est représenté en deux instants. À l'instant $t$, il se trouve entre les points $A$ et $B$, et en $t+\d t$, il se trouve entre les points $A'$ et $B'$. La zone entre $A'$ et $B$ (le système interne) sera notée $\Sigma_{A'B}$.}
    \label{fig:systeme_ouvert}
 \end{figure}
-\todo{ Proof du PPSO}
+\needspace{7cm}
+\begin{itheorem}[Premier principe en système ouvert]
+   Dans un système ouvert en régime stationnaire, le \emph{premier principe} s'écrit : 
+   \begin{equation}
+   \d m \bigg( \Delta h + \Delta e_c +\Delta e_p \bigg) = \d m \big( q + w_u \big)\\ \quad\text{avec }\Delta a = a_s - a_e
+   \end{equation}
+   Toutes ces grandeurs \emphhs{se rapportent au fluide} qui traverse le système et sont \emphh{massiques}. $w_u$ est le travail massique utile à l'intérieur du système, par exemple une hélice, et ne prend pas en compte le travail des forces de pression.\\ % Je sais, ça fait deux retours à la ligne en considérant la fonction \Attention juste en dessous, mais c'est pour le design
+   \Attention{Ça ressemble beaucoup au premier principe, mais c'est \uline{l'enthalpie qui rentre en jeu}, car elle inclut $u$ et le travail des forces de pression qui se trouvaient dans le membre de droite de l'équation.}
+\end{itheorem}
+\begin{proof}
+On étudie le système~$\Sigma$ représenté par la zone \colorbox{couleurClaire}{colorée} sur la figure~\ref{fig:systeme_ouvert}. \\
+On peut considérer l'évolution de $\Sigma$ comme le passage d'un système fermé à un autre : on part du système fermé $\Sigma_{AB}$ à l'instant $t$, pour arriver au système ouvert $\Sigma_{A'B'}$ à l'instant $t + \d t$. On applique alors le premier principe (équation~\eqref{eq:PremierPrincipeInfinitesimal} page~\pageref{eq:PremierPrincipeInfinitesimal}) : 
+\begin{align*}
+    \d U + \d E_c + \d E_p &= \delta W + \delta Q \\
+    \d U + \d E_c + \d E_p &= \delta W_u +\delta W_\text{pression} + \delta Q
+    \intertext{Or en appliquant la formule~\eqref{eq:grandeur_extensive_systeme_ouvert} précédente :}
+    \d U + \d E_c + \d E_p &= \d m (\Delta u + \Delta e_c + \Delta e_p) \\
+    \intertext{Ainsi :}
+    \d m~\left( \Delta u + \Delta e_c + \Delta e_p \right) &= \d m~(w_u - Pv + q) 
+ \end{align*} 
+Et on reconnaît $h = u + Pv$, d'où l'équation finale :\newline ${\d m~\left( \Delta h + \Delta e_c + \Delta e_p \right) = \d m~(w_u + q)}$.\qed
+\end{proof}
 \subsection{Deuxième principe} % (fold)
 \label{sub:deuxieme_principe}
 \begin{itheorem}[Deuxième principe en système ouvert]
@@ -4011,8 +4029,13 @@ où $m$ est le nombre d'atomes liés à l'atome central et $n$ est le nombre d'e
   \end{tabular}
 \end{methode}
 \section{Grandeurs extensives}
-\begin{dfn}[Grandeure intensive/extensive]
-  Une grandeure \emph{extensive}\index{Extensive@\emphi{Grandeur} Extensive} est une grandeure proportionnelle à la taille du système qu'elle caractérise.
+\begin{dfn}[Grandeure intensive/extensive]\label{dfn:grandeure_intensive_extensive} % https://fr.wikipedia.org/wiki/Extensivité_-_intensivité#D.C3.A9finition
+  Une \emph{grandeur extensive}\index{Extensive@\emphi{Grandeur} extensive} est une grandeure proportionnelle à la taille du système qu'elle caractérise.\\
+  De manière générale, si $S_1$ et $S_2$ sont deux systèmes \emphhs{disjoints}, on dit que $Y$ est une grandeur extensive si : 
+  \begin{equation}
+  Y(S_1) + Y(S_2) = Y(S_1\bigcup S_2)
+  \end{equation}
+  Une \emph{grandeur intensive}\index{Intensive@\emphi{Grandeur} intensive} est le contraire d'une grandeur extensive.
 \end{dfn}
 %
 \begin{prop}
