@@ -2218,14 +2218,14 @@ Lorsque $E\subset \mathbb{R}$, on dit que la variable aléatoire est réelle.
 \section{Lois usuelles} % (fold)
 \label{sec:lois_usuelles}
 \begin{dfn}[Loi de \textsc{Bernoulli}]
-     La \emph{loi de \textsc{Bernoulli}}\index{Bernoulli@\textsc{Bernoulli}} est une distribution discrète qui prend la valeur $1$ avec une probabilité $p$ et la valeur $0$ avec la probabilité $(1-p)$. \\
+     La \emph{loi de \textsc{Bernoulli}}\index{Loi!Bernoulli@\emphi{de} \textsc{Bernoulli}} est une distribution discrète qui prend la valeur $1$ avec une probabilité $p$ et la valeur $0$ avec la probabilité $(1-p)$. \\
      Une variable alétoire qui suit cette loi est appelée variable de \textsc{Bernoulli}
 \end{dfn}
 \subsection{Loi binomiale} % (fold)
 \label{sub:loi_binomiale}
 % On va avoir besoin de la variance et de l'espérance, cf. section suivante
 \begin{dfn}
-     La loi binomiale, de paramètres $n$ et $p$, est la loi de probabilité d'une variable aléatoire $X$ égale au nombre de succès rencontrés au cours d'une répétition de $n$ épreuves de Bernoulli, $p$ étant la probabilité de succès d'une épreuve de Bernoulli.\par
+     Une \emph{loi binomiale}\index{Loi!binomiale} de paramètres $n$ et $p$ est la loi de probabilité d'une variable aléatoire $X$ égale au nombre de succès rencontrés au cours d'une répétition de $n$ épreuves de Bernoulli, $p$ étant la probabilité de succès d'une épreuve de Bernoulli.\par
      Autrement, c'est une variable aléatoire $X$ telle que 
      \[
          X = Y_1 + Y_1 + \cdots + Y_n
@@ -2237,11 +2237,52 @@ Lorsque $E\subset \mathbb{R}$, on dit que la variable aléatoire est réelle.
      \end{equation}
 \end{dfn}
 \begin{theorem}[Espérance et variance]
-     Soit $X$ une variable aléatoire qui suit une loi binômiale. Alors :
+     Soit $X$ une variable aléatoire qui suit une loi binômiale de paramètres $p$ et $n$. Alors :
      \begin{equation}
      E(X) = np \\ V(X) = np(1-p)
      \end{equation}
 \end{theorem}
+% subsection loi_binomiale (end)
+\subsection{Loi géométrique}
+\label{sub:loi_geometrique}
+\begin{dfn}
+     Une \emph{loi géométrique}\index{Loi!geometrique@géométrique} de paramètre $p \in ]0, 1[$ est la loi de probabilité d'une variable aléatoire $X$ égale au rang $k$ du premier succès dans une suite d'épreuves de \textsc{Bernoulli} mutuellement indépendantes de paramètres $p$.\par
+     Une telle loi vérifie $X(\Omega ) = \mathbb{N}$ et :
+     \begin{equation}
+     \forall k> 0,\qquad \mathbb{P}_X(k) = p (1-p)^{k-1}
+     \end{equation}
+     Une loi géométrique se note $\mathscr{G}(p)$.
+\end{dfn}
+\begin{theorem}[Espérance et variance]
+     Soit $X$ une variable aléatoire qui suit une loi géométrique de paramètre $p$. Alors : 
+     \begin{equation}
+     E(X) = \dfrac{1}{p} \\ V(X) = \dfrac{1-p}{p^2}
+     \end{equation}
+\end{theorem}
+\begin{itheorem}[Caractérisation comme loi sans mémoire]
+     La loi géométrique est la seule loi de probabilité discrète à valeurs dans $\mathbb{N}^*$ vérifiant : 
+     \begin{equation}
+     \mathbb{P}\Big( X > (n+k) \Big| X > n \Big) = \mathbb{P} \big( X > k \big)
+     \end{equation}
+     pour tous entiers $n$ et $m$.
+\end{itheorem}
+% subsection loi_geometrique (end)
+\subsection{Loi de \textsc{Poisson}} % (fold)
+\label{sub:loi_de_poisson}
+\begin{dfn}[Loi de \textsc{Poisson}]
+     On dit d'une variable aléatoire $X$ que c'est une \emph{loi de \textsc{Poisson}}\index{Loi!Poisson@\emphi{de} \textsc{Poisson}} de paramètre $\lambda >0$ lorsque $X( \Omega ) = \mathbb{N}$ et :
+     \begin{equation}
+     \mathbb{P}_X (k) = e^{-\lambda}\, \dfrac{\lambda^k}{k !}
+     \end{equation}
+     Une telle loi se note $\mathscr{P}(\lambda )$.
+\end{dfn}
+\begin{theorem}[Espérance et variance]
+     Soit $X$ une variable aléatoire qui suit une loi de \textsc{Poisson} de paramètre $\lambda > 0$. Alors :
+     \begin{equation}
+     E(X) = \lambda \\ V(X) = \lambda
+     \end{equation}
+\end{theorem}
+% subsection loi_de_poisson (end)
 % section lois_usuelles (end)
 \section{Espérance} % (fold)
 \label{sec:esperance}
