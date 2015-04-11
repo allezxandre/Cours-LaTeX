@@ -2017,14 +2017,18 @@ Tous les théorèmes vus ici sont à démontrer.
 % chapter familles_sommables_de_nombres_complexes (end)
 \chapter{Variables aléatoires discrètes} % (fold)
 \label{cha:variables_aleatoires_discretes}
+\begin{methode}
+     \titre{Prouver qu'une application $p_\omega$ est une probabilité}
+     On se sert du théorème~\ref{thm:proba_famille_sommable} page~\pageref{thm:proba_famille_sommable}, et on prend des éléments élémentaires (de la forme $\lbrace \omega \rbrace$). On montre que $(p_\omega )_{\omega}$ est une famille sommable de somme $1$, et le tour est joué ! L'application probabilité est alors $\mathbb{P} : A= \lbrace \omega_i, \omega_j, \cdots  \rbrace \longmapsto \sum_{\omega\in A} p_\omega$.
+\end{methode}
 \section{Espace probabilisé} % (fold)
 \label{sec:espace_probabilise}
 \begin{dfn}[Univers]
      Un \emph{univers}\index{univers} $\Omega$ est l'ensemble des issues d'une expérience aléatoire.\\
-     L'ensemble des parties de l'univers $\Omega$ est noté $\mathcal{P}(\Omega{})$
+     L'ensemble des parties de l'univers $\Omega$ est noté $\mathscr{P}(\Omega{})$
 \end{dfn}
 \begin{dfn}[Tribu, espace probabilisable, évènement]
-     Une \emph{tribu}\index{Tribu} sur un univers $\Omega$ est un sous-ensemble $\mathscr{T}$ de $\mathcal{P}(\Omega{})$ vérifiant les propriétés :
+     Une \emph{tribu}\index{Tribu} sur un univers $\Omega$ est un sous-ensemble $\mathscr{T}$ de $\mathscr{P}(\Omega{})$ vérifiant les propriétés :
      \begin{itemize}
          \item $\Omega \in \mathscr{T}$
          \item $\forall A \in \mathscr{T},\: \overline{A} \in \mathscr{T}$
@@ -2071,12 +2075,12 @@ Tous les théorèmes vus ici sont à démontrer.
      Le triplet $(\Omega, \mathscr{T},\mathbb{P})$ est appelé \emph{espace probabilisé}\index{Espace!probabilise@probabilisé}
 \end{dfn}
 \Attention{Espace propabilisable $(\Omega, \mathscr{T}) \neq$ Espace probablilisé $(\Omega, \mathscr{T},\mathbb{P})$}\\[\baselineskip]
-\begin{theorem}[Caractérisation par une famille sommable]
+\begin{itheorem}[Caractérisation par une famille sommable]\label{thm:proba_famille_sommable}
      Soit $\Omega$ un univers fini ou dénombrable. \newline
      Soit une application $\left\lbrace \begin{array}{r c l} \Omega &\longto& \mathbb{R}^+ \\ \omega &\longmapsto& p_\omega \end{array}\right.$ telle que $(p_\omega)_{\omega\in\Omega}$ soit une \emphhs{famille sommable} de somme $1$.\newline
-     Soit $\left\lbrace \begin{array}{r c l} \mathbb{P} : \mathcal{P}(\Omega)&\longto& \mathbb{R}^+ \\ A &\longmapsto& \sum_{\omega \in A} p_\omega \end{array}\right.$\\
-     Alors $\big( \Omega, \mathcal{P}(\Omega ), \mathbb{P}\big)$ est un espace probabilisé.
-\end{theorem}
+     Soit $\left\lbrace \begin{array}{r c l} \mathbb{P} : \mathscr{P}(\Omega)&\longto& \mathbb{R}^+ \\ A &\longmapsto& \sum_{\omega \in A} p_\omega \end{array}\right.$\\
+     Alors $\big( \Omega, \mathscr{P}(\Omega ), \mathbb{P}\big)$ est un espace probabilisé.
+\end{itheorem}
 % section espace_probabilise (end)
 \section{Propriétés élémentaires des probabilités} % (fold)
 \label{sec:proprietes_elementaires_des_probabilites}
@@ -2168,13 +2172,77 @@ On notera également $\mathbb{P}\big( B | A\big) = \mathbb{P}_A(B)$ pour ``proba
 \subsection{Indépendance} % (fold)
 \label{sub:independance}
 \begin{dfn}[Évènements indépendants]
-     Deux évènements $A$ et $B$ sont dits \emph{indépendants}\index{Evenements@Évènements!independants@indépendants} lorsque 
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
+     Deux évènements $A$ et $B$ de $\mathscr{T}$ sont dits \emph{indépendants}\index{Evenements@Évènements!independants@indépendants} lorsque 
      \begin{equation}
      \mathbb{P}(A\cap B) = \mathbb{P}(A)\times \mathbb{P}(B)
      \end{equation}
 \end{dfn}
+On peut généraliser la définition suivante à une famille entière :
+\begin{dfn}[Famille quelconque d'évènements mutuellement indépendants]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
+     Une famille $(A_n)_{n\in I}$  d'évènements de $\mathscr{T}$ est dite \emph{suite d'évènements mutuellements indépendants} lorsque :
+     \begin{equation}
+     \forall J\subset I,\qquad \mathbb{P} \left( \bigcap_J A_n \right) = \prod_J \mathbb{P} (A_n)
+     \end{equation}
+\end{dfn}
 % subsection independance (end)
 % section independance (end)
+\section{Variables aléatoires discrètes} % (fold)
+\label{sec:variables_aleatoires_discretes}
+\begin{dfn}[Variable aléatoire]
+     Soit $E$ un ensemble. On appelle \emph{variable aléatoire}\index{variable aleatoire@Variable aléatoire} discrète une application $X : \Omega \to E$ telle que :
+     \begin{itemize}
+         \item $X(\Omega )$ est fini ou dénombrable
+         \item Pour tout $x \in X(\Omega )$, l'image réciproque de $\lbrace x \rbrace$ par $X$ est un évènement. On notera cet évènement $(X= x)$.
+     \end{itemize}
+\end{dfn}
+Lorsque $E\subset \mathbb{R}$, on dit que la variable aléatoire est réelle.
+\begin{dfn}[Loi de probabilité]
+     Soit $X$ une variable aléatoire discrète de $\Omega$ dans $E$.\\
+     On note $\mathscr{P} \Big( X(\Omega ) \Big)$ l'ensemble des parties de $X(\Omega )$.
+     L'application $\mathbb{P}_X (\Omega )$ : 
+     \begin{equation}
+      \mathbb{P}_X : \left\lbrace
+      \begin{array}{r c l}
+           \mathscr{P} \Big( X(\Omega ) \Big) &\longto & [0,1] \\
+           A & \longmapsto & \mathbb{P} (X\in A)
+      \end{array} \right.
+      \end{equation}
+\end{dfn}
+% section variables_aleatoires_discretes (end)
+\section[Couples de variables aléatoires]{Couples de variables aléatoires, variables aléatoires indépendantes} % (fold)
+\label{sec:couples_de_variables_aleatoires}
+% TODO: Couples de proba 
+% section couples_de_variables_aleatoires (end)
+\section{Lois usuelles} % (fold)
+\label{sec:lois_usuelles}
+\begin{dfn}[Loi de \textsc{Bernoulli}]
+     La \emph{loi de \textsc{Bernoulli}}\index{Bernoulli@\textsc{Bernoulli}} est une distribution discrète qui prend la valeur $1$ avec une probabilité $p$ et la valeur $0$ avec la probabilité $(1-p)$. \\
+     Une variable alétoire qui suit cette loi est appelée variable de \textsc{Bernoulli}
+\end{dfn}
+\subsection{Loi binomiale} % (fold)
+\label{sub:loi_binomiale}
+% On va avoir besoin de la variance et de l'espérance, cf. section suivante
+\begin{dfn}
+     La loi binomiale, de paramètres $n$ et $p$, est la loi de probabilité d'une variable aléatoire $X$ égale au nombre de succès rencontrés au cours d'une répétition de $n$ épreuves de Bernoulli, $p$ étant la probabilité de succès d'une épreuve de Bernoulli.\par
+     Autrement, c'est une variable aléatoire $X$ telle que 
+     \[
+         X = Y_1 + Y_1 + \cdots + Y_n
+     \]
+     où les $Y_i$ sont des variables aléatoires \emphhs{indépendantes} de loi de \textsc{Bernoulli}.\par
+     La variable aléatoire suit une loi de probabilité : 
+     \begin{equation}
+     \mathbb{P}(X = k) = \begin{pmatrix} n \\ k \end{pmatrix} p^k(1-p)^{n-k}
+     \end{equation}
+\end{dfn}
+\begin{theorem}[Espérance et variance]
+     Soit $X$ une variable aléatoire qui suit une loi binômiale. Alors :
+     \begin{equation}
+     E(X) = np \\ V(X) = np(1-p)
+     \end{equation}
+\end{theorem}
+% section lois_usuelles (end)
 \section{Espérance} % (fold)
 \label{sec:esperance}
 \subsection{Définitions} % (fold)
@@ -2285,32 +2353,6 @@ On peut étendre la définition précédente au cas où les valeurs de $X$ forme
 \todo{ Finir la demo}
 % subsection covariance (end)
 % section variance (end)
-\section{Lois usuelles} % (fold)
-\label{sec:lois_usuelles}
-\begin{dfn}[Loi de \textsc{Bernoulli}]
-     La \emph{loi de \textsc{Bernoulli}}\index{Bernoulli@\textsc{Bernoulli}} est une distribution discrète qui prend la valeur $1$ avec une probabilité $p$ et la valeur $0$ avec la probabilité $(1-p)$. \\
-     Une variable alétoire qui suit cette loi est appelée variable de \textsc{Bernoulli}
-\end{dfn}
-\subsection{Loi binomiale} % (fold)
-\label{sub:loi_binomiale}
-\begin{dfn}
-     La loi binomiale, de paramètres $n$ et $p$, est la loi de probabilité d'une variable aléatoire $X$ égale au nombre de succès rencontrés au cours d'une répétition de $n$ épreuves de Bernoulli, $p$ étant la probabilité de succès d'une épreuve de Bernoulli.\par
-     Autrement, c'est une variable aléatoire $X$ telle que 
-     \[
-         X = Y_1 + Y_1 + \cdots + Y_n
-     \]
-     où les $Y_i$ sont des variables aléatoires \emphhs{indépendantes} de loi de \textsc{Bernoulli}.\par
-     La variable aléatoire suit une loi de probabilité : 
-     \begin{equation}
-     \mathbb{P}(X = k) = \begin{pmatrix} n \\ k \end{pmatrix} p^k(1-p)^{n-k}
-     \end{equation}
-\end{dfn}
-\begin{theorem}[Espérance et variance]
-     Soit $X$ une variable aléatoire qui suit une loi binômiale. Alors :
-     \begin{equation}
-     E(X) = np \\ V(X) = np(1-p)
-     \end{equation}
-\end{theorem}
 \section{Fonctions génératrices} % (fold)
 \label{sec:fonctions_generatrices}
 %TODO: rajouter le theoreme du transfert! 
