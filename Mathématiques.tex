@@ -2191,7 +2191,7 @@ On peut généraliser la définition suivante à une famille entière :
 \section{Variables aléatoires discrètes} % (fold)
 \label{sec:variables_aleatoires_discretes}
 \begin{dfn}[Variable aléatoire]
-     Soit $E$ un ensemble. On appelle \emph{variable aléatoire}\index{variable aleatoire@Variable aléatoire} discrète une application $X : \Omega \to E$ telle que :
+     Soit $E$ un ensemble. On appelle \emph{variable aléatoire}\index{Variable aleatoire@Variable aléatoire} discrète une application $X : \Omega \to E$ telle que :
      \begin{itemize}
          \item $X(\Omega )$ est fini ou dénombrable
          \item Pour tout $x \in X(\Omega )$, l'image réciproque de $\lbrace x \rbrace$ par $X$ est un évènement. On notera cet évènement $(X= x)$.
@@ -2213,13 +2213,49 @@ Lorsque $E\subset \mathbb{R}$, on dit que la variable aléatoire est réelle.
 % section variables_aleatoires_discretes (end)
 \section[Couples de variables aléatoires]{Couples de variables aléatoires, variables aléatoires indépendantes} % (fold)
 \label{sec:couples_de_variables_aleatoires}
-% TODO: Couples de proba 
+% TODO: Couples de proba
+\subsection{Couple de variables aléatoires} % (fold)
+\label{sub:couple_de_variables_aleatoires}
+\begin{dfn}[Loi conjointe]
+     Soient $X_1$ et $X_2$ deux variables aléatoires discrètes. \\
+     On appelle \emph{loi conjointe}\index{Loi!conjointe} de $X_1$ et $X_2$ la loi $X=(X_1,X_2)$ déterminée par :
+     \begin{itemize}
+         \item $X(\Omega ) = \bigg\lbrace \Big(x_1\in X_1(\Omega ), x_2\in X_2(\Omega )\Big)\bigg\rbrace = X_1(\Omega )\times X_2(\Omega )$
+         \item $\mathbb{P}_X(x_1,x_2) = \mathbb{P}_X\bigg(\Big( x_1 = X_1(\Omega ) \cap x_2 = X_2(\Omega )\Big)\bigg)$
+     \end{itemize}
+\end{dfn}
+À partir de deux variables $X_1$ et $X_2$, on peut déterminer une troisième variable $(X_1,X_2)$ et sa loi. Les lois marginales vont nous permettre de faire l'inverse :
+\begin{theorem}[Lois marginales]
+     \index{Loi!marginale}Soit $X = (X_1 , X_2)$ un couple de variables aléatoires discrètes.\\
+     On note $X(\Omega ) = \Big\lbrace (x_1, x_2)\, |\, i\in I,\, j\in J \Big\rbrace$ \\
+     On peut déterminer la loi de $X_1$ ou de $X_2$ à partir de la loi $\mathbb{P}_X$ de la manière suivante : 
+     \begin{equation}
+     X_1(\Omega ) = \lbrace x_i ,\, i\in I\rbrace \\ \mathbb{P}_{X_1}(x_1) = \sum_{j\in J} \mathbb{P}(X = (x_i, x_j)) 
+     \end{equation}
+     \begin{equation}
+     X_2(\Omega ) = \lbrace x_j ,\, j\in J\rbrace \\ \mathbb{P}_{X_2}(x_2) = \sum_{i\in I} \mathbb{P}(X = (x_i, x_j)) 
+     \end{equation}
+\end{theorem}
+% subsection couple_de_variables_aleatoires (end)
+\subsection{Variables aléatoires indépendantes} % (fold)
+ \label{sub:variables_aleatoires_independantes}
+ \begin{dfn}[Suite finie de variables aléatoires indépendantes]
+      Soient $n$ variables aléatoires discrètes $X_1,\ldots, X_n$.\\ 
+      On dit qu'elles sont \emph{indépendantes}\index{Variable aleatoire@Variable aléatoire!independante@indépendante} si pour tous $x_1\in X_1(\Omega),\ldots,x_n\in X_n(\Omega)$, les évènements $(X_1 = x_1),\ldots ,(X_n = x_n)$ sont indépendants. 
+ \end{dfn}
+ \begin{dfn}[Suite de variables aléatoires indépendantes]
+      Soit $(X_n)_{n\in \mathbb{N}}$ une suite. On dit qu'elles sont \emph{indépendantes}\index{Variable aleatoire@Variable aléatoire!independante@indépendante} si pour tout sous-ensemble $I$ de $\mathbb{N}$ la famille finie $(X_n)_{n\in I}$ est indépendante. 
+ \end{dfn}
+ \begin{theorem}
+      Si $X_1,X_2,\ldots ,X_n$ sont des variables aléatoires mutuellement indépendantes, alors pour tout $m \in [1, n-1 ]$ et pour toutes fonctions $g$ et $g$, les variables $f(X_1,\ldots ,X_n)$ et $g(X_1,\ldots ,X_n)$ sont indépendantes.
+ \end{theorem}
+ % subsection variables_aleatoires_independantes (end) 
 % section couples_de_variables_aleatoires (end)
 \section{Lois usuelles} % (fold)
 \label{sec:lois_usuelles}
 \begin{dfn}[Loi de \textsc{Bernoulli}]
      La \emph{loi de \textsc{Bernoulli}}\index{Loi!Bernoulli@\emphi{de} \textsc{Bernoulli}} est une distribution discrète qui prend la valeur $1$ avec une probabilité $p$ et la valeur $0$ avec la probabilité $(1-p)$. \\
-     Une variable alétoire qui suit cette loi est appelée variable de \textsc{Bernoulli}
+     Une variable aléatoire qui suit cette loi est appelée variable de \textsc{Bernoulli}
 \end{dfn}
 \subsection{Loi binomiale} % (fold)
 \label{sub:loi_binomiale}
