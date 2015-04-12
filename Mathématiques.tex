@@ -2364,8 +2364,8 @@ Si $X$ ne prend pas un nombre fini de valeurs, on peut étendre la définition p
          \item L'espérance est une forme linéaire sur $\mathscr{E}$
          \item $\forall X \in \mathscr{E},\, X(\Omega) \subset \mathbb{R}^+ \implies E(X) \ge 0$ (l'espérance est positive)
          \item L'espérance est croissante : $\forall (X,Y)\in \Omega^2,\: X \le Y \implies E(X) \le E(Y)$
-         \item Soit $Y$ une variable aléatoire d'espérance finie, si $X$ est une variable aléatoire telle que $|X| \le Y$, alors $X$ est d'espérance finie .
-         \item Si $X$ et $Y$ sont deux lois \emphh{indépendantes} \emphh{et admettant chacune une espérance finie}, alors $XY$ est d'espérance finie et 
+         \item Soit $Y$ une variable aléatoire d'espérance finie, si $X$ est une variable aléatoire telle que $|X| \le Y$, alors $X$ est d'espérance finie.
+         \item Si $X$ et $Y$ sont deux variables aléatoires \emphh{indépendantes} \emphh{et admettant chacune une espérance finie}, alors $XY$ est d'espérance finie et 
          \begin{equation*}
          E(XY) = E(X)\: E(Y)
          \end{equation*}
@@ -2525,11 +2525,11 @@ Par récurrence, on en déduit le théorème suivant :
      Si $(X_n)_n$ est une suite de variables aléatoires deux à deux indépendantes, de même loi et admettant un moment d'ordre $2$, alors, si $S_n = \sum_{k=1}^n X_k$ et $m = E(X_1)$, on a : 
      \begin{subequations}
      \begin{equation}
-     \mathbb{P} \left( \left| \dfrac{S_n}{n} - m \right| \ge \epsilon \right) \xrightarrow[n\to +\infty]{} 0 
+     \forall \varepsilon >0,\quad \mathbb{P} \left( \left| \dfrac{S_n}{n} - m \right| \ge \epsilon \right) \xrightarrow[n\to +\infty]{} 0 
      \end{equation}
      Pour avoir la formule en tête de manière plus visuelle, même si c'est plus lourd : 
      \begin{equation}
-     \mathbb{P} \left( \left| \dfrac{\displaystyle\sum_{k=1}^n X_k}{n} - E(X_1) \right| \ge \epsilon \right) \xrightarrow[n\to +\infty]{} 0 
+     \forall \varepsilon >0,\quad \mathbb{P} \left( \left| \dfrac{\displaystyle\sum_{k=1}^n X_k}{n} - E(X_1) \right| \ge \epsilon \right) \xrightarrow[n\to +\infty]{} 0 
      \end{equation}
      \end{subequations}
 \end{itheorem}
