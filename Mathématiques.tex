@@ -2510,6 +2510,42 @@ Par récurrence, on en déduit le théorème suivant :
      \end{equation}
      pour les valeurs de $t$ telles que la variable aléatoire $t^X$ admette une espérance finie.
 \end{dfn}
+\begin{theorem}[Détermination de la loi de $X$]
+% Totalement pris de Vuibert
+     Soit $X$ une variable aléatoire à valeurs dans $\mathbb{N}$.
+     \begin{itemize}[leftmargin=5.5mm]
+         \item La série entière $G_X$ est de rayon $R \ge 1$ et converge normalement sur le disque fermé de centre 0 et de rayon $1$ ; 
+         \item Soit $k\in \mathbb{N}$, alors : 
+         \begin{equation}
+         \mathbb{P}(X=k) = \dfrac{G_X^{(k)}(0)}{k!}
+         \end{equation}
+         \item Si $R > 1$, alors $X$ admet un moment d'ordre $k$ quelconque dans $\mathbb{N}^*$ et :
+         \begin{subequations}
+         \begin{align}
+         G_X'(1) &= E(X) \\ G_X''(1) &= E\big( X(X-1)\big) \\ G_X^{(k)}(1) &= E\Big( X(X-1)\cdots (X-k+1)\Big)
+         \end{align}
+         \end{subequations}
+         Dans ce cas, $V(X) = G_X''(1) + G_X'(1) - G_X'^2(1)$.
+     \end{itemize}
+\end{theorem}
+La dernière partie de ce théorème peut se généraliser même si $R\ge 1$ :
+\begin{itheorem}
+     Soit $X$ une variable aléatoire.
+     \begin{itemize}[leftmargin=5.5mm]
+         \item $X$ admet une espérance finie \ssi{} $G_X$ est dérivable à gauche en $1$ ; dans ce cas $E(X) = G_X'(1)$.
+         \item $X$ admet un second moment \ssi{} $G_X$ est deux fois dérivable à gauche en $1$ ; dans ce cas $G_X''(1) = E\big( X(X-1) \big)$ et $V(X) = G_X''(1) + G_X'(1) - G_X'^2(1)$.
+     \end{itemize}
+\end{itheorem}
+\begin{itheorem}[Somme de variables aléatoires indépendantes]
+     Si $X$ et $Y$ sont deux variables aléatoires à valeurs dans $N$ et indépendantes, alors :
+     \begin{equation}
+     \boxed{\forall t\in ]-1,1[}\qquad G_{X+Y}(t) = G_X(t)\, G_Y(t)
+     \end{equation}
+     On peut généraliser à $n$ variables aléatoires $X_1,\ldots ,X_n$ mutuellement indépendantes : 
+     \begin{equation}
+     \boxed{\forall t\in ]-1,1[}\qquad G_{\sum X_k}(t) = \prod G_{X_k}(t)
+     \end{equation}
+\end{itheorem}
 % section fonctions_generatrices (end)
 % chapter variables_aleatoires_discretes (end)
 \chapter{Suites de fonctions}
