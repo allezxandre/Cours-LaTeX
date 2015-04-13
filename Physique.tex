@@ -3491,6 +3491,10 @@ On va généraliser ce qu'on vient de voir au cas d'un système constitué de pa
     \d p(E_i) = A~e^{-\dfrac{E_i}{k_B T}}
    \end{equation}
 \end{itheorem}
+% subsection poids_de_boltzmann_d_une_particule_independante_a_l_equilibre_avec_un_thermostat (end)
+% section facteur_de_boltzmann (end)
+\section{Systèmes à spectres discret d'énergie} % (fold)
+\label{sec:systemes_spectres_discret_d_energie}
 Pour déterminer la constante $A$, on utilise le théorème suivant de condition de normalisation : 
 \begin{theorem}[Condition de normalisation]
 La somme des probabilités est égale à $1$. Autrement dit : 
@@ -3498,8 +3502,53 @@ La somme des probabilités est égale à $1$. Autrement dit :
    \sum_i p(E_i) = 1
    \end{equation}
 \end{theorem}
-% subsection poids_de_boltzmann_d_une_particule_independante_a_l_equilibre_avec_un_thermostat (end)
-% section facteur_de_boltzmann (end)
+\begin{dfn}[Probabilité d'occupation]
+   Si $N$ est le nombre total de particules, le nombre moyen $\langle N_i \rangle $ de particules du système à l'état $E_i$, appelé \emph{probabilité d'occupation}\index{Probabilite@Probabilité!occupation@\emphi{d'}Occupation} de l'état quantique $E_i$, est donné par : 
+   \begin{equation}
+   \langle N_i \rangle = N\times p(E_i) = \dfrac{N}{Z}e^{-\dfrac{E_i}{k_B T}}
+   \end{equation}
+   
+\end{dfn}
+\begin{dfn}[Énergie moyenne]
+   L'énergie moyenne d'une particule, notée $\langle E_\text{Particule} \rangle$, est l'espérance de son énergie : 
+   \begin{subequations}
+   \begin{align}
+      \langle E_\text{Particule} \rangle &= \sum_i E_i \, p(E_i) \\
+      \langle E_\text{Particule} \rangle &= \dfrac{1}{Z} \sum_i E_i \, e^{-\dfrac{E_i}{k_B T}}
+   \end{align}
+   \end{subequations}
+\end{dfn}
+Voir dans le cours de mathématiques, section~\ref{MATH-sub:esperance_definitions} page~\pageref{MATH-sub:esperance_definitions} pour plus d'informations sur l'espérance.
+\begin{dfn}[Écart quadratique moyen]
+   Les fluctuations de l'énergie d'une particule sont caractérisées par la variance, qu'on appelle aussi ``écart quadratique moyen'' : 
+   \begin{subequations}
+   \begin{align}
+      \mathrm{Var}(E_\text{Particule}) &= \langle E_\text{Particule}^2 \rangle - \langle E_\text{Particule} \rangle^2 \\
+      \mathrm{Var}(E_\text{Particule}) &= \sum_i E_i^2 \, p(E_i) - \bigg( \sum_i E_i \, p(E_i) \bigg)^2
+   \end{align}
+   \end{subequations}
+\end{dfn}
+Voir dans le cours de mathématiques, section~\ref{MATH-sub:variance_et_ecart_type} page~\pageref{MATH-sub:variance_et_ecart_type} pour plus d'informations sur la variance et l'écart-type.
+\begin{dfn}[Énergie d'un système]
+L'énergie d'un système est la somme des énergies des particules qui le composent. \\
+   Sa valeur moyenne est : 
+   \begin{equation}
+   \langle E_\text{Système} \rangle = N \langle E_\text{Particule} \rangle
+   \end{equation}
+\end{dfn}
+\begin{theorem}
+   Les fluctuations d'énergie régressent quand la taille du système augmente
+\end{theorem}
+% section systemes_spectres_discret_d_energie (end)
+\section{Capacités thermiques classiques des gaz et des solides} % (fold)
+\label{sec:capacites_thermiques_classiques_des_gaz_et_des_solides}
+\begin{itheorem}
+   L'énergie interne $U$ du système est égale à l'énergie moyenne du système : 
+   \begin{equation}
+   U = \langle E_\text{Système} \rangle = N \langle E_\text{Particule} \rangle
+   \end{equation}
+\end{itheorem}
+% section capacites_thermiques_classiques_des_gaz_et_des_solides (end)
 % chapter thermodynamique_statistique (end)
 \chapter{Annexe}
 %TODO Grandeurs à connaître
