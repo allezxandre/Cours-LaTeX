@@ -153,6 +153,7 @@ Si $x_n$ est une suite de $(E,N)^\mathbb{N}$ et $(\alpha_n)$ une suite de $\Reel
       \end{array}  
     \end{equation}
 \end{dfn}
+\needspace{3cm}
 \begin{dfn}[$O(\cdots)$ et $o(\cdots)$ dans \Reel{}]
 \label{dfn:domination_negligeabilite}
     Si $(\alpha_n)_n$ est une suite à valeurs dans $\Reel^{\textcolor{couleurImp}{*}}$, 
@@ -173,6 +174,35 @@ Si $x_n$ est une suite de $(E,N)^\mathbb{N}$ et $(\alpha_n)$ une suite de $\Reel
     \end{equation}
 \end{dfn}
 % section suites_de_cauchy (end)
+\section{Suites usuelles} % (fold)
+\label{sec:suites_usuelles}
+\begin{methode}
+\titre{Suite récurrente du premier ordre}
+     Soit une suite récurrente linéaire $u_n$ de la forme : 
+     \[
+        u_{n+1} = a u_n + b
+     \]
+     \begin{enumerate}
+         \item On cherche $\lambda$ un point fixe : $\lambda = a\lambda + b$. On trouve $\lambda = \dfrac{b}{1 -a}$.
+         \item On montre que la suite $v_n = (u_n - \lambda)$ est une suite géométrique de raison $a$.
+         \item Ainsi, $v_n = a^n v_0 = a^n (u_0 - \lambda)$. D'où $u_n = a^n (u_0 - \lambda ) + \lambda$.
+     \end{enumerate}
+\titre{Suite récurrente linéaire d'ordre $2$}
+Soit une suite récurrente linéaire $u_n$ de la forme : 
+     \[
+        u_{n+2} = a u_{n+1} + b u_n
+     \]
+     \begin{enumerate}
+         \item On pose la fonction caractéristique : $f(r) = r^2 - a r + b$
+         \item On calcule son déterminant $\Delta = (-a)^2 - 4b$. Deux cas se présentent : 
+         \begin{itemize}
+             \item $\Delta = 0$, alors $\exists ! (\lambda , \mu ) \in \Cmplx^2$ tel que $u_n = (\lambda + \mu n)\left( \dfrac{a}{2}\right)^n$
+             \item $\Delta \neq 0$, alors $\exists ! (\lambda , \mu ) \in \Cmplx^2$ tel que $u_n = \lambda r_1^n + \mu r_2^n $
+         \end{itemize}
+     \end{enumerate}
+\end{methode}
+% subsection suites_recurrentes_lineaires (end)
+% section suites_usuelles (end)
 %
 \chapter{Nombres complexes} % (fold)
 \label{cha:nombres_complexes}
