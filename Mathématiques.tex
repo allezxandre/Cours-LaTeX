@@ -1760,7 +1760,7 @@ Si $f \in \mathcal{CM}_{2\pi}$ et $C^1$ par morceaux, alors sa série de \textsc
 \end{itheorem}
 % section Espaces préhilbertiens (end)
 \part{Analyse}
-\chapter{Séries} % (fold)
+\chapter{Séries numériques et vectorielles} % (fold)
 \label{cha:series}
 \begin{methode}
      \titre{Étude d'une série}
@@ -1775,25 +1775,39 @@ Prenons le cas d'étude d'une série : $ \sum u_n$
     \end{itemize}
 \end{enumerate}
 \end{methode}
-\section{Définitions}
+\section{Séries à valeurs dans un espace normé de dimension finie}
 \begin{dfn}
-La série $S$ de terme général $\color{couleurFonce!90} u_n$ est la suite $\left( S_n \right)_{n\in\mathbb{N}}$ où on définit $S_n$ de manière suivante.
-    \[
+La \emph{série}\index{Serie@Série} $S$ de terme général $\color{couleurFonce!90} u_n$ est la suite $\left( S_n \right)_{n\in\mathbb{N}}$ où on définit $S_n$ de manière suivante.
+    \begin{equation}
     \underbrace{S_n = \color{couleurNoirClair} \underbrace{\sum_{k=0}^{n} \color{couleurFonce!90}\underbrace{u_n}_{\text{Terme général de la série}}}_{\text{Somme partielle}}}_{\text{Suite des sommes partielles}}
-    \]
+    \end{equation}
+    On appelle \emph{reste}\index{Reste} d'ordre $n$ de la série la différence $R_n = \sum_{k=0}^{+\infty} u_k - \sum_{k=0}^{n} u_k$
 \end{dfn}
 
-\begin{dfn}[Convergence\index{Convergence!serie@série} d'une série]
-    On dit que la série des $u_n$ converge s'il existe $l$ tel que $l = \lim_{n\to \infty} S_n$ existe.\\
-    S'il la suite $(u_n)_n$ ne converge pas vers $0$, on dit que sa série $S_n$ \emph{diverge grossièrement}\index{Diverge!grossierement@grossièrement}
+\begin{dfn}[Convergence d'une série]
+    On dit que la série des $u_n$ \emph{converge}\index{Convergence!serie@série} s'il existe $l$ tel que $l = \lim_{n\to \infty} S_n$ existe.\\
+    Si la suite $(u_n)_n$ ne converge pas vers $0$, on dit que sa série $S_n$ \emph{diverge grossièrement}\index{Diverge!grossierement@grossièrement}
 \end{dfn}
+\begin{theorem}
+     Le terme général d'une série convergente tend vers $0$.
+\end{theorem}
+\Attention{La réciproque n'est pas souvent vraie. Exemple classique : $\sum \dfrac{1}{n}$}
 \begin{itheorem}[Théorème suite-série]
     La série $S_n = \sum_{k=0}^n (a_{n+1}-a_n)$ converge \emph{\uline{si et seulement si}} la suite $(a_n)$ \uline{converge}.
 \end{itheorem}
-\section{Séries à termes positifs} % (fold)
-\label{sec:SATP}
+\subsection{Convergence absolue} % (fold)
+\label{sub:convergence_absolue}
+\begin{dfn}[Convergence absolue]
+     Soit $(E, \| \cdot \|)$ un espace vectoriel normé, $(u_n)$ une suite d'éléments de $E$. \\
+La série $\sum u_n$ de $E$ est dite \emph{absolument convergente}\index{Convergence!absolue} si la série des normes $\sum \| u_n \|$ est convergente.
+\end{dfn}
+\begin{itheorem}
+     Convergence absolue $\implies $ convergence.
+\end{itheorem}
+% subsection convergence_absolue (end)
+\subsection{\acrlong{SATP}}
 \begin{dfn}[\acrlong{SATP}\index{SATP}]
-    On appelle \emph{\acrfull{SATP}} toute série de terme général $u_n$ réel tel que, \uline{à partir d'un certain rang}, $u_n \ge 0$.
+    On appelle \emph{\acrfull{SATP}} toute série de terme général $u_n$ réel telle que, \emphhs{à partir d'un certain rang}, $u_n \ge 0$.
 \end{dfn}
 \begin{itheorem}[Convergence des \gls{SATP}]
     Si $\sum u_n$ est une \gls{SATP}, alors :
@@ -1801,7 +1815,6 @@ La série $S$ de terme général $\color{couleurFonce!90} u_n$ est la suite $\le
         \sum u_n \text{ converge} \Leftrightarrow \sum_{k=0}^n u_n \text{ est majorée}
     \end{equation}
 \end{itheorem}
-% section SATP (end)
 \section{Complément sur les séries numériques} % (fold)
 \label{sec:complement_sur_les_series_numeriques}
 \subsection{Règle de d'\textsc{Alembert}} % (fold)
@@ -1813,22 +1826,18 @@ La série $S$ de terme général $\color{couleurFonce!90} u_n$ est la suite $\le
     \end{equation}
 \end{lemme}
 \begin{itheorem}[Règle de d'\textsc{Alembert}]\label{th:Regle_de_dAlembert}
-    Si, à partir d'un certain rang, $\left\lbrace
-    \begin{aligned}
-        u_n &> 0    \\
-        \dfrac{u_{n+1}}{u_n} &\to l
-    \end{aligned}
-    \right. $ alors :
+    Soit $\sum u_n$ une série d'éléments de $E$, telle que (à partir d'un certain rang) $u_n \neq 0$.\\
+    Si $\dfrac{u_{n+1}}{u_n} \xrightarrow[n\to +\infty] L$ alors :
     \begin{equation}
     \left\lbrace
     \begin{aligned}
-        \text{Si } l >1, & \sum u_n \text{ diverge grossièrement}   \\
-        \text{Si } l <1, & \sum u_n \text{ converge} 
+        \text{Si } L >1, & \sum u_n \text{ diverge grossièrement}   \\
+        \text{Si } L <1, & \sum u_n \text{ converge} 
     \end{aligned}
     \right.
     \end{equation}
 \end{itheorem}
-Ce théorème est peu utile car il est \og{}trop vrai\fg{}.
+Ce théorème est peu utile car il est \og{}trop vrai\fg{}, mais on l'introduit principalement en vue de l'étude des séries entières.
 % subsection regle_de_d'alembert (end)
 \subsection{Séries alternées} % (fold)
 \label{sub:series_alternees}
