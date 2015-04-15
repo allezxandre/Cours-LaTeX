@@ -1851,20 +1851,34 @@ Ce théorème est peu utile car il est \og{}trop vrai\fg{}, mais on l'introduit 
 % subsection series_alternees (end)
 \subsection{Comparaison série intégrale} % (fold)
 \label{sub:comparaison_serie_integrale}
+\begin{theorem}
+    \begin{subequations}
+     Soit $f$ telle que $u_n=f(n)$.\\
+    Si $f$ est \emphhs{décroissante} et \emphhs{continue} sur l'intervalle $[0, +\infty[$, alors on peut encadrer :
+     \begin{equation}
+     \int_{n-1}^{n} f(t) \d t \ge f(n) \ge \int_n^{n+1} f(t) \d t
+     \end{equation}
+    Si $f$ est \emphhs{croissante} et \emphhs{continue} sur l'intervalle $[0, +\infty[$, alors on peut encadrer :
+     \begin{equation}
+     \int_{n-1}^{n} f(t) \d t \le f(n) \le \int_n^{n+1} f(t) \d t
+     \end{equation}
+     \end{subequations}
+\end{theorem}
 \needspace{7cm}
 \begin{itheorem}[Comparaison d'une série à une intégrale]
-    Si $f$ est une fonction continue par morceaux, \emphh{positive} et \emphh{décroissante}  sur $\Reel^+$, alors la série de terme général $\left( \int_{n-1}^n f \right) - f(n) $ est une \gls{SATP} convergente.\\
+    Si $f$ est une fonction continue par morceaux, \emphh{positive} et \emphh{décroissante}  sur $\Reel^+$.\\
+    Notons $w_n = \left( \int_{n-1}^n f \right) - f(n)$. La série $\sum w_n$ est une \gls{SATP} convergente.\\
     \begin{equation}
         f \in \mathcal{L}^1 \Leftrightarrow \sum f(n) \text{ converge}
     \end{equation}
-    En cas de divergence, $\int f \underset{n \to +\infty}{\sim}\sum f(n)$\\[\baselineskip]
+    En cas de divergence, $\int_0^{n} f \underset{n \to +\infty}{\sim}\sum f(n)$\\[\baselineskip]
 
     Si $f$ est une fonction continue par morceaux, \emphh{positive}, \emphh{croissante} et \textcolor{couleurImp}{\uline{majorée}} sur $\Reel^+$, alors la série de terme général $\left( \int_n^{n+1} f \right) - f(n)$ est une \gls{SATP} convergente.
 \end{itheorem}
 % subsection comparaison_serie_integrale (end)
 \subsection{Comparaison des \gls{SATP}} % (fold)
 \label{sub:comparaison_des_satp}
-\begin{itheorem}[Théorème de comparaison des \glspl{SATP}]
+\begin{theorem}[Théorème de comparaison des \glspl{SATP}]
     Si on a deux suites $u_n$ et $v_n$ de $\Reel{}^\mathbb{N}$ telles qu'on ait une des conditions suivantes : $
     \left\lbrace
     \begin{aligned}
@@ -1876,11 +1890,29 @@ Ce théorème est peu utile car il est \og{}trop vrai\fg{}, mais on l'introduit 
 
     On a également la contraposée : 
     $\sum u_n$ diverge $\implies \sum v_n$ diverge
-\end{itheorem}
+\end{theorem}
 %\textbf{Remarque : }Si $u_n \sim v_n$, alors $u_n$ et $v_n$ sont de même nature.
-\begin{itheorem}[2\ieme{} théorème de comparaison des \glspl{SATP}]
+\begin{theorem}[2\ieme{} théorème de comparaison des \glspl{SATP}]
      Soient $(a_n)_{n\in \mathbb{N}}$ et $(b_n)_{n\in \mathbb{N}}$ \emphhs{deux suites positives}. \newline
      Si $u_n \sim v_n$, alors $u_n$ et $v_n$ sont de même nature.
+\end{theorem}
+\begin{itheorem}[Sommation des relations de comparaison (convergence)]
+     Soient $\sum u_n$ et $\sum v_n$ deux séries \emphhs{convergentes} à termes positifs.\\
+     Notons $R_n$ et $R_n'$ leurs restes respectifs d'ordre $n$.
+     \begin{itemize}
+         \item Si $u_n = O(v_n)$, alors $R_n = O(R_n')$. 
+         \item Si $u_n = o(v_n)$, alors $R_n = o(R_n')$. 
+         \item Si $u_n \sim v_n$, alors $R_n \sim R_n'$. 
+     \end{itemize}
+\end{itheorem}
+\begin{itheorem}[Sommation des relations de comparaison (divergence)]
+     Soient $\sum u_n$ et $\sum v_n$ deux séries \emphhs{divergentes} à termes positifs.\\
+     Notons $S_n$ et $S_n'$ leurs sommes partielles respectives d'ordre $n$.
+     \begin{itemize}
+         \item Si $u_n = O(v_n)$, alors $S_n = O(S_n')$. 
+         \item Si $u_n = o(v_n)$, alors $S_n = o(S_n')$. 
+         \item Si $u_n \sim v_n$, alors $S_n \sim S_n'$. 
+     \end{itemize}
 \end{itheorem}
 \needspace{7cm}
 \begin{theorem}[\textsc{Césaro}\index{Cesaro@\textsc{Césaro}}]
@@ -1936,7 +1968,7 @@ Tous les théorèmes vus ici sont à démontrer.
 % chapter series (end)
 \chapter{Familles sommables de nombres complexes} % (fold)
 \label{cha:familles_sommables_de_nombres_complexes}
-\section{Dénombrement} % (fold)
+\section{Ensembles dénombrables} % (fold)
 \label{sec:denombrement}
 \begin{dfn}[Ensemble fini]
      On dit que $E$ est un \emph{ensemble fini}\index{Ensemble!fini} de cardinal $n$ si $E$ est en bijection avec $[\![ 0 , n [\![$
@@ -1965,8 +1997,11 @@ Tous les théorèmes vus ici sont à démontrer.
      %TODO Fonction de Cantor
 \end{proof}
 \todo{ Fonction de Cantor}
+\begin{dfn}[Produit cartésien]
+     Un produit cartésien fini d'ensembles dénombrables est dénombrable.
+\end{dfn}
 \begin{theorem}
-     Une réunion finie ou dénombrable d'ensembles dénombrables est dénombrable.\\[5mm]
+     Une réunion finie ou dénombrable d'ensembles finis ou  dénombrables est finie ou  dénombrable.\\[5mm]
      Ainsi, $\mathbb{Q}$ est dénombrable : \[\mathbb{Q} = \bigcup_{q\in\mathbb{N}^*}\left\lbrace \vphantom{\mathbb{N}} \frac{p}{q}, p \in \mathbb{Z} \right\rbrace\]
 \end{theorem}
 \begin{theorem}
@@ -1995,11 +2030,11 @@ Tous les théorèmes vus ici sont à démontrer.
      La famille $(u_i)_{i\in I}$ est sommable \emphh{si et seulement si} :
      \begin{itemize}
          \item la sous-famille $(u_i)_{i\in I_n}$ est sommable pour tout $n$
-         \item la série $\sum_n \left( \sum_{i\in I_n} u_i \right)$ est convergente
+         \item la série $\sum \left( \sum_{i\in I_n} u_i \right)$ est convergente
      \end{itemize}
      Dans ce cas : 
      \begin{equation}
-     \sum_{n=0}^{+\infty} \left( \sum_{i\in I_n} u_i \right) = \sum_{n\in I} u_n
+     \sum_{n\in I} u_n = \sum_{n=0}^{+\infty} \left( \sum_{i\in I_n} u_i \right)
      \end{equation}
 \end{theorem}
 \begin{theorem}[Sommation triangulaire]
@@ -2034,7 +2069,7 @@ Tous les théorèmes vus ici sont à démontrer.
      \end{equation}
 \end{itheorem}
 \begin{theorem}
-     Soient $(a_p)_{p\in \mathbb{N}}$ et $(b_q)_{q\in \mathbb{N}}$ deux familles sommables. Alors la famille $\big( a_p b_q\big)_{(p,q)\in \mathbb{N}^2}$ sommable et 
+     Soient $(a_p)_{p\in \mathbb{N}}$ et $(b_q)_{q\in \mathbb{N}}$ deux familles sommables. Alors la famille $\big( a_p b_q\big)_{(p,q)\in \mathbb{N}^2}$ est sommable et 
      \begin{equation}
      \sum_{(p,q)\in \mathbb{N}^2} a_p b_q= \left( \sum_{p\in \mathbb{N}} a_p \right) \left( \sum_{q\in \mathbb{N}} b_q \right)
      \end{equation}
@@ -2052,6 +2087,16 @@ Tous les théorèmes vus ici sont à démontrer.
      \end{equation}
 \end{itheorem}
 \Attention{Faire attention à bien mettre des modules partout}
+\begin{dfn}[Produit de \textsc{Cauchy}]
+     Soit $\sum u_n$ et $\sum v_n$ deux séries de nombres complexes. On appelle \emph{produit de \textsc{Cauchy}}\index{Produit de Cauchy@Produit de \textsc{Cauchy}} des séries la série $\sum_{p+q=n} u_p\, v_q = \sum_{k=0}^n u_k \, v_{n-k}$.
+\end{dfn}
+\begin{theorem}
+     Avec les notations précédentes, si $\sum u_n$ et $\sum v_n$ sont absolument convergente, alors leur produit de $\textsc{Cauchy}$ est une série absolument convergente et : 
+        \begin{equation}
+        \sum_{k=0}^{+\infty} u_k \, v_{n-k} = \left( \sum_{p=0}^{+\infty} u_p \right) \left( \sum_{q=0}^{+\infty} v_q \right) 
+        \end{equation}
+        
+\end{theorem}
 % subsection famille_sommable_complexe_reel (end)
 % section familles_sommables (end)
 % chapter familles_sommables_de_nombres_complexes (end)
