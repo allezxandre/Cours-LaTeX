@@ -75,7 +75,7 @@
 \chapter{Thermodynamique}
 \begin{methode}
 \titre{Formules}
-\begin{tabular}{ >{\begin{bf}}r<{\end{bf}} l c }
+\begin{tabular}{ >{\bfseries}r l c }
 %
 Premier principe     & $\Delta U = Q + W$            & (\reference{eq:PremierPrincipe})\\
                      & $\d U = \delta Q + \delta W$    &  (\reference{eq:PremierPrincipeInfinitesimal}) \\
@@ -545,7 +545,158 @@ Et on reconnaît $h = u + Pv$, d'où l'équation finale :\newline ${\d m~\left( 
 % subsection deuxieme_principe (end)
 % section systemes_ouverts (end)
 % chapter thermodynamique (end)
-%
+\chapter{Transferts thermique}
+\section{Conduction}
+C'est le phénomène à petite échelle qui se produit \uline{sans
+  mouvement} des particules lors d'une diffusion de chaleur. C'est un
+processus très lent.
+\begin{dfn}[Vecteur densité de flux thermique]
+Le transfert thermique passant à travers une surface fermée
+  $\d \vv{S_M}$ sera caractérisé par le vecteur densité de flux thermique
+  $\vv{j_{\text{th}}}$. La quantité d'énergie qui traverse une surface orientée $\d \vv{S_M}$ entre $t$ et $t+\d t$ est :
+  \begin{subequations}
+    \begin{align}
+      \delta ^2 Q &= \vv{j_{\text{th}}} \d\vv{S} \; \d t 
+                    \intertext{En notant $\mathrm{d}\vv*{S}{M} = \d S \, \vv{n_M}$ :}
+                    \varphi_{\vv{n_M}} (M,t) &= \vv{j}\cdot \vv{n_M}
+    \end{align}
+  \end{subequations}
+\end{dfn}
+\begin{dfn}[Flux Thermique]\index{Flux!thermique} 
+  On appelle \emph{flux thermique} la puissance d'un transfert
+  thermique :
+  \begin{equation}
+    \delta Q = \Phi \, \d t
+  \end{equation}
+  On prendra $\varphi$ tel que $\Phi = \varphi \, S$
+\end{dfn}
+\begin{theorem}
+   Le flux thermique $\Phi (t)$ traversant une surface $\d \vv{S_M}$ est : 
+   \begin{equation}
+   \Phi (t) = \iint \limits_{M\in S_M} \vv*{j}{\text{th}}(M,t) \cdot \d \vv{S_M}
+   \end{equation}
+   C'est le flux du champ de vecteurs $\vv*{j}{\text{th}}(M,t)$.
+\end{theorem}
+\begin{itheorem}[Loi de \textsc{Fourier}]
+  C'est une loi\index{Loi!Fourier@\emphi{ de }\textsc{Fourier}}
+  empirique qui donne la densité volumique de courant thermique
+  $\vv{j_{\text{th}}}$ en fonction d'un champ de températures $T$ :
+  \begin{equation}\label{FourierDiffusion}\tag{Fourier}
+    \boxed{\vv{j_\text{th}} = -
+      \underbrace{\lambda}_{\mathclap{\text{Conductivité Thermique}}}
+      \grad (T)}
+  \end{equation}
+  $\vv{j_\text{th}}$ est en \si{\watt\per\square\metre}, \newline
+  $\lambda$ est en \si{\watt\per\metre\per\kelvin}.
+\end{itheorem}
+Conformément au programme, la loi de \textsc{Fourier} doit être interprétée : 
+\begin{theorem}[Premier principe de Thermodynamique]
+  Le premier principe de thermodynamique
+  (équation~\eqref{eq:PremierPrincipe}
+  page~\pageref{eq:PremierPrincipe}) s'énonce, en diffusion, avec :
+  \begin{equation}
+    \d U = \delta Q + \mathcal{P}_\text{prod}\d t
+  \end{equation}
+  Souvent, $\mathcal{P}_\text{prod} = \iiint \mathcal{P}_V \d V$
+\end{theorem}
+\begin{itheorem}[Bilan local d'énergie]
+  Pour un système $\Sigma$ de matière dans un volume $\mathcal{V}$
+  quelconque, de capacité thermique massique $c$ et de masse volumique
+  $\mu$,
+  \begin{equation}\label{eq:bilan_local_thermique}
+    \mu c \dfrac{\partial T (M,t)}{\partial t} + \diverg \vv*{j}{\text{th}} (M,t) = \mathcal{P}_V (M,t)
+  \end{equation}
+\end{itheorem}
+\begin{proof}[Bilan à une dimension]
+  On suppose que la température ne dépend que d'une dimension, $x$ par
+  exemple. On compte appliquer le premier principe sous la forme :
+  \[
+  \d^2 U = \delta^2 Q + \delta^2 W
+  \]
+  On étudie un cylindre de longueur $\d x$, de section $S$ (donc de
+  volume $\mathcal{V} = S\d x$). Si $\mu$ est la masse volumique du
+  cylindre et $c$ sa capacité thermique \textit{massique}, alors la
+  capacité thermique du cylindre étudié est
+  $C = mc = \mu\mathcal{V} c = \mu Sc\d x$. On peut alors exprimer
+  $\d^2 U$ et $\delta^2 Q$ :
+  \begin{align*}
+    \d^2 U &= C\Delta T 
+             \intertext{Donc :}
+             \d^2 U &= \mu Sc\d x(T(x,t+\d t) - T(x,t)) \\
+           &= \mu Sc\d x \d t \dfrac{T(x,t+\d t) - T(x,t)}{\d t} \\
+    \d^2 U &= \mu c \dfrac{\partial T(x,t)}{\partial t} S\d x \d t
+  \end{align*}
+  % TODO: expliquer \delta^2 Q
+  Finalement, puisqu'ici $\delta^2 W = 0$, on retrouve :
+  \begin{align*}
+    \d^2 U &= \delta^2 Q + 0 
+             \intertext{soit :}
+             \mu c \dfrac{\partial T}{\partial t} \cancel{S \d x \d t} &= -\dfrac{\partial j_\text{th}(x,t)}{\partial x}\cancel{S \d x \d t} \\
+    \mu c \dfrac{\partial T}{\partial t} + \dfrac{\partial j_\text{th}(x,t)}{\partial x} &= 0
+  \end{align*}
+  Qui est l'expression \eqref{eq:bilan_local_thermique}\qed
+\end{proof}
+\begin{proof}[Cas général]
+  On utilise le premier principe de thermodynamique vu plus
+  haut. D'après un DL au premier ordre, on détermine :
+  \begin{align*}
+    \d U &= \iiint \limits_{M\in\mathcal{V}} \mu c\big( T(M, t+\d t) - T(M,t)\big)\d V \\
+         &= \left( \iiint \limits_{M\in\mathcal{V}} \mu c\left( \dfrac{\partial T (M,t)}{\partial t}\right) \right) \d t
+           \intertext{Le transfert thermique est, par définition de $\vv{j}$ :}
+           \delta Q &= \left( -\oiint \vv*{j}{\text{th}} \cdot\vv{\d S} \right)\d t
+                      \intertext{Qui est, d'après l'équation d'\textsc{Ostrogradski}~\eqref{eq:Ostrogradski} page~\pageref{eq:Ostrogradski}}
+                    &= \left( -\iiint \limits_{M\in\mathcal{V}} \diverg j_\text{th} \d V \right) \d t
+                      \intertext{Et enfin : }
+                      \mathcal{P}_\text{prod} \d t &= \left( \iiint \limits_{M\in\mathcal{V}} \mathcal{P}_V \d V \right) \d t
+  \end{align*}
+  Puisque le volume est constant et le même pour toutes les
+  intégrales, on peut dire que :
+  $\mu c\left( \dfrac{\partial T (M,t)}{\partial t}\right)= - \diverg
+  j_\text{th} + \mathcal{P}_V$ \qed
+\end{proof}
+\begin{itheorem}[Équation de diffusion thermique]
+  Pour un champ $T$ de températures, on a l'équation :
+  \begin{equation}\label{EqDiffusion}
+    \boxed{
+      \mu c \dfrac{\partial T}{\partial t} = \lambda \overbrace{\Delta T}^{\mathclap{\text{Laplacien de } T}} + P_v
+    }
+  \end{equation}
+  avec $c$ la capacité calorifique \uline{massique} à volume constant,
+  $\mu$ la masse volumique, et $\lambda$ définit comme précédemment.
+\end{itheorem}
+\begin{dfn}[Résistance thermique]
+  C'est la grandeur $R_{th}$ telle que : \hfill \\
+  \begin{empheq}[box=\ibox]{equation}
+    (T_1 - T_2) = \Phi_{1\to 2}\, R_{th}
+  \end{empheq}
+\end{dfn}
+\begin{theorem}[Résistances usuelles]
+  \hfill \\
+  Pour deux plaques parallèles de surfaces $S$ distantes de $L$ :
+  \begin{equation}
+    \boxed{
+      R_{th} = \dfrac{L}{\lambda S}
+    }
+  \end{equation}
+  Pour deux cylindres coaxiaux de hauteur H, de rayons $R_1$ et $R_2$
+  \begin{equation}
+    R_{\text{th}} = \dfrac{\ln\left( \dfrac{R_2}{R_1} \right)}{2\pi \lambda H}
+  \end{equation}
+\end{theorem}
+
+\clearpage
+\section{Convection}
+Bien plus rapide que la conduction, c'est quand la diffusion thermique est accompagnée d'un mouvement de particules (par exemple quand on ouvre une fenêtre)
+\begin{dfn}
+Encore une loi empirique, la loi phénoménologique de \textsc{Newton} :
+\begin{equation}
+\varphi_{{\text{solide}\to\text{fluide}}}= h(T_s - T_f) 
+\end{equation}
+Cette équation permet surtout de donner : 
+$\boxed{\Phi_{{\text{solide}\to\text{fluide}}} = h S (T_s - T_f)}$
+\end{dfn}
+Par définition de $R_{\text{th}}$ et par identification, l'interface entre un solide et un fluide a donc pour résistance $R_{\text{th}} = \dfrac{1}{h S}$
+% chapter transferts_thermiques (end)
 \chapter{Statique des fluides} % (fold)
 \label{cha:statique_des_fluides}
 \section{Champ de pression d'un fluide} % (fold)
@@ -579,7 +730,7 @@ Et on reconnaît $h = u + Pv$, d'où l'équation finale :\newline ${\d m~\left( 
 \chapter{Électronique}
 \begin{methode}
 \titre{Résoudre}
-\begin{tabular}{>{\begin{bf}}r<{\end{bf}} l | >{\begin{bf}}r<{\end{bf}} l}
+\begin{tabular}{>{\bfseries}r l | >{\bfseries}r l}
 Loi des n\oe{}uds\index{Loi!noeuds@\emphi{des }n\oe{}uds} & $\sum_\text{N\oe{}ud} i = 0$ &
 Loi des mailles \index{Loi!mailles@\emphi{des }mailles}& $\sum_\text{Maille} u =0$\\
 Puissance & $\mathcal{P} = u\times i$ &
@@ -723,7 +874,7 @@ Enfin, l'\gls{AO} \uline{idéal} a les propriétés suivantes :
 \label{sec:regimes_sinusoidaux}
 \begin{methode}
   \titre{Formules}
-  \begin{tabular}{>{\begin{bf}}r<{\end{bf}} c}
+  \begin{tabular}{>{\bfseries}r c}
      Théorème de \textsc{Millman} & $V_0 = \dfrac{\displaystyle\sum_k \dfrac{V_k}{\uline{Z}_k}}{\displaystyle\sum_k \dfrac{1}{\uline{Z}_k}}$ \\[1cm]
      Puissance moyenne & $\langle \mathcal{P} \rangle = \dfrac{U_0 I_0 \cos \varphi}{2} $
   \end{tabular}\newline
@@ -739,7 +890,7 @@ Enfin, l'\gls{AO} \uline{idéal} a les propriétés suivantes :
 \end{methode}
 \begin{itheorem}[Impédance des dipôles usuels]
    On donne, pour les dipôles usuels, leur impédance\index{impedance@Impédance} en complexes $\underline{Z}$ : \\[3mm]
-   \begin{tabular}{>{\begin{bf}} r <{\end{bf}} l l}
+   \begin{tabular}{>{\bfseries} r  l l}
       Dipole     &  $\underline{u} = \underline{Z}\cdot \underline{i}$ & \\[3mm]
       Résistance & $\underline{u} = R\cdot \underline{i}$ & $\underline{Z}_\text{Résistance} = R$ \\[3mm]
       Bobine & $\underline{u} = L\cdot \dfrac{\d \underline{i}}{\d t} = j\omega L \underline{i}$ & $\underline{Z}_\text{Bobine} = jL\omega$ \\[3mm]
@@ -883,7 +1034,7 @@ Pour un \emphhs{régime sinusoidal}, $u(t) = U \cdot \cos (\omega t)$, donc :
 \chapter{Mécanique du Point}
 \begin{methode}
 \titre{Formules Usuelles}
-\begin{tabular}{>{\begin{bf}}r<{\end{bf}} l}
+\begin{tabular}{>{\bfseries}r l}
 \multicolumn{2}{c}{\emphh{Intéractions fondamentales}} \\[1.5mm]
 Force Gravitationnelle & $\vv{F}_{A\to B} = -\mathcal{G} \dfrac{m_A m_B}{r^2}\vv{u}_r $ \\[2.5mm]
 Force Électrostatique & $ \vv{F}_{A\to B} = \dfrac{1}{4\pi\varepsilon_0}\dfrac{q_a q_b}{r^2} $ \\[5mm]
@@ -3040,121 +3191,6 @@ Cette équation n'est pas réelle, et conduit à un \emphh{module d'onde complex
 % subsubsection reflexion_OPPM_metal (end)
 % subsection propagation_dans_un_conducteur_ohmique (end)
 % section propagation_onde (end)
-\chapter{Diffusion Thermique}
-\section{Conduction}
-C'est le phénomène à petite échelle qui se produit \uline{sans mouvement} des particules lors d'une diffusion de chaleur. C'est un processus très lent. 
-\begin{dfn}[Flux Thermique]\index{Flux!thermique} On le définira de la façon suivante :
-\begin{equation}
-\delta Q = \Phi \, \d t
-\end{equation}
-On prendra $\varphi$ tel que $\Phi = \varphi \, S$
-\end{dfn}
-\begin{dfn}Le transfert thermique passant à travers une surface fermée $\vv{S}$ sera caractérisé par le vecteur $\vv{j_{\text{th}}}$. On le définit : 
-\begin{subequations}
-\begin{align}
-\delta ^2 Q &= \vv{j_{\text{th}}} \d\vv{S} \; \d t 
-\intertext{En notant $\mathrm{d}\vv*{S}{M} = \d S \, \vv{n_M}$ :}
-\varphi_{\vv{n_M}} (M,t) &= \vv{j}\cdot \vv{n_M}
-\end{align}
-\end{subequations}
-\end{dfn}
-\begin{itheorem}[Loi de \textsc{Fourier}]
-C'est une loi\index{Loi!Fourier@\emphi{ de }\textsc{Fourier}} empirique qui donne la densité volumique de courant thermique $\vv{j_{th}}$ en fonction de $T$ un champ de températures : 
-\begin{equation}\label{FourierDiffusion}\tag{Fourier} \boxed{\vv{j_\text{th}} = - \underbrace{\lambda}_{\mathclap{\text{Conductivité Thermique}}} \grad (T)} 
-\end{equation}
-\end{itheorem}
-\begin{theorem}[Premier principe de Thermodynamique]
-   Le premier principe de thermodynamique (équation~\eqref{eq:PremierPrincipe} page~\pageref{eq:PremierPrincipe}) s'énonce, en diffusion, avec : 
-   \begin{equation}
-   \d U = \delta Q + \mathcal{P}_\text{prod}\d t
-   \end{equation}
-   Souvent, $\mathcal{P}_\text{prod} = \iiint \mathcal{P}_V \d V$
-\end{theorem}
-\begin{itheorem}[Bilan local d'énergie]
-Pour un système $\Sigma$ de matière dans un volume $\mathcal{V}$ quelconque, de capacité thermique massique $c$ et de masse volumique $\mu$, 
-  \begin{equation}\label{eq:bilan_local_thermique}
-  \mu c \dfrac{\partial T (M,t)}{\partial t} + \diverg \vv*{j}{\text{th}} (M,t) = \mathcal{P}_V (M,t)
-  \end{equation}
-\end{itheorem}
-\begin{proof}[Bilan à une dimension]
-   On suppose que la température ne dépend que d'une dimension, $x$ par exemple. On compte appliquer le premier principe sous la forme : 
-   \[
-     \d^2 U = \delta^2 Q + \delta^2 W
-   \]
-   On étudie un cylindre de longueur $\d x$, de section $S$ (donc de volume $\mathcal{V} = S\d x$). Si $\mu$ est la masse volumique du cylindre et $c$ sa capacité thermique \textit{massique}, alors la capacité thermique du cylindre étudié est $C = mc = \mu\mathcal{V} c = \mu Sc\d x$. On peut alors exprimer $\d^2 U$ et $\delta^2 Q$ :
-   \begin{align*}
-      \d^2 U &= C\Delta T 
-      \intertext{Donc :}
-      \d^2 U &= \mu Sc\d x(T(x,t+\d t) - T(x,t)) \\
-             &= \mu Sc\d x \d t \dfrac{T(x,t+\d t) - T(x,t)}{\d t} \\
-      \d^2 U &= \mu c \dfrac{\partial T(x,t)}{\partial t} S\d x \d t
-   \end{align*}
-   %TODO: expliquer \delta^2 Q
-   Finalement, puisqu'ici $\delta^2 W = 0$, on retrouve : 
-   \begin{align*}
-      \d^2 U &= \delta^2 Q + 0 
-      \intertext{soit :}
-      \mu c \dfrac{\partial T}{\partial t} \cancel{S \d x \d t} &= -\dfrac{\partial j_\text{th}(x,t)}{\partial x}\cancel{S \d x \d t} \\
-      \mu c \dfrac{\partial T}{\partial t} + \dfrac{\partial j_\text{th}(x,t)}{\partial x} &= 0
-   \end{align*}
-   Qui est l'expression \eqref{eq:bilan_local_thermique}\qed
-\end{proof}
-\begin{proof}[Cas général]
-   On utilise le premier principe de thermodynamique vu plus haut. D'après un DL au premier ordre, on détermine : 
-   \begin{align*}
-      \d U &= \iiint \limits_{M\in\mathcal{V}} \mu c\big( T(M, t+\d t) - T(M,t)\big)\d V \\
-          &= \left( \iiint \limits_{M\in\mathcal{V}} \mu c\left( \dfrac{\partial T (M,t)}{\partial t}\right) \right) \d t
-      \intertext{Le transfert thermique est, par définition de $\vv{j}$ :}
-      \delta Q &= \left( -\oiint \vv*{j}{\text{th}} \cdot\vv{\d S} \right)\d t
-      \intertext{Qui est, d'après l'équation d'\textsc{Ostrogradski}~\eqref{eq:Ostrogradski} page~\pageref{eq:Ostrogradski}}
-               &= \left( -\iiint \limits_{M\in\mathcal{V}} \diverg j_\text{th} \d V \right) \d t
-      \intertext{Et enfin : }
-      \mathcal{P}_\text{prod} \d t &= \left( \iiint \limits_{M\in\mathcal{V}} \mathcal{P}_V \d V \right) \d t
-   \end{align*}
-   Puisque le volume est constant et le même pour toutes les intégrales, on peut dire que : 
-   $\mu c\left( \dfrac{\partial T (M,t)}{\partial t}\right)= - \diverg j_\text{th} + \mathcal{P}_V$ \qed
-\end{proof}
-\begin{itheorem}[Équation de diffusion thermique]
-Pour un champ $T$ de températures, on a l'équation :
-\begin{equation}\label{EqDiffusion}
-\boxed{
-\mu c \dfrac{\partial T}{\partial t} = \lambda \overbrace{\Delta T}^{\mathclap{\text{Laplacien de } T}} + P_v
-}
-\end{equation}
-avec $c$ la capacité calorifique \uline{massique} à volume constant, $\mu$ la masse volumique, et $\lambda$ définit comme précédemment.
-\end{itheorem}
-\begin{dfn}[Résistance thermique]
-C'est la grandeur $R_{th}$ telle que : \hfill \\
-\begin{empheq}[box=\ibox]{equation}
-(T_1 - T_2) = \Phi_{1\to 2}\, R_{th}
-\end{empheq}
-\end{dfn}
-\begin{theorem}[Résistances usuelles]
-\hfill \\
-Pour deux plaques parallèles de surfaces $S$ distantes de $L$ : 
-\begin{equation}
-\boxed{
-R_{th} = \dfrac{L}{\lambda S}
-}
-\end{equation}
-Pour deux cylindres coaxiaux de hauteur H, de rayons $R_1$ et $R_2$
-\begin{equation}
-R_{\text{th}} = \dfrac{\ln\left( \dfrac{R_2}{R_1} \right)}{2\pi \lambda H}
-\end{equation}
-\end{theorem}
-
-\clearpage
-\section{Convection}
-Bien plus rapide que la conduction, c'est quand la diffusion thermique est accompagnée d'un mouvement de particules (par exemple quand on ouvre une fenêtre)
-\begin{dfn}
-Encore une loi empirique, la loi phénoménologique de \textsc{Newton} :
-\begin{equation}
-\varphi_{{\text{solide}\to\text{fluide}}}= h(T_s - T_f) 
-\end{equation}
-Cette équation permet surtout de donner : 
-$\boxed{\Phi_{{\text{solide}\to\text{fluide}}} = h S (T_s - T_f)}$
-\end{dfn}
-Par définition de $R_{\text{th}}$ et par identification, l'interface entre un solide et un fluide a donc pour résistance $R_{\text{th}} = \dfrac{1}{h S}$
 \chapter{Rayonnement Thermique}
 \begin{methode}
 \titre{Calculer un flux thermique}
