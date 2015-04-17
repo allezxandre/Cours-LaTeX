@@ -2100,575 +2100,6 @@ Tous les théorèmes vus ici sont à démontrer.
 % subsection famille_sommable_complexe_reel (end)
 % section familles_sommables (end)
 % chapter familles_sommables_de_nombres_complexes (end)
-\chapter{Variables aléatoires discrètes} % (fold)
-\label{cha:variables_aleatoires_discretes}
-\begin{methode}
-     \titre{Prouver qu'une application $p_\omega$ est une probabilité}
-     On se sert du théorème~\ref{thm:proba_famille_sommable} page~\pageref{thm:proba_famille_sommable}, et on prend des éléments élémentaires (de la forme $\lbrace \omega \rbrace$). On montre que $(p_\omega )_{\omega}$ est une famille sommable de somme $1$, et le tour est joué ! L'application probabilité est alors $\mathbb{P} : A= \lbrace \omega_i, \omega_j, \cdots  \rbrace \longmapsto \sum_{\omega\in A} p_\omega$.
-\end{methode}
-\section{Espace probabilisé} % (fold)
-\label{sec:espace_probabilise}
-\begin{dfn}[Univers]
-     Un \emph{univers}\index{univers} $\Omega$ est l'ensemble des issues d'une expérience aléatoire.\\
-     L'ensemble des parties de l'univers $\Omega$ est noté $\mathscr{P}(\Omega{})$
-\end{dfn}
-\begin{dfn}[Tribu, espace probabilisable, évènement]
-     Une \emph{tribu}\index{Tribu} sur un univers $\Omega$ est un sous-ensemble $\mathscr{T}$ de $\mathscr{P}(\Omega{})$ vérifiant les propriétés :
-     \begin{itemize}
-         \item $\Omega \in \mathscr{T}$
-         \item $\forall A \in \mathscr{T},\: \overline{A} \in \mathscr{T}$
-         \item $\forall \left( A_n \right)_{n\in \mathbb{N}} \in \mathscr{T}^\mathbb{N},\: \bigcup_{n\in \mathbb{N}} A_n \in \mathscr{T}$
-     \end{itemize}
-     Le couple $(\Omega, \mathscr{T})$ est appelé \emph{espace probabilisable}\index{Espace!probabilisable}.\\
-     Un élément de la tribu $\mathscr{T}$ est appelé un \emph{évènement}\index{Evenement@Évènement}
-\end{dfn}
-\begin{prop}
-     Si $(\Omega, \mathscr{T})$ est un espace probabilisable, et $A_i$ un élément de $\mathscr{T}$ :
-     \begin{itemize}
-         \item $\varnothing \in \mathscr{T}$
-         \item $\bigcup_\text{finie} A_i \in \mathscr{T}$
-         \item $\bigcap_\text{finie} A_i \in \mathscr{T}$
-         \item $\forall (A_n)_{n\in \mathbb{N}},\, \bigcap_{n\in \mathbb{N}} A_i \in \mathscr{T}$
-         \item $\forall (A,B) \in \mathscr{T}^2,\, A\cap \overline{B} = A \backslash B$
-     \end{itemize}
-\end{prop}
-\begin{dfn}[Incompatibilité, implication]
-     Deux évènements $A$ et $B$ sont dits \emph{incompatibles}\index{Evenements@Évènements!incompatibles} si $A \cap B = \varnothing$\\
-     On dit que $A \underset{\text{implique}}{\implies} B$ quand $A \subset B$
-\end{dfn}
-\Attention{Ne pas confondre ($A \cap B = \varnothing$) et ($P(A\cap B) = 0$)}
-\begin{dfn}[Système complet d'évènements]
-     Soit $(\Omega, \mathscr{T})$ un espace probabilisable.\\
-     Soit $I$ fini ou égal à $\mathbb{N}$.\newline
-     Un \emph{système complet d'évènements}\index{Systeme complet@Système complet\emphi{ (probabilités)}} est \emphhs{une suite d'évènements} $(A_i)_{i\in I}$ telle que :
-     \begin{itemize}
-         \item $\bigcup_{i\in I} A_i = \Omega$
-         \item $\forall (p,q) \in I^2,\, p\neq q,\, A_p \cap A_q = \varnothing$
-     \end{itemize}
-\end{dfn}
-\begin{dfn}[Probabilité]\label{dfn:probabilite}
-     Soit $(\Omega, \mathscr{T})$ un espace probabilisable. La \emph{probabilité}\index{Probabilite@Probabilité} est l'application $\mathbb{P} : \mathscr{T} \to [0,1]$ telle que :
-     \begin{itemize}
-         \item $\mathbb{P}(\Omega) = 1$
-         \item Pour toute suite $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ d'évènements \emphhs{deux à deux incompatibles} : 
-         \begin{itemize}
-             \item $\sum \mathbb{P}(A_n)$ converge
-             \item $\mathbb{P}\left( \bigcup_{n=0}^{+\infty} A_n \right) = \sum_{n=0}^{+\infty} \mathbb{P}(A_n)$\\
-             ($\sigma$-additivité)
-         \end{itemize}
-     \end{itemize}
-     Le triplet $(\Omega, \mathscr{T},\mathbb{P})$ est appelé \emph{espace probabilisé}\index{Espace!probabilise@probabilisé}
-\end{dfn}
-\Attention{Espace propabilisable $(\Omega, \mathscr{T}) \neq$ Espace probablilisé $(\Omega, \mathscr{T},\mathbb{P})$}\\[\baselineskip]
-\begin{itheorem}[Caractérisation par une famille sommable]\label{thm:proba_famille_sommable}
-     Soit $\Omega$ un univers fini ou dénombrable. \newline
-     Soit une application $\left\lbrace \begin{array}{r c l} \Omega &\longto& \mathbb{R}^+ \\ \omega &\longmapsto& p_\omega \end{array}\right.$ telle que $(p_\omega)_{\omega\in\Omega}$ soit une \emphhs{famille sommable} de somme $1$.\newline
-     Soit $\left\lbrace \begin{array}{r c l} \mathbb{P} : \mathscr{P}(\Omega)&\longto& \mathbb{R}^+ \\ A &\longmapsto& \sum_{\omega \in A} p_\omega \end{array}\right.$\\
-     Alors $\big( \Omega, \mathscr{P}(\Omega ), \mathbb{P}\big)$ est un espace probabilisé.
-\end{itheorem}
-% section espace_probabilise (end)
-\section{Propriétés élémentaires des probabilités} % (fold)
-\label{sec:proprietes_elementaires_des_probabilites}
-\begin{theorem}[Théorème de la limité monotone]
-     Soit $\big( \Omega , \mathscr{T}, \mathbb{P}\big)$ un espace probabilisé.\\
-     \begin{subequations}
-     \begin{itemize}[leftmargin=5.5mm]
-         \item Si $A_n$ est une suite croissante d'évènements ($A_n\subset A_{n+1}$), alors :
-         \begin{equation}
-         \mathbb{P}(A_n) \xrightarrow[n\to +\infty]{} \mathbb{P}\big( \bigcup_{n=0}^{+\infty} A_n\big) 
-         \end{equation}
-         \item Si $A_n$ est une suite décroissante d'évènements ($A_{n+1}\subset A_{n}$), alors :
-         \begin{equation}
-         \mathbb{P}(A_n) \xrightarrow[n\to +\infty]{} \mathbb{P}\big( \bigcap_{n=0}^{+\infty} A_n\big) 
-         \end{equation}
-     \end{itemize}
-     \end{subequations}
-\end{theorem}
-Dans la définition~\ref{dfn:probabilite} de la probabilité, la propriété de $\sigma$-additivité nécessite que les évènements soient incompatibles. Cette propriété existe sous forme d'inégalité quand les évènements ne sont pas incompatibles :
-\begin{itheorem}[Inégalité de \textsc{Boole}]
-\index{Inegalite@Inégalité!Boole@\emphi{de} Boole}
-Soit $(\Omega, \mathscr{T},\mathbb{P})$ un espace probablilisé. \\
-Soit $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ telle que $\sum \mathbb{P}(A_n)$ converge. Alors :
-     \begin{equation}
-     \mathbb{P}\left( \bigcup_{n=0}^{+\infty} A_n \right) \le \sum_{n=0}^{+\infty} \mathbb{P}(A_n)
-     \end{equation}
-\end{itheorem}
-\begin{proof}
-     On se ramène à une suite d'évènements deux à deux disjoints en introduisant la suite $(C_n)$ telle que :
-     \begin{equation*}
-          C_0 = A_0 \\ C_n = A_n \backslash \bigcup_{k=0}^{n-1}A_k
-     \end{equation*}
-     Puisque $C_n \subset A_n$, on a : 
-     \begin{equation*}
-          \mathbb{P} \left( \bigcup_{n=0}^{+\infty} A_n \right) = \sum_{n=0}^{+\infty} \mathbb{P}(C_n) \le \sum_{n=0}^{+\infty} \mathbb{P}(A_n)
-     \end{equation*}
-\end{proof}
-%TODO Évènements négligeables/presque sûrs
-\todo{Évènements négligeables / presque sûrs}
-% section proprietes_elementaires_des_probabilites (end)
-\section{Probabilités conditionnelles et indépendance} % (fold)
-\label{sec:independance}
-\subsection{Probabilités conditionnelles} % (fold)
-\label{sub:probabilites_conditionnelles}
-\begin{itheorem}[Probabilité conditionnelle]
-     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
-     Soit $A \in \mathscr{T}$ de probabilité non nulle. \\
-     L'application 
-     \begin{equation}
-     \mathbb{P}_A : \left\lbrace
-     \begin{array}{r c l}
-          \mathscr{T} &\longto & [0,1] \\
-          B &\longmapsto & \dfrac{\mathbb{P} (A\cap B)}{\mathbb{P} (A)}
-     \end{array}
-     \right.
-     \end{equation}
-     est une probabilité appellée \emph{probabilité sachant $A$}.
-\end{itheorem}
-On notera également $\mathbb{P}\big( B | A\big) = \mathbb{P}_A(B)$ pour ``probabilité de $B$ sachant $A$''.
-\begin{theorem}[Formule des probabilités composées]
-     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
-     Soit $(A_n)$ une suite d'évènements de $\mathscr{T}$ telle que $\mathbb{P} \Big( \bigcap_{k=1}^n A_k \Big) > 0$. Alors :
-     \begin{equation}
-     \mathbb{P} \left( \bigcap_{k=1}^n A_k \right) = \mathbb{P}\Bigg(A_n \Bigg| \bigcap_{k=1}^{n-1} A_k \Bigg) \times \mathbb{P}\Bigg(A_{n-1} \Bigg| \bigcap_{k=1}^{n-2} A_k \Bigg) \times \cdots \times \mathbb{P}(A_2|A_1) \times \mathbb{P}(A_1)
-     \end{equation}
-\end{theorem}
-\begin{itheorem}[Formule des probabilités totales]
-     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
-     Soit $(A_n)_{n\in\mathbb{N}}$ un \emphhs{système complet} d'évènements de probabilités non nulles. Alors :
-     \begin{equation}
-     \forall B\in \mathscr{T},\qquad \mathbb{P}(B) = \sum_{n=0}^{+\infty} \mathbb{P}_{A_n}(B)\, \mathbb{P}(A_n)
-     \end{equation}
-\end{itheorem}
-\begin{proof}
-     $(A_n)_{n\in\mathbb{N}}$ est un système complet d'évènements. Ainsi, les évènements $B\cap A_n$ sont deux à deux incompatibles, et $\bigcup_{n\in\mathbb{N}} \left( B\cap A_n\right) = B$. Or $\mathbb{P}_{A_n}(B) = \dfrac{\mathbb{P}(A_n\cap B)}{\mathbb{P}(A_n)}$, ainsi : 
-     \[
-         \mathbb{P}(B) = \sum_{n=0}^{+\infty} \mathbb{P} \left( B\cap A_n \right)
-                       = \sum_{n=0}^{+\infty} \mathbb{P}_{A_n}(B) \mathbb{P}(A_n)
-     \]
-\end{proof}
-\begin{itheorem}[Formule de \textsc{Bayes}]
-     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
-     Soit $(A_n)_{n\in\mathbb{N}}$ un \emphhs{système complet} d'évènements de probabilités non nulles. Alors :
-     \begin{equation}
-     \forall B\in \mathscr{T},\: \forall i\in \mathbb{N},\qquad \mathbb{P}_B(A_i) = \dfrac{\mathbb{P}_{A_i}(B)\,\mathbb{P}(A_i)}{\displaystyle\sum_{n=0}^{+\infty}\mathbb{P}_{A_n} (B)\, \mathbb{P}(A_n)}
-     \end{equation}
-\end{itheorem}
-% subsection probabilites_conditionnelles (end)
-\subsection{Indépendance} % (fold)
-\label{sub:independance}
-\begin{dfn}[Évènements indépendants]
-     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
-     Deux évènements $A$ et $B$ de $\mathscr{T}$ sont dits \emph{indépendants}\index{Evenements@Évènements!independants@indépendants} lorsque 
-     \begin{equation}
-     \mathbb{P}(A\cap B) = \mathbb{P}(A)\times \mathbb{P}(B)
-     \end{equation}
-\end{dfn}
-On peut généraliser la définition suivante à une famille entière :
-\begin{dfn}[Famille quelconque d'évènements mutuellement indépendants]
-     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
-     Une famille $(A_n)_{n\in I}$  d'évènements de $\mathscr{T}$ est dite \emph{suite d'évènements mutuellements indépendants} lorsque :
-     \begin{equation}
-     \forall J\subset I,\qquad \mathbb{P} \left( \bigcap_J A_n \right) = \prod_J \mathbb{P} (A_n)
-     \end{equation}
-\end{dfn}
-% subsection independance (end)
-% section independance (end)
-\section{Variables aléatoires discrètes} % (fold)
-\label{sec:variables_aleatoires_discretes}
-\begin{dfn}[Variable aléatoire]
-     Soit $E$ un ensemble. On appelle \emph{variable aléatoire}\index{Variable aleatoire@Variable aléatoire} discrète une application $X : \Omega \to E$ telle que :
-     \begin{itemize}
-         \item $X(\Omega )$ est fini ou dénombrable
-         \item Pour tout $x \in X(\Omega )$, l'image réciproque de $\lbrace x \rbrace$ par $X$ est un évènement. On notera cet évènement $(X= x)$.
-     \end{itemize}
-\end{dfn}
-Lorsque $E\subset \mathbb{R}$, on dit que la variable aléatoire est réelle.
-\begin{dfn}[Loi de probabilité]
-     Soit $X$ une variable aléatoire discrète de $\Omega$ dans $E$.\\
-     On note $\mathscr{P} \Big( X(\Omega ) \Big)$ l'ensemble des parties de $X(\Omega )$.
-     L'application $\mathbb{P}_X (\Omega )$ : 
-     \begin{equation}
-      \mathbb{P}_X : \left\lbrace
-      \begin{array}{r c l}
-           \mathscr{P} \Big( X(\Omega ) \Big) &\longto & [0,1] \\
-           A & \longmapsto & \mathbb{P} (X\in A)
-      \end{array} \right.
-      \end{equation}
-\end{dfn}
-% section variables_aleatoires_discretes (end)
-\section[Couples de variables aléatoires]{Couples de variables aléatoires, variables aléatoires indépendantes} % (fold)
-\label{sec:couples_de_variables_aleatoires}
-% TODO: Couples de proba
-\subsection{Couple de variables aléatoires} % (fold)
-\label{sub:couple_de_variables_aleatoires}
-\begin{dfn}[Loi conjointe]
-     Soient $X_1$ et $X_2$ deux variables aléatoires discrètes. \\
-     On appelle \emph{loi conjointe}\index{Loi!conjointe} de $X_1$ et $X_2$ la loi $X=(X_1,X_2)$ déterminée par :
-     \begin{itemize}
-         \item $X(\Omega ) = \bigg\lbrace \Big(x_1\in X_1(\Omega ), x_2\in X_2(\Omega )\Big)\bigg\rbrace = X_1(\Omega )\times X_2(\Omega )$
-         \item $\mathbb{P}_X(x_1,x_2) = \mathbb{P}_X\bigg(\Big( x_1 = X_1(\Omega ) \cap x_2 = X_2(\Omega )\Big)\bigg)$
-     \end{itemize}
-\end{dfn}
-À partir de deux variables $X_1$ et $X_2$, on peut déterminer une troisième variable $(X_1,X_2)$ et sa loi. Les lois marginales vont nous permettre de faire l'inverse :
-\begin{theorem}[Lois marginales]
-     \index{Loi!marginale}Soit $X = (X_1 , X_2)$ un couple de variables aléatoires discrètes.\\
-     On note $X(\Omega ) = \Big\lbrace (x_1, x_2)\, |\, i\in I,\, j\in J \Big\rbrace$ \\
-     On peut déterminer la loi de $X_1$ ou de $X_2$ à partir de la loi $\mathbb{P}_X$ de la manière suivante : 
-     \begin{equation}
-     X_1(\Omega ) = \lbrace x_i ,\, i\in I\rbrace \\ \mathbb{P}_{X_1}(x_1) = \sum_{j\in J} \mathbb{P}(X = (x_i, x_j)) 
-     \end{equation}
-     \begin{equation}
-     X_2(\Omega ) = \lbrace x_j ,\, j\in J\rbrace \\ \mathbb{P}_{X_2}(x_2) = \sum_{i\in I} \mathbb{P}(X = (x_i, x_j)) 
-     \end{equation}
-\end{theorem}
-% subsection couple_de_variables_aleatoires (end)
-\subsection{Variables aléatoires indépendantes} % (fold)
- \label{sub:variables_aleatoires_independantes}
- \begin{dfn}[Suite finie de variables aléatoires indépendantes]
-      Soient $n$ variables aléatoires discrètes $X_1,\ldots, X_n$.\\ 
-      On dit qu'elles sont \emph{indépendantes}\index{Variable aleatoire@Variable aléatoire!independante@indépendante} si pour tous $x_1\in X_1(\Omega),\ldots,x_n\in X_n(\Omega)$, les évènements $(X_1 = x_1),\ldots ,(X_n = x_n)$ sont indépendants. 
- \end{dfn}
- \begin{dfn}[Suite de variables aléatoires indépendantes]
-      Soit $(X_n)_{n\in \mathbb{N}}$ une suite. On dit qu'elles sont \emph{indépendantes}\index{Variable aleatoire@Variable aléatoire!independante@indépendante} si pour tout sous-ensemble $I$ de $\mathbb{N}$ la famille finie $(X_n)_{n\in I}$ est indépendante. 
- \end{dfn}
- \begin{theorem}
-      Si $X_1,X_2,\ldots ,X_n$ sont des variables aléatoires mutuellement indépendantes, alors pour tout $m \in [1, n-1 ]$ et pour toutes fonctions $g$ et $g$, les variables $f(X_1,\ldots ,X_n)$ et $g(X_1,\ldots ,X_n)$ sont indépendantes.
- \end{theorem}
- % subsection variables_aleatoires_independantes (end) 
-% section couples_de_variables_aleatoires (end)
-\section{Lois usuelles} % (fold)
-\label{sec:lois_usuelles}
-\begin{dfn}[Loi de \textsc{Bernoulli}]
-     La \emph{loi de \textsc{Bernoulli}}\index{Loi!Bernoulli@\emphi{de} \textsc{Bernoulli}} est une distribution discrète qui prend la valeur $1$ avec une probabilité $p$ et la valeur $0$ avec la probabilité $(1-p)$. \\
-     Une variable aléatoire qui suit cette loi est appelée variable de \textsc{Bernoulli}
-\end{dfn}
-\subsection{Loi binomiale} % (fold)
-\label{sub:loi_binomiale}
-% On va avoir besoin de la variance et de l'espérance, cf. section suivante
-\begin{dfn}
-     Une \emph{loi binomiale}\index{Loi!binomiale} de paramètres $n$ et $p$ est la loi de probabilité d'une variable aléatoire $X$ égale au nombre de succès rencontrés au cours d'une répétition de $n$ épreuves de Bernoulli, $p$ étant la probabilité de succès d'une épreuve de Bernoulli.\par
-     Autrement, c'est une variable aléatoire $X$ telle que 
-     \[
-         X = Y_1 + Y_1 + \cdots + Y_n
-     \]
-     où les $Y_i$ sont des variables aléatoires \emphhs{indépendantes} de loi de \textsc{Bernoulli}.\par
-     La variable aléatoire suit une loi de probabilité : 
-     \begin{equation}
-     \mathbb{P}(X = k) = \begin{pmatrix} n \\ k \end{pmatrix} p^k(1-p)^{n-k}
-     \end{equation}
-\end{dfn}
-\begin{theorem}[Espérance et variance]
-     Soit $X$ une variable aléatoire qui suit une loi binomiale de paramètres $p$ et $n$. Alors :
-     \begin{equation}
-     E(X) = np \\ V(X) = np(1-p)
-     \end{equation}
-\end{theorem}
-% subsection loi_binomiale (end)
-\subsection{Loi géométrique}
-\label{sub:loi_geometrique}
-\begin{dfn}
-     Une \emph{loi géométrique}\index{Loi!geometrique@géométrique} de paramètre $p \in ]0, 1[$ est la loi de probabilité d'une variable aléatoire $X$ égale au rang $k$ du premier succès dans une suite d'épreuves de \textsc{Bernoulli} mutuellement indépendantes de paramètres $p$.\par
-     Une telle loi vérifie $X(\Omega ) = \mathbb{N}$ et :
-     \begin{equation}
-     \forall k> 0,\qquad \mathbb{P}_X(k) = p (1-p)^{k-1}
-     \end{equation}
-     Une loi géométrique se note $\mathscr{G}(p)$.
-\end{dfn}
-\begin{theorem}[Espérance et variance]
-     Soit $X$ une variable aléatoire qui suit une loi géométrique de paramètre $p$. Alors : 
-     \begin{equation}
-     E(X) = \dfrac{1}{p} \\ V(X) = \dfrac{1-p}{p^2}
-     \end{equation}
-\end{theorem}
-\begin{itheorem}[Caractérisation comme loi sans mémoire]
-     La loi géométrique est la seule loi de probabilité discrète à valeurs dans $\mathbb{N}^*$ vérifiant : 
-     \begin{equation}
-     \mathbb{P}\Big( X > (n+k) \Big| X > n \Big) = \mathbb{P} \big( X > k \big)
-     \end{equation}
-     pour tous entiers $n$ et $m$.
-\end{itheorem}
-% subsection loi_geometrique (end)
-\subsection{Loi de \textsc{Poisson}} % (fold)
-\label{sub:loi_de_poisson}
-\begin{dfn}[Loi de \textsc{Poisson}]
-     On dit d'une variable aléatoire $X$ que c'est une \emph{loi de \textsc{Poisson}}\index{Loi!Poisson@\emphi{de} \textsc{Poisson}} de paramètre $\lambda >0$ lorsque $X( \Omega ) = \mathbb{N}$ et :
-     \begin{equation}
-     \mathbb{P}_X (k) = e^{-\lambda}\, \dfrac{\lambda^k}{k !}
-     \end{equation}
-     Une telle loi se note $\mathscr{P}(\lambda )$.
-\end{dfn}
-\begin{theorem}[Espérance et variance]
-     Soit $X$ une variable aléatoire qui suit une loi de \textsc{Poisson} de paramètre $\lambda > 0$. Alors :
-     \begin{equation}
-     E(X) = \lambda \\ V(X) = \lambda
-     \end{equation}
-\end{theorem}
-\begin{theorem}[Approximation de la loi binomiale par une loi de \textsc{Poisson}]
-     Si, pour tout $n$, $X_n$ est une loi binomiale de paramètre $n$, $p_n$, et si le produit $n\cdot p_n$ converge vers $\lambda$, alors :
-     \begin{equation}
-     \mathbb{P}(X_n = k) \xrightarrow[n\to+\infty]{} e^{-\lambda}\, \dfrac{\lambda^k}{k!}
-     \end{equation}
-\end{theorem}
-\begin{prop}
-     Si $X$ et $Y$ sont deux variables aléatoires indépendantes qui suivent des lois de \textsc{Poisson} de paramètres $\lambda$ et $\mu$, alors la loi $X+Y$ suit une loi de poisson de paramètre $\lambda + \mu$.
-\end{prop}
-% subsection loi_de_poisson (end)
-% section lois_usuelles (end)
-\section{Espérance} % (fold)
-\label{sec:esperance}
-\subsection{Définitions} % (fold)
-\label{sub:esperance_definitions}
-\begin{subequations}
-\begin{dfn}[Espérance d'une famille finie]
-     Soit $X$ une variable aléatoire prenant un nombre fini de valeurs $x_1, x_2, \ldots , x_n$. L'\emph{espérance}\index{Esperance@Espérance} de $X$ est donnée par la somme finie :
-     \begin{equation}
-     E(X) = \sum_{i=1}^n x_i \mathbb{P}_X(x_i)
-     \end{equation}
-\end{dfn}
-\textbf{Remarque :} On assimile souvent l'espérance à la moyenne, car puisque la somme des probabilités est $1$, on peut très bien écrire que : 
-\begin{equation}
-    E(X) = \dfrac{\displaystyle\sum_{i=1}^n x_i \mathbb{P}_X(x_i)}{\displaystyle\sum_{i=1}^n \mathbb{P}_X(x_i)}
-\end{equation}
-\end{subequations}
-Si $X$ ne prend pas un nombre fini de valeurs, on peut étendre la définition précédente au cas où les valeurs de $X$ forment une famille sommable :
-\begin{dfn}[Espérance d'une variable aléatoire discrète]
-     Soit $X$ une variable aléatoire \emphh{réelle discrète}. On dit que $X$ est d'\emph{espérance finie} si la famille $\Big( x\mathbb{P}_X(x)\Big)_{x\in X(\Omega)}$ est sommable. \\
-     La somme est appellée \emph{espérance de $X$}.
-\end{dfn}
-\begin{dfn}[Variable centrée]
-     Soit $X$ une variable aléatoire discrète d'espérance finie. \par
-     La variable aléatoire $X - E(X)$ est appelée \emph{variable centrée associée}\index{Variable centree associee@Variable centrée associée} à $X$. \\
-     Son espérance $E\big( X - E(X) \big)$ est nulle.
-\end{dfn}
-% subsection esperance_definitions (end)
-\subsection{Propriétés de l'espérance} % (fold)
-\label{sub:esperance_proprietes}
-\begin{prop}
-     \begin{itemize}
-         \item L'ensemble $\mathscr{E}$ des variables aléatoire de $\Omega$ dans $\mathbb{R}$ et dont l'espérance est finie est un espace vectoriel
-         \item L'espérance est une forme linéaire sur $\mathscr{E}$
-         \item $\forall X \in \mathscr{E},\, X(\Omega) \subset \mathbb{R}^+ \implies E(X) \ge 0$ (l'espérance est positive)
-         \item L'espérance est croissante : $\forall (X,Y)\in \Omega^2,\: X \le Y \implies E(X) \le E(Y)$
-         \item Soit $Y$ une variable aléatoire d'espérance finie, si $X$ est une variable aléatoire telle que $|X| \le Y$, alors $X$ est d'espérance finie.
-         \item Si $X$ et $Y$ sont deux variables aléatoires \emphh{indépendantes} \emphh{et admettant chacune une espérance finie}, alors $XY$ est d'espérance finie et 
-         \begin{equation*}
-         E(XY) = E(X)\: E(Y)
-         \end{equation*}
-         Par récurrence, on vérifie que pour $n$ variables aléatoires $X_1,\ldots, X_n$ mutuellement indépendantes : 
-         \begin{equation*}
-              E \left( \prod_i X_i \right)  = \prod_i E(X_i)
-         \end{equation*}
-     \end{itemize}
-\end{prop}
-\begin{itheorem}[Formule de transfert]
-     Soit $X$ une variable aléatoire discrète.\newline
-     Soit $f : X(\Omega ) \longto \Reel{}$.\newline
-     La variable aléatoire $f(X)$ est d'espérance finie \ssi{} la famille $\Big( f(x) \cdot P(X = x) \Big)$ est sommable. Si tel est le cas : 
-     \begin{equation}
-     E\big( f(X) \big) = \sum_{x\in X(\Omega)} f(x)\, \mathbb{P}(X=x)
-     \end{equation}
-\end{itheorem}
-\begin{itheorem}[Inégalité de \textsc{Markov}]\label{thm:markov}
-     Soit $X$ une variable aléatoire réelle discrète \emphhs{positive} admettant une espérance finie. Alors, pour tout $a > 0$, l'\emph{inégalite de \textsc{Markov}}\index{Inegalite@Inégalité!markov@\emphi{de } \textsc{Markov}} nous donne : 
-     \begin{equation}\label{eq:markov}
-     \mathbb{P}(X\ge a) \le \dfrac{E(X)}{a}
-     \end{equation}
-\end{itheorem}
-% subsection esperance_proprietes (end)
-% section esperance (end)
-\section{Variance} % (fold)
-\label{sec:variance}
-\subsection{Moment} % (fold)
-\label{sub:variance_moment}
-\needspace{5cm}
-\begin{dfn}[Moment d'ordre $n$]
-     Soit $X$ une variable aléatoire discrète. On dit que $X$ admet un \emph{moment}\index{Moment@Moment\emphi{ (Probabilités)}} d'ordre $m$ si $X^m$ admet \emphh{une espérance finie}.
-\end{dfn}
-\begin{theorem}
-     Si $X$ est une variable aléatoire admettant un moment d'ordre $2$, alors $X$ admet une espérance finie.
-\end{theorem}
-\begin{theorem}[Inégalité de \textsc{Cauchy-Schwarz}\index{inegalite@Inégalité!cauchy@de \textsc{Cauchy-Schwarz}}]
-     Si $X$ et $Y$ sont deux variables aléatoires discrètes de moment d'ordre $2$, alors $XY$ a une espérance finie et
-     \begin{equation}
-     \bigg( E(XY)\bigg)^2 \le E(X^2)\,E(Y^2)
-     \end{equation}
-\end{theorem}
-\begin{theorem}[Espace vectoriel]
-     L'ensemble des variables aléatoires définies sur $\Omega$ admettant un moment d'ordre $2$ est un sous-espace vectoriel de l'espace vectoriel des variables aléatoires réelles discrètes définies sur $\Omega$ et d'espérance finie.
-\end{theorem}
-% subsection variance_moment (end)
-\subsection{Variance et écart-type} % (fold)
-\label{sub:variance_et_ecart_type}
-On relarquera que dans cette sous-section, on fera tout le temps l'hypothèse d'une variable aléatoire $X$ admettant un moment d'ordre 2, c'est-à-dire telle que $X^2$ admette une espérance finie.
-\begin{dfn}[Variance et Écart-type]
-     Soit $X$ une variable aléatoire discrète \emphh{admettant un moment d'ordre 2}.\par
-     On définit la \emph{variance}\index{Variance} par :
-     \begin{subequations}
-     \begin{equation}
-          V(X) = E\bigg( \big( X - E(X) \big)^2 \bigg)
-     \end{equation}
-     et l'\emph{écart-type}\index{ecart-type@Écart-type} par :
-     \begin{equation}
-     \sigma (X) = \sqrt{ V(X) }
-     \end{equation}
-     \end{subequations}
-\end{dfn}
-\begin{theorem}[Formule de \textsc{König-Huygens}]
-     Soit $X$ une variable aléatoire discrète \emphhs{admettant un moment d'ordre $2$}. Alors :
-     \begin{equation}
-     V(X) = E(X^2) - E(X)^2
-     \end{equation}
-\end{theorem}
-\begin{theorem}
-     Soit $X$ une variable aléatoire \emphhs{admettant un moment d'ordre $2$}. Alors pour tous réels $a$ et $b$ : 
-     \begin{equation}
-     V(aX + B) = a^2 V(X) 
-     \end{equation}
-\end{theorem}
-\begin{dfn}[Variables réduites]
-     Soit $X$ une variable aléatoire discrète \emphh{admettant un moment d'ordre 2} et telle que $\sigma (X) > 0$.\par
-     La variable aléatoire $\dfrac{X}{\sigma (X)}$ est appelée \emph{variable réduite}\index{Variable reduite@Variable réduite} associée à $X$. \\
-     Son écart-type est égal à $1$.\par
-     La variable aléatoire $\dfrac{X - E(X)}{\sigma (X)}$ est appelée \emph{variable centrée réduite}\index{Variable centree reduite@Variable centrée réduite} associée à $X$.\\
-     Son espérance est nulle et son écart-type est égal à $1$.
-\end{dfn}
-\begin{itheorem}[Inégalité de \textsc{Bienaymé}-\textsc{Tchebychev}]
-     Soit $X$ une variable aléatoire discrète \emphh{admettant un moment d'ordre 2}. Alors : 
-     \begin{equation}
-     \forall \epsilon > 0,\qquad \mathbb{P}\Big( \big| X - E(X) \big| \ge \epsilon \Big) \le \dfrac{V(X)}{\epsilon^2}
-     \end{equation}
-\end{itheorem}
-\begin{proof}
-     On applique le théorème~\ref{thm:markov} de \textsc{Markov} page~\pageref{thm:markov} à la variable aléatoire $Y= (X - E(X))^2$ : 
-     \begin{equation*}
-          \forall \epsilon> 0, \quad \mathbb{P}\Big( \big| X - E(X) \big| \ge \epsilon \Big)=\mathbb{P}(Y^2 \ge \epsilon^2)\le \dfrac{E\big( (X-E(X))^2\big)}{\epsilon^2} = \dfrac{V(X)}{\epsilon^2}
-     \end{equation*}
-\end{proof}
-Ce dernier théorème permet de majorer la probabilité que $X$ prenne une valeur dont la distance à $E(X)$ (c'est-à-dire à la moyenne) serait supérieure à $\epsilon$.
-% subsection variance_et_ecart_type (end)
-\subsection{Covariance} % (fold)
-\label{sub:covariance}
-\begin{dfn}[Covariance]
-     Soient $X$ et $Y$ deux variables aléatoires discrètes \emphh{admettant une espérance finie}.\par
-     Si elle existe, on définit la \emph{covariance}\index{Covariance} de $X$ et de $Y$ par :
-     \begin{equation}
-     \mathrm{cov}(X,Y) = E\bigg( \big( X - E(X)\big) \: \big( Y - E(Y)\big) \bigg)
-     \end{equation}
-\end{dfn}
-\begin{itheorem}[Existence de la covariance]
-     Soient $X$ et $Y$ deux variables aléatoires \emphh{admettant un moment d'ordre 2}. Alors la covariance de $X$ et de $Y$ existe et on a :
-     \begin{equation}
-     \mathrm{cov}(X,Y)=E(XY) - E(X)E(Y)
-     \end{equation}
-\end{itheorem}
-\begin{proof}
-     $X$ et $Y$ étant des variables aléatoires d'ordre 2, elles admettent une espérance finie. \\
-     De plus, on a : 
-     \begin{align*}
-         \mathrm{cov}(X,Y) &= E\bigg( \big( X - E(X)\big) \: \big( Y - E(Y)\big) \bigg)
-         \intertext{On développe :}
-                           &= E\bigg( XY - E(X)Y - E(Y)X + E(X)E(Y) \bigg)
-                           \intertext{Par linéarité de l'espérance : }
-                           &= E\big( XY \big) - E\big( E(X)Y \big) - E\big( E(Y)X \big) + E\big( E(X)E(Y) \big) \\
-                           &= E\big( XY \big) - E(X)E(Y) - \cancel{E(Y)E(X)} +  \cancel{E(X)E(Y)} \\
-         \mathrm{cov}(X,Y) &= E(XY) - E(X)E(Y)
-     \end{align*}
-\end{proof}
-Du théorème précédent, on déduit le théorème suivant : 
-\begin{theorem}[Covariance de variables aléatoires indépendantes]
-     Si $X$ et $Y$ sont deux variables aléatoires \emphhs{indépendantes} admettant un moment d'ordre 2, alors $\mathrm{cov}(X,Y) = 0$.
-\end{theorem}
-\begin{theorem}
-     Soient $X$ et $Y$ deux variables aléatoires réelles discrètes \emphh{admettant un moment d'ordre 2}. Alors :
-     \begin{itemize}
-         \item $X+Y$ a un moment d'ordre $2$ et $V(X+Y) = V(X) + V(Y) + 2\mathrm{cov}(X,Y)$ ;
-         \item si $X$ et $Y$ sont indépendantes, $V(X+Y) = V(X) + V(Y)$.
-     \end{itemize}
-\end{theorem}
-Par récurrence, on en déduit le théorème suivant :
-\begin{itheorem}[Variance d'une somme finie]
-     Soit $X_1, \ldots , X_n$ $n$ variables aléatoires réelles discrètes admettant toutes des moment d'ordre $2$. Alors : 
-     \begin{subequations}
-     \begin{itemize}[leftmargin=5.5mm]
-         \item la variable aléatoire $X_1 + \cdots + X_n$ a un moment d'ordre $2$ et : 
-         \begin{equation}
-         V \bigg( \sum_{k=1}^n X_k\bigg) = \sum_{k=1}^n V\big( X_k\big)  + \sum_{1\le i\le j\le n} \mathrm{cov}(X_i,X_j)
-         \end{equation}
-         \item si les variables $X_1, \ldots , X_n$ sont indépendantes : 
-         \begin{equation}
-              V \bigg( \sum_{k=1}^n X_k\bigg) = \sum_{k=1}^n V\big( X_k\big) 
-         \end{equation}
-     \end{itemize}
-     \end{subequations}
-\end{itheorem}
-% subsection covariance (end)
-% section variance (end)
-\section{Loi faible des grands nombres} % (fold)
-\label{sec:loi_faible_des_grands_nombres}
-% Une section entière pour un théorème seul... OK :) 
-\begin{itheorem}[Loi faible des grands nombres]
-     Si $(X_n)_n$ est une suite de variables aléatoires deux à deux indépendantes, de même loi et admettant un moment d'ordre $2$, alors, si $S_n = \sum_{k=1}^n X_k$ et $m = E(X_1)$, on a : 
-     \begin{subequations}
-     \begin{equation}
-     \forall \varepsilon >0,\quad \mathbb{P} \left( \left| \dfrac{S_n}{n} - m \right| \ge \epsilon \right) \xrightarrow[n\to +\infty]{} 0 
-     \end{equation}
-     Pour avoir la formule en tête de manière plus visuelle, même si c'est plus lourd : 
-     \begin{equation}
-     \forall \varepsilon >0,\quad \mathbb{P} \left( \left| \dfrac{\displaystyle\sum_{k=1}^n X_k}{n} - E(X_1) \right| \ge \epsilon \right) \xrightarrow[n\to +\infty]{} 0 
-     \end{equation}
-     \end{subequations}
-\end{itheorem}
-%todo: Formule citée par le programme
-\todo{Formule citée par le programme}
-% section loi_faible_des_grands_nombres (end)
-\section{Fonctions génératrices} % (fold)
-\label{sec:fonctions_generatrices}
-%TODO: rajouter le theoreme du transfert! 
-\begin{dfn}[Fonction génératrice] % Grosse copie depuis le livre de Vuibert p640
-     Soit $X$ une variable aléatoire à valeurs dans $\mathbb{N}$. On définit la \emph{fonction génératrice}\index{Fonction génératrice} $G_X$ de $X$ par : 
-     \begin{equation}
-     G_X (t) = E(t^X) = \sum_k \mathbb{P} (X=k) t^k
-     \end{equation}
-     pour les valeurs de $t$ telles que la variable aléatoire $t^X$ admette une espérance finie.
-\end{dfn}
-\begin{theorem}[Détermination de la loi de $X$]
-% Totalement pris de Vuibert
-     Soit $X$ une variable aléatoire à valeurs dans $\mathbb{N}$.
-     \begin{itemize}[leftmargin=5.5mm]
-         \item La série entière $G_X$ est de rayon $R \ge 1$ et converge normalement sur le disque fermé de centre 0 et de rayon $1$ ; 
-         \item Soit $k\in \mathbb{N}$, alors : 
-         \begin{equation}
-         \mathbb{P}(X=k) = \dfrac{G_X^{(k)}(0)}{k!}
-         \end{equation}
-         \item Si $R > 1$, alors $X$ admet un moment d'ordre $k$ quelconque dans $\mathbb{N}^*$ et :
-         \begin{subequations}
-         \begin{align}
-         G_X'(1) &= E(X) \\ G_X''(1) &= E\big( X(X-1)\big) \\ G_X^{(k)}(1) &= E\Big( X(X-1)\cdots (X-k+1)\Big)
-         \end{align}
-         \end{subequations}
-         Dans ce cas, $V(X) = G_X''(1) + G_X'(1) - G_X'^2(1)$.
-     \end{itemize}
-\end{theorem}
-La dernière partie de ce théorème peut se généraliser même si $R\ge 1$ :
-\begin{itheorem}
-     Soit $X$ une variable aléatoire.
-     \begin{itemize}[leftmargin=5.5mm]
-         \item $X$ admet une espérance finie \ssi{} $G_X$ est dérivable à gauche en $1$ ; dans ce cas $E(X) = G_X'(1)$.
-         \item $X$ admet un second moment \ssi{} $G_X$ est deux fois dérivable à gauche en $1$ ; dans ce cas $G_X''(1) = E\big( X(X-1) \big)$ et $V(X) = G_X''(1) + G_X'(1) - G_X'^2(1)$.
-     \end{itemize}
-\end{itheorem}
-\begin{itheorem}[Somme de variables aléatoires indépendantes]
-     Si $X$ et $Y$ sont deux variables aléatoires à valeurs dans $N$ et indépendantes, alors :
-     \begin{equation}
-     \boxed{\forall t\in ]-1,1[}\qquad G_{X+Y}(t) = G_X(t)\, G_Y(t)
-     \end{equation}
-     On peut généraliser à $n$ variables aléatoires $X_1,\ldots ,X_n$ mutuellement indépendantes : 
-     \begin{equation}
-     \boxed{\forall t\in ]-1,1[}\qquad G_{\sum X_k}(t) = \prod G_{X_k}(t)
-     \end{equation}
-\end{itheorem}
-% section fonctions_generatrices (end)
-% chapter variables_aleatoires_discretes (end)
 \chapter{Suites de fonctions}
 \begin{methode}
     En général, pour la \uline{convergence simple}, on \emph{fixe $x$}. Pour la \uline{convergence uniforme}, puisqu'on cherche la norme $N_\infty$, on \emph{dérive $f_n(x)$} pour étudier ses variations.
@@ -3580,6 +3011,576 @@ d'où $\Gamma(n+1)=n!$	CQFD.
 $f$ une fonction continue de $[\alpha{},\beta{}]\times [a,b]$ dans $\mathbb{C}$. \\
 Alors $\displaystyle\int_{\alpha}^{\beta}\left(\displaystyle\int_{a}^{b}f(x,t)dt\right)dx=\displaystyle\int_{a}^{b}\left(\displaystyle\int_{\alpha}^{\beta}f(x,t)dx\right)dt$
 \end{dfn}
+% chapter (end)
+\chapter{Variables aléatoires discrètes} % (fold)
+\label{cha:variables_aleatoires_discretes}
+\begin{methode}
+     \titre{Prouver qu'une application $p_\omega$ est une probabilité}
+     On se sert du théorème~\ref{thm:proba_famille_sommable} page~\pageref{thm:proba_famille_sommable}, et on prend des éléments élémentaires (de la forme $\lbrace \omega \rbrace$). On montre que $(p_\omega )_{\omega}$ est une famille sommable de somme $1$, et le tour est joué ! L'application probabilité est alors $\mathbb{P} : A= \lbrace \omega_i, \omega_j, \cdots  \rbrace \longmapsto \sum_{\omega\in A} p_\omega$.
+\end{methode}
+\section{Espace probabilisé} % (fold)
+\label{sec:espace_probabilise}
+\begin{dfn}[Univers]
+     Un \emph{univers}\index{univers} $\Omega$ est l'ensemble des issues d'une expérience aléatoire.\\
+     L'ensemble des parties de l'univers $\Omega$ est noté $\mathscr{P}(\Omega{})$
+\end{dfn}
+\begin{dfn}[Tribu, espace probabilisable, évènement]
+     Une \emph{tribu}\index{Tribu} sur un univers $\Omega$ est un sous-ensemble $\mathscr{T}$ de $\mathscr{P}(\Omega{})$ vérifiant les propriétés :
+     \begin{itemize}
+         \item $\Omega \in \mathscr{T}$
+         \item $\forall A \in \mathscr{T},\: \overline{A} \in \mathscr{T}$
+         \item $\forall \left( A_n \right)_{n\in \mathbb{N}} \in \mathscr{T}^\mathbb{N},\: \bigcup_{n\in \mathbb{N}} A_n \in \mathscr{T}$
+     \end{itemize}
+     Le couple $(\Omega, \mathscr{T})$ est appelé \emph{espace probabilisable}\index{Espace!probabilisable}.\\
+     Un élément de la tribu $\mathscr{T}$ est appelé un \emph{évènement}\index{Evenement@Évènement}
+\end{dfn}
+\begin{prop}
+     Si $(\Omega, \mathscr{T})$ est un espace probabilisable, et $A_i$ un élément de $\mathscr{T}$ :
+     \begin{itemize}
+         \item $\varnothing \in \mathscr{T}$
+         \item $\bigcup_\text{finie} A_i \in \mathscr{T}$
+         \item $\bigcap_\text{finie} A_i \in \mathscr{T}$
+         \item $\forall (A_n)_{n\in \mathbb{N}},\, \bigcap_{n\in \mathbb{N}} A_i \in \mathscr{T}$
+         \item $\forall (A,B) \in \mathscr{T}^2,\, A\cap \overline{B} = A \backslash B$
+     \end{itemize}
+\end{prop}
+\begin{dfn}[Incompatibilité, implication]
+     Deux évènements $A$ et $B$ sont dits \emph{incompatibles}\index{Evenements@Évènements!incompatibles} si $A \cap B = \varnothing$\\
+     On dit que $A \underset{\text{implique}}{\implies} B$ quand $A \subset B$
+\end{dfn}
+\Attention{Ne pas confondre ($A \cap B = \varnothing$) et ($P(A\cap B) = 0$)}
+\begin{dfn}[Système complet d'évènements]
+     Soit $(\Omega, \mathscr{T})$ un espace probabilisable.\\
+     Soit $I$ fini ou égal à $\mathbb{N}$.\newline
+     Un \emph{système complet d'évènements}\index{Systeme complet@Système complet\emphi{ (probabilités)}} est \emphhs{une suite d'évènements} $(A_i)_{i\in I}$ telle que :
+     \begin{itemize}
+         \item $\bigcup_{i\in I} A_i = \Omega$
+         \item $\forall (p,q) \in I^2,\, p\neq q,\, A_p \cap A_q = \varnothing$
+     \end{itemize}
+\end{dfn}
+\begin{dfn}[Probabilité]\label{dfn:probabilite}
+     Soit $(\Omega, \mathscr{T})$ un espace probabilisable. La \emph{probabilité}\index{Probabilite@Probabilité} est l'application $\mathbb{P} : \mathscr{T} \to [0,1]$ telle que :
+     \begin{itemize}
+         \item $\mathbb{P}(\Omega) = 1$
+         \item Pour toute suite $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ d'évènements \emphhs{deux à deux incompatibles} : 
+         \begin{itemize}
+             \item $\sum \mathbb{P}(A_n)$ converge
+             \item $\mathbb{P}\left( \bigcup_{n=0}^{+\infty} A_n \right) = \sum_{n=0}^{+\infty} \mathbb{P}(A_n)$\\
+             ($\sigma$-additivité)
+         \end{itemize}
+     \end{itemize}
+     Le triplet $(\Omega, \mathscr{T},\mathbb{P})$ est appelé \emph{espace probabilisé}\index{Espace!probabilise@probabilisé}
+\end{dfn}
+\Attention{Espace propabilisable $(\Omega, \mathscr{T}) \neq$ Espace probablilisé $(\Omega, \mathscr{T},\mathbb{P})$}\\[\baselineskip]
+\begin{itheorem}[Caractérisation par une famille sommable]\label{thm:proba_famille_sommable}
+     Soit $\Omega$ un univers fini ou dénombrable. \newline
+     Soit une application $\left\lbrace \begin{array}{r c l} \Omega &\longto& \mathbb{R}^+ \\ \omega &\longmapsto& p_\omega \end{array}\right.$ telle que $(p_\omega)_{\omega\in\Omega}$ soit une \emphhs{famille sommable} de somme $1$.\newline
+     Soit $\left\lbrace \begin{array}{r c l} \mathbb{P} : \mathscr{P}(\Omega)&\longto& \mathbb{R}^+ \\ A &\longmapsto& \sum_{\omega \in A} p_\omega \end{array}\right.$\\
+     Alors $\big( \Omega, \mathscr{P}(\Omega ), \mathbb{P}\big)$ est un espace probabilisé.
+\end{itheorem}
+% section espace_probabilise (end)
+\section{Propriétés élémentaires des probabilités} % (fold)
+\label{sec:proprietes_elementaires_des_probabilites}
+\begin{theorem}[Théorème de la limité monotone]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P}\big)$ un espace probabilisé.\\
+     \begin{subequations}
+     \begin{itemize}[leftmargin=5.5mm]
+         \item Si $A_n$ est une suite croissante d'évènements ($A_n\subset A_{n+1}$), alors :
+         \begin{equation}
+         \mathbb{P}(A_n) \xrightarrow[n\to +\infty]{} \mathbb{P}\big( \bigcup_{n=0}^{+\infty} A_n\big) 
+         \end{equation}
+         \item Si $A_n$ est une suite décroissante d'évènements ($A_{n+1}\subset A_{n}$), alors :
+         \begin{equation}
+         \mathbb{P}(A_n) \xrightarrow[n\to +\infty]{} \mathbb{P}\big( \bigcap_{n=0}^{+\infty} A_n\big) 
+         \end{equation}
+     \end{itemize}
+     \end{subequations}
+\end{theorem}
+Dans la définition~\ref{dfn:probabilite} de la probabilité, la propriété de $\sigma$-additivité nécessite que les évènements soient incompatibles. Cette propriété existe sous forme d'inégalité quand les évènements ne sont pas incompatibles :
+\begin{itheorem}[Inégalité de \textsc{Boole}]
+\index{Inegalite@Inégalité!Boole@\emphi{de} Boole}
+Soit $(\Omega, \mathscr{T},\mathbb{P})$ un espace probablilisé. \\
+Soit $(A_n)_{n\in\mathbb{N}} \in \mathscr{T}^\mathbb{N}$ telle que $\sum \mathbb{P}(A_n)$ converge. Alors :
+     \begin{equation}
+     \mathbb{P}\left( \bigcup_{n=0}^{+\infty} A_n \right) \le \sum_{n=0}^{+\infty} \mathbb{P}(A_n)
+     \end{equation}
+\end{itheorem}
+\begin{proof}
+     On se ramène à une suite d'évènements deux à deux disjoints en introduisant la suite $(C_n)$ telle que :
+     \begin{equation*}
+          C_0 = A_0 \\ C_n = A_n \backslash \bigcup_{k=0}^{n-1}A_k
+     \end{equation*}
+     Puisque $C_n \subset A_n$, on a : 
+     \begin{equation*}
+          \mathbb{P} \left( \bigcup_{n=0}^{+\infty} A_n \right) = \sum_{n=0}^{+\infty} \mathbb{P}(C_n) \le \sum_{n=0}^{+\infty} \mathbb{P}(A_n)
+     \end{equation*}
+\end{proof}
+%TODO Évènements négligeables/presque sûrs
+\todo{Évènements négligeables / presque sûrs}
+% section proprietes_elementaires_des_probabilites (end)
+\section{Probabilités conditionnelles et indépendance} % (fold)
+\label{sec:independance}
+\subsection{Probabilités conditionnelles} % (fold)
+\label{sub:probabilites_conditionnelles}
+\begin{itheorem}[Probabilité conditionnelle]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
+     Soit $A \in \mathscr{T}$ de probabilité non nulle. \\
+     L'application 
+     \begin{equation}
+     \mathbb{P}_A : \left\lbrace
+     \begin{array}{r c l}
+          \mathscr{T} &\longto & [0,1] \\
+          B &\longmapsto & \dfrac{\mathbb{P} (A\cap B)}{\mathbb{P} (A)}
+     \end{array}
+     \right.
+     \end{equation}
+     est une probabilité appellée \emph{probabilité sachant $A$}.
+\end{itheorem}
+On notera également $\mathbb{P}\big( B | A\big) = \mathbb{P}_A(B)$ pour ``probabilité de $B$ sachant $A$''.
+\begin{theorem}[Formule des probabilités composées]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
+     Soit $(A_n)$ une suite d'évènements de $\mathscr{T}$ telle que $\mathbb{P} \Big( \bigcap_{k=1}^n A_k \Big) > 0$. Alors :
+     \begin{equation}
+     \mathbb{P} \left( \bigcap_{k=1}^n A_k \right) = \mathbb{P}\Bigg(A_n \Bigg| \bigcap_{k=1}^{n-1} A_k \Bigg) \times \mathbb{P}\Bigg(A_{n-1} \Bigg| \bigcap_{k=1}^{n-2} A_k \Bigg) \times \cdots \times \mathbb{P}(A_2|A_1) \times \mathbb{P}(A_1)
+     \end{equation}
+\end{theorem}
+\begin{itheorem}[Formule des probabilités totales]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
+     Soit $(A_n)_{n\in\mathbb{N}}$ un \emphhs{système complet} d'évènements de probabilités non nulles. Alors :
+     \begin{equation}
+     \forall B\in \mathscr{T},\qquad \mathbb{P}(B) = \sum_{n=0}^{+\infty} \mathbb{P}_{A_n}(B)\, \mathbb{P}(A_n)
+     \end{equation}
+\end{itheorem}
+\begin{proof}
+     $(A_n)_{n\in\mathbb{N}}$ est un système complet d'évènements. Ainsi, les évènements $B\cap A_n$ sont deux à deux incompatibles, et $\bigcup_{n\in\mathbb{N}} \left( B\cap A_n\right) = B$. Or $\mathbb{P}_{A_n}(B) = \dfrac{\mathbb{P}(A_n\cap B)}{\mathbb{P}(A_n)}$, ainsi : 
+     \[
+         \mathbb{P}(B) = \sum_{n=0}^{+\infty} \mathbb{P} \left( B\cap A_n \right)
+                       = \sum_{n=0}^{+\infty} \mathbb{P}_{A_n}(B) \mathbb{P}(A_n)
+     \]
+\end{proof}
+\begin{itheorem}[Formule de \textsc{Bayes}]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
+     Soit $(A_n)_{n\in\mathbb{N}}$ un \emphhs{système complet} d'évènements de probabilités non nulles. Alors :
+     \begin{equation}
+     \forall B\in \mathscr{T},\: \forall i\in \mathbb{N},\qquad \mathbb{P}_B(A_i) = \dfrac{\mathbb{P}_{A_i}(B)\,\mathbb{P}(A_i)}{\displaystyle\sum_{n=0}^{+\infty}\mathbb{P}_{A_n} (B)\, \mathbb{P}(A_n)}
+     \end{equation}
+\end{itheorem}
+% subsection probabilites_conditionnelles (end)
+\subsection{Indépendance} % (fold)
+\label{sub:independance}
+\begin{dfn}[Évènements indépendants]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
+     Deux évènements $A$ et $B$ de $\mathscr{T}$ sont dits \emph{indépendants}\index{Evenements@Évènements!independants@indépendants} lorsque 
+     \begin{equation}
+     \mathbb{P}(A\cap B) = \mathbb{P}(A)\times \mathbb{P}(B)
+     \end{equation}
+\end{dfn}
+On peut généraliser la définition suivante à une famille entière :
+\begin{dfn}[Famille quelconque d'évènements mutuellement indépendants]
+     Soit $\big( \Omega , \mathscr{T}, \mathbb{P} \big)$ un espace probabilisé. \newline
+     Une famille $(A_n)_{n\in I}$  d'évènements de $\mathscr{T}$ est dite \emph{suite d'évènements mutuellements indépendants} lorsque :
+     \begin{equation}
+     \forall J\subset I,\qquad \mathbb{P} \left( \bigcap_J A_n \right) = \prod_J \mathbb{P} (A_n)
+     \end{equation}
+\end{dfn}
+% subsection independance (end)
+% section independance (end)
+\section{Variables aléatoires discrètes} % (fold)
+\label{sec:variables_aleatoires_discretes}
+\begin{dfn}[Variable aléatoire]
+     Soit $E$ un ensemble. On appelle \emph{variable aléatoire}\index{Variable aleatoire@Variable aléatoire} discrète une application $X : \Omega \to E$ telle que :
+     \begin{itemize}
+         \item $X(\Omega )$ est fini ou dénombrable
+         \item Pour tout $x \in X(\Omega )$, l'image réciproque de $\lbrace x \rbrace$ par $X$ est un évènement. On notera cet évènement $(X= x)$.
+     \end{itemize}
+\end{dfn}
+Lorsque $E\subset \mathbb{R}$, on dit que la variable aléatoire est réelle.
+\begin{dfn}[Loi de probabilité]
+     Soit $X$ une variable aléatoire discrète de $\Omega$ dans $E$.\\
+     On note $\mathscr{P} \Big( X(\Omega ) \Big)$ l'ensemble des parties de $X(\Omega )$.
+     L'application $\mathbb{P}_X (\Omega )$ : 
+     \begin{equation}
+      \mathbb{P}_X : \left\lbrace
+      \begin{array}{r c l}
+           \mathscr{P} \Big( X(\Omega ) \Big) &\longto & [0,1] \\
+           A & \longmapsto & \mathbb{P} (X\in A)
+      \end{array} \right.
+      \end{equation}
+\end{dfn}
+% section variables_aleatoires_discretes (end)
+\section[Couples de variables aléatoires]{Couples de variables aléatoires, variables aléatoires indépendantes} % (fold)
+\label{sec:couples_de_variables_aleatoires}
+% TODO: Couples de proba
+\subsection{Couple de variables aléatoires} % (fold)
+\label{sub:couple_de_variables_aleatoires}
+\begin{dfn}[Loi conjointe]
+     Soient $X_1$ et $X_2$ deux variables aléatoires discrètes. \\
+     On appelle \emph{loi conjointe}\index{Loi!conjointe} de $X_1$ et $X_2$ la loi $X=(X_1,X_2)$ déterminée par :
+     \begin{itemize}
+         \item $X(\Omega ) = \bigg\lbrace \Big(x_1\in X_1(\Omega ), x_2\in X_2(\Omega )\Big)\bigg\rbrace = X_1(\Omega )\times X_2(\Omega )$
+         \item $\mathbb{P}_X(x_1,x_2) = \mathbb{P}_X\bigg(\Big( x_1 = X_1(\Omega ) \cap x_2 = X_2(\Omega )\Big)\bigg)$
+     \end{itemize}
+\end{dfn}
+À partir de deux variables $X_1$ et $X_2$, on peut déterminer une troisième variable $(X_1,X_2)$ et sa loi. Les lois marginales vont nous permettre de faire l'inverse :
+\begin{theorem}[Lois marginales]
+     \index{Loi!marginale}Soit $X = (X_1 , X_2)$ un couple de variables aléatoires discrètes.\\
+     On note $X(\Omega ) = \Big\lbrace (x_1, x_2)\, |\, i\in I,\, j\in J \Big\rbrace$ \\
+     On peut déterminer la loi de $X_1$ ou de $X_2$ à partir de la loi $\mathbb{P}_X$ de la manière suivante : 
+     \begin{equation}
+     X_1(\Omega ) = \lbrace x_i ,\, i\in I\rbrace \\ \mathbb{P}_{X_1}(x_1) = \sum_{j\in J} \mathbb{P}(X = (x_i, x_j)) 
+     \end{equation}
+     \begin{equation}
+     X_2(\Omega ) = \lbrace x_j ,\, j\in J\rbrace \\ \mathbb{P}_{X_2}(x_2) = \sum_{i\in I} \mathbb{P}(X = (x_i, x_j)) 
+     \end{equation}
+\end{theorem}
+% subsection couple_de_variables_aleatoires (end)
+\subsection{Variables aléatoires indépendantes} % (fold)
+ \label{sub:variables_aleatoires_independantes}
+ \begin{dfn}[Suite finie de variables aléatoires indépendantes]
+      Soient $n$ variables aléatoires discrètes $X_1,\ldots, X_n$.\\ 
+      On dit qu'elles sont \emph{indépendantes}\index{Variable aleatoire@Variable aléatoire!independante@indépendante} si pour tous $x_1\in X_1(\Omega),\ldots,x_n\in X_n(\Omega)$, les évènements $(X_1 = x_1),\ldots ,(X_n = x_n)$ sont indépendants. 
+ \end{dfn}
+ \begin{dfn}[Suite de variables aléatoires indépendantes]
+      Soit $(X_n)_{n\in \mathbb{N}}$ une suite. On dit qu'elles sont \emph{indépendantes}\index{Variable aleatoire@Variable aléatoire!independante@indépendante} si pour tout sous-ensemble $I$ de $\mathbb{N}$ la famille finie $(X_n)_{n\in I}$ est indépendante. 
+ \end{dfn}
+ \begin{theorem}
+      Si $X_1,X_2,\ldots ,X_n$ sont des variables aléatoires mutuellement indépendantes, alors pour tout $m \in [1, n-1 ]$ et pour toutes fonctions $g$ et $g$, les variables $f(X_1,\ldots ,X_n)$ et $g(X_1,\ldots ,X_n)$ sont indépendantes.
+ \end{theorem}
+ % subsection variables_aleatoires_independantes (end) 
+% section couples_de_variables_aleatoires (end)
+\section{Lois usuelles} % (fold)
+\label{sec:lois_usuelles}
+\begin{dfn}[Loi de \textsc{Bernoulli}]
+     La \emph{loi de \textsc{Bernoulli}}\index{Loi!Bernoulli@\emphi{de} \textsc{Bernoulli}} est une distribution discrète qui prend la valeur $1$ avec une probabilité $p$ et la valeur $0$ avec la probabilité $(1-p)$. \\
+     Une variable aléatoire qui suit cette loi est appelée variable de \textsc{Bernoulli}
+\end{dfn}
+\subsection{Loi binomiale} % (fold)
+\label{sub:loi_binomiale}
+% On va avoir besoin de la variance et de l'espérance, cf. section suivante
+\begin{dfn}
+     Une \emph{loi binomiale}\index{Loi!binomiale} de paramètres $n$ et $p$ est la loi de probabilité d'une variable aléatoire $X$ égale au nombre de succès rencontrés au cours d'une répétition de $n$ épreuves de Bernoulli, $p$ étant la probabilité de succès d'une épreuve de Bernoulli.\par
+     Autrement, c'est une variable aléatoire $X$ telle que 
+     \[
+         X = Y_1 + Y_1 + \cdots + Y_n
+     \]
+     où les $Y_i$ sont des variables aléatoires \emphhs{indépendantes} de loi de \textsc{Bernoulli}.\par
+     La variable aléatoire suit une loi de probabilité : 
+     \begin{equation}
+     \mathbb{P}(X = k) = \begin{pmatrix} n \\ k \end{pmatrix} p^k(1-p)^{n-k}
+     \end{equation}
+\end{dfn}
+\begin{theorem}[Espérance et variance]
+     Soit $X$ une variable aléatoire qui suit une loi binomiale de paramètres $p$ et $n$. Alors :
+     \begin{equation}
+     E(X) = np \\ V(X) = np(1-p)
+     \end{equation}
+\end{theorem}
+% subsection loi_binomiale (end)
+\subsection{Loi géométrique}
+\label{sub:loi_geometrique}
+\begin{dfn}
+     Une \emph{loi géométrique}\index{Loi!geometrique@géométrique} de paramètre $p \in ]0, 1[$ est la loi de probabilité d'une variable aléatoire $X$ égale au rang $k$ du premier succès dans une suite d'épreuves de \textsc{Bernoulli} mutuellement indépendantes de paramètres $p$.\par
+     Une telle loi vérifie $X(\Omega ) = \mathbb{N}$ et :
+     \begin{equation}
+     \forall k> 0,\qquad \mathbb{P}_X(k) = p (1-p)^{k-1}
+     \end{equation}
+     Une loi géométrique se note $\mathscr{G}(p)$.
+\end{dfn}
+\begin{theorem}[Espérance et variance]
+     Soit $X$ une variable aléatoire qui suit une loi géométrique de paramètre $p$. Alors : 
+     \begin{equation}
+     E(X) = \dfrac{1}{p} \\ V(X) = \dfrac{1-p}{p^2}
+     \end{equation}
+\end{theorem}
+\begin{itheorem}[Caractérisation comme loi sans mémoire]
+     La loi géométrique est la seule loi de probabilité discrète à valeurs dans $\mathbb{N}^*$ vérifiant : 
+     \begin{equation}
+     \mathbb{P}\Big( X > (n+k) \Big| X > n \Big) = \mathbb{P} \big( X > k \big)
+     \end{equation}
+     pour tous entiers $n$ et $m$.
+\end{itheorem}
+% subsection loi_geometrique (end)
+\subsection{Loi de \textsc{Poisson}} % (fold)
+\label{sub:loi_de_poisson}
+\begin{dfn}[Loi de \textsc{Poisson}]
+     On dit d'une variable aléatoire $X$ que c'est une \emph{loi de \textsc{Poisson}}\index{Loi!Poisson@\emphi{de} \textsc{Poisson}} de paramètre $\lambda >0$ lorsque $X( \Omega ) = \mathbb{N}$ et :
+     \begin{equation}
+     \mathbb{P}_X (k) = e^{-\lambda}\, \dfrac{\lambda^k}{k !}
+     \end{equation}
+     Une telle loi se note $\mathscr{P}(\lambda )$.
+\end{dfn}
+\begin{theorem}[Espérance et variance]
+     Soit $X$ une variable aléatoire qui suit une loi de \textsc{Poisson} de paramètre $\lambda > 0$. Alors :
+     \begin{equation}
+     E(X) = \lambda \\ V(X) = \lambda
+     \end{equation}
+\end{theorem}
+\begin{theorem}[Approximation de la loi binomiale par une loi de \textsc{Poisson}]
+     Si, pour tout $n$, $X_n$ est une loi binomiale de paramètre $n$, $p_n$, et si le produit $n\cdot p_n$ converge vers $\lambda$, alors :
+     \begin{equation}
+     \mathbb{P}(X_n = k) \xrightarrow[n\to+\infty]{} e^{-\lambda}\, \dfrac{\lambda^k}{k!}
+     \end{equation}
+\end{theorem}
+\begin{prop}
+     Si $X$ et $Y$ sont deux variables aléatoires indépendantes qui suivent des lois de \textsc{Poisson} de paramètres $\lambda$ et $\mu$, alors la loi $X+Y$ suit une loi de poisson de paramètre $\lambda + \mu$.
+\end{prop}
+% subsection loi_de_poisson (end)
+% section lois_usuelles (end)
+\section{Espérance} % (fold)
+\label{sec:esperance}
+\subsection{Définitions} % (fold)
+\label{sub:esperance_definitions}
+\begin{subequations}
+\begin{dfn}[Espérance d'une famille finie]
+     Soit $X$ une variable aléatoire prenant un nombre fini de valeurs $x_1, x_2, \ldots , x_n$. L'\emph{espérance}\index{Esperance@Espérance} de $X$ est donnée par la somme finie :
+     \begin{equation}
+     E(X) = \sum_{i=1}^n x_i \mathbb{P}_X(x_i)
+     \end{equation}
+\end{dfn}
+\textbf{Remarque :} On assimile souvent l'espérance à la moyenne, car puisque la somme des probabilités est $1$, on peut très bien écrire que : 
+\begin{equation}
+    E(X) = \dfrac{\displaystyle\sum_{i=1}^n x_i \mathbb{P}_X(x_i)}{\displaystyle\sum_{i=1}^n \mathbb{P}_X(x_i)}
+\end{equation}
+\end{subequations}
+Si $X$ ne prend pas un nombre fini de valeurs, on peut étendre la définition précédente au cas où les valeurs de $X$ forment une famille sommable :
+\begin{dfn}[Espérance d'une variable aléatoire discrète]
+     Soit $X$ une variable aléatoire \emphh{réelle discrète}. On dit que $X$ est d'\emph{espérance finie} si la famille $\Big( x\mathbb{P}_X(x)\Big)_{x\in X(\Omega)}$ est sommable. \\
+     La somme est appellée \emph{espérance de $X$}.
+\end{dfn}
+\begin{dfn}[Variable centrée]
+     Soit $X$ une variable aléatoire discrète d'espérance finie. \par
+     La variable aléatoire $X - E(X)$ est appelée \emph{variable centrée associée}\index{Variable centree associee@Variable centrée associée} à $X$. \\
+     Son espérance $E\big( X - E(X) \big)$ est nulle.
+\end{dfn}
+% subsection esperance_definitions (end)
+\subsection{Propriétés de l'espérance} % (fold)
+\label{sub:esperance_proprietes}
+\begin{prop}
+     \begin{itemize}
+         \item L'ensemble $\mathscr{E}$ des variables aléatoire de $\Omega$ dans $\mathbb{R}$ et dont l'espérance est finie est un espace vectoriel
+         \item L'espérance est une forme linéaire sur $\mathscr{E}$
+         \item $\forall X \in \mathscr{E},\, X(\Omega) \subset \mathbb{R}^+ \implies E(X) \ge 0$ (l'espérance est positive)
+         \item L'espérance est croissante : $\forall (X,Y)\in \Omega^2,\: X \le Y \implies E(X) \le E(Y)$
+         \item Soit $Y$ une variable aléatoire d'espérance finie, si $X$ est une variable aléatoire telle que $|X| \le Y$, alors $X$ est d'espérance finie.
+         \item Si $X$ et $Y$ sont deux variables aléatoires \emphh{indépendantes} \emphh{et admettant chacune une espérance finie}, alors $XY$ est d'espérance finie et 
+         \begin{equation*}
+         E(XY) = E(X)\: E(Y)
+         \end{equation*}
+         Par récurrence, on vérifie que pour $n$ variables aléatoires $X_1,\ldots, X_n$ mutuellement indépendantes : 
+         \begin{equation*}
+              E \left( \prod_i X_i \right)  = \prod_i E(X_i)
+         \end{equation*}
+     \end{itemize}
+\end{prop}
+\begin{itheorem}[Formule de transfert]
+     Soit $X$ une variable aléatoire discrète.\newline
+     Soit $f : X(\Omega ) \longto \Reel{}$.\newline
+     La variable aléatoire $f(X)$ est d'espérance finie \ssi{} la famille $\Big( f(x) \cdot P(X = x) \Big)$ est sommable. Si tel est le cas : 
+     \begin{equation}
+     E\big( f(X) \big) = \sum_{x\in X(\Omega)} f(x)\, \mathbb{P}(X=x)
+     \end{equation}
+\end{itheorem}
+\begin{itheorem}[Inégalité de \textsc{Markov}]\label{thm:markov}
+     Soit $X$ une variable aléatoire réelle discrète \emphhs{positive} admettant une espérance finie. Alors, pour tout $a > 0$, l'\emph{inégalite de \textsc{Markov}}\index{Inegalite@Inégalité!markov@\emphi{de } \textsc{Markov}} nous donne : 
+     \begin{equation}\label{eq:markov}
+     \mathbb{P}(X\ge a) \le \dfrac{E(X)}{a}
+     \end{equation}
+\end{itheorem}
+% subsection esperance_proprietes (end)
+% section esperance (end)
+\section{Variance} % (fold)
+\label{sec:variance}
+\subsection{Moment} % (fold)
+\label{sub:variance_moment}
+\needspace{5cm}
+\begin{dfn}[Moment d'ordre $n$]
+     Soit $X$ une variable aléatoire discrète. On dit que $X$ admet un \emph{moment}\index{Moment@Moment\emphi{ (Probabilités)}} d'ordre $m$ si $X^m$ admet \emphh{une espérance finie}.
+\end{dfn}
+\begin{theorem}
+     Si $X$ est une variable aléatoire admettant un moment d'ordre $2$, alors $X$ admet une espérance finie.
+\end{theorem}
+\begin{theorem}[Inégalité de \textsc{Cauchy-Schwarz}\index{inegalite@Inégalité!cauchy@de \textsc{Cauchy-Schwarz}}]
+     Si $X$ et $Y$ sont deux variables aléatoires discrètes de moment d'ordre $2$, alors $XY$ a une espérance finie et
+     \begin{equation}
+     \bigg( E(XY)\bigg)^2 \le E(X^2)\,E(Y^2)
+     \end{equation}
+\end{theorem}
+\begin{theorem}[Espace vectoriel]
+     L'ensemble des variables aléatoires définies sur $\Omega$ admettant un moment d'ordre $2$ est un sous-espace vectoriel de l'espace vectoriel des variables aléatoires réelles discrètes définies sur $\Omega$ et d'espérance finie.
+\end{theorem}
+% subsection variance_moment (end)
+\subsection{Variance et écart-type} % (fold)
+\label{sub:variance_et_ecart_type}
+On relarquera que dans cette sous-section, on fera tout le temps l'hypothèse d'une variable aléatoire $X$ admettant un moment d'ordre 2, c'est-à-dire telle que $X^2$ admette une espérance finie.
+\begin{dfn}[Variance et Écart-type]
+     Soit $X$ une variable aléatoire discrète \emphh{admettant un moment d'ordre 2}.\par
+     On définit la \emph{variance}\index{Variance} par :
+     \begin{subequations}
+     \begin{equation}
+          V(X) = E\bigg( \big( X - E(X) \big)^2 \bigg)
+     \end{equation}
+     et l'\emph{écart-type}\index{ecart-type@Écart-type} par :
+     \begin{equation}
+     \sigma (X) = \sqrt{ V(X) }
+     \end{equation}
+     \end{subequations}
+\end{dfn}
+\begin{theorem}[Formule de \textsc{König-Huygens}]
+     Soit $X$ une variable aléatoire discrète \emphhs{admettant un moment d'ordre $2$}. Alors :
+     \begin{equation}
+     V(X) = E(X^2) - E(X)^2
+     \end{equation}
+\end{theorem}
+\begin{theorem}
+     Soit $X$ une variable aléatoire \emphhs{admettant un moment d'ordre $2$}. Alors pour tous réels $a$ et $b$ : 
+     \begin{equation}
+     V(aX + B) = a^2 V(X) 
+     \end{equation}
+\end{theorem}
+\begin{dfn}[Variables réduites]
+     Soit $X$ une variable aléatoire discrète \emphh{admettant un moment d'ordre 2} et telle que $\sigma (X) > 0$.\par
+     La variable aléatoire $\dfrac{X}{\sigma (X)}$ est appelée \emph{variable réduite}\index{Variable reduite@Variable réduite} associée à $X$. \\
+     Son écart-type est égal à $1$.\par
+     La variable aléatoire $\dfrac{X - E(X)}{\sigma (X)}$ est appelée \emph{variable centrée réduite}\index{Variable centree reduite@Variable centrée réduite} associée à $X$.\\
+     Son espérance est nulle et son écart-type est égal à $1$.
+\end{dfn}
+\begin{itheorem}[Inégalité de \textsc{Bienaymé}-\textsc{Tchebychev}]
+     Soit $X$ une variable aléatoire discrète \emphh{admettant un moment d'ordre 2}. Alors : 
+     \begin{equation}
+     \forall \epsilon > 0,\qquad \mathbb{P}\Big( \big| X - E(X) \big| \ge \epsilon \Big) \le \dfrac{V(X)}{\epsilon^2}
+     \end{equation}
+\end{itheorem}
+\begin{proof}
+     On applique le théorème~\ref{thm:markov} de \textsc{Markov} page~\pageref{thm:markov} à la variable aléatoire $Y= (X - E(X))^2$ : 
+     \begin{equation*}
+          \forall \epsilon> 0, \quad \mathbb{P}\Big( \big| X - E(X) \big| \ge \epsilon \Big)=\mathbb{P}(Y^2 \ge \epsilon^2)\le \dfrac{E\big( (X-E(X))^2\big)}{\epsilon^2} = \dfrac{V(X)}{\epsilon^2}
+     \end{equation*}
+\end{proof}
+Ce dernier théorème permet de majorer la probabilité que $X$ prenne une valeur dont la distance à $E(X)$ (c'est-à-dire à la moyenne) serait supérieure à $\epsilon$.
+% subsection variance_et_ecart_type (end)
+\subsection{Covariance} % (fold)
+\label{sub:covariance}
+\begin{dfn}[Covariance]
+     Soient $X$ et $Y$ deux variables aléatoires discrètes \emphh{admettant une espérance finie}.\par
+     Si elle existe, on définit la \emph{covariance}\index{Covariance} de $X$ et de $Y$ par :
+     \begin{equation}
+     \mathrm{cov}(X,Y) = E\bigg( \big( X - E(X)\big) \: \big( Y - E(Y)\big) \bigg)
+     \end{equation}
+\end{dfn}
+\begin{itheorem}[Existence de la covariance]
+     Soient $X$ et $Y$ deux variables aléatoires \emphh{admettant un moment d'ordre 2}. Alors la covariance de $X$ et de $Y$ existe et on a :
+     \begin{equation}
+     \mathrm{cov}(X,Y)=E(XY) - E(X)E(Y)
+     \end{equation}
+\end{itheorem}
+\begin{proof}
+     $X$ et $Y$ étant des variables aléatoires d'ordre 2, elles admettent une espérance finie. \\
+     De plus, on a : 
+     \begin{align*}
+         \mathrm{cov}(X,Y) &= E\bigg( \big( X - E(X)\big) \: \big( Y - E(Y)\big) \bigg)
+         \intertext{On développe :}
+                           &= E\bigg( XY - E(X)Y - E(Y)X + E(X)E(Y) \bigg)
+                           \intertext{Par linéarité de l'espérance : }
+                           &= E\big( XY \big) - E\big( E(X)Y \big) - E\big( E(Y)X \big) + E\big( E(X)E(Y) \big) \\
+                           &= E\big( XY \big) - E(X)E(Y) - \cancel{E(Y)E(X)} +  \cancel{E(X)E(Y)} \\
+         \mathrm{cov}(X,Y) &= E(XY) - E(X)E(Y)
+     \end{align*}
+\end{proof}
+Du théorème précédent, on déduit le théorème suivant : 
+\begin{theorem}[Covariance de variables aléatoires indépendantes]
+     Si $X$ et $Y$ sont deux variables aléatoires \emphhs{indépendantes} admettant un moment d'ordre 2, alors $\mathrm{cov}(X,Y) = 0$.
+\end{theorem}
+\begin{theorem}
+     Soient $X$ et $Y$ deux variables aléatoires réelles discrètes \emphh{admettant un moment d'ordre 2}. Alors :
+     \begin{itemize}
+         \item $X+Y$ a un moment d'ordre $2$ et $V(X+Y) = V(X) + V(Y) + 2\mathrm{cov}(X,Y)$ ;
+         \item si $X$ et $Y$ sont indépendantes, $V(X+Y) = V(X) + V(Y)$.
+     \end{itemize}
+\end{theorem}
+Par récurrence, on en déduit le théorème suivant :
+\begin{itheorem}[Variance d'une somme finie]
+     Soit $X_1, \ldots , X_n$ $n$ variables aléatoires réelles discrètes admettant toutes des moment d'ordre $2$. Alors : 
+     \begin{subequations}
+     \begin{itemize}[leftmargin=5.5mm]
+         \item la variable aléatoire $X_1 + \cdots + X_n$ a un moment d'ordre $2$ et : 
+         \begin{equation}
+         V \bigg( \sum_{k=1}^n X_k\bigg) = \sum_{k=1}^n V\big( X_k\big)  + \sum_{1\le i\le j\le n} \mathrm{cov}(X_i,X_j)
+         \end{equation}
+         \item si les variables $X_1, \ldots , X_n$ sont indépendantes : 
+         \begin{equation}
+              V \bigg( \sum_{k=1}^n X_k\bigg) = \sum_{k=1}^n V\big( X_k\big) 
+         \end{equation}
+     \end{itemize}
+     \end{subequations}
+\end{itheorem}
+% subsection covariance (end)
+% section variance (end)
+\section{Loi faible des grands nombres} % (fold)
+\label{sec:loi_faible_des_grands_nombres}
+% Une section entière pour un théorème seul... OK :) 
+\begin{itheorem}[Loi faible des grands nombres]
+     Si $(X_n)_n$ est une suite de variables aléatoires deux à deux indépendantes, de même loi et admettant un moment d'ordre $2$, alors, si $S_n = \sum_{k=1}^n X_k$ et $m = E(X_1)$, on a : 
+     \begin{subequations}
+     \begin{equation}
+     \forall \varepsilon >0,\quad \mathbb{P} \left( \left| \dfrac{S_n}{n} - m \right| \ge \epsilon \right) \xrightarrow[n\to +\infty]{} 0 
+     \end{equation}
+     Pour avoir la formule en tête de manière plus visuelle, même si c'est plus lourd : 
+     \begin{equation}
+     \forall \varepsilon >0,\quad \mathbb{P} \left( \left| \dfrac{\displaystyle\sum_{k=1}^n X_k}{n} - E(X_1) \right| \ge \epsilon \right) \xrightarrow[n\to +\infty]{} 0 
+     \end{equation}
+     \end{subequations}
+\end{itheorem}
+%todo: Formule citée par le programme
+\todo{Formule citée par le programme}
+% section loi_faible_des_grands_nombres (end)
+\section{Fonctions génératrices} % (fold)
+\label{sec:fonctions_generatrices}
+%TODO: rajouter le theoreme du transfert! 
+\begin{dfn}[Fonction génératrice] % Grosse copie depuis le livre de Vuibert p640
+     Soit $X$ une variable aléatoire à valeurs dans $\mathbb{N}$. On définit la \emph{fonction génératrice}\index{Fonction génératrice} $G_X$ de $X$ par : 
+     \begin{equation}
+     G_X (t) = E(t^X) = \sum_k \mathbb{P} (X=k) t^k
+     \end{equation}
+     pour les valeurs de $t$ telles que la variable aléatoire $t^X$ admette une espérance finie.
+\end{dfn}
+\begin{theorem}[Détermination de la loi de $X$]
+% Totalement pris de Vuibert
+     Soit $X$ une variable aléatoire à valeurs dans $\mathbb{N}$.
+     \begin{itemize}[leftmargin=5.5mm]
+         \item La série entière $G_X$ est de rayon $R \ge 1$ et converge normalement sur le disque fermé de centre 0 et de rayon $1$ ; 
+         \item Soit $k\in \mathbb{N}$, alors : 
+         \begin{equation}
+         \mathbb{P}(X=k) = \dfrac{G_X^{(k)}(0)}{k!}
+         \end{equation}
+         \item Si $R > 1$, alors $X$ admet un moment d'ordre $k$ quelconque dans $\mathbb{N}^*$ et :
+         \begin{subequations}
+         \begin{align}
+         G_X'(1) &= E(X) \\ G_X''(1) &= E\big( X(X-1)\big) \\ G_X^{(k)}(1) &= E\Big( X(X-1)\cdots (X-k+1)\Big)
+         \end{align}
+         \end{subequations}
+         Dans ce cas, $V(X) = G_X''(1) + G_X'(1) - G_X'^2(1)$.
+     \end{itemize}
+\end{theorem}
+La dernière partie de ce théorème peut se généraliser même si $R\ge 1$ :
+\begin{itheorem}
+     Soit $X$ une variable aléatoire.
+     \begin{itemize}[leftmargin=5.5mm]
+         \item $X$ admet une espérance finie \ssi{} $G_X$ est dérivable à gauche en $1$ ; dans ce cas $E(X) = G_X'(1)$.
+         \item $X$ admet un second moment \ssi{} $G_X$ est deux fois dérivable à gauche en $1$ ; dans ce cas $G_X''(1) = E\big( X(X-1) \big)$ et $V(X) = G_X''(1) + G_X'(1) - G_X'^2(1)$.
+     \end{itemize}
+\end{itheorem}
+\begin{itheorem}[Somme de variables aléatoires indépendantes]
+     Si $X$ et $Y$ sont deux variables aléatoires à valeurs dans $N$ et indépendantes, alors :
+     \begin{equation}
+     \boxed{\forall t\in ]-1,1[}\qquad G_{X+Y}(t) = G_X(t)\, G_Y(t)
+     \end{equation}
+     On peut généraliser à $n$ variables aléatoires $X_1,\ldots ,X_n$ mutuellement indépendantes : 
+     \begin{equation}
+     \boxed{\forall t\in ]-1,1[}\qquad G_{\sum X_k}(t) = \prod G_{X_k}(t)
+     \end{equation}
+\end{itheorem}
+% section fonctions_generatrices (end)
+% chapter variables_aleatoires_discretes (end)
 \part{Équations Différentielles}
 \chapter{Équations Différentielles Linéaires}
 \begin{methode}
