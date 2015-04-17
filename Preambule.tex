@@ -4,13 +4,18 @@
 \usepackage{eso-pic}                % put things into background 
 \usepackage{lipsum}                 % for sample text
 \usepackage[explicit]{titlesec}     % for customizing sections
-\usepackage[leqno]{amsmath}         % for mathematical content
+%\usepackage[leqno]{amsmath}         % for mathematical content
+\usepackage[leqno]{amsmath}
 \usepackage[amsmath]{ntheorem}      % for theorem-like environments
 \usepackage{esint}                  % for circulation integrals
 \usepackage[framemethod=TikZ]{mdframed}
 
 %Mes packages
-
+\usepackage[version=3]{mhchem}
+                          % Pour les formules de chimie
+                          % Ce package doit être en haut à cause d'un
+                          % vieux bug qui cause une erreur sinon :( 
+                          
 \usepackage{imakeidx}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 %\usepackage{index}
@@ -20,7 +25,6 @@
 %\usepackage[pdftex]{graphicx}
 \usepackage[french]{babel}%Pour les écritures en français
 \usepackage[T1]{fontenc}
-\usepackage{amsmath}
 % \usepackage[thmmarks]{ntheorem} % Pour les \qed
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -74,8 +78,6 @@ decorations.pathreplacing}
 %\usepackage{enumerate}    % Pour numeroter en (i), (ii), (iii) etc...
 \usepackage{esvect}       % Pour des vecteurs plus beaux
 \usepackage{ulem}         % Pour pouvoir couper des phrases soulignées avec \ul
-\usepackage[version=3]{mhchem}
-                          % Pour les formules de chimie
 \usepackage{siunitx}      % Pour les unités SI 
 \sisetup{inter-unit-product = \ensuremath { { } \cdot { } } }
 \usepackage{ifdraft}      % Pour des affichages dépendant du mode brouillon (Draft)
