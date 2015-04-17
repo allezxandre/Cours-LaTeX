@@ -2104,19 +2104,18 @@ Tous les théorèmes vus ici sont à démontrer.
 \begin{methode}
     En général, pour la \uline{convergence simple}, on \emph{fixe $x$}. Pour la \uline{convergence uniforme}, puisqu'on cherche la norme $N_\infty$, on \emph{dérive $f_n(x)$} pour étudier ses variations.
 \end{methode}
-\section{Convergence de suites de fonctions}
+\section{Convergence simple, convergence uniforme}
 \begin{dfn}
 Définitions simplifiées des différents types de convergence
 \begin{equation}\label{CV fonctions}
-\begin{array}{r c l}
+\begin{array}{r c l} % Ces définitions sont très mauvaises :/
 \text{La suite des }\left(f_n\right) \text{ converge \emph{simplement} vers } f&\Leftrightarrow &\forall x, \left(f_n(x)\right)_n \to f(x)\\
 \text{La suite des }\left(f_n\right) \text{ converge \emph{uniformément} vers } f&\Leftrightarrow &N^A_\infty\left(\underbrace{f_n-f}_{\in B(A,F)}\right)\xrightarrow[\textcolor{RoyalBlue}{n}\to +\infty]{}0\\
-\left(f_n(x)\right)_n\text{{\footnotesize  vérifie le \emph{critère de Cauchy de CU}}}&\Leftrightarrow&\exists \varepsilon>0 | n\ge n_0(\varepsilon) \Rightarrow N^A_\infty\left((f_n-f)\right)< \varepsilon\\
+\left(f_n(x)\right)_n\text{{\footnotesize  vérifie le \emph{critère de Cauchy de CU}}}&\Leftrightarrow&\forall \varepsilon>0\, |\, n\ge n_0(\varepsilon) \Rightarrow N^A_\infty\left((f_n-f)\right)< \varepsilon\\
 \end{array}
 \end{equation}
 Le critère de Cauchy de convergence uniforme est équivalent à la convergence uniforme. $\boxed{\text{Critère de Cauchy}\Leftrightarrow\text{Convergence Uniforme}}$
 \end{dfn}
-Pour illustrer, on peut faire les shémas suivants : 
 \begin{figure}[h t]
 
 \subfloat[Convergence Simple]{
@@ -2146,37 +2145,66 @@ Pour illustrer, on peut faire les shémas suivants :
 }
 \caption{Les différents types de convergence de fonction}
 \end{figure}
-\\
+\begin{theorem}
+     $(f_n)$ \gls{CVU} vers $f$ $\implies$ $(f_n)$ \gls{CVS} vers $f$
+\end{theorem}
 \begin{prop}[de la simple convergence]
 \begin{list}{-}{ }
 \item $\left\lbrace
 \begin{array}{l c l}
 f:A\subset\mathbb{R}\to\mathbb{R}& & \\
 \left(f_n(x)\right)_n\text{ est croissante}&\Leftrightarrow&f\text{ est croissante}\\
-\left(f_n(x)\right)_n\ \xrightarrow[x\in{}A]{CVS}f& & \\
+\left(f_n(x)\right)_n\ \xrightarrow[x\in{}A]{\acrshort{CVS}}f& & \\
 \end{array}\right.$
-\item (autres propriétés analogues de $f_n$ appliquées à $f$ par CVS)
+\item (autres propriétés analogues de $f_n$ appliquées à $f$ par \acrshort{CVS})
 \end{list}
 \end{prop}
 %
+\section{Continuité, double limite} % (fold)
+\label{sec:continuite_double_limite}
+\begin{theorem}
+     Soit $(f_n)$ une suite de fonctions continues en un point $a\in A$. Si $(f_n)$ converge uniformément vers $u$ sur un voisinnage de $a$, alors $u$ est continue en $a$.
+\end{theorem}
+Le corollaire de ce théorème est alors :
+\begin{theorem}[Continuité de la limite uniforme]
+     Toute limite uniforme de fonctions continues sur $A$ est continue sur $A$.
+\end{theorem}
+\begin{itheorem}[Théorème de la double limite]\label{Double Limite Fonctions} 
+Soit $(f_n)$ une suite de fonctions de $A$ dans $F$ définie sur $A$. \\
+Soit $a$ un point adhérent à $A$.\\
+Si, pour tout $n$, $f_n$ admet une limite $l_n$ en $a$ et \emphhs{converge uniformément} vers $f$ sur $A$, alors $(l_n)$ admet une limite $l$ et : 
+\begin{subequations}
+    \begin{align}
+      \lim_{x\to a} f(x) &= \lim_{n\to +\infty} l_n = l\\
+      \lim_{x\to a} \Big( \lim_{n\to +\infty} f_n(x)\Big) &= \lim_{n\to +\infty} \Big( \lim_{x\to a} f_n(x) \Big)
+    \end{align}
+    On retiendra surtout : 
+    \begin{equation}
+        \boxed{
+    \lim_{\textcolor{RoyalBlue}{x\to a}}\left(\lim_{\textcolor{Red}{n\to\infty}} f_n(x)\right)=\lim_{\textcolor{Red}{n\to\infty}}\left(\lim_{\textcolor{RoyalBlue}{x\to a}} f_n(x)\right)
+        }
+    \end{equation}
+\end{subequations}
+\end{itheorem}
+% section continuite_double_limite (end)
 \needspace{3cm}
 \begin{theorem}[Convergence par changement de base]
 Si $\left(f_n(x)\right)_n$ converge simplement ou uniformément \uline{\textbf{ssi}} $\left(f_{n,i}(x)\right)_n$ converge de la même manière dans la base $\mathcal{B}=(e_i)$
 \end{theorem}
-\begin{theorem}[Conditions nécessaire de CU\footnote{\textbf{CU} pour \textbf{C}onvergence \textbf{U}niforme}]
+\begin{theorem}[Conditions nécessaire de convergence uniforme]
 \[
 \begin{array}{r c}
 
 \left.
 \begin{array}{r}
-\left(f_n(x)\right)_{n\in\mathbb{N}}\xrightarrow{\emph{CU}}f\\
+\left(f_n(x)\right)_{n\in\mathbb{N}}\xrightarrow{\emph{\acrshort{CVU}}}f\\
 \left(f_n(x)\right)_n\ \text{ est \emph{bornée}}\\
 \end{array}\right\rbrace & \implies
 \end{array}
 f \text{ est \textbf{uniformément convergente} \textbf{bornée}}
 \]
 \end{theorem}
-\begin{theorem}[Conditions nécessaire de \uline{Non}-CU]
+\begin{theorem}[Conditions nécessaire de \uline{Non}-Convergence Uniforme]
 Il suffit que : 
 $\exists (x_n)\text{ tel que }f(x_n)\underset{x\to{}\infty}{\nrightarrow}0$
 \end{theorem}
@@ -2198,12 +2226,6 @@ On notera les fonctions $f$ dont la dérivée est continue de $A\to B$ comme app
 \end{array}\right\rbrace &\implies f\in \mathcal{C}(A,F)\\
 \end{align*}
 \end{theorem}
-\begin{itheorem}[Théorème de la double limite]\label{Double Limite Fonctions} 
-Si $f_n(x)$ \boxed{\text{\emph{converge uniformément}}}
-\[\boxed{
-\lim_{\textcolor{Red}{n\to\infty}}\left(\lim_{\textcolor{RoyalBlue}{x\to a}} f_n(x)\right)=\lim_{\textcolor{RoyalBlue}{x\to a}}\left(\lim_{\textcolor{Red}{n\to\infty}} f_n(x)\right)
-}\]
-\end{itheorem}
 \begin{theorem}[Théorème d'approximation de \textsc{Weierstrass}\index{Weierstrass@\textsc{Weierstrass}!approximation}]
 Toute fonction $f\in \mathcal{C}([a,b],\mathbb{C})$ est \emph{limite uniforme} d'une suite $\left(\mathcal{P}_n(X)\right)_n$ de fonctions polynômes.
 \end{theorem}
