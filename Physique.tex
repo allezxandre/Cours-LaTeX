@@ -4086,8 +4086,47 @@ où $m$ est le nombre d'atomes liés à l'atome central et $n$ est le nombre d'e
 % section representation (end)
 \section{Cinétique chimique} % (fold)
 \label{sec:cinetique_chimique}
-% TODO: SOON
-\todo{Écrire de la chimie ici}
+\subsection{Avancement} % (fold)
+\label{sub:avancement_reactionnel}
+\begin{dfn}[Avancement]
+  L'\emph{avancement}\index{Avancement} d'une réaction est défini par 
+  \begin{equation}
+  \xi_i = \dfrac{n_i - n_i^\circ}{\nu_i}
+  \end{equation}
+  Où $n_i$ est la quantité molaire du constituant $\ce{A}_i$, $n_i^\circ$ sa quantité molaire initiale, et $\nu_i$ son coefficient st\oe{}chiométrique.\\*
+  $\xi$ est en \si{\mole}
+\end{dfn}
+\begin{dfn}[Vitesse de réaction]
+  La vitesse de réaction est la variation de l'avancement :
+  \begin{equation}
+  v_\text{réaction} = \dfrac{\d \xi}{\d t}
+  \end{equation}
+  Dans les systèmes à volumes constants, on parle de \emph{vitesse volumique de réaction} : 
+  \begin{equation*}
+    v_\text{vol} = \dfrac{1}{V} \dfrac{\d \xi}{\d t} = \dfrac{1}{\nu_i}\dfrac{\d c_i}{\d t}
+  \end{equation*}
+\end{dfn}
+\begin{dfn}[Loi de vitesse]
+  Une réaction chimique \emph{admet un ordre} si on peut relier la vitesse de réaction à la constante de vitesse $k$ et aux concentrations $[A_k]$ : 
+  \begin{subequations}
+  \begin{align}
+    v &= k \cdot f\Big( [A_k]\Big) 
+    \intertext{où $f\Big( [A_k]\Big) $ est une fonction des concentrations. Souvent, on a :}
+    \Aboxed{v &= k \prod_i [A_k]^{\alpha_i}}
+  \end{align}
+  $\alpha_i$ est appelé \emph{ordre partiel}\index{Ordre partiel} de la réaction par rapport à 
+  \end{subequations}
+\end{dfn}
+% subsection avancement_reactionnel (end)
+\subsection{Loi d'action de masse} % (fold)
+\label{sub:loi_d_action_de_masse}
+\begin{theorem}[Loi d'action de masse]
+  La \emph{loi d'action de masse}\index{Loi!Action de masse@\emphi{d'}action de masse}, aussi appelée \emph{Loi de \textsc{Gulderg} et \textsc{Waage}}\index{Loi!Guldberg et Waage@\emphi{de }\textsc{Gulderg} et \textsc{Waage}}, permet de calculer la constante $K$ : 
+  \begin{equation}
+    K = \prod_{i} a_i^{\nu_i}
+  \end{equation}
+\end{theorem}
+% subsection loi_d_action_de_masse (end)
 % section cinetique_chimique (end)
 \section{Cristallographie} % (fold)
 \label{sec:cristallographie}
@@ -4186,47 +4225,6 @@ $\Delta_rG^\circ$ caractérise l'équilibre de réaction\index{equilibre de reac
 À l'équilibre, $Q=K$, donc $\Delta_rG=0$. 
 %
 % subsection enthalpie_libre (end)
-\subsection{Avancement} % (fold)
-\label{sub:avancement_reactionnel}
-\begin{dfn}[Avancement]
-  L'\emph{avancement}\index{Avancement} d'une réaction est défini par 
-  \begin{equation}
-  \xi_i = \dfrac{n_i - n_i^\circ}{\nu_i}
-  \end{equation}
-  Où $n_i$ est la quantité molaire du constituant $\ce{A}_i$, $n_i^\circ$ sa quantité molaire initiale, et $\nu_i$ son coefficient st\oe{}chiométrique.\\*
-  $\xi$ est en \si{\mole}
-\end{dfn}
-\begin{dfn}[Vitesse de réaction]
-  La vitesse de réaction est la variation de l'avancement :
-  \begin{equation}
-  v_\text{réaction} = \dfrac{\d \xi}{\d t}
-  \end{equation}
-  Dans les systèmes à volumes constants, on parle de \emph{vitesse volumique de réaction} : 
-  \begin{equation*}
-    v_\text{vol} = \dfrac{1}{V} \dfrac{\d \xi}{\d t} = \dfrac{1}{\nu_i}\dfrac{\d c_i}{\d t}
-  \end{equation*}
-\end{dfn}
-\begin{dfn}[Loi de vitesse]
-  Une réaction chimique admet un ordre si on peut relier la vitesse de réaction à la constante de vitesse $k$ et aux concentrations $[A_k]$ : 
-  \begin{subequations}
-  \begin{align}
-    v &= k \cdot f\Big( [A_k]\Big) 
-    \intertext{où $f\Big( [A_k]\Big) $ est une fonction des concentrations. Souvent, on a :}
-    \Aboxed{v &= k \prod_i [A_k]^{\alpha_i}}
-  \end{align}
-  $\alpha_i$ est appelé \emph{ordre partiel} de la réaction par rapport à 
-  \end{subequations}
-\end{dfn}
-% subsection avancement_reactionnel (end)
-\subsection{Loi d'action de masse} % (fold)
-\label{sub:loi_d_action_de_masse}
-\begin{theorem}[Loi d'action de masse]
-  La \emph{loi d'action de masse}\index{Loi!Action de masse@\emphi{d'}action de masse}, aussi appelée \emph{Loi de \textsc{Gulderg} et \textsc{Waage}}\index{Loi!Guldberg et Waage@\emphi{de }\textsc{Gulderg} et \textsc{Waage}}, permet de calculer la constante $K$ : 
-  \begin{equation}
-    K = \prod_{i} a_i^{\nu_i}
-  \end{equation}
-\end{theorem}
-% subsection loi_d_action_de_masse (end)
 \chapter{Premier principe appliqué à la transformation chimique} % (fold)
 \label{cha:premier_principe_applique_la_transformation_chimique}
 \section{Enthalpie standard} % (fold)
