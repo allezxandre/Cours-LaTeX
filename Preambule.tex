@@ -474,7 +474,14 @@ frametitleaboveskip=0}
 \newcommand{\CM}{\ensuremath{\mathcal{CPM}}}
 \newcommand{\reference}[1]{\textit{cf.} équation~\eqref{#1} page~\pageref{#1}}
 \newcommand{\tr}{\mathrm{tr}}
-\newcommand{\qed}{\hfill \ensuremath{\Box}} % Petit workaround de \qed...
+\newcommand{\xqed}[1]{%
+  \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+  \quad\hbox{\ensuremath{#1}}}
+\newcommand{\xqedhere}[2]{%
+  \rlap{\hbox to#1{\hfil\llap{\ensuremath{#2}}}}}
+\newcommand{\qed}{%
+  \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+  \quad\hbox{\ensuremath{\Box}}} % Petit workaround de \qed...
 \newcommand{\longto}{\longrightarrow}
 \renewcommand{\epsilon}{\varepsilon} % Je me trompe tout le temps... 
 \newcommand{\Grad}[1][]{\mathrm{Grad}\ifstrempty{#1}{\,}{\left( #1 \right)}} % Le même qu'en physique, mais sans vecteur : pas besoin en maths
