@@ -1204,11 +1204,12 @@ Soit $E$ un ensemble. On appelle \emph{distance} dans $E$ toute application $d :
 \begin{dfn}[Boule]
 Dans une espace vectoriel normé $(E,N)$, on définit les boules centrées en $a$ et de rayon $r$
     \begin{tabular}{>{\bfseries}r @{ de rayon $r$ centrée en $a$ : $\quad$ } l}
-    Boule ouverte & ${x \in E | N(x-a)< r } $ \\
-    Boule fermée & ${x \in E | N(x-a)\le r } $ \\
-    Sphère & ${x \in E | N(x-a)= r } $ \\
+    Boule ouverte & $\{x \in E | N(x-a)< r \} $ \\
+    Boule fermée & $\{x \in E | N(x-a)\le r \} $ \\
+    Sphère & $\{x \in E | N(x-a)= r \} $ \\
     \end{tabular}
 \end{dfn}
+\emphh{Remarque :} Une boule n'est pas forcément une ``boule'' au sens géométrique du terme, puisque leur définition dépend de la norme. Par exemple, une boule en norme 3 est un cube.
 % subsection boules (end)
 \subsection{Parties, suites, fonctions bornées} % (fold)
 \label{sub:parties_suites_fonctions_bornees}
@@ -1260,6 +1261,47 @@ $x\mapsto \sqrt{(x|x)}$ définit une norme sur $E$. On la note $||x||$, et $||x|
 avec égalité si et seulement si $(x,y)$ est une famille liée.
 \end{itheorem}
 % subsection produit_scalaire (end)
+\subsection{Normes usuelles} % (fold)
+\label{sub:normes_usuelles}
+\begin{itheorem}[Normes sur $\mathbb{K}^n$]
+     Soit $x=(x_n)\in \mathbb{K}^n$. Les applications suivantes sont des normes sur $\mathbb{K}^n$ : 
+     \begin{subequations}
+          \begin{align}
+               \| \cdot \|_1 &: x \longmapsto \sum | x_i | \\
+               \| \cdot \|_2 &: x \longmapsto \sqrt{\sum |x_i |^2} \\
+               \| \cdot \|_\infty &: x \longmapsto \max_{i\in \llbracket 1, n \rrbracket } | x_i |
+          \end{align}
+     \end{subequations}
+\end{itheorem}
+\begin{itheorem}[Normes sur $\mathscr{C}^0$]
+     Soit $f \in \mathscr{C}^0\Big( [a,b], \mathbb{R}\Big)$. Les applications suivantes sont des normes sur $\mathscr{C}^0\Big( [a,b], \mathbb{R}\Big)$ : 
+     \begin{subequations}
+          \begin{align}
+               \| \cdot \|_1 &: f \longmapsto \int\limits_a^b |f(t)| \d t 
+                            &\text{(Norme de la convergence en moyenne)} \\
+               \| \cdot \|_2 &: f \longmapsto \sqrt{\int\limits_a^b |f(t)|^2 \d t}
+                            &\text{(Norme de la convergence en moyenne quadratique)} \\
+               \| \cdot \|_\infty &: f \longmapsto \sup_{t\in [a,b]} |f(t)| 
+                            &\text{(Norme de la convergence uniforme)}
+          \end{align}
+     \end{subequations}
+\end{itheorem}
+% subsection normes_usuelles (end)
+\subsection{Produit fini d'espaces vectoriels normés} % (fold)
+\label{sub:produit_fini_d_espaces_vectoriels_normes}
+\begin{theorem}[Norme sur un produit d'espaces vectoriels normés]
+\label{thm:norme_produit}
+     Soient $(E_1,N_1), \ldots , (E_n, N_n)$ des espaces vectoriels normés.\\
+     L'application : 
+     \begin{equation}
+     \left\lbrace \begin{array}{r c c c l}
+          N &:& E_1 \times \cdots \times E_n &\longto & \mathbb{R}^+ \\
+            & & (x_1, \ldots , x_n) &\longmapsto & \displaystyle\sup_{i\in \llbracket 1,n\rrbracket} N_i (x_i)
+     \end{array}\right.
+     \end{equation}
+     est une norme sur $E_1 \times \cdots \times E_n$.     
+\end{theorem}
+% subsection produit_fini_d_espaces_vectoriels_normes (end)
 \section{Suites d'éléments d'un espace vectoriel normé} % (fold)
 \label{sec:suites_evn}
 \begin{dfn}[Convergence d'une suite]
@@ -1272,6 +1314,22 @@ avec égalité si et seulement si $(x,y)$ est une famille liée.
     \end{array}
     \end{equation}
 \end{dfn}
+\Attention{Une suite peut converger pour une norme et diverger pour une autre.}
+\begin{prop}
+     \begin{itemize}
+         \item Toute suite convergente est bornée
+         \item La limite $l$ introduite précédemment est unique.
+     \end{itemize}
+\end{prop}
+\begin{theorem}[Suite à valeurs dans un produit d'espaces vectoriels normés]
+     Une suite d'éléments d'un espace vectoriel normé produit $E = E_1 \times \cdots \times E_n$ converge \ssi{} chacune des suites composantes converge dans leur espace $E_i$ respectif.
+\end{theorem}
+\begin{proof}
+     On utilise la norme définie au théorème~\ref{thm:norme_produit} page~\pageref{thm:norme_produit}.
+\end{proof}
+\begin{theorem}
+     Une suite ayant au moins deux valeurs d'adhérences diverge.
+\end{theorem}
 % section suites_evn (end)
 \section{Comparaison des normes} % (fold)
 \label{sec:comparaison_des_normes}
@@ -1285,6 +1343,158 @@ avec égalité si et seulement si $(x,y)$ est une famille liée.
      Dans un espace vectoriel de dimension finie, toutes les normes sont équivalentes.
 \end{itheorem}
 % section comparaison_des_normes (end)
+\section{Topologie d'un espace normé} % (fold)
+\label{sec:topologie}
+Voici plusieurs définitions utiles à l'étude d'espaces vectoriels normés :
+\begin{dfn}[Ouvert]
+Une partie $\mathcal{O}$ de $E$ est un \emph{ouvert}\index{Ouvert} si, pour tout élément $x$ de $\mathcal{O}$, il existe une boule centrée en $x$ inclue dans $\mathcal{O}$ (\textit{cf. }\textsc{Figure}~\ref{fig:OuvertFerme}) : 
+\begin{equation}
+\forall x\in \mathcal{O},\qquad \exists r > 0, \quad \forall y\in E,\: \| y - x \| \le r \implies y \in \mathcal{O}
+\end{equation}
+\end{dfn}
+\begin{dfn}[Voisinage]
+     On appelle \emph{voisinage}\index{Voisinage} d'un point $x$, et on note $\mathscr{V}(x)$, toute partie $V$ de $E$ qui contient une boule ouverte de centre $x$ : 
+     \begin{equation}
+     V\in \mathscr{V} (x) \text{ si }\qquad\exists r > 0,\: \forall y \in E, \quad \| y-x \| < r \implies y \in V
+     \end{equation}
+\end{dfn}
+\begin{dfn}[Fermé]
+Un espace vectoriel $F$ est dit \emph{fermé}\index{ferme@Fermé} si son complémentaire $\overline{F}$ est un ouvert
+\end{dfn}
+%
+\begin{minipage}{0.5\textwidth}
+Pour différencier un ouvert d'un fermé, prenons le schéma ci-contre : \\
+La partie en \textbf{\textcolor{Red}{rouge}} est un ouvert noté $O$, celle en \textbf{\textcolor{Blue}{bleue}} est un fermé noté $F$.\\
+En effet : il n'existe aucun disque centré en $y \in O+F$ inclus dans la partie $O+F$, donc $O+F$ n'est pas un ouvert. Par contre, pour tout point $x \in O$, on peut trouver une boule inclue dans $O$.
+\end{minipage}\hspace{6pt}
+\begin{minipage}{0.4\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale=1]
+    %\draw [Black!30, thin, fill = Black!2] (-3.5,-2.3) -- (-3.5,2.3) -- (3.5,2.3) -- (3.5,-2.3) -- (-3.5,-2.3);
+    \draw [Black, densely dashed, pattern=north west lines, pattern color=Blue!60] (30:2) circle(0.7);
+    \fill [Red] (0,0) circle(2);
+    \draw [Red!30] (120:1.7) node{$O$};
+    \draw [line width=3pt, Blue] (0,0) circle(2);
+    \draw [Blue] (-120:2.3) node{$F$};
+    \fill [White, opacity = 0.3] (30:2) circle(0.7);
+    \begin{scope}
+        \clip (0,0) circle(2.05);
+        \draw [White, densely dashed] (30:2) circle(0.7);
+    \end{scope}
+    \draw (30:2) node{$+$} (30:2) node[below left]{$y$};
+    \fill [White, opacity = 0.3] (-120:0.4) circle(0.7);
+    \draw [White!70, densely dashed] (-120:0.4) circle(0.7);
+    \draw (-120:0.4) node{$+$} (-120:0.4) node[above left]{$x$};
+\end{tikzpicture}
+\end{center}
+\captionof{figure}{Ouvert / Fermé}
+\label{fig:OuvertFerme}
+\end{minipage}
+%
+\begin{itheorem}[Caractérisation séquentielle d'un fermé]
+$F\subset E$ est un \emph{fermé}\index{ferme@Fermé} \uline{\emph{ssi}} toute suite convergente de F a sa limite dans F
+\end{itheorem}
+\begin{dfn}[Point adhérent]% Pris à 100% de Vuibert
+     Un point $x\in E$ est dit \emph{adhérent}\index{Adherent@Adhérent} à $A$ si tout voisinage de $x$ rencontre $A$ : 
+     \begin{equation}
+     \forall V\in \mathscr{V} (x),\qquad V\cap A \neq \varnothing
+     \end{equation}
+     Autrement dit, toute boule ouverte de centre $x$ contient au moins un élément de $A$ : 
+     \begin{equation}
+     \forall \epsilon > 0,\qquad \exists a\in A,\quad \| a -x \| < \epsilon
+     \end{equation}
+\end{dfn}
+\begin{dfn}[Point intérieur]% Idem : Pris à 100% de Vuibert
+     Un point $x$ de $E$ est dit \emph{intérieur}\index{Interieur@Intérieur!point} à $A$ si $A$ est un voisinage de $x$, c'est à dire s'il existe une boule ouverte de centre $x$ contenue dans $A$ : 
+     \begin{equation}
+     \exists \epsilon > 0, \forall y\in E, \qquad \| y -x \| < \epsilon \implies y\in A
+     \end{equation}
+\end{dfn}
+\todo{Reformuler sous forme d'un théorème}
+\begin{theorem}[Intérieur, Adhérence]% todo : reformuler sous forme d'un théorème
+L'\emph{intérieur}\index{interieur@Intérieur} de $B$, noté $\overset{\circ}{B}$, est la \uline{réunion} des parties ouvertes \uline{contenues} dans $B$. \newline
+L'\emph{adhérence}\index{Adherence@Adhérence} de $A$, notée $\overline{A}$ est \uline{l'intersection} des parties fermées \uline{contenants} $A$.
+\end{theorem}
+
+\begin{prop}
+\begin{itemize}
+\item $A$ fermé $\Leftrightarrow A=\overline{A}$
+\item $\underbrace{\mathrm{Fr}(A)}_{\mathclap{\text{frontière}}}$ est un fermé
+\item $\bigcup_{\text{finie}} \text{ fermés} = \text{fermé}$
+\item $\bigcup \text{ ouverts} = \text{ouvert}$
+\item $\bigcap \text{ fermés} = \text{fermé}$
+\item $\bigcap_{\text{finie}} \text{ ouverts} = \text{ouvert}$
+\end{itemize}
+\end{prop}
+\begin{dfn}[Dense]
+     On dit qu'une partie $D$ est dense dans $A$ si $A \subset \overline{D}$.
+\end{dfn}
+\begin{itheorem}
+    Un \emphh{complet} $A$ d'un espace vectoriel normé $E$ est \emphh{\uline{fermé}}.\\*
+    La réciproque (\textit{Les parties complètes sont les parties fermées}) est vraie si $E$ est un espace de \textsc{Banach}.
+\end{itheorem}
+% section topologie (end)
+\section{Caractérisations séquentielles} % (fold)
+\label{sec:caracterisations_sequentielles}
+% Ce chapitre doit bouger après, il est juste 
+% là parce que je n'ai pas le temps de séparer 
+% les différentes caractérisations
+\todo{Disperser cette section}
+\begin{itheorem}[Caractérisation séquentielle des points adhérents]
+     $x$ est adhérent à $A$ \ssi{} il existe une suite $(x_n)$ d'éléments de $A$ qui converge vers $x$.
+\end{itheorem}
+\begin{itheorem}[Caractérisation séquentielle de la limite]
+\[
+\begin{array}{c}
+     \displaystyle\lim_{x\to a} f(x) = l \\ 
+     \Longleftrightarrow \\
+     \forall (x_n)_n \underset{+\infty}{\longto} a,\quad f(x_n) \xrightarrow[n\to +\infty]{} l
+\end{array}
+\]
+\end{itheorem}
+\begin{itheorem}[Caractérisation séquentielle de la continuité]
+     $f$ est continue en $a$ \ssi{} $\lim_{x\to a}f(x) = f(a)$, et : 
+     \[
+\begin{array}{c}
+     \displaystyle\lim_{x\to a} f(x) = f(a) \\ 
+     \Longleftrightarrow \\
+     \forall (x_n)_n \underset{+\infty}{\longto} a,\quad f(x_n) \xrightarrow[n\to +\infty]{} f(a)
+\end{array}
+\]
+\end{itheorem}
+% section caracterisations_sequentielles (end)
+\section{Applications linéaires continues} % (fold)
+\label{sec:applications_lineaires_continues}
+\begin{dfn}[Continuité uniforme]
+     On dit que $f : E \to F$ est \emph{uniformément continue}\index{Continuite@Continuité!uniforme} sur $A\in E$ si : 
+     \begin{equation}
+     \forall \epsilon > 0, \: \exists \alpha > 0, \qquad \forall (x,y)\in A^2, \: \|y - x\| < \alpha \implies \| f(y) - f(x) \| < \epsilon
+     \end{equation}
+\end{dfn}
+\begin{itheorem}[Caractérisation de la continuité d'une application linéaire]
+% Copié (pas très rigoureusement) de Vuibert
+    Soit $f : E \to F$ une application linéaire continue. Les propositions suivantes sont équivalentes : 
+    \begin{itemize}
+           \item $f$ est continue sur $E$
+    \end{itemize}
+    \begin{enumerate}
+           \item $f$ est continue en $0_E$
+           \item $f$ est bornée sur la boule unité fermée
+           \item $\exists K \in \mathbb{R}^+,\quad \| f(x) \| \le K\| x\|$ 
+           \item $f$ est lipschitzienne sur $E$
+           \item $f$ est uniformément continue
+    \end{enumerate}   
+\end{itheorem}
+\begin{theorem}[Continuité en dimmension finie]
+     Toute application linéaire de $E$ dans $F$ est continue si $E$ est de dimension finie.
+\end{theorem}
+\begin{theorem}[Continuité d'une application multilinéaire]
+     Une application multilinéaire $\varphi : E_1 \times \cdots \times E_n \longto F$ est continue sur $E_1 \times \cdots \times E_n$ \ssi{} : 
+     \begin{equation}
+          \exists K\in \mathbb{R}^+, \quad \forall (x_1, \ldots , x_n) \in E_1 \times \cdots \times E_n , \quad \varphi (x_1, \ldots , x_n) \le K \| x_1\| \cdots \| x_n \|
+     \end{equation}
+\end{theorem}
+% section applications_lineaires_continues (end)
 \section{Complets} % (fold)
 \label{sec:complets}
 \begin{dfn}[Complet]\index{Complet}
@@ -1417,66 +1627,6 @@ _n$ qui converge dans $A$}
      Soit $f : A \to \mathbb{R}$ une application continue qui atteint $(c,d)\in \mathbb{R}$. Alors $f$ atteint toute valeur $f(x) \in [c,d]$.
 \end{itheorem}
 % section connexe_par_arcs (end)
-\section{Topologie} % (fold)
-\label{sec:topologie}
-Voici plusieurs définitions utiles à l'étude d'espaces vectoriels normés :
-\begin{dfn}[Ouvert]
-Une partie $E$ est un \emph{ouvert}\index{Ouvert} si, pour tout élément $x$ de $E$, il existe une boule centrée en $x$ inclue dans $E$ (\textit{cf. }\textsc{Figure}~\ref{fig:OuvertFerme})
-\end{dfn}
-\begin{dfn}[Fermé]
-Un espace vectoriel $F$ est dit \emph{fermé}\index{ferme@Fermé} si son complémentaire $\overline{F}$ est un ouvert
-\end{dfn}
-%
-\begin{minipage}{0.5\textwidth}
-Pour différencier un ouvert d'un fermé, prenons le schéma ci-contre : \\
-La partie en \textbf{\textcolor{Red}{rouge}} est un ouvert noté $O$, celle en \textbf{\textcolor{Blue}{bleue}} est un fermé noté $F$.\\
-En effet : il n'existe aucun disque centré en $y \in O+F$ inclus dans la partie $O+F$, donc $O+F$ n'est pas un ouvert. Par contre, pour tout point $x \in O$, on peut trouver une boule inclue dans $O$.
-\end{minipage}\hspace{6pt}
-\begin{minipage}{0.4\textwidth}
-\begin{tikzpicture}[scale=1]
-    \draw [Black!30, thin, fill = Black!2] (-3.5,-2.3) -- (-3.5,2.3) -- (3.5,2.3) -- (3.5,-2.3) -- (-3.5,-2.3);
-    \draw [Black, densely dashed, pattern=north west lines, pattern color=Blue!60] (30:2) circle(0.7);
-    \fill [Red] (0,0) circle(2);
-    \draw [Red!30] (120:1.7) node{$O$};
-    \draw [line width=3pt, Blue] (0,0) circle(2);
-    \draw [Blue] (-120:2.3) node{$F$};
-    \fill [White, opacity = 0.3] (30:2) circle(0.7);
-    \begin{scope}
-        \clip (0,0) circle(2.05);
-        \draw [White, densely dashed] (30:2) circle(0.7);
-    \end{scope}
-    \draw (30:2) node{$+$} (30:2) node[below left]{$y$};
-    \fill [White, opacity = 0.3] (-120:0.4) circle(0.7);
-    \draw [White!70, densely dashed] (-120:0.4) circle(0.7);
-    \draw (-120:0.4) node{$+$} (-120:0.4) node[above left]{$x$};
-\end{tikzpicture}
-\captionof{figure}{Ouvert / Fermé}
-\label{fig:OuvertFerme}
-\end{minipage}
-%
-\begin{itheorem}[Caractérisation d'un fermé]
-$F\subset E$ est un \emph{fermé}\index{ferme@Fermé} \uline{\emph{ssi}} toute suite convergente de F a sa limite dans F
-\end{itheorem}
-
-\begin{dfn}[Intérieur, Adhérence]
-L'\emph{intérieur}\index{interieur@Intérieur} de $B$, noté $\overset{\circ}{B}$, est la \uline{réunion} des parties ouvertes \uline{contenues} dans $B$. \newline
-L'\emph{adhérence}\index{Adherence@Adhérence} de $A$, notée $\overline{A}$ est \uline{l'intersection} des parties fermées \uline{contenants} $A$.
-\end{dfn}
-
-\begin{prop}
-\begin{itemize}
-\item $A$ fermé $\Leftrightarrow A=\overline{A}$
-\item $\underbrace{\mathrm{Fr}(A)}_{\mathclap{\text{frontière}}}$ est un fermé
-\item $\underset{\text{finie}}{\cup} \text{ fermés} = \text{fermé}$
-\item $\cap \text{ fermés} = \text{fermé}$
-\end{itemize}
-\end{prop}
-
-\begin{itheorem}
-    Un \emphh{complet} $A$ d'un espace vectoriel normé $E$ est \emphh{\uline{fermé}}.\\*
-    La réciproque (\textit{Les parties complètes sont les parties fermées}) est vraie si $E$ est un espace de \textsc{Banach}.
-\end{itheorem}
-% section topologie (end)
 \chapter{Espaces Préhilbertiens réels}
 Dans cette section, on se placera dans \Reel{}.
 \begin{methode}
