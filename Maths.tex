@@ -3708,6 +3708,8 @@ avec $A\in \mathcal{C}\Big( I,M_n (\mathbb{R})\Big) $ et $B \in \mathcal{C}\big(
 % section ED_generalites (end)
 \section{Solutions d'une équation différentielle linéaire} % (fold)
 \label{sec:solutions_d_une_equation_differentielle_lineaire}
+\subsection{Théorème de \textsc{Cauchy}} % (fold)
+\label{sub:theoreme_de_Cauchy}
 \begin{itheorem}[Théorème de \textsc{Cauchy-Lipshitz}\index{Cauchy-Lipshitz@\textsc{Cauchy-Lipshitz}} linéaire]\label{th:CauchyLipschitz}
 Soit l'équation différentielle 
 \begin{equation}\tag{$E$}
@@ -3724,21 +3726,160 @@ où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right)$, $b\in \mathcal{C}(I,F)$, 
     \right.
 \end{equation}
 \end{itheorem}
+% subsection theoreme_de_Cauchy (end)
+\subsection{Système fondamental de solutions} % (fold)
+\label{sub:systeme_fondamental_de_solutions}
+\begin{dfn}[Système Fondamental]
+Un \emph{système fondamental} de solutions\index{systeme@Système!fondamental de solution@fondamental de solutions} est une base dans l'espace $S_I(\textcolor{Red}{\mathcal{H}})$ des solutions.
+\end{dfn}
+%
+\begin{prop}
+    \begin{itemize}
+        \item Si $(\varphi_1, \varphi_2, \cdots , \varphi_n)$ est une base de $S_I(\mathscr{L})$, alors, $\forall t \in I$, $\left( \varphi_1(t), \varphi_2(t), \cdots , \varphi_n(t) \right)
+$ est une base dans $ F$
+    \end{itemize}
+\end{prop}
+%
+\begin{dfn}[Wronskien]
+Le Wronskien\index{Wronskien} est le déterminant d'un système fondamental de solution. 
+\begin{equation}\label{Wronskien}\tag{Wronskien}
+  W(t) = \det_\mathcal{B}\left( \vphantom{{3^3}^3} \varphi_1(t),\cdots , \varphi_n(t) \right)
+\end{equation}
+\end{dfn}
+
+\Attention{Le Wronskien est une fonction de $t$}
+
+\begin{prop}
+\begin{itemize}
+    \item $W'(t)=\tr (a)\; W(t)$
+    \item $ W(t) = W(t_0) \; e^{\int_{t_0}^t \tr (s) \; ds}$
+    \item $(x_1, \ldots ,x_n)$ est un système fondamental de solutions $\Longleftrightarrow$ $\forall t\in I,\: W(t) \neq 0$
+    \item $(x_1, \ldots ,x_n)$ est un système fondamental de solutions $\Longleftrightarrow$ $\exists t_0\in I,\: W(t_0) \neq 0$
+\end{itemize}
+\end{prop}
+% subsection systeme_fondamental_de_solutions (end)
 \todo{Cas des équations d'ordre $n$}
 % TODO: Cas des équations d'ordre $n$
 % section solutions_d_une_equation_differentielle_lineaire (end)
 \section{Exponentielle d'un endomorphisme, d'une matrice} % (fold)
 \label{sec:exponentielle_d_un_endomorphisme_d_une_matrice}
+\begin{dfn}[Exponentielle d'un endomorphisme]
+     La fonction exponentielle peut s'appliquer à des endomorphismes : 
+     \begin{equation}
+     \exp : a \longmapsto \sum_{n=0}^{+\infty} \dfrac{a^n}{n !}
+     \end{equation}
+     
+\end{dfn}
+\begin{dfn}[Exponentielle d'une matrice]
+     La fonction exponentielle peut s'appliquer à des matrices : 
+     \begin{equation}
+     \exp : A \longmapsto \sum_{n=0}^{+\infty} \dfrac{A^n}{n !}
+     \end{equation}
+     
+\end{dfn}
+\begin{theorem}
+     Si $a$ et $b$ sont deux endomorphismes \emphhs{qui commutent}, alors : 
+     \begin{subequations}
+            \begin{equation}
+            \exp (a + b) = \exp (a) \circ \exp (b)
+            \end{equation}
+     De même, si $A$ et $B$ sont deux matrices qui commutent : 
+            \begin{equation}
+            \exp (A + B) = \exp (A) \circ \exp (B)
+            \end{equation}
+     \end{subequations}
+\end{theorem}
+\Attention{L'hypothèse de commutation est extrèmement importante !}
+\needspace{5cm}
+\begin{theorem}[Dérivation]
+     Soit $a$ un endomoprhisme d'un espace normé de dimension finie. \\
+     L'application $e_a : t \mapsto \exp (ta)$ est dérivable, avec : 
+     \begin{equation}
+     e_a' = a\circ e_a = e_a \circ a
+     \end{equation}
+     Ce théorème s'applique également à une matrice.
+\end{theorem}
 % section exponentielle_d_un_endomorphisme_d_une_matrice (end)
 \section{Systèmes différentiels linéaires homogènes à coefficients constants} % (fold)
 \label{sec:systemes_differentiels_lineaires_homogenes_coefficients_constants}
+\begin{dfn}[Équation homogène à coefficients constants]
+    On dit d'une équation homogène \eqref{eq:equa_diff_homogene_ordre_1}~:~$x' = a(t)(x)$ qu'elle est à \emph{coefficients constants} si $a$ est indépendant de $t$, c'est-à-dire que l'équation est telle que : 
+    \begin{equation}
+    \forall t\in \Reel{},\qquad x'(t) = a\big( x (t) \big)
+    \end{equation}
+\end{dfn}
+\begin{theorem}[Solution]
+     Avec les notations précédentes, la fonction $x$ définie par : 
+     \begin{equation}
+     \forall x_0\in E,\qquad x(t) = e^{(t-t_0) a} x_0
+     \end{equation}
+     est l'unique solution du problème de \textsc{Cauchy} $\Big( x' = a(x) ;x(t_0) = x_0 \Big)$.
+\end{theorem}
+%todo Traduction matricielle
+\todo{Traduction matricielle}
 % section systemes_differentiels_lineaires_homogenes_coefficients_constants (end)
 \section{Méthode de variation des constantes} % (fold)
 \label{sec:methode_de_variation_des_constantes}
-
+\begin{itheorem}[Variation des constantes]
+    \index{constante@\emphi{Variation des} Constantes}
+    Soit $\left( \vphantom{{3^3}^3} \varphi_1(t),\cdots , \varphi_n(t) \right)$ une base de $S_I(\textcolor{Red}{\mathcal{H}})$. \\
+    Alors, $\forall \varphi \in \mathcal{C}^{\textcolor{Red}{1}} (I,F),$ :
+    \begin{equation} 
+    \left\lbrace 
+    \begin{array}{l}
+        \text{Il existe une \uline{unique} famille } \overbrace{\left( \lambda_1, \cdots , \lambda_n \right)}^{\mathcal{\text{dans }\mathcal{C}^{\textcolor{Red}{1}}} (I,F)} \text{ telle que } \varphi = \sum_{i=1}^n \lambda_i \, \varphi_i \\
+        \varphi \in S_I(\mathcal{H}) \Leftrightarrow \boxed{\forall t \in I, \sum_{i=1}^n \lambda_i'(t) \, \varphi_i(t) = b(t)}
+    \end{array}
+    \right.
+    \end{equation}
+\end{itheorem}
+Pour une équation à coefficients $a$ et $b$ constants $x' = ax + b(t)$, la solution générale est 
+\begin{empheq}[box=\ibox]{equation}
+y(t) = e^{(t-t_0)a}x_0 + \int \limits_{t_0}^t e^{(t-s)a}b(s) \: ds
+\end{empheq}
+\todo{Variation des constantes $\times$ coefficients constants}
 % section methode_de_variation_des_constantes (end)
 \section{Équations différentielles scalaires du second ordre} % (fold)
 \label{sec:equations_differentielles_scalaires_du_second_ordre}
+\begin{itheorem}[Méthode de variation des constantes]
+    En connaissant $(u,v)$ un système fondamental de solutions, on cherche une solution de la forme $y(t) = c_1(t) u(t) + c_2(t) u(t)$. On détermine $c_1$ et $c_2$ avec :
+    \begin{equation}
+    c_1'\begin{pmatrix} u \\ u' \end{pmatrix} + c_2'\begin{pmatrix} v \\ v' \end{pmatrix} = \begin{pmatrix} 0 \\ \gamma \end{pmatrix}
+    \end{equation}
+\end{itheorem}
+\begin{itheorem}[Théorème de \textsc{Cauchy-Lipshitz}\index{Cauchy-Lipshitz@\textsc{Cauchy-Lipshitz}} linéaire]
+Soit l'équation différentielle 
+\begin{equation}\tag{$\mathscr{L}$}
+    y''(t) + a(t) y'(t) + a(t)y(t)= \gamma (t)
+\end{equation}
+où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right)$, $b\in \mathcal{C}(I,F)$, alors
+\[
+    \forall \big( t_0,(x_0,x_0') \big) \in (I,\mathbb{K}^2), \exists ! \: \varphi \text{ telle que }
+    \left|
+    \begin{array}{l}
+        \varphi \text{ soit solution de l'équation }(E)\\
+        \varphi(t_0)=x_0 \\
+        \varphi'(t_0) = x'_0
+    \end{array}
+    \right.
+\]
+\end{itheorem}
+\begin{proof} \hfill \\
+    Le théorème est une conséquence du théorème~\ref{th:CauchyLipschitz} si on résout plutôt $\begin{pmatrix} x \\ x' \end{pmatrix}' = \begin{pmatrix} a \\ a' \end{pmatrix}(t)\begin{pmatrix} x \\ x' \end{pmatrix} + \begin{pmatrix} b \\ b' \end{pmatrix}$ 
+\end{proof}
+\begin{dfn}[Wronskien]
+    Si $u$ et $v$ sont des $I$-solutions, le \emph{Wronskien}\index{Wronskien} est l'application définie par
+    \begin{equation}
+    W = uv' - u'v \tag{Wronskien}
+    \end{equation}
+\end{dfn}
+\begin{prop}
+Dans l'équation $(\mathcal{H}) : x'' + a(t)x' + b(t) x =0$,
+\begin{itemize}
+    \item $W + a W = 0$
+    \item $(u,v)\text{ libre }\Leftrightarrow \exists t_0 \text{ tel que } W(t_0) \neq 0 \Leftrightarrow \forall t, W(t) \neq 0$
+\end{itemize}
+\end{prop}
 % section equations_differentielles_scalaires_du_second_ordre (end)
 %%%%%%%
 %%%%%%%%%%%%%%%%% Equations Différentielles %%%%% -> OLD <- %%%%%%%%%%%%%%%%%%%
@@ -3777,51 +3918,6 @@ où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right), \: b\in \mathcal{C}(I,F)$.
 \Attention{
 $a$ est une application de $I$ dans \uline{$\mathscr{L}(F)$}. Donc $a(t)$ est une application linéaire, pas un scalaire}
 % subsubsection probleme_de_Cauchy (end)
-\subsubsection{Système fondamental}
-\begin{dfn}[Système Fondamental]
-Un \emph{système fondamental} de solutions\index{systeme@Système!fondamental de solution@fondamental de solutions} est une base dans l'espace $S_I(\textcolor{Red}{\mathcal{H}})$ des solutions.
-\end{dfn}
-%
-\begin{prop}
-    \begin{itemize}
-        \item Si $(\varphi_1, \varphi_2, \cdots , \varphi_n)$ est une base de $S_I(\mathscr{L})$, alors, $\forall t \in I$, $\left( \varphi_1(t), \varphi_2(t), \cdots , \varphi_n(t) \right)
-$ est une base dans $ F$
-    \end{itemize}
-\end{prop}
-%
-\begin{dfn}[Wronskien]
-Le Wronskien\index{Wronskien} est le déterminant d'un système fondamental de solution. 
-\begin{equation}\label{Wronskien}\tag{Wronskien}
-  W(t) = \det_\mathcal{B}\left( \vphantom{{3^3}^3} \varphi_1(t),\cdots , \varphi_n(t) \right)
-\end{equation}
-\end{dfn}
-
-\Attention{Le Wronskien est une fonction de $t$}
-
-\begin{prop}
-\begin{itemize}
-    \item $W'(t)=\tr (a)\; W(t)$
-    \item $ W(t) = W(t_0) \; e^{\int_{t_0}^t \tr (s) \; ds}$
-\end{itemize}
-\end{prop}
-
-\begin{theorem}[Variation des constantes]
-    \index{constante@\emphi{Variation des} Constantes}
-    Soit $\left( \vphantom{{3^3}^3} \varphi_1(t),\cdots , \varphi_n(t) \right)$ une base de $S_I(\textcolor{Red}{\mathcal{H}})$. \\
-    Alors, $\forall \varphi \in \mathcal{C}^{\textcolor{Red}{1}} (I,F), 
-    \left\lbrace 
-    \begin{array}{l}
-        \text{Il existe une \uline{unique} famille } \overbrace{\left( \lambda_1, \cdots , \lambda_n \right)}^{\text{dans }\mathcal{C}^{\textcolor{Red}{1}} (I,F)} \text{ telle que } \varphi = \sum_{i=1}^n \lambda_i \, \varphi_i \\
-        \varphi \in S_I(\mathcal{H}) \Leftrightarrow \boxed{\forall t \in I, \sum_{i=1}^n \lambda_i'(t) \, \varphi_i(t) = b(t)}
-    \end{array}
-    \right.
-    $
-\end{theorem}
-Pour une équation à coefficients $a$ et $b$ constants $x' = ax + b(t)$, la solution générale est 
-\begin{empheq}[box=\ibox]{equation}
-y(t) = e^{(t-t_0)a}x_0 + \int \limits_{t_0}^t e^{(t-s)a}b(s) \: ds
-\end{empheq}
-
 \section{Équations Différentielles linéaires du second ordre}
 \begin{dfn}[Équation Différentielle Vectorielle]\index{equation differentielle@Équation Différentielle!du second ordre@du 2\ieme{} ordre}
     C'est une équation sous la forme 
@@ -3867,45 +3963,6 @@ Ou encore :
     où $\omega(\lambda )$ est la multiplicité de $\lambda$ en tant que racine du polynome caractéristique de $f$ et $Q \in \Cmplx[X]$ est de même degré que $P$.
 \end{theorem}
 \subsection{Cas général}
-\begin{itheorem}[Théorème de \textsc{Cauchy-Lipshitz}\index{Cauchy-Lipshitz@\textsc{Cauchy-Lipshitz}} linéaire]
-Soit l'équation différentielle 
-\begin{equation}\tag{$\mathscr{L}$}
-    y''(t) + a(t) y'(t) + a(t)y(t)= \gamma (t)
-\end{equation}
-où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right)$, $b\in \mathcal{C}(I,F)$, alors
-\[
-    \forall \big( t_0,(x_0,x_0') \big) \in (I,\mathbb{K}^2), \exists ! \: \varphi \text{ telle que }
-    \left|
-    \begin{array}{l}
-        \varphi \text{ soit solution de l'équation }(E)\\
-        \varphi(t_0)=x_0 \\
-        \varphi'(t_0) = x'_0
-    \end{array}
-    \right.
-\]
-\end{itheorem}
-\begin{proof} \hfill \\
-    Le théorème est une conséquence du théorème~\ref{th:CauchyLipschitz} si on résout plutôt $\begin{pmatrix} x \\ x' \end{pmatrix}' = \begin{pmatrix} a \\ a' \end{pmatrix}(t)\begin{pmatrix} x \\ x' \end{pmatrix} + \begin{pmatrix} b \\ b' \end{pmatrix}$ 
-\end{proof}
-\begin{dfn}[Wronskien]
-    Si $u$ et $v$ sont des $I$-solutions, le \emph{Wronskien}\index{Wronskien} est l'application définie par
-    \begin{equation}
-    W = uv' - u'v \tag{Wronskien}
-    \end{equation}
-\end{dfn}
-\begin{prop}
-Dans l'équation $(\mathcal{H}) : x'' + a(t)x' + b(t) x =0$,
-\begin{itemize}
-    \item $W + a W = 0$
-    \item $(u,v)\text{ libre }\Leftrightarrow \exists t_0 \text{ tel que } W(t_0) \neq 0 \Leftrightarrow \forall t, W(t) \neq 0$
-\end{itemize}
-\end{prop}
-\begin{itheorem}[Méthode de variation des constantes]
-    En connaissant $(u,v)$ un système fondamental de solutions, on cherche une solution de la forme $y(t) = c_1(t) u(t) + c_2(t) u(t)$. On détermine $c_1$ et $c_2$ avec :
-    \begin{equation}
-    c_1'\begin{pmatrix} u \\ u' \end{pmatrix} + c_2'\begin{pmatrix} v \\ v' \end{pmatrix} = \begin{pmatrix} 0 \\ \gamma \end{pmatrix}
-    \end{equation}
-\end{itheorem}
 \chapter{Équations Différentielles non linéaires}
 \section{Équations autonomes}
 \begin{dfn}[Champ de Vecteur]
