@@ -1182,6 +1182,7 @@ En pratique, sur Terre, \ibox{$E_p = mgh$}
                     &=mr^2\dot{\theta}\vv*{u}{z}
    \end{align*}
 \end{proof}
+\needspace{5cm}
 \begin{itheorem}[Lois de \textsc{Kepler}]
    Les trois lois de \textsc{Kepler}\index{Kepler@\textsc{Kepler}} ont été définies expérimentalement vers la fin du \textsc{xvi}\ieme{} siècle :
   \begin{itemize}[noitemsep, topsep=4pt,parsep=0pt,partopsep=0pt,leftmargin=3mm,labelindent=\parindent]
@@ -2651,7 +2652,7 @@ Maintenant, en prenant l'équation 2 de Maxwell (\ref{eq:MaxwellFlux}), $\rot \v
 \end{proof}
 \subsection{Equations de \textsc{Poisson} et de \textsc{Laplace}}
 En \emphhs{statique}, $\rot \E = -\dfrac{\partial \B}{\partial t} = \vv{0}$, ce qui équivaut à l'existence d'un potentiel $V(M)$ tel que $\E = -\grad[V]$ (c'est l'équation \eqref{eq:potentiel_electrostatique} qu'on voit en électrostatique page \pageref{eq:potentiel_electrostatique}). 
-\needspace{7cm}
+\needspace{4cm}
 \begin{itheorem}
    En régime stationnaire, le potentiel électrique vérifie l'\emph{équation de \textsc{Poisson}}\index{Poisson@\textsc{Poisson}} :
    \begin{equation}
@@ -3162,6 +3163,15 @@ On se place, dans un premier temps, dans un milieu dispersif quelconque.
    \end{equation}
    Cette intégrale est valable de $0$ à $+\infty$, car on considère des ondes dont la pulsation $\omega$ est comprise dans un intervalle $\left[ \omega_0 - \dfrac{\delta \omega}{2}, \omega_0 + \dfrac{\delta \omega}{2}\right]$, où $\delta \omega \ll \omega_0$
 \end{dfn}
+\begin{theorem}[Vitesse de groupe d'un paquet d'ondes]
+   Par la généralisation de l'étude d'un paquet formé de deux ondes sinusoïdales, on admet que la vitesse de groupe $v_g$ d'un paquet d'onde centré sur une pulsation $\omega_0$ est : 
+   \begin{equation}
+   v_g = \dfrac{\delta \omega}{\delta k}
+       = \left( \dfrac{\d \omega}{\d k} \right)_{k_0}
+       = \dfrac{1}{\left( \dfrac{\d k}{\d \omega} \right)_{\omega_0}}
+   \end{equation}
+   où $k_0$ est une approximation au premier ordre du centre des vecteurs d'ondes : les $k(\omega )$ des ondes dans le paquet d'ondes sont comprises dans $\left[ k_0 - \dfrac{\delta k}{2}, k_0 + \dfrac{\delta k}{2}\right]$
+\end{theorem}
 % subsubsection propagation_paquet_onde (end)
 % subsection Plasma (end)
 \subsection{Propagation dans un conducteur ohmique} % (fold)
