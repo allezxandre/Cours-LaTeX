@@ -2762,11 +2762,13 @@ L'équation locale de \textsc{Poynting}\index{Poynting@\textsc{Poynting}!equatio
 \begin{theorem}[Loi de \textsc{Faraday}\index{Faraday@\textsc{Faraday}}]
 Elle caractérise la force électromotrice $e$ induit par un flux $\Phi_B$
 \begin{equation}\label{Faraday}
-\boxed{e=\oint \limits_\mathcal{S} \vv{E} \vv{\d l} =-\dfrac{\d\Phi_B}{\d t}}
+\boxed{e=\oint \limits_\mathcal{S} \vv{E}\cdot \vv{\d l} =-\dfrac{\d\Phi_B}{\d t}}
 \end{equation}
 \end{theorem}
 %
-
+\begin{itheorem}[Loi de \textsc{Lenz}]\index{Lenz@\textsc{Lenz}}
+   Les effets de l'induction s'opposent à la cause qui les a produits.
+\end{itheorem}
 \subsection{Loi d'Ohm généralisée}
 \begin{theorem}
 On considère un conducteur formé d'un fil de longueur $L$, de section $s$, constitué d'un matériau dont la conductivité électrique est $\gamma$, est branché entre un point $A$ et un deuxième point $B$. La loi d'Ohm\index{Ohm@\emphi{Loi d'}\textsc{Ohm}!Globale} pour ce conducteur, dite généralisée, donne : 
@@ -2832,7 +2834,7 @@ Cette force\index{Force!Laplace@\emphi{de }\textsc{Laplace}} est bien \uline{vol
   \left\lbrace
   \begin{gathered}
     \Phi_{1\to 2}(t) = M \,i_1(t)\\
-    \Phi_{2\to 2}(t) = M \,i_2(t)
+    \Phi_{2\to 1}(t) = M \,i_2(t)
   \end{gathered}
   \right.
   \end{equation}
@@ -2869,10 +2871,12 @@ Cette force\index{Force!Laplace@\emphi{de }\textsc{Laplace}} est bien \uline{vol
   \end{array}
   \]
   \titre{Relations de Passage}
-  \begin{align*}
+  \begin{subequations}
+  \begin{align}\label{eq:relations_passages}
     E_2(A,t) - E_1(A,t) &= \dfrac{\sigma (A,t)}{\varepsilon_0} \vv*{n}{\text{sortant}}\\
     B_2(A,t) - B_1(A,t) &= \mu_0 \vv{j}(A,t) \wedge \vv*{n}{\text{sortant}}
-  \end{align*}
+  \end{align}
+  \end{subequations}
 \end{methode}
 \subsection{Dans le vide}
 On se place dans une zone où il n'y a \emphhs{ni charge, ni courant}. C'est à dire que $\rho = 0$ et alors $\vv{j} = 0$. Lorsqu'on reprend les équations de \textsc{Maxwell}, les équations \eqref{eq:MaxwellGauss} et \eqref{eq:MaxwellAmpere} sont modifiées : 
@@ -3020,7 +3024,7 @@ $\textcolor{couleurImp}{\rot} \textcolor{couleurNoirClair}{\vv{\uline{U}}}$ & $-
       \cancel{i} \dfrac{c^2}{\omega} \vv{k} \wedge \B &= -\cancel{i} \E \\
       \E &= -\frac{c^2}{\omega} \vv{k} \wedge \B
    \end{align*}
-   Ces équations sont homolgues à celles vues précédemment, car $k=\frac{\omega}{c}$
+   Ces équations sont homologues à celles vues précédemment, car $k=\frac{\omega}{c}$
 \end{proof}
 \subsubsection{Polarisation} % (fold)
 \label{ssub:polarisation}
@@ -3194,16 +3198,46 @@ Cette équation n'est pas réelle, et conduit à un \emphh{module d'onde complex
 \begin{equation}
 \underline{k} = k' - ik''
 \end{equation}
-
 \begin{itheorem}[Effet de peau]
-   Dans un conducteur ohmique, la distance caractéristiques de d'atténuation d'une \gls{OPPM} de pulsation $\omega \ll \frac{\gamma}{\epsilon_0}$ est: 
+   Dans un conducteur ohmique, la \emph{distance caractéristique d'atténuation} d'une \gls{OPPM} dans l'approximation des basses fréquences $\left(\omega \ll \dfrac{\gamma}{\epsilon_0}\right)$ est: 
    \begin{equation}
    \delta = \sqrt{\dfrac{2}{\mu_0 \gamma \omega}}
    \end{equation}
 \end{itheorem}
+\begin{proof}
+   Dans l'approximation des basses fréquences, on néglige le terme $\dfrac{\omega^2}{c^2}$ par rapport à $\mu_0 \gamma \omega$, c'est-à-dire qu'on prend : 
+   \begin{equation*}
+      \omega \ll \mu_0 c^2 \gamma = \dfrac{\gamma}{\epsilon_0}
+   \end{equation*}
+   La relation de dispersion devient alors $\underline{k}^2 = -i\mu_0\gamma_0\omega$. On résout : 
+   \begin{align*}
+      \underline{k} &= \sqrt{-i\mu_0\gamma_0\omega}
+      \intertext{Or $-2i = (1-i)^2$, d'où : }
+      \underline{k} &= (1-i)\sqrt{\dfrac{\mu_0\gamma_0\omega}{2}}
+   \end{align*}
+   Puisqu'on a choisi $\underline{k} = k' - ik''$, on trouve que $k' = k'' = \sqrt{\dfrac{\mu_0\gamma_0\omega}{2}}$. \\
+   La distance caractéristique de pénétration est alors $\delta = \dfrac{1}{k''}=\sqrt{\dfrac{2}{\mu_0\gamma_0\omega}}$.\qed
+\end{proof}
 \subsubsection{Réflexion d'une \gls{OPPM}} % (fold)
 \label{ssub:reflexion_OPPM_metal}
-
+On considère les ondes réfléchies et transmises issues d'une \gls{OPPM} polarisée rectilignement dans la direction de $\vv*{u}{x}$. L'onde s'écrit : 
+\begin{align*}
+    \vv{\underline{E_i}}(M,t) &= \underline{E_0} ~ \exp \Big( i (\omega t - kz )\Big)\vv*{u}{x}\\
+    \vv{\underline{B_i}}(M,t) &= -\dfrac{1}{c}\underline{E_0} ~ \exp \Big( i (\omega t - kz )\Big)\vv*{u}{y}
+\end{align*}
+La propagation, avant le contact avec le conducteur ohmique, s'effectue dans le vide, donc $k = \dfrac{\omega}{c}$.\\
+On admettra l'expression des champs réfléchis : 
+\begin{align*}
+   \vv{\underline{E_r}}(M,t) &= \underline{r}\underline{E_0} ~ \exp \Big( i (\omega t \textcolor{couleurImp}{+} kz )\Big)\vv*{u}{x}\\
+   \vv{\underline{B_r}}(M,t) &= - \dfrac{1}{c}\underline{r}\underline{E_0} ~ \exp \Big( i (\omega t \textcolor{couleurImp}{+} kz )\Big)\vv*{u}{y}
+\end{align*}
+On admettra également l'expression des champs transmis : 
+\begin{align*}
+   \vv{\underline{E_t}}(M,t) &= \underline{t}\underline{E_0} ~ \exp \left( -\dfrac{z}{\delta} \right) ~ \exp \left( i (\omega t - \dfrac{z}{\delta} )\right)\vv*{u}{x}\\
+   \vv{\underline{B_t}}(M,t) &= - \dfrac{1-i}{\delta \omega} \underline{t}\underline{E_0} ~ \exp \left( -\dfrac{z}{\delta} \right) ~ \exp \left( i (\omega t - \dfrac{z}{\delta} )\right)\vv*{u}{y}
+\end{align*}
+Où $\underline{r}$ et $\underline{t}$ se calculent avec les relations de passage (\textit{cf.} page~\pageref{eq:relations_passages}). \nopagebreak[4]
+Dans un conducteur ohmique parfait, les conditions de continuité des champs imposent $\underline{r} = -1$ et $\underline{t} = 0$.
 % subsubsection reflexion_OPPM_metal (end)
 % subsection propagation_dans_un_conducteur_ohmique (end)
 % section propagation_onde (end)
