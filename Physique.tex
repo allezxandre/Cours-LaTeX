@@ -1030,7 +1030,85 @@ Pour un \emphhs{régime sinusoidal}, $u(t) = U \cdot \cos (\omega t)$, donc :
 \end{dfn}
 % subsection diagrammes_de_bode (end)
 % section Filtres (end)
-%
+\chapter{Traitement du signal} % (fold)
+\label{cha:traitement_du_signal}
+\section{Signaux périodiques} % (fold)
+\label{sec:signaux_periodiques}
+\begin{dfn}[Signal périodique]
+% Juste parce que je suis obligé de commencer un chapitre avec une définition
+   On appelle \emph{signal périodique}\index{Signal!periodique@périodique} de période $T_s$ un signal sous la forme tel que : 
+   \begin{equation}
+   s(t + T_s) = s(t) 
+   \end{equation}
+\end{dfn}
+\emphh{Remarque :} Pour le moment, notre signal a une forme quelconque, il n'est pas, \textit{a priori}, sinusoïdal.
+\begin{theorem}[Développement en série de \textsc{Fourier}]% Pris de J'intègre
+   Tout signal périodique de fréquence $f_s$ peut se reconstituer par la superposition de signaux sinusoïdaux de fréquences multiples de $f_s$ (sous la forme $n f_s$). C'est-à-dire qu'on peut écrire : 
+   \begin{equation}
+   s(t) = A_0 + \sum_{n=0}^{+\infty} A_n \cos \left( 2\pi ~nf ~t + \varphi_n \right) 
+   \end{equation}
+   où les $A_n$ sont des constantes positives et les $\varphi_n$ des constantes.
+\end{theorem}
+\begin{figure}
+   \centering
+   \subfloat[Spectre en amplitude]{
+   \begin{tikzpicture}[scale=0.9]
+      \def\freq{0.95}
+      % Repère
+      \draw[->, thick, >=latex] (0,0) -- (0,3) node[above]{$A_i$};
+          % Ligne discontinue
+          \draw[thick] (0,0) -- (3.3,0);
+          \draw[thick, densely dashed] (3.3,0) -- (4.2,0);
+          \draw[thick, ->, >=latex] (4.2,0) -- (5.5,0)node[right]{$f$};
+      % Barres
+      \begin{scope}[line width=3pt]
+         \draw (0 , 0) node[below]{$0$} -- ++(0,1.9);
+         \draw (\freq , 0) node[below]{$f_s$} -- ++(0,2.4);
+         \draw (2*\freq , 0) node[below]{$2 f_s$} -- ++(0,\directlua{tex.print(2.4*math.random()+0.2)});
+         \draw (3*\freq , 0) node[below]{$3 f_s$} -- ++(0,\directlua{tex.print(2.4*math.random()+0.2)});
+         \draw (5.5,0) ++(-\freq , 0) node[below]{$n f_s$} -- ++(0,\directlua{tex.print(2.4*math.random()+0.2)});
+      \end{scope}
+   \end{tikzpicture}
+   }
+   \hspace{0.1\linewidth}
+   \subfloat[Spectre en phase]{
+   \begin{tikzpicture}[scale=0.9]
+      \def\freq{0.95}
+      % Repère
+      \draw[->, thick, >=latex] (0,-2.3) -- (0,2.3) node[above]{$\varphi_i$};
+      \path (0,2) node{$-$} node[left]{$\pi$};
+      \path (0,-2) node{$-$} node[left]{$-\pi$};
+          % Ligne discontinue
+          \draw[thick] (0,0) -- (3.3,0);
+          \draw[thick, densely dashed] (3.3,0) -- (4.2,0);
+          \draw[thick, ->, >=latex] (4.2,0) -- (5.5,0)node[right]{$f$};
+      % Barres
+      \begin{scope}[line width=3pt]
+         \draw (\freq , 0) node[below]{$f_s$} -- ++(0,1.6);
+         \draw (2*\freq , 0) node[above]{$2 f_s$} -- ++(0,\directlua{tex.print(-2*math.random()-0.2)});
+         \draw (3*\freq , 0) node[below]{$3 f_s$} -- ++(0,\directlua{tex.print(2*math.random()+0.2)});
+         \draw (5.5,0) ++(-\freq , 0) node[below]{$n f_s$} -- ++(0,\directlua{tex.print(2*math.random()+0.2)});
+      \end{scope}
+   \end{tikzpicture}
+   }
+   \caption{Spectre d'un signal périodique}
+\end{figure}
+% section signaux_periodiques (end)
+\section{Électronique numérique} % (fold)
+\label{sec:electronique_numerique}
+\begin{dfn}[Échantillonage]
+   L'\emph{échantillonage}\index{Echantillonage@Échantillonage} d'un signal consiste à prélever à intervalles de temps réguliers $T_e$ la valeur d'un signal analogique $s(t)$.\\
+   Le signal $s^*_n$ obtenu est alors une suite, et $s^*_n = s(n~ T_e)$.
+\end{dfn}
+\begin{itheorem}[Condition de \textsc{Nyquist}-\textsc{Shannon}]
+\index{Nyquist-Shannon@\textsc{Nyquist}-\textsc{Shannon}}
+   Pour que l'échantillonage d'un signal ne modifie pas son spectre, il faut que la fréquence d'échantillonage $f_e = \dfrac{1}{T_e}$ soit supérieure au double de la plus grande fréquence $f_{\text{max}}$ contenue dans ce spectre : 
+   \begin{equation}
+   f_e > 2 f_{\text{max}}
+   \end{equation}
+\end{itheorem}
+% section electronique_numerique (end)
+% chapter traitement_du_signal (end)
 \chapter{Mécanique du Point}
 \begin{methode}
 \titre{Formules Usuelles}
