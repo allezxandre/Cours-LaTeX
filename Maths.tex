@@ -1779,8 +1779,8 @@ $u$ est un endomorphisme, donc il est \uline{linéaire}.
             \forall (x,y) \in E, (u(x)|y) = (x | u^*(y))
         \end{equation*}
         $u^*$ est l'\emph{adjoint}\index{Adjoint} de $u$.
-        \item $u$ est \emph{autoadjoint}\index{autoadjoint@Autoadjoint} (symétrique) si $u^* = u$ 
-        \item $u$ est un \emph{automorphisme orthogonal}\index{Automorphisme orthogonal} si $u^* = u^{-1}$. On note $u \in \mathcal{O}(E)$
+        \item $u$ est autoadjoint\index{autoadjoint@Autoadjoint} (\emph{symétrique}) si $u^* = u$ 
+        \item $u$ est un automorphisme orthogonal\index{Automorphisme orthogonal} (\emph{isométrie vectorielle}) si $u^* = u^{-1}$. On note $u \in \mathcal{O}(E)$
     \end{enumerate}
 \end{dfn}
 
@@ -1794,28 +1794,12 @@ $u$ est un endomorphisme, donc il est \uline{linéaire}.
         \item $(u\circ v)^* = v^* \circ u^*$
     \end{enumerate}
 \end{prop}
-
-\begin{theorem}[Caractérisation d'un automorphisme orthogonal]
-    $u$ est un automorphisme orthogonal si les assertions suivantes (équivalentes) sont vérifiées :
-    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
-    \begin{enumerate}
-        \item $u$ conserve la norme
-        \item $u$ conserve le produit scalaire
-        \item $u\left(\mathcal{B}_\text{orthonormée}\right) = \mathcal{B}'_\text{orthonormée}$
-        \item $\forall \mathcal{B'}_\text{orthonormée}, \exists \mathcal{B}_\text{orthonormée}$ telle que $u\left(\mathcal{B}_\text{orthonormée}\right) = \mathcal{B}'_\text{orthonormée}$
-        \item $\exists \mathcal{B}_\text{orthonormée} $ telle que $\left| \begin{gathered}
-            U{}^tU = I_n\\
-            \text{ ou }\\
-            {}^tUU = I_n
-        \end{gathered}\right|$ où $U = M_\mathcal{B}(u)$
-    \end{enumerate}
-\end{theorem}
 \begin{itheorem}[Théorème spectral]
-    Tout \emphh{endomorphisme auto-adjoint} est diagonalisable, et il existe une base orthonormale de vecteurs propres de $u$.\par
+    Tout \emphh{endomorphisme symétrique} est diagonalisable, et il existe une base orthonormale de vecteurs propres de $u$.\par
 
     Toute \emphh{matrice symétrique \uline{réelle}} est diagonalisable. On peut aussi dire : 
     \begin{equation}
-    \forall A \in S_n, \exists  \left| \begin{gathered} P \in \mathcal{O}(n) \\ D \in \mathcal{D}_n(\Reel) \end{gathered} \right. \text{ tel que } A = PDP^{-1} = PD{}^tP
+    \forall A \in S_n, \exists  \left| \begin{gathered} P \in \mathcal{O}(n) \\ D \in \mathcal{D}_n(\Reel) \end{gathered} \right. \text{ tel que } A = PDP^{-1} = PD{}^{\intercal}P
     \end{equation}
 \end{itheorem}
 \section{Isométries vectorielles d'un espace euclidien} % (fold)
@@ -1860,6 +1844,54 @@ $u$ est un endomorphisme, donc il est \uline{linéaire}.
      \end{align*}
      On a alors montré l'équivalence.\qed
 \end{proof}
+\begin{theorem}[Groupe orthogonal $\mathcal{O}(E)$]
+     L'ensemble des isométries vectorielles de $E$, muni de la loi $\circ$ est un sous-groupe de $\mathrm{GL}(E)$. \\
+     C'est le \emph{groupe orthogonal}\index{Groupe!orthogonal} de $E$, et on le note $\mathcal{O}(E)$.
+\end{theorem}
+\begin{theorem}[Stabilité de l'orthogonal]
+     Soit $u$ dans $\mathcal{O}(E)$. \\
+     Si $F\subset E$ est stable par $u$, alors $F^\perp$ est stable par $u$.
+\end{theorem}
+\begin{itheorem}[Caractérisation d'une isométrie vectorielle]
+    $u$ est un automorphisme orthogonal si les assertions suivantes (équivalentes) sont vérifiées :
+    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
+    \begin{enumerate}
+        \item $u$ conserve la norme
+        \item $u$ conserve le produit scalaire
+        \item $u\left(\mathcal{B}_\text{orthonormée}\right) = \mathcal{B}'_\text{orthonormée}$
+        \item $\forall \mathcal{B'}_\text{orthonormée}, \exists \mathcal{B}_\text{orthonormée}$ telle que $u\left(\mathcal{B}_\text{orthonormée}\right) = \mathcal{B}'_\text{orthonormée}$
+        \item $\exists \mathcal{B}_\text{orthonormée} $ telle que $\left| \begin{gathered}
+            U{}^tU = I_n\\
+            \text{ ou }\\
+            {}^tUU = I_n
+        \end{gathered}\right|$ où $U = M_\mathcal{B}(u)$
+    \end{enumerate}
+\end{itheorem}
+\begin{theorem}[Valeurs propres d'une isométrie vectorielle]
+     Soit $u\in \mathcal{O}(E)$. Si $u$ admet des valeurs propres, alors elles appartiennent à $\{ -1 , 1 \}$. 
+\end{theorem}
+\begin{proof}
+     Soit $\lambda$ une valeur propre de $u$. On a $\| u (x) \| = \|\lambda x \|$. Or par définition  d'une isométrie vectorielle : $| \lambda | \| x \| = \| u(x) \| = \| x\|$. Ainsi, $\lambda = \{ -1 , 1\}$.\qed
+\end{proof}
+\begin{theorem}
+     Soit $M$ la matrice de $u$ \emphhs{dans une base orthonormale}. Alors :
+     \begin{equation}
+     u \in \mathcal{O}(E) \Longleftrightarrow {}^{\intercal}M M = I_n
+     \end{equation}
+\end{theorem}
+\begin{itheorem}[Caractérisation d'une matrice orthogonale]
+    $u$ est une matrice orthogonale \ssi{} les assertions suivantes (équivalentes) sont vérifiées :
+    \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
+    \begin{enumerate}
+        \item $M$ est inversible et $M^{-1} = {}^{\intercal}M$
+        \item Les colonnes de $M$ forment une base orthonormale de $\mathcal{M}_{n,1}(\mathbb{R} )$
+        \item Les lignes de $M$ forment une base orthonormale de $\mathcal{M}_{1,n}(\mathbb{R} )$
+        \item $M$ est la matrice de passage d'une base orthonormale à une autre
+    \end{enumerate}
+\end{itheorem}
+\begin{theorem}[Déterminant]
+     Toute matrice orthogonale/isométrie vectorielle d'un espace euclidien a pour déterminant $1$ ou $-1$.
+\end{theorem}
 % section isometries_vectorielles_d_un_espace_euclidien (end)
 \chapter{Espaces Préhilbertiens complexes}
 \section{Structure Préhilbertienne complexe}
