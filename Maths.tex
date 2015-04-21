@@ -1638,10 +1638,42 @@ Dans cette section, on se placera dans \Reel{}.
 \item[Distance de $x$ à une partie $F$] $d(x,F) = \| x - p_f(x) \|$
 \end{description}
 \end{methode}
-\section{Orthogonalité}
+\begin{dfn}[Rappel : Produit scalaire]
+Le \emph{produit scalaire}\index{Produit scalaire} est défini comme suit : 
+\[
+\begin{array}{c r l l}
+(i)&\forall x \in E\backslash \{ 0 \} , &\uline{\varphi(x,x)>0}&\text{\textbf{(définie positive)}}\\
+(ii)&\forall (x,y) \in E^2, &\uline{\varphi (x,y) = \varphi (y,x)} &\text{\textbf{(symétrie)}}\\
+(iii)&\forall x \in E, &\uline{y \mapsto \varphi(x,y) \text{ est linéaire}}&\text{\textbf{(linéaire à droite)}}
+\end{array}
+\]
+On peut associer un produit scalaire $(\cdot | \cdot )$ à un espace vectoriel $E$. L'espace $(E, (\cdot | \cdot ))$ est appelé \emph{espace préhilbertien}\index{Espace!prehilbertien@préhilbertien}.
+\end{dfn}
+\begin{theorem}[Continuité du produit scalaire]
+     Le produit scalaire est une application bilinéaire continue.
+\end{theorem}
+\section{Projection orthogonale sur un sous-espace de dimension finie}
 \begin{dfn}[Éléments orthogonaux]
 Deux éléments $x$ et $y$ sont orthogonaux si $(x|y)=0$
 \end{dfn}
+\begin{itheorem}[Inégalité de \textsc{Cauchy}-\textsc{Schwarz}]
+     Soit $E$ un un espace préhilbertien réel. \index{inegalite@Inégalité!cauchy@de \textsc{Cauchy-Schwarz}}
+     \begin{equation}
+     \forall (x,y)\in E^2,\qquad (x|y)^2 \le (x|x)(y|y)
+     \end{equation}
+\end{itheorem}
+\begin{theorem}[Identités remarquables, identités de polarisation]
+     Soit $E$ un espace préhilbertien réel. Pour tout $(x,y)\in E^2$ :
+     \begin{subequations}
+          \begin{align}
+                \|x+y\|^2 &= \|x\|^2 + 2(x|y) + \|y\|^2 \\
+                \|x-y\|^2 &= \|x\|^2 - 2(x|y) + \|y\|^2 \\
+                \big( x+y \big| x-y \big) &= \| x \|^2 - \| y \|^2 \\
+               (x| y) &= \dfrac{1}{4}\Big( \| x+y\|^2 - \| x-y \|^2\Big) \label{eq:identite_de_polarisation} \\
+               \| x + y \|^2 + \| x - y \|^2 &= 2(\| x \|^2 + \|y\|^2)
+          \end{align}
+     \end{subequations}
+\end{theorem}
 \begin{theorem}[Pythagore]
 Si $(x_1, \cdots , x_n)$ est une famille d'éléments de $E$ deux à deux \emphhs{orthogonaux}, alors 
 \begin{equation}
@@ -1668,15 +1700,76 @@ Pour toute base de $(e_i)$, il existe une base $(\varepsilon_i)$ telle que :
 \end{array}
 \right.
 \end{equation}
-
 On aura souvent recours à compléter une base $(e_i)_k$ avec $n-k$ vecteurs orthonormaux aux $(\varepsilon_i)_k$ par le théorème de la base incomplète.
 \end{itheorem}
+\begin{dfn}[Projection orthogonale]
+     Soit $E$ un espace préhilbertien, et $F$ un sous-espace vectoriel de dimension finie de $E$. On appelle projection orthogonale sur $F$ la projection sur $F$ parallèlement à $F^\perp$, notée $p_F$.
+\end{dfn}
+\begin{figure}[h]
+     \centering
+     \begin{tikzpicture}[scale=1.5]
+          \draw[thick] (0,0) -- (0,-1);
+          \fill[opacity=0.9,color=black!20] (-2,-0.7) -- ++(5,0) -- ++(60:2) -- ++(-5,0) -- cycle;
+          \path (-1.6, -0.4) node {$F$};
+          \draw[densely dashed] (1.6,0) -- (1.6,1.6);
+          \draw[very thick, ->, >=latex] (0,0) -- (1.6,0) node[midway, below]{$p_F (x)$};
+          \draw[thick] (0,0) -- (0,2.3) node[left]{$F^\perp$};
+          \draw[very thick, ->, >=latex] (0,0) -- (1.6,1.6) node[above]{$x$};
+     \end{tikzpicture}
+     \caption{Projection orthogonale}
+\end{figure}
+\begin{itheorem}[Théorème de la projection orthogonale]
+     Avec les notations précédentes, pour tout $x\in E$, $p_F(x)$ est l'unique vecteur de $F$ tel que : 
+     \begin{equation}
+     \| x - p_F(x) \| = \inf_{y\in F} \| x - y\|
+     \end{equation}
+\end{itheorem}
 \begin{theorem}[Inégalité de \textsc{Bessel} \index{inegalite@Inégalité!Bessel@de \textsc{Bessel}}]
-Si $(e_i)$ est une base orthonormée : 
-$\boxed{\sum_i (e_i|x)^2 \le \| x \|^2}$
+Soit $x\in E$ et $p_F(x)$ sont projeté sur un sous-espace vectoriel $F$. Alors : 
+\begin{equation}
+\| p_F (x) \| \le \| x \|
+\end{equation}
+Si $(e_i)$ est une base orthonormée de $F$ : 
+$\boxed{\sum_{i=1}^{p} (e_i|x)^2 \le \| x \|^2}$
 \end{theorem}
-
-\section{Automorphismes ortogonaux}
+\begin{theorem}[Inégalité de \textsc{Bessel} généralisée]
+Soit $(e_n)$ une suite orthonormale d'éléments de $E$. Pour tout élément $x\in E$, $\sum (e_n | x )^2$ converge et : 
+$\boxed{\sum_{n=0}^{+\infty} (e_n|x)^2 \le \| x \|^2}$
+\end{theorem}
+\section{Suites orthonormales de vecteurs d'un espace préhilbertien réel} % (fold)
+\label{sec:suites_orthonormales_de_vecteurs_d_un_espace_prehilbertien_reel}
+\begin{dfn}[Suite totale]
+     Soit $E$ un espace préhilbertien réel. \\
+     On dit d'une suite $(a_n)$ qu'elle est \emph{totale}\index{Suite!totale} si $\mathrm{Vect}(a_n)$ est dense dans $E$, c'est-à-dire si tout élément de $E$ est la limite d'une suite de combinaisons linéaires des vecteurs $a_n$.
+\end{dfn}
+\begin{theorem}
+     Avec les notations précédentes, si $(a_n)$ est une suite d'éléments de $E$, alors : 
+     \begin{equation}
+     \Big( \mathrm{Vect}\big(a_n\, | \, n\in \mathbb{N}\big)\Big)^{\perp} = \{ 0\}
+     \end{equation}
+\end{theorem}
+\begin{proof}
+     Soit $x \in \Big( \mathrm{Vect}\big(a_n\, | \, n\in \mathbb{N}\big)\Big)^{\perp}$. \newline
+     Puisque $x\in E$, et que $(a_n)$ est une suite totale, il existe une suite $(x_n)$ d'éléments de $\mathrm{Vect}\big(a_n\, | \, n\in \mathbb{N}\big)$ qui converge vers $x$. Or pour tout $n$, $(x | x_n) = 0$.\newline
+     Par passage à la limite, et par continuité du produit scalaire, on obtient $(x | x) = 0$ donc $x=0$.\qed
+\end{proof}
+\begin{itheorem}[Caractérisation d'une suite totale]
+% Théorème hors-programme ? 
+     Soit $E$ un espace préhilbertien réel.\\
+     Une suite $(a_n)$ d'éléments de $E$ est totale \ssi{} la suite $\big(p_n(x)\big)$ des projetés orthogonaux de $x$ sur $\mathrm{Vect}\big(a_n\, | \, n\in \mathbb{N}\big)$ converge vers $x$.
+\end{itheorem}
+\begin{theorem}
+     Avec les notations précédentes, soit $(e_k)_{k\in \mathbb{N}}$ est une suite orthonormale totale d'éléments de $E$.\\
+     Si, pour tout $n \in \mathbb{N}$, $p_n$ désigne le projecteur orthogonal de $E$ sur $\mathrm{Vect}(e_0, \ldots , e_n) $, alors, pour tout $x \in E$, $p_n(x)$ converge vers $x$.
+\end{theorem}
+\begin{itheorem}
+     Avec les notations précédentes, une suite $(e_k)$ d'éléments orthonormaux de $E$ est totale \ssi{} pour tout $x\in E$, la série $\sum (x|e_n)^2$ converge vers $\| x \|^2$ : 
+     \begin{equation}
+     \sum_{n=0}^{+\infty} (e_n|x)^2 = \| x \|^2
+     \end{equation}
+\end{itheorem}
+% section suites_orthonormales_de_vecteurs_d_un_espace_prehilbertien_reel (end)
+\section{Endomorphismes symétriques d'un espace euclidien}
 $u$ est un endomorphisme, donc il est \uline{linéaire}.
 \begin{dfn}
     \renewcommand{\theenumi}{\roman{enumi}}% Compter en (i), (ii)...
@@ -1758,7 +1851,7 @@ $u$ est un endomorphisme, donc il est \uline{linéaire}.
           \|u(x) \| = \sqrt{\big( u(x) | u(x) \big) }= \sqrt{\big( x | x \big) } = \| x \|
      \end{equation*}
      Réciproquement, montrons que \og{}conserve le produit~scalaire~$\Longleftarrow$~isométrie~vectorielle\fg{}.\newline
-     Si $u$ est une isométrie vectorielle, d'après les identités de polarisation : 
+     Si $u$ est une isométrie vectorielle, d'après l'identité de polarisation~\eqref{eq:identite_de_polarisation} : 
      \begin{align*}
           \left( u(x) | u(y) \right) 
     &= \frac{1}{4} \left( \| u(x) + u(y) \|^2 - \| u(x) - u(y) \|^2 \right) \\
