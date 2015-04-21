@@ -2595,6 +2595,7 @@ $f : I \to \Reel$ est dérivable en $a \in I$ si $\lim_{x\to a} \dfrac{f(x) - f(
 On notera $\mathcal{D}(I,\Reel )$ l'ensemble des applications dérivables de $I$ dans \Reel{}.
 
 \begin{theorem}
+Une application est dérivable $\ssi{}$ elle admet un développement limité d'ordre 1 au voisinage de $a$ : \\
 $f$ dérivable $\Leftrightarrow \exists l$ tel que $f(x) \underset{x\to a}{=} f(a) + (x-a)l + (x-a)\varepsilon (x)$\\
 Alors, $l$ est la dérivée en $a$ de $f$
 \end{theorem}
@@ -2636,9 +2637,7 @@ Soit $\varphi$ une application bilinéaire, alors :
 \end{equation}
 \end{theorem}
 \section{Intégration}
-\subsubsection{Inégalité de la moyenne} % (fold)
-\label{ssub:inegalite_de_la_moyenne}
-\begin{itheorem}[Cas réel]
+\begin{itheorem}[Inégalité de la moyenne : cas réel]
     Si $f$ est \emphh{continue} sur un intervalle $[a,b]$ et qu'il existe $m$ et $M$ tels que : 
     \[
         m \le f(x) \le M
@@ -2648,15 +2647,20 @@ Soit $\varphi$ une application bilinéaire, alors :
     m(b-a) \le \int_a^b f(x) \mathrm{d}x \le M(b-a)
     \end{equation}
 \end{itheorem}
-    
-% subsubsection inegalite_de_la_moyenne (end)
+\begin{itheorem}[Somme de \textsc{Riemann}]
+Soit $f:[a,b]\longto \Reel{}$. Si $f$ est intégrable, alors : 
+     \begin{equation}
+     S_n=\frac{b-a}{n}\sum_{k=1}^n f\left(a + k\frac{b-a}n\right) \\ \lim_{n\to +\infty} S_n = \int\limits_a^b f(t) \d t
+     \end{equation}
+     
+\end{itheorem}
 \section{Primitive}
 \begin{dfn}[Primitive]
 $F$ est une \emph{primitive}\index{Primitive} de $f$ si $\forall x, F'(x)=f(x)$. 
 \end{dfn}
 \begin{theorem}
 %TODO Compléter le théorème
-Si $F$ est la primitive de $f$,
+Si $F$ est une primitive de $f$,
 \begin{equation}
     \int \limits_a^x f(t) dt = F(x) - F(a)
 \end{equation}
@@ -2720,6 +2724,34 @@ $f\in\mathcal{C}^{k+1}(I,E)$, avec $(a,b)\in I^2$
 %\begin{theorem}[Théorème d'interversion des sommations de \textsc{Fubini}]
 %
 %\end{theorem}
+\section{Arcs Paramétrés}
+\begin{dfn}[Arc Paramétré]
+On appelle \emph{arc paramétré} \index{arc parametre@Arc paramétré} de classe $\mathcal{C}^k$ un couple $\left( I,f \right)$ avec 
+$
+\left\lbrace
+\begin{array}{c l}
+I&\text{un intervalle de \Reel}\\
+f&\text{une application de }\mathcal{C}^k\left( I,E \right)
+\end{array}
+\right.
+$
+\end{dfn}
+
+\begin{dfn}
+Quelques autres définitions : \\[0.3cm]
+% Tableau de Définitions
+\begin{tabular}{ >{\bfseries} l >{\begin{math}} c <{\end{math}} @{ — } l}
+Valeur Régulière\index{Valeur!reguliere@régulière} & t_0 &$f'(t_0) \neq 0$\\
+Valeur Birégulière \index{Valeur!bireguliere@birégulière}&t_0&$\left( f'(t_0),f''(t_0) \right)$ est libre\\
+Abscisse Curviligne \index{Abscisse curviligne}&s&$s'=N_2\left( f'(t) \right)$ sur un intervalle\\
+Paramétrage normal &\big( J,g \big)&%TODO: Finir le paramétrage normal
+\end{tabular}
+\end{dfn}
+Exemple d'abscisse curviligne : $s : t \mapsto \sinh (t)$ car $N_2\left( s(t) \right) = \sqrt{\int |\sinh (t)|^2} = 
+ \sinh{}'(t) = \cosh (t)$. L'avantage d'une abscisse curvligne est de pouvoir simplifier l'étude d'une courbe. \\
+%TODO: Exemple de paramétrage régulier
+%Exemple de paramétrage régulier : $\bigg( ,ch(x) \bigg)$
+
 
 \needspace{19cm}
 \chapter{Intégrales sur un intervalle}
@@ -4399,35 +4431,6 @@ f \in \mathcal{C}(U,F)\text{ injective est }\mathcal{C}^k\text{-difféomorphisme
 % section complement_sur_les_courbes_planes (end)
 
 \part{Géométrie} 
-\section{Arcs Paramétrés}
-\begin{dfn}[Arc Paramétré]
-On appelle \emph{arc paramétré} \index{arc parametre@Arc paramétré} de classe $\mathcal{C}^k$ un couple $\left( I,f \right)$ avec 
-$
-\left\lbrace
-\begin{array}{c l}
-I&\text{un intervalle de \Reel}\\
-f&\text{une application de }\mathcal{C}^k\left( I,E \right)
-\end{array}
-\right.
-$
-\end{dfn}
-
-\begin{dfn}
-Quelques autres définitions : \\[0.3cm]
-% Tableau de Définitions
-\begin{tabular}{ >{\bfseries} l >{\begin{math}} c <{\end{math}} @{ — } l}
-Valeur Régulière\index{Valeur!reguliere@régulière} & t_0 &$f'(t_0) \neq 0$\\
-Valeur Birégulière \index{Valeur!bireguliere@birégulière}&t_0&$\left( f'(t_0),f''(t_0) \right)$ est libre\\
-Abscisse Curviligne \index{Abscisse curviligne}&s&$s'=N_2\left( f'(t) \right)$ sur un intervalle\\
-Paramétrage normal &\big( J,g \big)&%TODO: Finir le paramétrage normal
-\end{tabular}
-\end{dfn}
-
-Exemple d'abscisse curviligne : $s : t \mapsto \sinh (t)$ car $N_2\left( s(t) \right) = \sqrt{\int |\sinh (t)|^2} = 
- \sinh{}'(t) = \cosh (t)$. L'avantage d'une abscisse curvligne est de pouvoir simplifier l'étude d'une courbe. \\
-%TODO: Exemple de paramétrage régulier
-%Exemple de paramétrage régulier : $\bigg( ,ch(x) \bigg)$
-
 \section{Courbes Planes}
 \subsection{En polaire}
 \begin{dfn}[Fonction $\arg$]
