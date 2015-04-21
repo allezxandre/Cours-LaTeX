@@ -1,5 +1,5 @@
 % !TEX encoding = UTF-8 Unicode
-\documentclass[11pt,a4paper,fleqn,pdftex]{report}
+\documentclass[11pt,a4paper,fleqn,pdftex,final]{report}
 \include{Preambule}
 \externaldocument[PHY-]{Physique}[Physique.pdf]% <- full or relative path 
 \begin{document}
@@ -1394,6 +1394,7 @@ En effet : il n'existe aucun disque centré en $y \in O+F$ inclus dans la partie
 \begin{itheorem}[Caractérisation séquentielle d'un fermé]
 $F\subset E$ est un \emph{fermé}\index{ferme@Fermé} \uline{\emph{ssi}} toute suite convergente de F a sa limite dans F
 \end{itheorem}
+\needspace{4cm}
 \begin{dfn}[Point adhérent]% Pris à 100% de Vuibert
      Un point $x\in E$ est dit \emph{adhérent}\index{Adherent@Adhérent} à $A$ si tout voisinage de $x$ rencontre $A$ : 
      \begin{equation}
@@ -1404,6 +1405,7 @@ $F\subset E$ est un \emph{fermé}\index{ferme@Fermé} \uline{\emph{ssi}} toute s
      \forall \epsilon > 0,\qquad \exists a\in A,\quad \| a -x \| < \epsilon
      \end{equation}
 \end{dfn}
+\needspace{4cm}
 \begin{dfn}[Point intérieur]% Idem : Pris à 100% de Vuibert
      Un point $x$ de $E$ est dit \emph{intérieur}\index{Interieur@Intérieur!point} à $A$ si $A$ est un voisinage de $x$, c'est à dire s'il existe une boule ouverte de centre $x$ contenue dans $A$ : 
      \begin{equation}
@@ -1549,8 +1551,11 @@ _n$ qui converge dans $A$}
      Si $f$ est continue, alors elle est bornée et \emphhs{atteint ses bornes}.
 \end{theorem}
 \begin{itheorem}[Théorème de \textsc{Heine}\index{Heine@\textsc{Heine}}]
-    Si $(E,N)$ et $(F,N)$ sont des espaces vectoriels normés, $A$ une partie \emphh{compacte} de $E$, \linebreak si $f\in \mathcal{C}(A,F)$, alors $f$ est \emphh{uniformément continue}.
+    Si $(E,N)$ et $(F,N)$ sont des espaces vectoriels normés, $A$ une partie \emphh{compacte} de $E$, alors \newline alors $f$ est \emphh{uniformément continue} $\Longleftarrow$ $f\in \mathcal{C}(A,F)$.
 \end{itheorem}
+\begin{proof}
+     Idée : supposer que $f$ est discontinue uniformément.% WHAT? 
+\end{proof}
 % section applications_continues_sur_une_partie_compacte (end)
 \section{Connexité par arcs} % (fold)
 \label{sec:connexe_par_arcs}
@@ -1658,7 +1663,7 @@ Deux éléments $x$ et $y$ sont orthogonaux si $(x|y)=0$
 \end{dfn}
 \begin{itheorem}[Inégalité de \textsc{Cauchy}-\textsc{Schwarz}]
      Soit $E$ un un espace préhilbertien réel. \index{inegalite@Inégalité!cauchy@de \textsc{Cauchy-Schwarz}}
-     \begin{equation}
+     \begin{equation}\label{eq:cauchy_swharz_scalaire}
      \forall (x,y)\in E^2,\qquad (x|y)^2 \le (x|x)(y|y)
      \end{equation}
 \end{itheorem}
@@ -2343,6 +2348,29 @@ Tous les théorèmes vus ici sont à démontrer.
      \sum_{n=0}^{+\infty} \left( \sum_{i\in I_n} u_i \right) = \sum_{n\in I} u_n
      \end{equation}
 \end{itheorem}
+\begin{itheorem}[Théorème de \textsc{Fubini}\index{Fubini@\textsc{Fubini}}]
+     Soit $u = \Big( u_{p,q}\Big)_{(p,q)\in \mathbb{N}^2} $ une famille de nombres réels ou complexes. Alors, les assertions suivantes sont équivalentes : 
+     \begin{itemize}
+         \item La famille $u$ est sommable
+         \item $ 
+         \displaystyle\left\lbrace \begin{array}{r r l}
+              \forall q,\quad& \text{ la série } \sum_p u_{p,q} & \text{ converge absoluement}\\
+              &\text{ la série } \sum_q \sum_{p=0}^{+\infty} | u_{p,q} | & \text{ converge absoluement}
+         \end{array}\right.
+          $
+          \item $
+         \displaystyle\left\lbrace \begin{array}{r r l}
+              \forall p,\quad& \text{ la série } \sum_q u_{p,q} & \text{ converge absoluement}\\
+              &\text{ la série } \sum_p \sum_{q=0}^{+\infty} | u_{p,q} | & \text{ converge absoluement}
+         \end{array}\right.
+          $
+     \end{itemize}
+     Dans ce cas, on a : 
+     \begin{equation}
+     \sum_{p,q\in \mathbb{N}^2} u_{p,q} = \sum_{q=0}^{+\infty} \left( \sum_{p=0}^{+\infty} u_{p,q} \right) = \sum_{p=0}^{+\infty} \left( \sum_{q=0}^{+\infty} u_{p,q} \right) 
+     \end{equation}
+     
+\end{itheorem}
 \begin{theorem}
      Soient $(a_p)_{p\in \mathbb{N}}$ et $(b_q)_{q\in \mathbb{N}}$ deux familles sommables. Alors la famille $\big( a_p b_q\big)_{(p,q)\in \mathbb{N}^2}$ est sommable et 
      \begin{equation}
@@ -2829,20 +2857,20 @@ Si $\exists \: \lambda$ tel que $ \forall t\in ]a,b[, \textcolor{couleurImp}{N}(
 \end{tikzpicture}
 \end{minipage}
 \end{itheorem}
-
+\needspace{9cm}
 \section{Formules de Taylor}
 \begin{itheorem}[Formules de Taylor\index{Taylor!Formules@\string\textit{(Formules)}}]
-$f\in\mathcal{C}^{k+1}(I,E)$, avec $(a,b)\in I^2$
+$f\in\mathcal{C}^{n+1}(I,E)$, avec $(a,b)\in I^2$
 \[
 \begin{array}{l c r c l}
 \text{\textbf{Taylor-Young}\index{Taylor!Young}}&f(x)\underset{x\to a}{=}&\displaystyle \sum_{k=0}^{n} \dfrac{(x-a)^k}{k!}f^{(k)}(a)&+&o\left( (x-a)^n \right)   \\[0.7cm]
-\text{\textbf{Taylor-Laplace}\index{Taylor!Laplace}}&f(x)=&\overbrace{\sum_{p=0}^k \dfrac{(x-a)^p}{p!}f^{(p)}(a)}^{\mathclap{T_k(x)}} & + & \underset{=}{\overbrace{\int_a^x \dfrac{(x-t)^{k}}{k!}f^{(k+1)}(t)dt}^{\mathclap{\text{Reste intégral }R_k(x)}}}\\
+\text{\textbf{Taylor-Laplace}\index{Taylor!Laplace}}&f(x)=&\overbrace{\sum_{k=0}^n \dfrac{(x-a)^k}{k!}f^{(k)}(a)}^{\mathclap{T_n(x)}} & + & \underset{=}{\overbrace{\int_a^x \dfrac{(x-t)^{n}}{n!}f^{(n+1)}(t)dt}^{\mathclap{\text{Reste intégral }R_n(x)}}}\\
 &&&&\resizebox{.35\hsize}{!}{$(x-a)^{k+1}\int_0^1\dfrac{(1-u)^k}{k!}f^{(k+1)}\left( (1-u)a+ux \right) du$}\\
 \end{array}\\
 \]
 
 \[
-\text{\textbf{Taylor-Lagrange} \index{Taylor!Lagrange}} f(x)= \resizebox{.7\hsize}{!}{$N\left( f(b) - f(a) - \displaystyle\sum_{p=1}^k\dfrac{(b-a)^p}{p!}f^{(p)}(a) \right)\le \dfrac{|b-a|^{k+1}}{(k+1)!}N_\infty^{[a,b]}\left( f^{(k+1)} \right)$}
+\text{\textbf{Taylor-Lagrange} \index{Taylor!Lagrange}} \resizebox{.7\hsize}{!}{$N\left( f(b) - f(a) - \displaystyle\sum_{k=0}^n\dfrac{(b-a)^k}{k!}f^{(k)}(a) \right)\le \dfrac{|b-a|^{n+1}}{(n+1)!}N_\infty^{[a,b]}\left( f^{(n+1)} \right)$}
 \]
 
 \end{itheorem}
@@ -3223,6 +3251,7 @@ alors, la fonction $F : x \mapsto \int_I f(x,t)$ est \uline{\emph{dérivable et 
 \end{equation}
 \end{subequations}
 \end{itheorem}
+\needspace{7cm}
 \begin{theorem}[Classe $\mathscr{C}^k$ d'une intégrale à paramètre]
      Soient $I$ et $A$ des intervalles quelconques de \Reel{}.\\
      Soit $f : \big( A\times I\big) \longto \mathbb{K}$ une fonction. Soit $k\in \mathbb{N}$. \\ Si : 
@@ -4226,6 +4255,7 @@ où $a \in \mathcal{C}\left( I,\mathscr{L}(F)\right), \: b\in \mathcal{C}(I,F)$.
 $a$ est une application de $I$ dans \uline{$\mathscr{L}(F)$}. Donc $a(t)$ est une application linéaire, pas un scalaire}
 % subsubsection probleme_de_Cauchy (end)
 \section{Équations Différentielles linéaires du second ordre}
+\needspace{5cm}
 \begin{dfn}[Équation Différentielle Vectorielle]\index{equation differentielle@Équation Différentielle!du second ordre@du 2\ieme{} ordre}
     C'est une équation sous la forme 
 \begin{equation}\label{eq:equaDiff2ndOrdre}\tag{$\mathscr{L}$}
@@ -4269,7 +4299,6 @@ Ou encore :
     \end{equation}
     où $\omega(\lambda )$ est la multiplicité de $\lambda$ en tant que racine du polynome caractéristique de $f$ et $Q \in \Cmplx[X]$ est de même degré que $P$.
 \end{theorem}
-\subsection{Cas général}
 \chapter{Équations Différentielles non linéaires}
 \section{Équations autonomes}
 \begin{dfn}[Champ de Vecteur]
@@ -4705,7 +4734,8 @@ Dérivées des fonctions trigonométriques :
 \section*{Inégalités}
 \begin{tabular}{ >{ \bfseries} r c c}
     Modules & $\left|\left|\sum_i x_i \right| \right| \le \sum_i \| x_i \|$& \\[5mm]
-    Module d'intégrales & $\left| \int_I f \right| \le \int_I \left| f \right| $ & \eqref{eq:SommeIntegrale} \\[3mm]
+    Module d'intégrales & $\left| \int_I f \right| \le \int_I \left| f \right| $ & \eqref{eq:SommeIntegrale} \\[5mm]
+    \textsc{Cauchy}-\textsc{Schwarz} & $ (x|y)^2 \le (x|x)(y|y)$ & \eqref{eq:cauchy_swharz_scalaire} \\[3mm]
     Inégalité de la Moyenne & $m(b-a)\le \int_a^b f(x) \mathrm{d}x \le M(b-a)$ & \eqref{eq:inegalite_de_la_moyenne}
 \end{tabular} \\[3mm]
 \rule{\columnwidth}{0.5pt}
@@ -4722,7 +4752,8 @@ Dérivées des fonctions trigonométriques :
 \section{Espaces vectoriels} % (fold)
 \label{sum:espaces_vectoriels}
    Espaces vectoriels normés usuels : \newline
-   $\mathbb{R}^n, \mathbb{C}^n$, $\mathbb{R}_n[X], \mathbb{C}_n[X]$, $\mathcal{M}_n(\mathbb{R}), \mathcal{M}_n(\mathbb{C})$, $\mathcal{C}^n(I, \mathbb{R})$, 
+   $\mathbb{R}^n, \mathbb{C}^n$, $\mathbb{R}_n[X], \mathbb{C}_n[X]$, $\mathcal{M}_n(\mathbb{R}), \mathcal{M}_n(\mathbb{C})$, $\mathcal{C}^n(I, \mathbb{R})$
+   \\ 
 %  sum:espaces_vectoriels (end)
 \rule{\columnwidth}{0.5pt}
 \section{Astuces}
