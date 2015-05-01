@@ -1,5 +1,5 @@
 % !TEX encoding = UTF-8 Unicode
-\documentclass[11pt,a4paper,fleqn,pdftex,final]{report}
+\documentclass[11pt,a4paper,fleqn,pdftex]{report}
 \include{Preambule}
 \externaldocument[MATH-]{Maths}[Maths.pdf]% <- full or relative path 
 \begin{document}
@@ -1187,12 +1187,21 @@ Cette force\index{Force!rappel@\emphi{de }rappel} est déterminée expérimental
 \end{theorem}
 % section loi_de_la_quantite_de_mouvement (end)
 \section{Approche Énergétique}
-\begin{dfn}[Système conservatif\index{Systeme@Système!conservatif}]
-Un \emph{système conservatif} est un système dont l'\uline{énergie mécanique} $E_m = E_c + E_p$ est \uline{constante}.
+\begin{dfn}[Système conservatif]
+Un \emph{système conservatif}\index{Systeme@Système!conservatif} est un système dont l'\uline{énergie mécanique} $E_{\text{m}} = E_{\text{c}} + E_{\text{p}}$ est \uline{constante}.
 \end{dfn}
 %
-\begin{dfn}[Force conservative\index{Force!conservative}]
-C'est une force dont le travail entre deux points $A$ et $B$ \uline{ne dépend pas du chemin emprunté}.
+\begin{dfn}[Force conservative]
+Une \emph{force conservative}\index{Force!conservative} est une force dont le travail entre deux points $A$ et $B$ \uline{ne dépend pas du chemin emprunté}.
+\end{dfn}
+%
+\begin{dfn}[Force dérivée d'une énergie potentielle]
+% Depuis :
+% http://res-nlp.univ-lemans.fr/NLP_S_M02_G01_01/co/Contenu_16.html
+   Une force $\vv{f}$ \emph{dérive d'une énergie potentielle}\index{Force!derivee d'une energie potentielle@dérivée d'une énergie potentielle} s'il existe une fonction $E_{\text{p}}$ des coordonnées des points du système $\Sigma$ telle que :
+   \begin{equation}
+   \vv{f} = -\grad E_{\text{p}}
+   \end{equation} 
 \end{dfn}
 %
 \subsection{Puissance et travail}
